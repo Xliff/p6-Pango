@@ -2,11 +2,38 @@ use v6.c;
 
 use NativeCall;
 
+use Pango::Compat::Types;
+
 use Pango::Raw::Types;
 use Pango::Raw::Layout;
 
+use Pango::Roles::Types;
+use Pango::Roles::References;
+
 class Pango::Layout {
+  also does Pango::Roles::Types;
+  also does Pango::Roles::References;
+
   has PangoLayout $!pl;
+
+  submethod BUILD(:$layout) {
+    $!pl = $layout;
+  }
+
+  multi method new (PangoLayout $layout) {
+    my $o = self.bless(:$layout);
+    $o.upref;
+    $o;
+  }
+  method new (PangoContext $context) {
+    my $layout = pango_layout_new($context);
+    self.bless(:$layout);
+  }
+
+  method copy {
+    my $layout = pango_layout_copy($!pl);
+    self.bless(:$layout);
+  }
 
   # ↓↓↓↓ SIGNALS ↓↓↓↓
   # ↑↑↑↑ SIGNALS ↑↑↑↑
@@ -164,10 +191,6 @@ class Pango::Layout {
     pango_layout_context_changed($!pl);
   }
 
-  method copy {
-    pango_layout_copy($!pl);
-  }
-
   method get_character_count {
     pango_layout_get_character_count($!pl);
   }
@@ -181,7 +204,7 @@ class Pango::Layout {
     PangoRectangle $strong_pos,
     PangoRectangle $weak_pos
   ) {
-    pango_layout_get_cursor_pos($!pl, $index_, $strong_pos, $weak_pos);
+    pango_layout_get_cursor_pos($!pl, $index, $strong_pos, $weak_pos);
   }
 
   method get_iter {
@@ -244,27 +267,23 @@ class Pango::Layout {
     pango_layout_is_wrapped($!pl);
   }
 
-  method move_cursor_visually (gboolean $strong, int $old_index, int $old_trailing, int $direction, int $new_index, int $new_trailing) {
+  method move_cursor_visually (gboolean $strong, int32 $old_index, int32 $old_trailing, int32 $direction, int32 $new_index, int32 $new_trailing) {
     pango_layout_move_cursor_visually($!pl, $strong, $old_index, $old_trailing, $direction, $new_index, $new_trailing);
   }
 
-  method new {
-    pango_layout_new();
-  }
-
-  method set_markup (char $markup, int $length) {
+  method set_markup (Str() $markup, int32 $length) {
     pango_layout_set_markup($!pl, $markup, $length);
   }
 
-  method set_markup_with_accel (char $markup, int $length, gunichar $accel_marker, gunichar $accel_char) {
+  method set_markup_with_accel (Str() $markup, int32 $length, gunichar $accel_marker, gunichar $accel_char) {
     pango_layout_set_markup_with_accel($!pl, $markup, $length, $accel_marker, $accel_char);
   }
 
-  method set_text (char $text, int $length) {
+  method set_text (Str() $text, int32 $length) {
     pango_layout_set_text($!pl, $text, $length);
   }
 
-  method xy_to_index (int $x, int $y, int $index_, int $trailing) {
+  method xy_to_index (int32 $x, int32 $y, int32 $index_, int32 $trailing) {
     pango_layout_xy_to_index($!pl, $x, $y, $index_, $trailing);
   }
   # ↑↑↑↑ METHODS ↑↑↑↑

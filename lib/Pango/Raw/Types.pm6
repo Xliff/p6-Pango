@@ -71,6 +71,9 @@ our enum PangoDirection is export <
 
 class PangoAttrList         is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoContext          is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoEngineShape      is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoEngineLang       is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoFont             is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFontDescription  is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFontFace         is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFontFamily       is repr('CPointer') is export does Pango::Roles::Pointers { }
@@ -79,3 +82,95 @@ class PangoLanguage         is repr('CPointer') is export does Pango::Roles::Poi
 class PangoLayout           is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoLayoutIter       is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoLayoutLine       is repr('CPointer') is export does Pango::Roles::Pointers { }
+
+class PangoRectangle is repr('CStruct') is export does Pango::Roles::Pointers {
+  has gint $.x     is rw;
+  has gint $.y     is rw;
+  has gint $.width is rw;
+  has gint $.heigh is rw;
+}
+
+class PangoLogAttr is repr('CStruct') is export does Pango::Roles::Pointers {
+  has guint $.is_line_break               is rw; # :1
+  has guint $.is_mandatory_break          is rw; # :1
+  has guint $.is_char_break               is rw; # :1
+  has guint $.is_white                    is rw; # :1
+  has guint $.is_cursor_position          is rw; # :1
+  has guint $.is_word_start               is rw; # :1
+  has guint $.is_word_end                 is rw; # :1
+  has guint $.is_sentence_boundary        is rw; # :1
+  has guint $.is_sentence_start           is rw; # :1
+  has guint $.is_sentence_end             is rw; # :1
+  has guint $.backspace_deletes_character is rw; # :1
+  has guint $.is_expandable_space         is rw; # :1
+  has guint $.is_word_boundary            is rw; # :1
+}
+
+constant PangoGlyph     is export := uint32;
+constant PangoGlyphUnit is export := uint32;
+
+class PangoAnalysis is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  has PangoEngineShape $.shape_engine;
+  has PangoEngineLang  $.lang_engine;
+  has PangoFont        $.font;
+  has guint8           $.level;
+  has guint8           $.gravity;
+  has guint8           $.flags;
+  has guint8           $.script;
+  has PangoLanguage    $.language;
+  has GSList           $.extra_attrs;
+}
+
+class PangoItem is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  has gint          $.offset;
+  has gint          $.length;
+  has gint          $.num_chars;
+  HAS PangoAnalysis $.analysis;
+}
+
+class PangoGlyphVisAttr is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  has guint $.is_cluster_start; # :1
+}
+
+class PangoGlyphGeometry is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  has PangoGlyphUnit $.width;
+  has PangoGlyphUnit $.x_offset;
+  has PangoGlyphUnit $.y_offset;
+}
+
+class PangoGlyphInfo is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+   has PangoGlyph         $.glyph;
+   HAS PangoGlyphGeometry $.geometry;
+   HAS PangoGlyphVisAttr  $.attr;
+}
+
+class PangoGlyphString is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  has gint           $.num_glyphs;
+  has PangoGlyphInfo $.glyphs;
+  has gint           $.log_clusters;
+}
+
+class PangoGlyphItem is repr('CStruct') is export does Pango::Roles::Pointers {
+  has PangoItem        $.item;
+  has PangoGlyphString $.glyphs;
+}
+
+constant PangoLayoutRun is export := PangoGlyphItem;

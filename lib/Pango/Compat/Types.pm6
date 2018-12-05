@@ -21,6 +21,7 @@ constant glib     is export = 'glib-2.0',v0;
 constant gio      is export = 'gio-2.0',v0;
 constant gobject  is export = 'gobject-2.0',v0;
 constant cairo    is export = 'cairo',v2;
+constant pango    is export = 'pango-1.0',v0;
 
 sub g_destroy_none(Pointer)
   is export
@@ -31,14 +32,14 @@ sub g_free (Pointer)
   is export
   { * }
 
-class GError is repr('CStruct') does GTK::Roles::Pointers is export {
+class GError is repr('CStruct') does Pango::Roles::Pointers is export {
   has uint32        $.domain;
   has int32         $.code;
   has Str           $.message;
 }
 
 # Used ONLY in those situations where cheating is just plain REQUIRED.
-class GObjectStruct is repr('CStruct') does GTK::Roles::Pointers is export {
+class GObjectStruct is repr('CStruct') does Pango::Roles::Pointers is export {
   has uint64  $.g_type_instance;
   has uint32   $.ref_count;
 }
@@ -104,20 +105,20 @@ constant GStrv               is export := CArray[Str];
 constant GType               is export := uint64;
 constant GVariant            is export := Pointer;
 
-class GList is repr('CStruct') does GTK::Roles::Pointers is export {
+class GList is repr('CStruct') does Pango::Roles::Pointers is export {
   has Pointer $.data;
   has GList   $.next;
   has GList   $.prev;
 }
 
-class GPermission is repr('CStruct') does GTK::Roles::Pointers is export {
+class GPermission is repr('CStruct') does Pango::Roles::Pointers is export {
   has uint64 $.dummy1;
   has uint64 $.dummy2;
   has uint64 $.dummy3;
   has uint64 $.dummy4;
 }
 
-class GSList is repr('CStruct') does GTK::Roles::Pointers is export {
+class GSList is repr('CStruct') does Pango::Roles::Pointers is export {
   has Pointer $!data;
   has GSList  $.next;
 }
@@ -134,7 +135,7 @@ class GTypeValueList is repr('CUnion') is export {
   has OpaquePointer   $.v_pointer is rw;
 };
 
-class GValue is repr('CStruct') does GTK::Roles::Pointers is export {
+class GValue is repr('CStruct') does Pango::Roles::Pointers is export {
   has ulong           $.g_type is rw;
   HAS GTypeValueList  $.data1  is rw;
   HAS GTypeValueList  $.data2  is rw;
@@ -298,7 +299,7 @@ class GParamSpec            is repr('CPointer') is export does Pango::Roles::Poi
 class GPtrArray             is repr('CPointer') is export does Pango::Roles::Pointers { }
 class GVolume               is repr('CPointer') is export does Pango::Roles::Pointers { }
 
-class GArray is repr('CStruct') does GTK::Roles::Pointers is export {
+class GArray is repr('CStruct') does Pango::Roles::Pointers is export {
   has Str    $.data;
   has uint32 $.len;
 }

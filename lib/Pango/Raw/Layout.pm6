@@ -1,5 +1,10 @@
 use v6.c;
 
+use NativeCall;
+
+use Pango::Compat::Types;
+use Pango::Raw::Types;
+
 unit package Pango::Raw::PangoLayout;
 
 sub pango_layout_context_changed (PangoLayout $layout)
@@ -27,7 +32,7 @@ sub pango_layout_get_context (PangoLayout $layout)
 
 sub pango_layout_get_cursor_pos (
   PangoLayout $layout,
-  ggint $index,
+  gint $index,
   PangoRectangle $strong_pos,
   PangoRectangle $weak_pos
 )
@@ -42,7 +47,7 @@ sub pango_layout_get_iter (PangoLayout $layout)
   { * }
 
 sub pango_layout_get_line_count (PangoLayout $layout)
-  returns int
+  returns int32
   is native(pango)
   is export
   { * }
@@ -95,13 +100,13 @@ sub pango_layout_get_size (PangoLayout $layout, gint $width, gint $height)
   { * }
 
 sub pango_layout_get_text (PangoLayout $layout)
-  returns char
+  returns Str
   is native(pango)
   is export
   { * }
 
 sub pango_layout_get_unknown_glyphs_count (PangoLayout $layout)
-  returns int
+  returns int32
   is native(pango)
   is export
   { * }
@@ -156,7 +161,7 @@ sub pango_layout_iter_free (PangoLayoutIter $iter)
   { * }
 
 sub pango_layout_iter_get_baseline (PangoLayoutIter $iter)
-  returns int
+  returns int32
   is native(pango)
   is export
   { * }
@@ -178,7 +183,7 @@ sub pango_layout_iter_get_cluster_extents (
   { * }
 
 sub pango_layout_iter_get_index (PangoLayoutIter $iter)
-  returns int
+  returns int32
   is native(pango)
   is export
   { * }
@@ -372,8 +377,8 @@ sub pango_layout_set_markup_with_accel (
   PangoLayout $layout,
   Str $markup,
   gint $length,
-  Str $accel_marker,
-  Str $accel_char
+  gunichar $accel_marker,
+  gunichar $accel_char
 )
   is native(pango)
   is export
@@ -407,19 +412,19 @@ sub pango_layout_get_justify (PangoLayout $layout)
   { * }
 
 sub pango_layout_get_spacing (PangoLayout $layout)
-  returns int
+  returns int32
   is native(pango)
   is export
   { * }
 
 sub pango_layout_get_height (PangoLayout $layout)
-  returns int
+  returns int32
   is native(pango)
   is export
   { * }
 
 sub pango_layout_get_indent (PangoLayout $layout)
-  returns int
+  returns int32
   is native(pango)
   is export
   { * }
@@ -449,7 +454,7 @@ sub pango_layout_get_tabs (PangoLayout $layout)
   { * }
 
 sub pango_layout_get_wrap (PangoLayout $layout)
-  returns PangoWrapMode
+  returns uint32 # PangoWrapMode
   is native(pango)
   is export
   { * }
@@ -461,13 +466,13 @@ sub pango_layout_get_auto_dir (PangoLayout $layout)
   { * }
 
 sub pango_layout_get_ellipsize (PangoLayout $layout)
-  returns PangoEllipsizeMode
+  returns uint32 # PangoEllipsizeMode
   is native(pango)
   is export
   { * }
 
 sub pango_layout_get_alignment (PangoLayout $layout)
-  returns PangoAlignment
+  returns uint32 # PangoAlignment
   is native(pango)
   is export
   { * }
@@ -521,7 +526,10 @@ sub pango_layout_set_tabs (PangoLayout $layout, PangoTabArray $tabs)
   is export
   { * }
 
-sub pango_layout_set_wrap (PangoLayout $layout, PangoWrapMode $wrap)
+sub pango_layout_set_wrap (
+  PangoLayout $layout,
+  uint32 $wrap                    # PangoWrapMode $wrap
+)
   is native(pango)
   is export
   { * }
@@ -533,7 +541,7 @@ sub pango_layout_set_auto_dir (PangoLayout $layout, gboolean $auto_dir)
 
 sub pango_layout_set_ellipsize (
   PangoLayout $layout,
-  PangoEllipsizeMode $ellipsize
+  uint32 $ellipsize               # PangoEllipsizeMode $ellipsize
 )
   is native(pango)
   is export
@@ -541,7 +549,7 @@ sub pango_layout_set_ellipsize (
 
 sub pango_layout_set_alignment (
   PangoLayout $layout,
-  PangoAlignment $alignment
+  uint32 $alignment               # PangoAlignment $alignment
 )
   is native(pango)
   is export
