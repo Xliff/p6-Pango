@@ -37,11 +37,11 @@ class Pango::LayoutLine {
     pango_layout_line_index_to_x($!pl, $index_, $trailing, $x_pos);
   }
 
-  method ref {
+  method upref {
     pango_layout_line_ref($!pl);
   }
 
-  method unref {
+  method downref {
     pango_layout_line_unref($!pl);
   }
 

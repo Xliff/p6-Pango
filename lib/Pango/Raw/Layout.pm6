@@ -52,6 +52,13 @@ sub pango_layout_get_line_count (PangoLayout $layout)
   is export
   { * }
 
+sub pango_layout_get_line (PangoLayout $layout, int32 $line)
+  returns PangoLayoutLine
+  is native(pango)
+  is export
+  { * }
+
+
 sub pango_layout_get_lines (PangoLayout $layout)
   returns GSList
   is native(pango)
@@ -81,8 +88,8 @@ sub pango_layout_get_log_attrs_readonly (PangoLayout $layout, gint $n_attrs)
 
 sub pango_layout_get_pixel_size (
   PangoLayout $layout,
-  gint $width,
-  gint $height
+  gint $width  is rw,
+  gint $height is rw
 )
   is native(pango)
   is export
@@ -94,7 +101,11 @@ sub pango_layout_get_serial (PangoLayout $layout)
   is export
   { * }
 
-sub pango_layout_get_size (PangoLayout $layout, gint $width, gint $height)
+sub pango_layout_get_size (
+  PangoLayout $layout,
+  gint $width  is rw,
+  gint $height is rw
+)
   is native(pango)
   is export
   { * }
@@ -559,6 +570,12 @@ sub pango_layout_set_font_description (
   PangoLayout $layout,
   PangoFontDescription $desc
 )
+  is native(pango)
+  is export
+  { * }
+
+sub pango_layout_iter_next_char (PangoLayoutIter $iter)
+  returns gboolean
   is native(pango)
   is export
   { * }

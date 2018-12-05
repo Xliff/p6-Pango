@@ -3,22 +3,22 @@ use v6.c;
 use Method::Also;
 use NativeCall;
 
-use GTK::Compat::Raw::GList;
-use GTK::Compat::Types;
+use Pango:Compat::Raw::GList;
+use Pango::Compat::Types;
 
-class GTK::Compat::GList {
+class Pango::Compat::GList {
   also does Positional;
   also does Iterator;
 
-  has GTK::Compat::Types::GList $!list;
-  has GTK::Compat::Types::GList $!cur;
+  has Pango::Compat::Types::GList $!list;
+  has Pango::Compat::Types::GList $!cur;
   has @!nat handles
     «pull-one iterator elems AT-POS EXISTS-POS join :p6sort('sort')»;
   has $!dirty = False;
   has $!type;
 
   submethod BUILD(:$type, :$list) {
-    die 'Must use a type object for $type when creating a GTK::Compat::GSList'
+    die 'Must use a type object for $type when creating a Pango::Compat::GSList'
       if $type.defined;
 
     $!cur = $!list = $list;
@@ -40,11 +40,11 @@ class GTK::Compat::GList {
 
     self.bless(:$type, :$list);
   }
-  multi method new($type, GTK::Compat::Types::GList $list) {
+  multi method new($type, Pango::Compat::Types::GList $list) {
     self.bless(:$type, :$list);
   }
 
-  method GTK::Compat::Types::GList is also<glist> {
+  method Pango::Compat::Types::GList is also<glist> {
     $!list;
   }
 
@@ -70,7 +70,7 @@ class GTK::Compat::GList {
       }
 
       default {
-        die "Unknown type '{ .^name }' passed to GTK::Compat::List.new()";
+        die "Unknown type '{ .^name }' passed to Pango::Compat::List.new()";
       }
     }
   }
@@ -106,7 +106,7 @@ class GTK::Compat::GList {
     $!list = $list;
   }
 
-  multi method concat (GTK::Compat::GList:U: GList $list1, GList $list2) {
+  multi method concat (Pango::Compat::GList:U: GList $list1, GList $list2) {
     g_list_concat($list1, $list2);
   }
   multi method concat (GList $list2) {

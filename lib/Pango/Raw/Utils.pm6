@@ -2,9 +2,9 @@ use v6.c;
 
 use NativeCall;
 
-use GTK::Compat::Types;
+use Pango::Compat::Types;
 
-unit package GTK::Raw::Utils;
+unit package Pango::Raw::Utils;
 
 sub get_flags($t, $s) is export {
   $t.enums

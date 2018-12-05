@@ -1,12 +1,12 @@
 use v6.c;
 
-use GTK::Roles::Types;
+use Pango::Roles::Types;
 
-use GTK::Compat::Types;
-use GTK::Compat::Raw::GSList;
+use Pango::Compat::Types;
+use Pango::Compat::Raw::GSList;
 
-class GTK::Compat::GSList {
-  also does GTK::Roles::Types;
+class Pango::Compat::GSList {
+  also does Pango::Roles::Types;
 
   has GSList $!list handles <next data>;
 
@@ -32,7 +32,7 @@ class GTK::Compat::GSList {
   multi method new (@list) {
     my $list;
     for @list {
-      my $l = GTK::Compat::GSList.alloc();
+      my $l = Pango::Compat::GSList.alloc();
       $l.data = $_;
       with $list  {
         $list.append($l);
@@ -46,12 +46,12 @@ class GTK::Compat::GSList {
     with $list {
       self.bless(:$list);
     } else {
-      my $list = GTK::Compat::GSList.alloc();
+      my $list = Pango::Compat::GSList.alloc();
       self.bless(:$list)
     }
   }
 
-  method GTK::Compat::Types::GSList {
+  method Pango::Compat::Types::GSList {
     $!list;
   }
 

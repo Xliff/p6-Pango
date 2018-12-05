@@ -11,7 +11,7 @@ constant forced = 0;
 
 our $DEBUG is export = 0;
 
-unit package GTK::Compat::Types;
+unit package Pango::Compat::Types;
 
 sub cast($cast-to, $obj) is export {
   nativecast($cast-to, $obj);

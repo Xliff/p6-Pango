@@ -1,7 +1,7 @@
 use v6.c;
 
 # Can be parameterized!
-role GTK::Roles::Protection {
+role Pango::Roles::Protection {
   # cw: This is a HACK, but it should work with careful use.
   method CALLING-METHOD($nf = 2) {
     my $c = callframe($nf).code;

@@ -2,9 +2,9 @@ use v6.c;
 
 use NativeCall;
 
-use GTK::Compat::Types;
+use Pango::Compat::Types;
 
-unit package GTK::Compat::Raw::GSList;
+unit package Pango::Compat::Raw::GSList;
 
 sub g_slist_alloc ()
   returns GSList

@@ -7,7 +7,7 @@ use Pango::Raw::Utils;
 
 use Pango::Roles::Protection;
 
-role GTK::Roles::Types {
+role Pango::Roles::Types {
   also does Pango::Roles::Protection;
 
   multi method RESOLVE-BOOL(@rb) {
