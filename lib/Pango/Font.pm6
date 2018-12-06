@@ -14,6 +14,10 @@ class Pango::Font {
     $!pf = $font;
   }
 
+  method Pango::Raw::Types::PangoFont {
+    $!pf;
+  }
+
   method describe {
     pango_font_describe($!pf);
   }

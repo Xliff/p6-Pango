@@ -7,7 +7,30 @@ use Pango::Roles::Pointers;
 
 unit package Pango::Raw::Types;
 
+constant PANGO_SCALE   is export = 1024;
 constant PangoTabArray is export := CArray[gint];
+
+class PangoMatrix is repr('CStruct') is export { ... }
+
+sub PANGO_MATRIX_INIT is export {
+  PangoMatrix.new( :xx(1), :xy(0), :yx(0), :yy(1), :x0(0), :y0(0) );
+}
+
+sub       PANGO_PIXELS($d) { (($d.Int + 512)  +> 10) }
+sub PANGO_PIXELS_FLOOR($d) { ($d.Int          +> 10) }
+sub  PANGO_PIXELS_CEIL($d) { (($d.Int + 1023) +> 10) }
+
+sub    PANGO_ASCENT(PangoRectangle $r) { -$r.y            }
+sub   PANGO_DESCENT(PangoRectangle $r) { $r.y + $r.height }
+sub  PANGO_LBEARING(PangoRectangle $r) { $r.x             }
+sub  PANGO_RBEARING(PangoRectangle $r) { $r.x + $r.width  }
+
+sub PANGO_GRAVITY_IS_VERTICAL(PangoGravity $g) {
+  $g == (PANGO_GRAVITY_EAST, PANGO_GRAVITY_WEST).any
+}
+sub PANGO_GRAVITY_IS_IMPROPER(PangoGravity $g) {
+  $g == (PANGO_GRAVITY_NORTH, PANGO_GRAVITY_WEST).any
+}
 
 our enum PangoAlignment is export <
   PANGO_ALIGN_LEFT
@@ -128,6 +151,20 @@ our enum PangoScale (
   PANGO_SCALE_XX_LARGE => 1.728,
 );
 
+our enum PangoGravity is export <
+  PANGO_GRAVITY_SOUTH
+  PANGO_GRAVITY_EAST
+  PANGO_GRAVITY_NORTH
+  PANGO_GRAVITY_WEST
+  PANGO_GRAVITY_AUTO
+>;
+
+our enum PangoGravityHint is export <
+  PANGO_GRAVITY_HINT_NATURAL
+  PANGO_GRAVITY_HINT_STRONG
+  PANGO_GRAVITY_HINT_LINE
+>;
+
 class PangoAttrList         is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoContext          is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoEngineShape      is repr('CPointer') is export does Pango::Roles::Pointers { }
@@ -227,9 +264,24 @@ class PangoGlyphString is repr('CStruct')
   has gint           $.log_clusters;
 }
 
-class PangoGlyphItem is repr('CStruct') is export does Pango::Roles::Pointers {
+class PangoGlyphItem is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
   has PangoItem        $.item;
   has PangoGlyphString $.glyphs;
 }
 
 constant PangoLayoutRun is export := PangoGlyphItem;
+
+class PangoMatrix is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  has gdouble $.xx is rw;
+  has gdouble $.xy is rw;
+  has gdouble $.yx is rw;
+  has gdouble $.yy is rw;
+  has gdouble $.x0 is rw;
+  has gdouble $.y0 is rw;
+}
