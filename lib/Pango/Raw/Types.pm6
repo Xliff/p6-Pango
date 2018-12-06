@@ -69,6 +69,65 @@ our enum PangoDirection is export <
   PANGO_DIRECTION_NEUTRAL
 >;
 
+our enum PangoStyle is export <
+  PANGO_STYLE_NORMAL
+  PANGO_STYLE_OBLIQUE
+  PANGO_STYLE_ITALIC
+>;
+
+our enum PangoVariant is export <
+  PANGO_VARIANT_NORMAL
+  PANGO_VARIANT_SMALL_CAPS
+>;
+
+our enum PangoWeight is export (
+  PANGO_WEIGHT_THIN       => 100,
+  PANGO_WEIGHT_ULTRALIGHT => 200,
+  PANGO_WEIGHT_LIGHT      => 300,
+  PANGO_WEIGHT_SEMILIGHT  => 350,
+  PANGO_WEIGHT_BOOK       => 380,
+  PANGO_WEIGHT_NORMAL     => 400,
+  PANGO_WEIGHT_MEDIUM     => 500,
+  PANGO_WEIGHT_SEMIBOLD   => 600,
+  PANGO_WEIGHT_BOLD       => 700,
+  PANGO_WEIGHT_ULTRABOLD  => 800,
+  PANGO_WEIGHT_HEAVY      => 900,
+  PANGO_WEIGHT_ULTRAHEAVY => 1000
+);
+
+our enum PangoStretch is export <
+  PANGO_STRETCH_ULTRA_CONDENSED
+  PANGO_STRETCH_EXTRA_CONDENSED
+  PANGO_STRETCH_CONDENSED
+  PANGO_STRETCH_SEMI_CONDENSED
+  PANGO_STRETCH_NORMAL
+  PANGO_STRETCH_SEMI_EXPANDED
+  PANGO_STRETCH_EXPANDED
+  PANGO_STRETCH_EXTRA_EXPANDED
+  PANGO_STRETCH_ULTRA_EXPANDED
+>;
+
+our enum PangoFontMask (
+  PANGO_FONT_MASK_FAMILY     => 1,
+  PANGO_FONT_MASK_STYLE      => 1 +< 1,
+  PANGO_FONT_MASK_VARIANT    => 1 +< 2,
+  PANGO_FONT_MASK_WEIGHT     => 1 +< 3,
+  PANGO_FONT_MASK_STRETCH    => 1 +< 4,
+  PANGO_FONT_MASK_SIZE       => 1 +< 5,
+  PANGO_FONT_MASK_GRAVITY    => 1 +< 6,
+  PANGO_FONT_MASK_VARIATIONS => 1 +< 7,
+);
+
+our enum PangoScale (
+  PANGO_SCALE_XX_SMALL => 0.5787037037037,
+  PANGO_SCALE_X_SMALL  => 0.6444444444444,
+  PANGO_SCALE_SMALL    => 0.8333333333333,
+  PANGO_SCALE_MEDIUM   => 1.0,
+  PANGO_SCALE_LARGE    => 1.2,
+  PANGO_SCALE_X_LARGE  => 1.4399999999999,
+  PANGO_SCALE_XX_LARGE => 1.728,
+);
+
 class PangoAttrList         is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoContext          is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoEngineShape      is repr('CPointer') is export does Pango::Roles::Pointers { }
