@@ -113,11 +113,11 @@ class Pango::Context {
   }
 
   method get_gravity {
-    pango_context_get_gravity($!pc);
+    PangoGravity( pango_context_get_gravity($!pc) );
   }
 
   method get_metrics (PangoFontDescription $desc, PangoLanguage $language) {
-    pango_context_get_metrics($!pc, $desc, $language);
+    Pango::FontMatrix.new( pango_context_get_metrics($!pc, $desc, $language) );
   }
 
   method get_serial {
@@ -128,17 +128,30 @@ class Pango::Context {
     pango_context_get_type();
   }
 
-  method list_families (PangoFontFamily $families, Int() $n_families) {
+  multi method list_families {
+    my $f = CArray[CArray[Pointer[PangoFontFamily]]].new;
+    my $nf = 0;
+    my @families;
+
+    samewith($families, $nf);
+    @families.push: Pango::FontFamily.new( $f[0][$_] ) for ^$nf;
+    @families;
+  }
+  multi method list_families (
+    CArray[CArray[Pointer[PangoFontFamily]]] $families,
+    Int $n_families is rw
+  ) {
     my gint $nf = self.RESOLVE-INT($n_families)
     pango_context_list_families($!pc, $families, $nf);
+    $n_families = $nf;
   }
 
   method load_font (PangoFontDescription $desc) {
-    pango_context_load_font($!pc, $desc);
+    Pango::Font.new( pango_context_load_font($!pc, $desc) );
   }
 
   method load_fontset (PangoFontDescription $desc, PangoLanguage $language) {
-    pango_context_load_fontset($!pc, $desc, $language);
+    Pango::Fontset.new( pango_context_load_fontset($!pc, $desc, $language) );
   }
 
   # Also destined for a catchall class or package.
