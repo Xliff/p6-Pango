@@ -46,7 +46,7 @@ D
     pango_fontset_foreach($!pfs, &func, $data);
   }
 
-  method get_font (guint $wc) {
+  method get_font (Int() $wc) {
     my gint $wwc = self.RESOLVE-UINT($wc);
     pango_fontset_get_font($!pfs, $wwc);
   }
