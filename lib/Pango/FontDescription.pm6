@@ -27,7 +27,7 @@ class Pango::FontDescription {
       FETCH => sub ($) {
         pango_font_description_get_family($!pfd);
       },
-      STORE => sub ($, $family is copy) {
+      STORE => sub ($, Str() $family is copy) {
         pango_font_description_set_family($!pfd, $family);
       }
     );
@@ -36,10 +36,11 @@ class Pango::FontDescription {
   method gravity is rw {
     Proxy.new(
       FETCH => sub ($) {
-        pango_font_description_get_gravity($!pfd);
+        PangoGravity( pango_font_description_get_gravity($!pfd) );
       },
-      STORE => sub ($, $gravity is copy) {
-        pango_font_description_set_gravity($!pfd, $gravity);
+      STORE => sub ($, Int() $gravity is copy) {
+        my guint $g = self.RESOLVE-UINT($gravity);
+        pango_font_description_set_gravity($!pfd, $g);
       }
     );
   }
@@ -49,8 +50,9 @@ class Pango::FontDescription {
       FETCH => sub ($) {
         pango_font_description_get_size($!pfd);
       },
-      STORE => sub ($, $size is copy) {
-        pango_font_description_set_size($!pfd, $size);
+      STORE => sub ($, Int() $size is copy) {
+        my gint $s = self.RESOLVE-INT($size);
+        pango_font_description_set_size($!pfd, $s);
       }
     );
   }
@@ -58,10 +60,11 @@ class Pango::FontDescription {
   method stretch is rw {
     Proxy.new(
       FETCH => sub ($) {
-        pango_font_description_get_stretch($!pfd);
+        PangoStretch( pango_font_description_get_stretch($!pfd) );
       },
-      STORE => sub ($, $stretch is copy) {
-        pango_font_description_set_stretch($!pfd, $stretch);
+      STORE => sub ($, Int() $stretch is copy) {
+        my guint $s = self.RESOLVE-UINT($stretch);
+        pango_font_description_set_stretch($!pfd, $s);
       }
     );
   }
@@ -69,10 +72,11 @@ class Pango::FontDescription {
   method style is rw {
     Proxy.new(
       FETCH => sub ($) {
-        pango_font_description_get_style($!pfd);
+        PangoStyle( pango_font_description_get_style($!pfd) );
       },
-      STORE => sub ($, $style is copy) {
-        pango_font_description_set_style($!pfd, $style);
+      STORE => sub ($, Int() $style is copy) {
+        my guint $s = self.RESOLVE-UINT($style);
+        pango_font_description_set_style($!pfd, $s);
       }
     );
   }
@@ -80,10 +84,11 @@ class Pango::FontDescription {
   method variant is rw {
     Proxy.new(
       FETCH => sub ($) {
-        pango_font_description_get_variant($!pfd);
+        PangoVariant( pango_font_description_get_variant($!pfd) );
       },
-      STORE => sub ($, $variant is copy) {
-        pango_font_description_set_variant($!pfd, $variant);
+      STORE => sub ($, Int() $variant is copy) {
+        my guint $v = self.RESOLVE-UINT($variant);
+        pango_font_description_set_variant($!pfd, $v);
       }
     );
   }
@@ -93,7 +98,7 @@ class Pango::FontDescription {
       FETCH => sub ($) {
         pango_font_description_get_variations($!pfd);
       },
-      STORE => sub ($, $settings is copy) {
+      STORE => sub ($, Str() $settings is copy) {
         pango_font_description_set_variations($!pfd, $settings);
       }
     );
@@ -102,10 +107,11 @@ class Pango::FontDescription {
   method weight is rw {
     Proxy.new(
       FETCH => sub ($) {
-        pango_font_description_get_weight($!pfd);
+        PangoWeight( pango_font_description_get_weight($!pfd) );
       },
-      STORE => sub ($, $weight is copy) {
-        pango_font_description_set_weight($!pfd, $weight);
+      STORE => sub ($, Int() $weight is copy) {
+        my guint $w = self.RESOLVE-UINT($weight);
+        pango_font_description_set_weight($!pfd, $w);
       }
     );
   }
@@ -170,10 +176,10 @@ class Pango::FontDescription {
   }
 
   multi method multi_free(@descs) {
-    my $descs = CArray[PangoFontDescription].new;
+    my $descs = CArray[Pointer[PangoFontDescription]].new;
     my $d = 0;
     for @descs {
-      $descs[$d++] = do {
+      $descs[$d++] = nativecast(Pointer[PangoFontDescription], do {
         Pango::FontDescription { .font_description }
         PangoFontDescription   { $_ }
         default {
@@ -181,13 +187,13 @@ class Pango::FontDescription {
 Pango::FontDescription.multi_free does not handle { .^name } objects
 D
         }
-      }
+      });
     }
     self.description_free($descs, $descs.elems);
   }
 
   method descriptions_free (
-    CArray[PangoFontDescriptions] $descs,
+    CArray[Pointer[PangoFontDescription]] $descs,
     Int() $n_descs
   ) {
     my gint $nd = self.RESOLVE-UINT($n_descs);

@@ -15,6 +15,14 @@ class Pango::Matrix {
     $!pm = $matrix;
   }
 
+  # Struct backed, so assume no need for ref counting.
+  multi method new (PangoMatrix $matrix) {
+    self.bless(:$matrix);
+  }
+  multi method new {
+    self.bless( matrix => PANGO_MATRIX_INIT );
+  }
+
   method concat (PangoMatrix $new_matrix) {
     pango_matrix_concat($!pfm, $new_matrix);
   }
@@ -23,6 +31,7 @@ class Pango::Matrix {
     pango_matrix_copy($!pfm);
   }
 
+  # No ref counting, so objects must be freed MANUALLY!
   method free {
     pango_matrix_free($!pfm);
   }

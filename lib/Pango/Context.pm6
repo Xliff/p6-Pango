@@ -134,7 +134,7 @@ class Pango::Context {
     my @families;
 
     samewith($families, $nf);
-    @families.push: Pango::FontFamily.new( $f[0][$_] ) for ^$nf;
+    @families.push: Pango::FontFamily.new( $f[0][$_].deref ) for ^$nf;
     @families;
   }
   multi method list_families (

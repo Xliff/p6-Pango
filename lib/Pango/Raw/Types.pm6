@@ -10,6 +10,13 @@ unit package Pango::Raw::Types;
 constant PANGO_SCALE   is export = 1024;
 constant PangoTabArray is export := CArray[gint];
 
+constant PANGO_GLYPH_EMPTY is export         = 0x0FFFFFFF;
+constant PANGO_GLYPH_INVALID_INPUT is export = 0xFFFFFFFF;
+constant PANGO_GLYPH_UNKNOWN_FLAG is export  = 0x10000000;
+
+constant PANGO_ATTR_INDEX_FROM_TEXT_BEGINNING = 0
+constant PANGO_ATTR_INDEX_TO_TEXT_END         = 4294967295;
+
 class PangoMatrix is repr('CStruct') is export { ... }
 
 sub PANGO_MATRIX_INIT is export {
@@ -31,6 +38,8 @@ sub PANGO_GRAVITY_IS_VERTICAL(PangoGravity $g) {
 sub PANGO_GRAVITY_IS_IMPROPER(PangoGravity $g) {
   $g == (PANGO_GRAVITY_NORTH, PANGO_GRAVITY_WEST).any
 }
+
+sub PANGO_GET_UNKNOWN_GLYPH(Int() $wc) { $wc +| PANGO_GLYPH_UNKNOWN_FLAG }
 
 our enum PangoAlignment is export <
   PANGO_ALIGN_LEFT
@@ -165,6 +174,35 @@ our enum PangoGravityHint is export <
   PANGO_GRAVITY_HINT_LINE
 >;
 
+our enum PangoAttrType is export (
+  'PANGO_ATTR_INVALID',              # 0 is an invalid attribute type */
+  'PANGO_ATTR_LANGUAGE',             # PangoAttrLanguage */
+  'PANGO_ATTR_FAMILY',               # PangoAttrString */
+  'PANGO_ATTR_STYLE',                # PangoAttrInt */
+  'PANGO_ATTR_WEIGHT',               # PangoAttrInt */
+  'PANGO_ATTR_VARIANT',              # PangoAttrInt */
+  'PANGO_ATTR_STRETCH',              # PangoAttrInt */
+  'PANGO_ATTR_SIZE',                 # PangoAttrSize */
+  'PANGO_ATTR_FONT_DESC',            # PangoAttrFontDesc */
+  'PANGO_ATTR_FOREGROUND',           # PangoAttrColor */
+  'PANGO_ATTR_BACKGROUND',           # PangoAttrColor */
+  'PANGO_ATTR_UNDERLINE',            # PangoAttrInt */
+  'PANGO_ATTR_STRIKETHROUGH',        # PangoAttrInt */
+  'PANGO_ATTR_RISE',                 # PangoAttrInt */
+  'PANGO_ATTR_SHAPE',                # PangoAttrShape */
+  'PANGO_ATTR_SCALE',                # PangoAttrFloat */
+  'PANGO_ATTR_FALLBACK',             # PangoAttrInt */
+  'PANGO_ATTR_LETTER_SPACING',       # PangoAttrInt */
+  'PANGO_ATTR_UNDERLINE_COLOR',      # PangoAttrColor */
+  'PANGO_ATTR_STRIKETHROUGH_COLOR',  # PangoAttrColor */
+  'PANGO_ATTR_ABSOLUTE_SIZE',        # PangoAttrSize */
+  'PANGO_ATTR_GRAVITY',              # PangoAttrInt */
+  'PANGO_ATTR_GRAVITY_HINT',         # PangoAttrInt */
+  'PANGO_ATTR_FONT_FEATURES',        # PangoAttrString */
+  'PANGO_ATTR_FOREGROUND_ALPHA',     # PangoAttrInt */
+  'PANGO_ATTR_BACKGROUND_ALPHA'      # PangoAttrInt */
+);
+
 class PangoAttrList         is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoContext          is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoEngineShape      is repr('CPointer') is export does Pango::Roles::Pointers { }
@@ -286,4 +324,116 @@ class PangoMatrix is repr('CStruct')
   has gdouble $.yy is rw;
   has gdouble $.x0 is rw;
   has gdouble $.y0 is rw;
+}
+
+class PangoGlyphItemIter is repr('CStruct');
+  is export
+  does Pango::Roles::Pointers
+{
+  has PangoGlyphItem $.glyph_item;
+  has Str            $.text;
+
+  has gint           $.start_glyph;
+  has gint           $.start_index;
+  has gint           $.start_char;
+
+  has gint           $.end_glyph;
+  has gint           $.end_index;
+  has gint           $.end_char;
+}
+
+class PangoColor is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  guint16 $.red   is rw;
+  guint16 $.green is rw;
+  guing16 $.blue  is rw;
+}
+
+class PangoAttribute is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  has Pointer $.klass;
+  has guint   $.start_index;
+  has guint   $.end_index;
+}
+
+class PangoAttrString is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  HAS PangoAttribute $.attr;
+  has Str            $.value;
+}
+
+class PangoAttrLanguage is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  HAS PangoAttribute $.attr;
+  has PangoLanguage  $.value;
+}
+
+class PangoAttrColor is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  HAS PangoAttribute $.attr;
+  has PangoColor     $.value;
+}
+
+class PangoAttrInt is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  HAS PangoAttribute $.attr;
+  has gint           $.value;
+}
+
+class PangoAttrFloat is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  HAS PangoAttribute $.attr;
+  has gdouble        $.value;
+}
+
+class PangoAttrFontDesc is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  HAS PangoAttribute       $.attr;
+  has PangoFontDescription $.value;
+}
+
+class PangoAttrShape is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  HAS PangoAttribute $.attr;
+  HAS PangoRectangle $.ink_rect;
+  HAS PangoRectangle $.logical_rect;
+
+  has Pointer        $.data;
+  has                &copy_func (Pointer);
+  has                &destroy_func (Pointer);
+}
+
+class PangoAttrSize is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  HAS PangoAttribute $.attr;
+  has gint           $.size;
+  has guint          $.absolute; # :1
+}
+
+class PangoAttrFontFeatures is repr('CStruct')
+  is export
+  does Pango::Roles::Pointers
+{
+  HAS PangoAttribute $.attr;
+  has Str            $.features;
 }
