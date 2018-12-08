@@ -17,6 +17,13 @@ class Pango::FontDescription {
     $!pfd = $description;
   }
 
+  method Pango::Raw::Types::PangoFontDescription {
+    $!pfd;
+  }
+  method font_description {
+    $!pfd;
+  }
+
   method new {
     my $description = pango_font_description_new();
     self.bless(:$description);
@@ -160,7 +167,7 @@ class Pango::FontDescription {
   }
 
   method merge (
-    PangoFontDescription $desc_to_merge,
+    PangoFontDescription() $desc_to_merge,
     Int() $replace_existing
   ) {
     my gboolean $re = self.RESOLVE-BOOL($replace_existing);
@@ -168,7 +175,7 @@ class Pango::FontDescription {
   }
 
   method merge_static (
-    PangoFontDescription $desc_to_merge,
+    PangoFontDescription() $desc_to_merge,
     Int() $replace_existing
   ) {
     my gboolean $re = self.RESOLVE-BOOL($replace_existing);

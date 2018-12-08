@@ -91,6 +91,9 @@ constant gulong              is export := uint64;
 constant gunichar            is export := uint32;
 constant va_list             is export := Pointer;
 
+constant FcConfic            is export := Pointer; 
+constant FcPattern           is export := Pointer;
+
 constant GAsyncReadyCallback is export := Pointer;
 constant GCallback           is export := Pointer;
 constant GCancellable        is export := Pointer;

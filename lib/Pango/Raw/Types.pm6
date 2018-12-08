@@ -208,6 +208,10 @@ class PangoAttrList         is repr('CPointer') is export does Pango::Roles::Poi
 class PangoContext          is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoEngineShape      is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoEngineLang       is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoFcDecoder        is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoFcFontKey        is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoFcFontMap        is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoFcFontsetKey     is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFont             is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFontset          is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFontsetSimple    is repr('CPointer') is export does Pango::Roles::Pointers { }

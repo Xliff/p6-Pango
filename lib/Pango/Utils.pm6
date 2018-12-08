@@ -49,3 +49,11 @@ sub pango_parse_markup (
   $ERROR = $error[0].deref with $error[0];
   $rc;
 }
+
+method pango_fc_font_description_from_pattern (
+  FcPattern $pattern,
+  Int() $include_size
+) {
+  my gboolean $fc = resolve-bool($include_size);
+  pango_fc_font_description_from_pattern($!fcfm, $is);
+}
