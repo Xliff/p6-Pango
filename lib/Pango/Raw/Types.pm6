@@ -212,6 +212,7 @@ class PangoFcDecoder        is repr('CPointer') is export does Pango::Roles::Poi
 class PangoFcFontKey        is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFcFontMap        is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFcFontsetKey     is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoFT2FontMap       is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFont             is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFontset          is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFontsetSimple    is repr('CPointer') is export does Pango::Roles::Pointers { }
