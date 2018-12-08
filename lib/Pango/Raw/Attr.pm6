@@ -6,61 +6,61 @@ use Pango::Raw::Types;
 unit package Pango::Raw::Attr;
 
 sub pango_attr_background_alpha_new (guint16 $alpha)
-  returns PangoAttribute
+  returns PangoAttributeInt
   is native(pango)
   is export
   { * }
 
 sub pango_attr_background_new (guint16 $red, guint16 $green, guint16 $blue)
-  returns PangoAttribute
+  returns PangoAttributeColor
   is native(pango)
   is export
   { * }
 
 sub pango_attr_fallback_new (gboolean $enable_fallback)
-  returns PangoAttribute
+  returns PangoAttributeInt
   is native(pango)
   is export
   { * }
 
 sub pango_attr_family_new (Str $family)
-  returns PangoAttribute
+  returns PangoAttributeString
   is native(pango)
   is export
   { * }
 
 sub pango_attr_font_desc_new (PangoFontDescription $desc)
-  returns PangoAttribute
+  returns PangoAttributeFontDesc
   is native(pango)
   is export
   { * }
 
 sub pango_attr_font_features_new (Str $features)
-  returns PangoAttribute
+  returns PangoAttributeFontFeatures
   is native(pango)
   is export
   { * }
 
 sub pango_attr_foreground_alpha_new (guint16 $alpha)
-  returns PangoAttribute
+  returns PangoAttributeInt
   is native(pango)
   is export
   { * }
 
 sub pango_attr_foreground_new (guint16 $red, guint16 $green, guint16 $blue)
-  returns PangoAttribute
+  returns PangoAttributeColor
   is native(pango)
   is export
   { * }
 
 sub pango_attr_gravity_hint_new (PangoGravityHint $hint)
-  returns PangoAttribute
+  returns PangoAttributeInt
   is native(pango)
   is export
   { * }
 
 sub pango_attr_gravity_new (PangoGravity $gravity)
-  returns PangoAttribute
+  returns PangoAttributeInt
   is native(pango)
   is export
   { * }
@@ -114,13 +114,13 @@ sub pango_attr_iterator_range (
   { * }
 
 sub pango_attr_language_new (PangoLanguage $language)
-  returns PangoAttribute
+  returns PangoAttributeLanguage
   is native(pango)
   is export
   { * }
 
 sub pango_attr_letter_spacing_new (gint $letter_spacing)
-  returns PangoAttribute
+  returns PangoAttributeInt
   is native(pango)
   is export
   { * }
@@ -245,7 +245,7 @@ sub pango_markup_parser_finish (
   PangoAttrList $attr_list,
   Str $text,
   gunichar $accel_char,
-  GError $error
+  CArray[Pointer[GError]] $error
 )
   returns uint32
   is native(pango)
@@ -273,13 +273,13 @@ sub pango_parse_markup (
   { * }
 
 sub pango_attr_rise_new (gint $rise)
-  returns PangoAttribute
+  returns PangoAttrInt
   is native(pango)
   is export
   { * }
 
 sub pango_attr_scale_new (gdouble $scale_factor)
-  returns PangoAttribute
+  returns PangoAttrFloat
   is native(pango)
   is export
   { * }
@@ -288,7 +288,7 @@ sub pango_attr_shape_new (
   PangoRectangle $ink_rect,
   PangoRectangle $logical_rect
 )
-  returns PangoAttribute
+  returns PangoAttrShape
   is native(pango)
   is export
   { * }
@@ -300,25 +300,25 @@ sub pango_attr_shape_new_with_data (
   &copy_func (Pointer --> Pointer),
   &destroy_func (Pointer)
 )
-  returns PangoAttribute
+  returns PangoAttrShape
   is native(pango)
   is export
   { * }
 
 sub pango_attr_size_new (gint $size)
-  returns PangoAttribute
+  returns PangoAttrSize
   is native(pango)
   is export
   { * }
 
 sub pango_attr_size_new_absolute (gint $size)
-  returns PangoAttribute
+  returns PangoAttrSize
   is native(pango)
   is export
   { * }
 
 sub pango_attr_stretch_new (PangoStretch $stretch)
-  returns PangoAttribute
+  returns PangoAttrInt
   is native(pango)
   is export
   { * }
@@ -328,30 +328,30 @@ sub pango_attr_strikethrough_color_new (
   guint16 $green,
   guint16 $blue
 )
-  returns PangoAttribute
+  returns PangoAttrColor
   is native(pango)
   is export
   { * }
 
 sub pango_attr_strikethrough_new (gboolean $strikethrough)
-  returns PangoAttribute
+  returns PangoAttrInt
   is native(pango)
   is export
   { * }
 
 sub pango_attr_style_new (PangoStyle $style)
-  returns PangoAttribute
+  returns PangoAttrInt
   is native(pango)
   is export
   { * }
 
 sub pango_attr_type_get_name (PangoAttrType $type)
-  returns char
+  returns Str
   is native(pango)
   is export
   { * }
 
-sub pango_attr_type_register (gchar $name)
+sub pango_attr_type_register (Str $name)
   returns PangoAttrType
   is native(pango)
   is export
@@ -362,25 +362,25 @@ sub pango_attr_underline_color_new (
   guint16 $green,
   guint16 $blue
 )
-  returns PangoAttribute
+  returns PangoAttrColor
   is native(pango)
   is export
   { * }
 
 sub pango_attr_underline_new (PangoUnderline $underline)
-  returns PangoAttribute
+  returns PangoAttrInt
   is native(pango)
   is export
   { * }
 
 sub pango_attr_variant_new (PangoVariant $variant)
-  returns PangoAttribute
+  returns PangoAttrInt
   is native(pango)
   is export
   { * }
 
 sub pango_attr_weight_new (PangoWeight $weight)
-  returns PangoAttribute
+  returns PangoAttrInt
   is native(pango)
   is export
   { * }

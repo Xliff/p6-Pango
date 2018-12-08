@@ -7,8 +7,9 @@ use Pango::Roles::Pointers;
 
 unit package Pango::Raw::Types;
 
-constant PANGO_SCALE   is export = 1024;
-constant PangoTabArray is export := CArray[gint];
+constant PANGO_SCALE    is export = 1024;
+constant PangoTabArray  is export := CArray[gint];
+constant PangoAttrClass is export := Pointer;
 
 constant PANGO_GLYPH_EMPTY is export         = 0x0FFFFFFF;
 constant PANGO_GLYPH_INVALID_INPUT is export = 0xFFFFFFFF;
@@ -351,6 +352,11 @@ class PangoColor is repr('CStruct')
   guing16 $.blue  is rw;
 }
 
+role Pango::Raw::PangoAtttribute {
+  method attr { nativecast(PangoAttribute, self) }
+  method Pango::Raw::Types::PangoAttribute { self.attt }
+}
+
 class PangoAttribute is repr('CStruct')
   is export
   does Pango::Roles::Pointers
@@ -363,6 +369,7 @@ class PangoAttribute is repr('CStruct')
 class PangoAttrString is repr('CStruct')
   is export
   does Pango::Roles::Pointers
+  does Pango::Roles::PangoAttribute
 {
   HAS PangoAttribute $.attr;
   has Str            $.value;
@@ -371,6 +378,7 @@ class PangoAttrString is repr('CStruct')
 class PangoAttrLanguage is repr('CStruct')
   is export
   does Pango::Roles::Pointers
+  does Pango::Roles::PangoAttribute
 {
   HAS PangoAttribute $.attr;
   has PangoLanguage  $.value;
@@ -379,6 +387,7 @@ class PangoAttrLanguage is repr('CStruct')
 class PangoAttrColor is repr('CStruct')
   is export
   does Pango::Roles::Pointers
+  does Pango::Roles::PangoAttribute
 {
   HAS PangoAttribute $.attr;
   has PangoColor     $.value;
@@ -387,6 +396,7 @@ class PangoAttrColor is repr('CStruct')
 class PangoAttrInt is repr('CStruct')
   is export
   does Pango::Roles::Pointers
+  does Pango::Roles::PangoAttribute
 {
   HAS PangoAttribute $.attr;
   has gint           $.value;
@@ -395,6 +405,7 @@ class PangoAttrInt is repr('CStruct')
 class PangoAttrFloat is repr('CStruct')
   is export
   does Pango::Roles::Pointers
+  does Pango::Roles::PangoAttribute
 {
   HAS PangoAttribute $.attr;
   has gdouble        $.value;
@@ -403,6 +414,7 @@ class PangoAttrFloat is repr('CStruct')
 class PangoAttrFontDesc is repr('CStruct')
   is export
   does Pango::Roles::Pointers
+  does Pango::Roles::PangoAttribute
 {
   HAS PangoAttribute       $.attr;
   has PangoFontDescription $.value;
@@ -411,6 +423,7 @@ class PangoAttrFontDesc is repr('CStruct')
 class PangoAttrShape is repr('CStruct')
   is export
   does Pango::Roles::Pointers
+  does Pango::Roles::PangoAttribute
 {
   HAS PangoAttribute $.attr;
   HAS PangoRectangle $.ink_rect;
@@ -424,6 +437,7 @@ class PangoAttrShape is repr('CStruct')
 class PangoAttrSize is repr('CStruct')
   is export
   does Pango::Roles::Pointers
+  does Pango::Roles::PangoAttribute
 {
   HAS PangoAttribute $.attr;
   has gint           $.size;
@@ -433,6 +447,7 @@ class PangoAttrSize is repr('CStruct')
 class PangoAttrFontFeatures is repr('CStruct')
   is export
   does Pango::Roles::Pointers
+  does Pango::Roles::PangoAttribute
 {
   HAS PangoAttribute $.attr;
   has Str            $.features;

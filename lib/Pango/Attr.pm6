@@ -3,132 +3,95 @@ use v6.c;
 use Pango::Compat::Types;
 use Pango::Raw::Attr;
 use Pango::Raw::Types;
-
-use Pango::Roles::Types;
+use Pango::Raw::Utils;
 
 class Pango::Attr {
-  also does Pango::Roles::Types;
 
-  has PangoAttribute $!pa;
-
-  method background_alpha_new {
-    pango_attr_background_alpha_new();
+  method background_alpha_new(Int() $alpha) {
+    my guint16 $a = resolve-int16($alpha)
+    pango_attr_background_alpha_new($a);
   }
 
-  method background_new (guint16 $green, guint16 $blue) {
-    pango_attr_background_new($!pa, $green, $blue);
+  method background_new (Int() $red, Int() $green, Int() $blue) {
+    my @u = ($red, $green, $blue)
+    my guint16 ($r, $g, $b) = resolve-uint16(@u);
+    pango_attr_background_new($r, $g, $b);
   }
 
-  method fallback_new {
-    pango_attr_fallback_new();
+  method fallback_new (Int() $enable-fallback) {
+    my guint $ef = resolve-bool($enable-fallback);
+    pango_attr_fallback_new($ef);
   }
 
-  method family_new {
-    pango_attr_family_new();
+  method family_new (Str() $family) {
+    pango_attr_family_new($family);
   }
 
-  method font_desc_new {
-    pango_attr_font_desc_new();
+  method font_desc_new(PangoFontDescription() $desc) {
+    pango_attr_font_desc_new($desc);
   }
 
-  method font_features_new {
-    pango_attr_font_features_new();
+  method font_features_new (Str() $features) {
+    pango_attr_font_features_new($features);
   }
 
-  method foreground_alpha_new {
+  method foreground_alpha_new (Int() $alpha) {
+    my guint16 $a = resolve-uint16($alpha);
     pango_attr_foreground_alpha_new();
   }
 
-  method foreground_new (guint16 $green, guint16 $blue) {
+  method foreground_new (Int() $red, Int() $green, Int() $blue) {
+    my @u = ($red, $green, $blue);
+    my guint16 ($r, $g, $b) = resolve-uint16(@u);
     pango_attr_foreground_new($!pa, $green, $blue);
   }
 
-  method gravity_hint_new {
-    pango_attr_gravity_hint_new();
+  method gravity_hint_new (Int() $hint) {
+    my guint $h = resolve-uint($hint);
+    pango_attr_gravity_hint_new($h);
   }
 
-  method gravity_new {
-    pango_attr_gravity_new();
+  method gravity_new (Int() $gravity) {
+    my guint $g = resolve-uint($gravity);
+    pango_attr_gravity_new($g);
   }
 
-  method iterator_copy {
-    pango_attr_iterator_copy($!pa);
+  method language_new (PangoLanguage() $lang) {
+    pango_attr_language_new($lang);
   }
 
-  method iterator_destroy {
-    pango_attr_iterator_destroy($!pa);
+  method letter_spacing_new(Int() $spacing) {
+    my gint $s = resolve-int($spacing);
+    pango_attr_letter_spacing_new($s);
   }
 
-  method iterator_get (PangoAttrType $type) {
-    pango_attr_iterator_get($!pa, $type);
+  method copy($attr); {
+    my $a;
+    die "Cannot use attribute copy on incompatible object { .^name }"
+      unless $attr.^can('attr').elems && ($a = $attr.attr) ~~ PangoAttribute;
+
+    pango_attribute_copy($a);
   }
 
-  method iterator_get_attrs {
-    pango_attr_iterator_get_attrs($!pa);
+  method destroy ($a) {
+    my $a;
+    die "Cannot use attribute destroy on incompatible object { .^name }"
+      unless $attr.^can('attr').elems && ($a = $attr.attr) ~~ PangoAttribute;
+
+    pango_attribute_destroy($a);
   }
 
-  method iterator_get_font (PangoFontDescription $desc, PangoLanguage $language, GSList $extra_attrs) {
-    pango_attr_iterator_get_font($!pa, $desc, $language, $extra_attrs);
-  }
-
-  method iterator_next {
-    pango_attr_iterator_next($!pa);
-  }
-
-  method iterator_range (gint $start, gint $end) {
-    pango_attr_iterator_range($!pa, $start, $end);
-  }
-
-  method language_new {
-    pango_attr_language_new();
-  }
-
-  method letter_spacing_new {
-    pango_attr_letter_spacing_new();
-  }
-
-  method pango_attribute_copy {
-    pango_attribute_copy($!pa);
-  }
-
-  method pango_attribute_destroy {
-    pango_attribute_destroy($!pa);
-  }
-
-  method pango_attribute_equal (PangoAttribute $attr2) {
+  method pango_attribute_equal ($attr1, $attr2) {
+    my ($a, $b);
+    die "Cannot use attribute equals (a) on incompatible object { .^name }"
+      unless $attr.^can('attr').elems && ($a = $attr1.attr) ~~ PangoAttribute;
+    die "Cannot use attribute equals (b) on incompatible object { .^name }"
+      unless $attr.^can('attr').elems && ($b = $attr2.attr) ~~ PangoAttribute;
     pango_attribute_equal($!pa, $attr2);
   }
 
-  method pango_attribute_init (PangoAttrClass $klass) {
-    pango_attribute_init($!pa, $klass);
-  }
-
-  method pango_color_copy {
-    pango_color_copy($!pa);
-  }
-
-  method pango_color_free {
-    pango_color_free($!pa);
-  }
-
-  method pango_color_parse (char $spec) {
-    pango_color_parse($!pa, $spec);
-  }
-
-  method pango_color_to_string {
-    pango_color_to_string($!pa);
-  }
-
-  method pango_markup_parser_finish (PangoAttrList $attr_list, char $text, gunichar $accel_char, GError $error) {
-    pango_markup_parser_finish($!pa, $attr_list, $text, $accel_char, $error);
-  }
-
-  method pango_markup_parser_new {
-    pango_markup_parser_new();
-  }
-
-  method pango_parse_markup (int $length, gunichar $accel_marker, PangoAttrList $attr_list, char $text, gunichar $accel_char, GError $error) {
-    pango_parse_markup($!pa, $length, $accel_marker, $attr_list, $text, $accel_char, $error);
+  method init (PangoAttribute $attr, PangoAttrClass $klass) {
+    pango_attribute_init($attr, $klass);
   }
 
   method rise_new {
@@ -143,8 +106,15 @@ class Pango::Attr {
     pango_attr_shape_new($!pa, $logical_rect);
   }
 
-  method shape_new_with_data (PangoRectangle $logical_rect, gpointer $data, PangoAttrDataCopyFunc $copy_func, GDestroyNotify $destroy_func) {
-    pango_attr_shape_new_with_data($!pa, $logical_rect, $data, $copy_func, $destroy_func);
+  method shape_new_with_data (
+    PangoRectangle $logical_rect,
+    gpointer $data,
+    &copy_func,
+    &destroy_func
+  ) {
+    pango_attr_shape_new_with_data(
+      $!pa, $logical_rect, $data, &copy_func, &destroy_func
+    );
   }
 
   method size_new {
@@ -159,8 +129,10 @@ class Pango::Attr {
     pango_attr_stretch_new();
   }
 
-  method strikethrough_color_new (guint16 $green, guint16 $blue) {
-    pango_attr_strikethrough_color_new($!pa, $green, $blue);
+  method strikethrough_color_new (Int() $red, Int() $green, Int() $blue) {
+    my @u = ($red, $green, $blue);
+    my guint16 ($r, $g, $b) = resolve-uint16(@u);
+    pango_attr_strikethrough_color_new($r, $g, $b);
   }
 
   method strikethrough_new {
@@ -179,8 +151,10 @@ class Pango::Attr {
     pango_attr_type_register($!pa);
   }
 
-  method underline_color_new (guint16 $green, guint16 $blue) {
-    pango_attr_underline_color_new($!pa, $green, $blue);
+  method underline_color_new (Int() $red, Int() $green, Int() $blue) {
+    my @u = ($red, $green, $blue);
+    my guint16 ($r, $g, $b) = resolve-uint16(@u);
+    pango_attr_underline_color_new($r, $g, $b);
   }
 
   method underline_new {
