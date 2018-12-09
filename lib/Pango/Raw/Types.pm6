@@ -204,8 +204,16 @@ our enum PangoAttrType is export (
   'PANGO_ATTR_BACKGROUND_ALPHA'      # PangoAttrInt */
 );
 
+our enum PangoCoverageLevel is export <
+  PANGO_COVERAGE_NONE
+  PANGO_COVERAGE_FALLBACK
+  PANGO_COVERAGE_APPROXIMATE
+  PANGO_COVERAGE_EXACT
+>;
+
 class PangoAttrList         is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoContext          is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoCoverage         is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoEngineShape      is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoEngineLang       is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFcDecoder        is repr('CPointer') is export does Pango::Roles::Pointers { }

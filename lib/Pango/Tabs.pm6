@@ -15,10 +15,18 @@ class Pango::Tabs {
     $!pta = $tabs;
   }
 
-  method new (Int() $positions_in_pixels) {
-    my gint $pip = self.RESOLVE-INT($positions_in_pixels);
-    my $tabs = pango_tab_array_new($!pta, $pip)
+  multi method new (Int() $initial_size, Int() $positions_in_pixels) {
+    my gint $is = self.RESOLVE-INT($initial_size);
+    my guint $pip = self.RESOLVE-BOOL($positions_in_pixels);
+    my $tabs = pango_tab_array_new($is, $pip)
     self.bless(:$tabs);
+  }
+  multi method new (Int() $positions_in_pixels, @l) {
+    my guint $pip = self.RESOLVE-BOOL($positions_in_pixels);
+    die '<locations> must be a list of Integers' unless @l.all ~~ Int;
+    my $o = samewith(@l.elems, $pip);
+    $o.set_tabs(@l);
+    $o;
   }
 
   method copy {
@@ -43,9 +51,9 @@ class Pango::Tabs {
     samewith($tab_index, $a, $l);
   }
   multi method get_tab (
-    gint $tab_index,
-    uint32 $alignment is rw,           # PangoTabAlign $alignment,
-    gint $location
+    Int() $tab_index,
+    Int() $alignment is rw,           # PangoTabAlign $alignment,
+    Int() $location
   ) {
     my gint ($ti, $l) = ( self.RESOLVE-INT($tab_index), 0 );
     my guint32 $a = 0;
@@ -79,15 +87,44 @@ class Pango::Tabs {
     pango_tab_array_resize($!pta, $ns);
   }
 
+  # Interface WOULD be the following:
+  # method set_tab (
+  #   Int() $tab_index,
+  #   Int() $alignment,
+  #   Int() $location
+  # )
+  #... but current implementation forces $alignment to always be
+  # PANGO_TAB_LEFT, hence we have the following sub definitions:
   method set_tab (
     Int() $tab_index,
-    Int() $alignment,
     Int() $location
   ) {
     my @i = ($tab_index, $location);
     my gint ($t, $l) = self.RESOLVE-INT(@i);
-    my guint $a = self.RESOLVE-UINT($alignment);
+    #my guint $a = self.RESOLVE-UINT($alignment);
+    my guint $a = self.RESOLVE-UINT(PANGO_TAB_LEFT.Int);
     pango_tab_array_set_tab($!pta, $t, $a, $l);
+  }
+
+  # multi method set_tabs (@al) {
+  #   samewith( roundrobin( @al.map({ $_.key, $_.value }) ) );
+  # }
+
+  #multi
+  method set_tabs (@l) {
+    # die '<alignments> and <locations> must be the same size'
+    #   unless +@a == +@l;
+    # die '<alignment> must consist of Integer-compatible elements'
+    #   unless @a.all ~~ Int;
+    die '<locations> must consist of Integer elements'
+      unless @l.all ~~ Int;
+
+    my $ti = 0;
+    #for @a Z @l -> $a, $l {
+    for @l -> $l{
+      # self.set_tab($ti++, $a, $l);
+      self.set_tab($ti++, $l);
+    }
   }
 
 }
