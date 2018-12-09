@@ -6,7 +6,7 @@ use Pango::Raw::Types;
 
 use Pango::FontMap;
 
-use Pango::Roles::Typoes;
+use Pango::Roles::Types;
 
 class Pango::FcFontMap is Pango::FontMap {
   also does Pango::Roles::Types;
