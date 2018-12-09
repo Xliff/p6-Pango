@@ -224,6 +224,8 @@ class PangoLanguage         is repr('CPointer') is export does Pango::Roles::Poi
 class PangoLayout           is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoLayoutIter       is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoLayoutLine       is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoXFTFont          is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoXFTRenderer      is repr('CPointer') is export does Pango::Roles::Pointers { }
 
 class PangoRectangle is repr('CStruct') is export does Pango::Roles::Pointers {
   has gint $.x     is rw;

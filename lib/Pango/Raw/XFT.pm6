@@ -72,3 +72,91 @@ sub pango_xft_substitute_changed (Display $display, gint $screen)
   is native(pango)
   is export
   { * }
+
+sub pango_xft_render_layout (
+  XftDraw $draw,
+  XftColor $color,
+  PangoLayout $layout,
+  int32 $x,
+  int32 $y
+)
+  is native(pango)
+  is export
+  { * }
+
+sub pango_xft_render_layout_line (
+  XftDraw $draw,
+  XftColor $color,
+  PangoLayoutLine $line,
+  int32 $x,
+  int32 $y
+)
+  is native(pango)
+  is export
+  { * }
+
+sub pango_xft_picture_render (
+  Display $display,
+  Picture $src_picture,
+  Picture $dest_picture,
+  PangoFont $font,
+  PangoGlyphString $glyphs,
+  gint $x,
+  gint $y
+)
+  is native(pango)
+  is export
+  { * }
+
+sub pango_xft_render (
+  XftDraw $draw,
+  XftColor $color,
+  PangoFont $font,
+  PangoGlyphString $glyphs,
+  gint $x,
+  gint $y
+)
+  is native(pango)
+  is export
+  { * }
+
+sub pango_xft_renderer_get_type ()
+  returns GType
+  is native(pango)
+  is export
+  { * }
+
+sub pango_xft_renderer_new (Display $display, int32 $screen)
+  returns PangoRenderer
+  is native(pango)
+  is export
+  { * }
+
+sub pango_xft_renderer_set_default_color (
+  PangoXftRenderer $xftrenderer,
+  PangoColor $default_color
+)
+  is native(pango)
+  is export
+  { * }
+
+sub pango_xft_renderer_set_draw (
+  PangoXftRenderer $xftrenderer,
+  XftDraw $draw
+)
+  is native(pango)
+  is export
+  { * }
+
+sub pango_xft_render_transformed (
+  XftDraw $draw,
+  XftColor $color,
+  PangoMatrix $matrix,
+  PangoFont $font,
+  PangoGlyphString $glyphs,
+  int32 $x,
+  int32 $y
+)
+  is native(pango)
+  is export
+  { * }

@@ -1,0 +1,5 @@
+- Figure out where to house the following function prefixes:
+	pango_gravity_
+	pango_language_
+	pango_script_
+- Link in the XFT backend to libxft (?)

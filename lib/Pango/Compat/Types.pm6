@@ -62,6 +62,13 @@ sub clear_error($error = $ERROR) is export {
   $ERROR = Nil;
 }
 
+constant Display             is export := Pointer;
+constant FT_Face             is export := Pointer;
+constant Picture             is export := Pointer;
+constant XftColor            is export := Pointer;
+constant XftDraw             is export := Pointer;
+constant XftFont             is export := Pointer;
+
 constant cairo_t             is export := Cairo::cairo_t;
 constant cairo_pattern_t     is export := Cairo::cairo_pattern_t;
 constant cairo_region_t      is export := Pointer;
