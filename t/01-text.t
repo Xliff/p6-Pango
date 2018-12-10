@@ -8,7 +8,7 @@ use Pango::Layout;
 use Pango::FontDescription;
 
 constant RADIUS = 150;
-constant FONT = 'Sans Bold 27';
+constant FONT = 'Times New Roman 27';
 constant N_WORDS = 10;
 
 sub draw_text($c) {
@@ -29,7 +29,7 @@ sub draw_text($c) {
     $c.rotate($angle * π/180);
     $pango_cairo.update_layout($layout);
     ($w, $) = $layout.get_size;
-    $c.move_to($w / PANGO_SCALE, -RADIUS);
+    $c.move_to(-($w / PANGO_SCALE) / 2, -RADIUS);
     $pango_cairo.show_layout($layout);
     $c.restore;
   }
