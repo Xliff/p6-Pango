@@ -3,9 +3,9 @@ use v6.c;
 use Pango::Raw::Types;
 
 use Cairo;
-use Pango::Cairo;
-use Pango::Layout;
-use Pango::FontDescription;
+#use Pango::Cairo;
+#use Pango::Layout;
+#use Pango::FontDescription;
 
 constant RADIUS = 150;
 constant FONT = 'Sans Bold 27';
