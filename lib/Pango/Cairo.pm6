@@ -1,22 +1,27 @@
 use v6.c;
 
+use NativeCall;
+
 use Cairo;
 use Pango::Compat::Types;
+use Pango::Raw::Cairo;
 use Pango::Raw::Types;
 
 use Pango::Roles::Types;
 
 use Pango::Context;
+use Pango::Layout;
 
 class Pango::Cairo {
-  also does Pango::Raw::Types;
+  also does Pango::Roles::Types;
 
   has cairo_t        $!ct;
-  has PangoContext   $!pc;
+  has                $!pc;
 
   submethod BUILD(:$context, :$cr) {
-    $!pc = self.create_context($!ct = $cr);
-    self.update_context($!ct, $!pc);
+    $!ct = $cr;
+    $!pc = self.create_context;
+    self.update_context;
   }
 
   multi method new (cairo_t $cr) {
@@ -30,10 +35,10 @@ class Pango::Cairo {
   method context_font_options is rw {
     Proxy.new(
       FETCH => sub ($) {
-        pango_cairo_context_get_font_options($!pc);
+        pango_cairo_context_get_font_options($!pc.context);
       },
       STORE => sub ($, cairo_font_options_t $options is copy) {
-        pango_cairo_context_set_font_options($!pc, $options);
+        pango_cairo_context_set_font_options($!pc.context, $options);
       }
     );
   }
@@ -41,17 +46,17 @@ class Pango::Cairo {
   method context_resolution is rw {
     Proxy.new(
       FETCH => sub ($) {
-        pango_cairo_context_get_resolution($!pc);
+        pango_cairo_context_get_resolution($!pc.context);
       },
       STORE => sub ($, Num() $dpi is copy) {
         my gdouble $ddpi = $dpi;
-        pango_cairo_context_set_resolution($!pc, $ddpi);
+        pango_cairo_context_set_resolution($!pc.context, $ddpi);
       }
     );
   }
 
   method context_get_shape_renderer (Pointer $data = Pointer) {
-    pango_cairo_context_get_shape_renderer($!pc, $data);
+    pango_cairo_context_get_shape_renderer($!pc.context, $data);
   }
 
   method context_set_shape_renderer (
@@ -63,7 +68,7 @@ class Pango::Cairo {
 <data> parameter must be of CStruct or CPointer representation
 D
 
-    pango_cairo_context_set_shape_renderer($!pc, &func, $data, &dnotify);
+    pango_cairo_context_set_shape_renderer($!pc.context, &func, $data, &dnotify);
   }
 
   method create_context(Pango::Cairo:D: ) {
@@ -73,7 +78,7 @@ D
   multi method create_layout {
     samewith($!ct);
   }
-  method create_layout(cairo_t $context) {
+  multi method create_layout(cairo_t $context) {
     Pango::Layout.new( pango_cairo_create_layout($context) );
   }
 
@@ -87,8 +92,8 @@ D
     pango_cairo_error_underline_path($!ct, $xx, $yy, $w, $h);
   }
 
-  method font_get_scaled_font {
-    pango_cairo_font_get_scaled_font($!pc);
+  method font_get_scaled_font(PangoCairoFont $font) {
+    pango_cairo_font_get_scaled_font($font);
   }
 
   method font_get_type {
@@ -133,7 +138,7 @@ D
     pango_cairo_show_layout_line($!ct, $line);
   }
 
-  method update_context {
+  multi method update_context {
     samewith($!pc);
   }
   multi method update_context(PangoContext() $pc) {

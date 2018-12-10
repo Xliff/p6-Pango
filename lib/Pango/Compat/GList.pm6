@@ -3,7 +3,7 @@ use v6.c;
 use Method::Also;
 use NativeCall;
 
-use Pango:Compat::Raw::GList;
+use Pango::Compat::Raw::GList;
 use Pango::Compat::Types;
 
 class Pango::Compat::GList {

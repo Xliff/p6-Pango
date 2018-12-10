@@ -3,7 +3,7 @@ use v6.c;
 use Pango::Raw::Types;
 
 use Cairo;
-#use Pango::Cairo;
+use Pango::Cairo;
 #use Pango::Layout;
 #use Pango::FontDescription;
 
@@ -11,10 +11,10 @@ constant RADIUS = 150;
 constant FONT = 'Sans Bold 27';
 constant N_WORDS = 10;
 
-sub draw_text($c, $ct) {
-  my $pango_cairo = Pango::Cairo.new($ct);
+sub draw_text($c) {
+  my $pango_cairo = Pango::Cairo.new($c.context);
   $c.translate(RADIUS, RADIUS);
-  my $layout = Pango::Cairo.create_layout($ct);
+  my $layout = Pango::Cairo.create_layout($c.context);
   $layout.set_text = 'Text';
   my $desc = Pango::FontDescription(FONT);
   $layout.font_description = $desc;
@@ -37,13 +37,12 @@ sub draw_text($c, $ct) {
 
 sub MAIN ($filename) {
   my $surface = Cairo::Image.create(
-    CAIRO_FORMAT_ARGB32, 2 * RADIUS, 2 * RADIUS
+    FORMAT_ARGB32, 2 * RADIUS, 2 * RADIUS
   );
-  my $cairo_t = Cairo::Context::cairo_create($surface);
-  my $cairo = Cairo::Context.new($cairo_t);
+  my $cairo = Cairo::Context.new($surface);
   $cairo.rgb(1, 1, 1);
   $cairo.paint;
-  draw_text($cairo, $cairo_t);
+  draw_text($cairo);
   $cairo.destroy;
 
   my $status = $surface.write_to_png($filename);

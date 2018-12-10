@@ -1,13 +1,19 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::GList;
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 use Pango::Raw::Context;
 
+use Pango::Roles::References;
 use Pango::Roles::Types;
 
+use Pango::Matrix;
+
 class Pango::Context {
+  also does Pango::Roles::References;
   also does Pango::Roles::Types;
 
   has PangoContext $!pc;
@@ -15,12 +21,23 @@ class Pango::Context {
   submethod BUILD (:$context) {
     $!pc = $context;
   }
+  submethod DESTROY {
+    self.downref;
+  }
 
   method Pango::Raw::Types::PangoContext {
     $!pc;
   }
+  method context {
+    $!pc;
+  }
 
-  method new {
+  multi method new (PangoContext $context) {
+    my $o = self.bless(:$context);
+    $o.upref;
+    $o;
+  }
+  multi method new {
     my $context = pango_context_new();
     self.bless(:$context);
   }
@@ -79,7 +96,7 @@ class Pango::Context {
         PangoGravityHint( pango_context_get_gravity_hint($!pc) );
       },
       STORE => sub ($, Int() $hint is copy) {
-        my guint $h = self.RESOLVE-UINT($hint)
+        my guint $h = self.RESOLVE-UINT($hint);
         pango_context_set_gravity_hint($!pc, $h);
       }
     );
@@ -99,7 +116,7 @@ class Pango::Context {
   method matrix is rw {
     Proxy.new(
       FETCH => sub ($) {
-         pango_context_get_matrix($!pc) );
+         Pango::Matrix.new( pango_context_get_matrix($!pc) );
       },
       STORE => sub ($, PangoMatrix() $matrix is copy) {
         pango_context_set_matrix($!pc, $matrix);
@@ -133,7 +150,7 @@ class Pango::Context {
     my $nf = 0;
     my @families;
 
-    samewith($families, $nf);
+    samewith($f, $nf);
     @families.push: Pango::FontFamily.new( $f[0][$_].deref ) for ^$nf;
     @families;
   }
@@ -141,7 +158,7 @@ class Pango::Context {
     CArray[CArray[Pointer[PangoFontFamily]]] $families,
     Int $n_families is rw
   ) {
-    my gint $nf = self.RESOLVE-INT($n_families)
+    my gint $nf = self.RESOLVE-INT($n_families);
     pango_context_list_families($!pc, $families, $nf);
     $n_families = $nf;
   }

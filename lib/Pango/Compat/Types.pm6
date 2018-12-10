@@ -22,11 +22,12 @@ sub set-function-ptr-p(Blob, Str, & (Pointer) --> int32)
   is symbol('sprintf')
   is native { * }
 
-constant glib     is export = 'glib-2.0',v0;
-constant gio      is export = 'gio-2.0',v0;
-constant gobject  is export = 'gobject-2.0',v0;
-constant cairo    is export = 'cairo',v2;
-constant pango    is export = 'pango-1.0',v0;
+constant glib       is export = 'glib-2.0',v0;
+constant gio        is export = 'gio-2.0',v0;
+constant gobject    is export = 'gobject-2.0',v0;
+constant cairo      is export = 'cairo',v2;
+constant pango      is export = 'pango-1.0',v0;
+constant pangocairo is export = 'pangocairo-1.0',v0;
 
 sub g_destroy_none(Pointer)
   is export
@@ -74,9 +75,11 @@ constant XftColor            is export := Pointer;
 constant XftDraw             is export := Pointer;
 constant XftFont             is export := Pointer;
 
-#constant cairo_t             is export := Cairo::cairo_t;
-#constant cairo_pattern_t     is export := Cairo::cairo_pattern_t;
-#constant cairo_region_t      is export := Pointer;
+constant cairo_t             is export := Cairo::cairo_t;
+constant cairo_pattern_t     is export := Cairo::cairo_pattern_t;
+constant cairo_region_t      is export := Pointer;
+constant cairo_scaled_font_t is export := Pointer;
+constant cairo_font_type_t   is export := Pointer;
 
 constant gboolean            is export := uint32;
 constant gchar               is export := Str;

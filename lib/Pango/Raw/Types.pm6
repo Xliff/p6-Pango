@@ -190,6 +190,9 @@ sub PANGO_GRAVITY_IS_IMPROPER(PangoGravity $g) {
 }
 
 class PangoAttrList         is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoAttrIterator     is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoCairoFont        is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoCairoFontMap     is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoContext          is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoCoverage         is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoEngineShape      is repr('CPointer') is export does Pango::Roles::Pointers { }
@@ -206,6 +209,7 @@ class PangoFontDescription  is repr('CPointer') is export does Pango::Roles::Poi
 class PangoFontFace         is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFontFamily       is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFontMap          is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoFontMetrics      is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoLanguage         is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoLayout           is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoLayoutIter       is repr('CPointer') is export does Pango::Roles::Pointers { }

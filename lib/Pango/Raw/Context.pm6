@@ -1,5 +1,7 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 
@@ -11,7 +13,7 @@ sub pango_context_changed (PangoContext $context)
   { * }
 
 sub pango_context_get_gravity (PangoContext $context)
-  returns PangoGravity
+  returns uint32 # PangoGravity
   is native(pango)
   is export
   { * }
@@ -40,8 +42,8 @@ sub pango_context_get_type ()
 
 sub pango_context_list_families (
   PangoContext $context,
-  PangoFontFamily $families,
-  int32 $n_families
+  CArray[CArray[Pointer[PangoFontFamily]]] $families,
+  int32 $n_families is rw
 )
   is native(pango)
   is export
@@ -87,7 +89,7 @@ sub pango_itemize (
 
 sub pango_itemize_with_base_dir (
   PangoContext $context,
-  PangoDirection $base_dir,
+  uint32 $base_dir,               # PangoDirection $base_dir,
   Str $text,
   int32 $start_index,
   int32 $length,
@@ -106,13 +108,13 @@ sub pango_context_get_matrix (PangoContext $context)
   { * }
 
 sub pango_context_get_base_dir (PangoContext $context)
-  returns PangoDirection
+  returns uint32 # PangoDirection
   is native(pango)
   is export
   { * }
 
 sub pango_context_get_base_gravity (PangoContext $context)
-  returns PangoGravity
+  returns uint32 # PangoGravity
   is native(pango)
   is export
   { * }
@@ -130,7 +132,7 @@ sub pango_context_get_language (PangoContext $context)
   { * }
 
 sub pango_context_get_gravity_hint (PangoContext $context)
-  returns PangoGravityHint
+  returns uint32 # PangoGravityHint
   is native(pango)
   is export
   { * }
@@ -148,7 +150,7 @@ sub pango_context_set_matrix (PangoContext $context, PangoMatrix $matrix)
 
 sub pango_context_set_base_dir (
   PangoContext $context,
-  PangoDirection $direction
+  uint32 $direction               # PangoDirection $direction
 )
   is native(pango)
   is export
@@ -156,7 +158,7 @@ sub pango_context_set_base_dir (
 
 sub pango_context_set_base_gravity (
   PangoContext $context,
-  PangoGravity $gravity
+  uint32 $gravity                 # PangoGravity $gravity
 )
   is native(pango)
   is export
@@ -180,7 +182,7 @@ sub pango_context_set_language (
 
 sub pango_context_set_gravity_hint (
   PangoContext $context,
-  PangoGravityHint $hint
+  uint32 $hint                    # PangoGravityHint $hint
 )
   is native(pango)
   is export
