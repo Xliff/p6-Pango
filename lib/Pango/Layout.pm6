@@ -22,6 +22,10 @@ class Pango::Layout {
     $!pl = $layout;
   }
 
+  method Pango::Raw::Types::PangoLayout {
+    $!pl;
+  }
+
   multi method new (PangoLayout $layout) {
     my $o = self.bless(:$layout);
     $o.upref;
@@ -93,7 +97,7 @@ class Pango::Layout {
       FETCH => sub ($) {
         pango_layout_get_font_description($!pl);
       },
-      STORE => sub ($, PangoFontDescription $desc is copy) {
+      STORE => sub ($, PangoFontDescription() $desc is copy) {
         pango_layout_set_font_description($!pl, $desc);
       }
     );
@@ -285,7 +289,7 @@ D
     my ($w, $h) = (0 xx 2);
     samewith($w, $h);
   }
-  multi method get_size (int $width, int $height) {
+  multi method get_size (Int() $width is rw, Int() $height is rw) {
     my @i = ($width, $height);
     my gint ($w, $h) = self.RESOLVE-INT(@i);
     pango_layout_get_size($!pl, $w, $h);

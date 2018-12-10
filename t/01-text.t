@@ -4,8 +4,8 @@ use Pango::Raw::Types;
 
 use Cairo;
 use Pango::Cairo;
-#use Pango::Layout;
-#use Pango::FontDescription;
+use Pango::Layout;
+use Pango::FontDescription;
 
 constant RADIUS = 150;
 constant FONT = 'Sans Bold 27';
@@ -15,8 +15,8 @@ sub draw_text($c) {
   my $pango_cairo = Pango::Cairo.new($c.context);
   $c.translate(RADIUS, RADIUS);
   my $layout = Pango::Cairo.create_layout($c.context);
-  $layout.set_text = 'Text';
-  my $desc = Pango::FontDescription(FONT);
+  $layout.set_text('Text');
+  my $desc = Pango::FontDescription.new_from_string(FONT);
   $layout.font_description = $desc;
   $desc.free;
 
@@ -45,7 +45,7 @@ sub MAIN ($filename) {
   draw_text($cairo);
   $cairo.destroy;
 
-  my $status = $surface.write_to_png($filename);
+  my $status = $surface.write_png($filename);
   die "Could not save png to $filename"
     unless $status == CAIRO_STATUS_SUCCESS.Int;
 }

@@ -1,5 +1,7 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 
@@ -41,14 +43,14 @@ sub pango_font_description_free (PangoFontDescription $desc)
   is export
   { * }
 
-sub pango_font_description_from_string (char $str)
+sub pango_font_description_from_string (gchar $str)
   returns PangoFontDescription
   is native(pango)
   is export
   { * }
 
 sub pango_font_description_get_set_fields (PangoFontDescription $desc)
-  returns PangoFontMask
+  returns uint32 # PangoFontMask
   is native(pango)
   is export
   { * }
@@ -101,7 +103,10 @@ sub pango_font_describe_with_absolute_size (PangoFont $font)
   is export
   { * }
 
-sub pango_font_descriptions_free (PangoFontDescription $descs, int $n_descs)
+sub pango_font_descriptions_free (
+  CArray[Pointer[PangoFontDescription]] $descs,
+  gint $n_descs
+)
   is native(pango)
   is export
   { * }
@@ -113,7 +118,7 @@ sub pango_font_face_describe (PangoFontFace $face)
   { * }
 
 sub pango_font_face_get_face_name (PangoFontFace $face)
-  returns char
+  returns gchar
   is native(pango)
   is export
   { * }
@@ -126,15 +131,15 @@ sub pango_font_face_is_synthesized (PangoFontFace $face)
 
 sub pango_font_face_list_sizes (
   PangoFontFace $face,
-  int $sizes,
-  int $n_sizes
+  gint $sizes,
+  gint $n_sizes
 )
   is native(pango)
   is export
   { * }
 
 sub pango_font_family_get_name (PangoFontFamily $family)
-  returns char
+  returns gchar
   is native(pango)
   is export
   { * }
@@ -148,7 +153,7 @@ sub pango_font_family_is_monospace (PangoFontFamily $family)
 sub pango_font_family_list_faces (
   PangoFontFamily $family,
   PangoFontFace $faces,
-  int $n_faces
+  gint $n_faces
 )
   is native(pango)
   is export
@@ -202,49 +207,49 @@ sub pango_font_get_type ()
   { * }
 
 sub pango_font_metrics_get_approximate_char_width (PangoFontMetrics $metrics)
-  returns int
+  returns gint
   is native(pango)
   is export
   { * }
 
 sub pango_font_metrics_get_approximate_digit_width (PangoFontMetrics $metrics)
-  returns int
+  returns gint
   is native(pango)
   is export
   { * }
 
 sub pango_font_metrics_get_ascent (PangoFontMetrics $metrics)
-  returns int
+  returns gint
   is native(pango)
   is export
   { * }
 
 sub pango_font_metrics_get_descent (PangoFontMetrics $metrics)
-  returns int
+  returns gint
   is native(pango)
   is export
   { * }
 
 sub pango_font_metrics_get_strikethrough_position (PangoFontMetrics $metrics)
-  returns int
+  returns gint
   is native(pango)
   is export
   { * }
 
 sub pango_font_metrics_get_strikethrough_thickness (PangoFontMetrics $metrics)
-  returns int
+  returns gint
   is native(pango)
   is export
   { * }
 
 sub pango_font_metrics_get_underline_position (PangoFontMetrics $metrics)
-  returns int
+  returns gint
   is native(pango)
   is export
   { * }
 
 sub pango_font_metrics_get_underline_thickness (PangoFontMetrics $metrics)
-  returns int
+  returns gint
   is native(pango)
   is export
   { * }
@@ -268,7 +273,7 @@ sub pango_font_metrics_unref (PangoFontMetrics $metrics)
 
 sub pango_font_description_set_absolute_size (
   PangoFontDescription $desc,
-  double $size
+  gdouble $size
 )
   is native(pango)
   is export
@@ -291,33 +296,33 @@ sub pango_font_description_set_variations_static (
   { * }
 
 sub pango_font_description_to_filename (PangoFontDescription $desc)
-  returns char
+  returns gchar
   is native(pango)
   is export
   { * }
 
 sub pango_font_description_to_string (PangoFontDescription $desc)
-  returns char
+  returns gchar
   is native(pango)
   is export
   { * }
 
 sub pango_font_description_unset_fields (
   PangoFontDescription $desc,
-  PangoFontMask $to_unset
+  uint32 $to_unset                # PangoFontMask $to_unset
 )
   is native(pango)
   is export
   { * }
 
 sub pango_font_description_get_family (PangoFontDescription $desc)
-  returns char
+  returns gchar
   is native(pango)
   is export
   { * }
 
 sub pango_font_description_get_variations (PangoFontDescription $desc)
-  returns char
+  returns gchar
   is native(pango)
   is export
   { * }
@@ -329,31 +334,31 @@ sub pango_font_description_get_size (PangoFontDescription $desc)
   { * }
 
 sub pango_font_description_get_style (PangoFontDescription $desc)
-  returns PangoStyle
+  returns uint32 # PangoStyle
   is native(pango)
   is export
   { * }
 
 sub pango_font_description_get_gravity (PangoFontDescription $desc)
-  returns PangoGravity
+  returns uint32 # PangoGravity
   is native(pango)
   is export
   { * }
 
 sub pango_font_description_get_weight (PangoFontDescription $desc)
-  returns PangoWeight
+  returns uint32 # PangoWeight
   is native(pango)
   is export
   { * }
 
 sub pango_font_description_get_stretch (PangoFontDescription $desc)
-  returns PangoStretch
+  returns uint32 # PangoStretch
   is native(pango)
   is export
   { * }
 
 sub pango_font_description_get_variant (PangoFontDescription $desc)
-  returns PangoVariant
+  returns uint32 # PangoVariant
   is native(pango)
   is export
   { * }
@@ -381,7 +386,7 @@ sub pango_font_description_set_size (PangoFontDescription $desc, gint $size)
 
 sub pango_font_description_set_style (
   PangoFontDescription $desc,
-  PangoStyle $style
+  uint32 $style                   # PangoStyle $style
 )
   is native(pango)
   is export
@@ -389,7 +394,7 @@ sub pango_font_description_set_style (
 
 sub pango_font_description_set_gravity (
   PangoFontDescription $desc,
-  PangoGravity $gravity
+  uint32 $gravity                 # PangoGravity $gravity
 )
   is native(pango)
   is export
@@ -397,7 +402,7 @@ sub pango_font_description_set_gravity (
 
 sub pango_font_description_set_weight (
   PangoFontDescription $desc,
-  PangoWeight $weight
+  uint32 $weight                  # PangoWeight $weight
 )
   is native(pango)
   is export
@@ -405,7 +410,7 @@ sub pango_font_description_set_weight (
 
 sub pango_font_description_set_stretch (
   PangoFontDescription $desc,
-  PangoStretch $stretch
+  uint32 $stratch                 # PangoStretch $stretch
 )
   is native(pango)
   is export
@@ -413,7 +418,7 @@ sub pango_font_description_set_stretch (
 
 sub pango_font_description_set_variant (
   PangoFontDescription $desc,
-  PangoVariant $variant
+  uint32                          # PangoVariant $variant
 )
   is native(pango)
   is export

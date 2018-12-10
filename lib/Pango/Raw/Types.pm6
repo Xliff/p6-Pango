@@ -111,7 +111,7 @@ our enum PangoWeight is export (
   PANGO_WEIGHT_ULTRAHEAVY => 1000
 );
 
-our enum PangoFontMask (
+our enum PangoFontMask is export (
   PANGO_FONT_MASK_FAMILY     => 1,
   PANGO_FONT_MASK_STYLE      => 1 +< 1,
   PANGO_FONT_MASK_VARIANT    => 1 +< 2,

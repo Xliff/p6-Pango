@@ -188,8 +188,8 @@ class Pango::FontDescription {
     my $d = 0;
     for @descs {
       $descs[$d++] = nativecast(Pointer[PangoFontDescription], do {
-        Pango::FontDescription { .font_description }
-        PangoFontDescription   { $_ }
+        when Pango::FontDescription { .font_description }
+        when PangoFontDescription   { $_ }
         default {
           die qq:to/D/.chomp;
 Pango::FontDescription.multi_free does not handle { .^name } objects
@@ -234,7 +234,7 @@ D
 
 }
 
-method infix:<eqv> (Pango::FontDescription $a, Pango::FontDescription $b)
+sub infix:<eqv> (Pango::FontDescription $a, Pango::FontDescription $b)
   is export
 {
   $a.equal($b);
