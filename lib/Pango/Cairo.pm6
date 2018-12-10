@@ -12,16 +12,17 @@ class Pango::Cairo {
   also does Pango::Raw::Types;
 
   has cairo_t        $!ct;
-  has Cairo::Context $!pcc;
   has PangoContext   $!pc;
 
   submethod BUILD(:$context, :$cr) {
-    ($!ct, $!pcc) = ( $cr, Cairo::Context.new($cr) );
-    $!pc = self.create_context($cr);
+    $!pc = self.create_context($!ct = $cr);
     self.update_context($!ct, $!pc);
   }
 
-  method new (PangoFontMap() $fontmap, cairo_t $cr) {
+  multi method new (cairo_t $cr) {
+    self.bless(:$cr);
+  }
+  multi method new_with_fontmap (PangoFontMap() $fontmap, cairo_t $cr) {
     my $context = self.font_map_create_context($fontmap);
     self.bless(:$context, :$cr);
   }
@@ -69,8 +70,11 @@ D
     Pango::Context.new( pango_cairo_create_context($!ct) );
   }
 
-  method create_layout(Pango::Cairo:D: ) {
-    pango_cairo_create_layout($!ct);
+  multi method create_layout {
+    samewith($!ct);
+  }
+  method create_layout(cairo_t $context) {
+    Pango::Layout.new( pango_cairo_create_layout($context) );
   }
 
   method error_underline_path (
@@ -130,7 +134,10 @@ D
   }
 
   method update_context {
-    pango_cairo_update_context($!ct, $!pc);
+    samewith($!pc);
+  }
+  multi method update_context(PangoContext() $pc) {
+    pango_cairo_update_context($!ct, $pc);
   }
 
   method update_layout (PangoLayout() $layout) {

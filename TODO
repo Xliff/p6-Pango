@@ -3,3 +3,4 @@
 	pango_language_
 	pango_script_
 - Link in the XFT backend to libxft (?)
+- All miscellaneous routines to Pango::Misc catchall

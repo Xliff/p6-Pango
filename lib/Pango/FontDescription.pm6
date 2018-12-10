@@ -29,6 +29,11 @@ class Pango::FontDescription {
     self.bless(:$description);
   }
 
+  method new_from_string(Str $str) {
+    my $description = pango_font_description_from_string($str);
+    self.bless(:$description);
+  }
+
   method family is rw {
     Proxy.new(
       FETCH => sub ($) {
@@ -148,10 +153,6 @@ class Pango::FontDescription {
 
   method free {
     pango_font_description_free($!pfd);
-  }
-
-  method from_string {
-    pango_font_description_from_string($!pfd);
   }
 
   method get_set_fields {

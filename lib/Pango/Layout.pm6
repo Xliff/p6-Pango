@@ -356,7 +356,7 @@ D
     pango_layout_set_markup_with_accel($!pl, $markup, $l, $am, $ac);
   }
 
-  method set_text (Str() $text, Int() $length) {
+  method set_text (Str() $text, Int() $length = $text.chars) {
     my int32 $l = self.RESOLVE-INT($length);
     pango_layout_set_text($!pl, $text, $length);
   }
