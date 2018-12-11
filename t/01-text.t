@@ -8,7 +8,7 @@ use Pango::Layout;
 use Pango::FontDescription;
 
 constant RADIUS = 150;
-constant FONT = 'Times New Roman 27';
+constant FONT = 'Sans Bold 27';
 constant N_WORDS = 10;
 
 sub draw_text($c) {
