@@ -219,3 +219,79 @@ sub point_on_path(%param, $x is rw, $y is rw) {
     }
   }
 }
+
+sub map_path_onto($c, $path) {
+  %param<path> = $path;
+  %param<parameterization = parameterize_path($path);
+
+  my $cp = $c.copy_path;
+  $c.new_path;
+  transform_path($cp, &point_on_path, %param);
+  $.append_path($cp);
+  $path.destroy;
+}
+
+sub draw_text($c, $x, $y, $f, $t) {
+  my $font_opts = Cairo::FontOptions.new;
+  $font_opts.set_hint_style(CAIRO_HINT_STYLE_NONE);
+  $font_opts.set_hint_metrics(CAIRO_HINT_METRICS_OFF);
+  $c.set_font_options($font_opts);
+
+  my $layout = Pango::Cairo.new($c);
+  my $desc = Pango::FontDescriotion.new_from_string($f);
+  $layout.set_font_description($desc);
+  $layout.set_text($t);
+  my $line = $layout.get_line_readonly(0);
+  $c.move_to($x.Num, $y.Num);
+  $c.layout_line_path($line);
+
+  $font_opts.destroy, $desc.free
+}
+
+sub draw_twisted($c, $x, $y, $f, $t) {
+  $c.save;
+  $c.set_tolerance(0.01);
+  my $path = $c.copy_path_flat;
+  $c.new_path;
+  draw_text($c, $x, $y, $f, $t);
+  map_path_onto($c, $path);
+  $c.fill_preserve;
+  $c.save;
+  $c.rgb( (0.1).Num, (0.1).Num, (0.1).Num );
+  $c.stroke;
+  $c.restore xx 2;
+}
+
+sub draw_dream($c) {
+  $c.move_to(50, 650);
+  $c.rel_line_to(250, 50);
+  $c.rel_curve_to(250, 50, 600, -50, 600, -250);
+  $c.rel_curve_to(0, -400, -300, -100, -800, -300);
+  $c.set_line_width(1.5);
+  $c.rgba(0.3, 0.3, 1.0, 0.3);
+  fancy_cairo_stroke($c, True);
+  draw_twisted(0, 0, 'Serif 72', 'It was a dream... Oh Just a dream');
+}
+
+sub draw_wow($c) {
+  $c.move_to(400, 700);
+  $c.rel_curve_to(50, -50, 150, -50, 200, 0);
+  $c.scale(1.Num, 2.Num);
+  $c.set_line_width(2.0);
+  $c.rgba(0.3, 1.0, 0.3, 1.0);
+  fancy_cairo_stroke($c, True);
+  draw_twisted(-20, -150, 'Serif 60', 'WOW!');
+}
+
+sub MAIN($ouput_filename) {
+  my $surface = Cairo::Image.new(FORMAT_ARGB32, 1000, 800);
+  my $cr = Cairo::Context.new($surface);
+  $cr.rgb(1, 1, 1);
+  $cr.paint;
+  draw_dream($cr);
+  draw_wow($cr);
+
+  my $status = CairoStatus( $surface.write_png($output_filename) );
+  die "Could not save png to $output_filename"
+    unless $status == STATUS_SUCCESS;
+}
