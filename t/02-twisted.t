@@ -13,7 +13,7 @@ sub fancy_cairo_stroke($c, $preserve) {
   $c.set_dash(@dash, @dash.elems, 0);
   # The easy way.
   for $path -> $p {
-    given PathDataTypes( $p[0].header.type ) {
+    given $p[0].data-type {
       when PATH_MOVE_TO | PATH_LINE_TO {
         $c.move_to($p[1].point.x, $p[1].point.y);
       }
@@ -31,7 +31,7 @@ sub fancy_cairo_stroke($c, $preserve) {
   $c.set_line_width($line_width * 4);
   $c.set_line_cap(LINE_CAP_ROUND);
   for $path -> $p {
-    given PathDataTypes( $p[0].header.type ) {
+    given $p[0].data-type {
       when PATH_MOVE_TO {
         $c.move_to($p[1].point.x, $p[1].point.y);
       }
@@ -43,7 +43,7 @@ sub fancy_cairo_stroke($c, $preserve) {
         $c.rel_line_to(0, 0);
         $c.move_to($p[1].point.x, $p[1].point.y);
         $c.rel_line_to(0, 0);
-        $c.move_to($p[2].point.x, $p[2].point.y]
+        $c.move_to($p[2].point.x, $p[2].point.y);
         $c.rel_line_to(0, 0);
         $c.move_to($p[3].point.x, $p[3].point.y);
       }
@@ -55,8 +55,8 @@ sub fancy_cairo_stroke($c, $preserve) {
   $c.stroke;
   $c.restore;
 
-  for $paths -> $p {
-    given PathDataTypes( $p[0].header.type ) {
+  for $path -> $p {
+    given $p[0].data-type {
       when PATH_MOVE_TO {
         $c.move_to($p[1].point.x, $p[1].point.x);
       }
@@ -64,7 +64,7 @@ sub fancy_cairo_stroke($c, $preserve) {
         $c.line_to($p[1].point.x, $p[1].point.y);
       }
       when PATH_CURVE_TO {
-        $c.curve_to($p[1].point.x, $p[1].point.y
+        $c.curve_to($p[1].point.x, $p[1].point.y,
                     $p[2].point.x, $p[2].point.y,
                     $p[3].point.x, $p[3].point.y);
       }
@@ -83,7 +83,7 @@ sub two_points_distance ($a, $b) {
   ($dx² + $dy²).sqrt;
 }
 
-sub curve_length(*@xy is copy);
+sub curve_length(*@xy is copy) {
   my ($length, $current_point) = (0);
   my $c = Cairo::Context.create(Cairo::Image.surface_create(FORMAT_A8, 0, 0));
   my $path = $c.copy_path_flat;
@@ -92,13 +92,13 @@ sub curve_length(*@xy is copy);
   $c.move_to(|@xy[0]);
   $c.curve_to(|(@xy[1..3].flat));
   for $path -> $p {
-    given PathDataType( $p[0].header.type ) {
+    given $p[0].data-type {
       when PATH_MOVE_TO {
         $current_point = $p[1];
       }
       when PATH_LINE_TO {
-        $length += two_points_distance($current_point, $p[1])
-        $urrent_point = $p[1];
+        $length += two_points_distance($current_point, $p[1]);
+        $current_point = $p[1];
       }
     }
   }
@@ -114,7 +114,7 @@ sub parameterize_path($path) {
   loop (my $i = 0; $i < $path.num_data; $i += $path.data[$i].header.length) {
     $d = $path.get_data($i);
     $p[$i] = 0;
-    given PathDataType( $d[0].header.type ) {
+    given $d[0].data-type {
       when PATH_MOVE_TO {
         $cp = $lmt = $d[1];
       }
@@ -137,7 +137,7 @@ sub parameterize_path($path) {
 
 sub transform_path($path, &f:($, $, $), $c) {
   for $path -> $o {
-    given PathDataType( $p[0].header.type ) {
+    given $p[0].data-type {
       when PATH_CURVE_TO {
         f($c, $p[3].point.x, $p[3].point.y);
         f($c, $p[2].point.x, $p[2].point.y);
@@ -159,19 +159,20 @@ sub point_on_path(%param, $x is rw, $y is rw) {
     $i = 0;
     $i + %param<path>.data[$i].leader.length < %param<path>.num_data &&
       ($the_x > $parameter[$i] ||
-       ParamDataType(%param<path>.data[$i].header_type) == PATH_MOVE_TO);
+       %param<path>.data[$i].data-type == PATH_MOVE_TO);
     $i += %param<path>.data[$i].header.length
   ) {
+    my $d = %param<path>.get_data[$i];
+
     $the_x -= $parameter[$i];
-    $d = %param<path>.get_data[$i];
-    given ParamDataType( $d[0].header.type ) {
+    given $d[0].data-type {
       when PATH_MOVE_TO  { $lmt = $cp = $d[1]; }
       when PATH_LINE_TO  { $cp = $d[1];        }
-      when PATH_CURVE_TO { $CP = $d[3];        }
+      when PATH_CURVE_TO { $cp = $d[3];        }
     }
 
     $d = %param<path>.get_data[$i];
-    given ParamDataType( $d[0].header.type ) {
+    given $d[0].data-type  {
       when PATH_CLOSE_PATH | PATH_LINE_TO {
         my $dd = $_ == PATH_CLOSE_PATH ?? $lmt !! $d[1];
         $ratio = $the_x / $parameter[i];
@@ -186,7 +187,7 @@ sub point_on_path(%param, $x is rw, $y is rw) {
       }
       when PATH_CURVE_TO {
         $ratio = $the_x / $parameter[$i];
-        %r<0_1 1_0> = ($ratio, 1 - $ratio)
+        %r<0_1 1_0> = ($ratio, 1 - $ratio);
         %r<2_0 0_2> = (%r<1_0>², %r<0_1>²);
         %r<3_0 0_3> = (%r<2_0> * %r<1_0>, %r<0_1> * %r<0_2>);
         %r<2_1 1_2> = (%r<2_0> * %r<0_1>, %r<1_0> * %r<0_2>);
@@ -221,13 +222,12 @@ sub point_on_path(%param, $x is rw, $y is rw) {
 }
 
 sub map_path_onto($c, $path) {
-  %param<path> = $path;
-  %param<parameterization = parameterize_path($path);
+  my %param = ( path => $path, parameterization => parameterize_path($path) );
 
   my $cp = $c.copy_path;
   $c.new_path;
   transform_path($cp, &point_on_path, %param);
-  $.append_path($cp);
+  $c.append_path($cp);
   $path.destroy;
 }
 
@@ -251,7 +251,7 @@ sub draw_text($c, $x, $y, $f, $t) {
 sub draw_twisted($c, $x, $y, $f, $t) {
   $c.save;
   $c.set_tolerance(0.01);
-  my $path = $c.copy_path_flat;
+  my $path = $c.copy_path(:flat);
   $c.new_path;
   draw_text($c, $x, $y, $f, $t);
   map_path_onto($c, $path);
@@ -270,7 +270,7 @@ sub draw_dream($c) {
   $c.set_line_width(1.5);
   $c.rgba(0.3, 0.3, 1.0, 0.3);
   fancy_cairo_stroke($c, True);
-  draw_twisted(0, 0, 'Serif 72', 'It was a dream... Oh Just a dream');
+  draw_twisted($c, 0, 0, 'Serif 72', 'It was a dream... Oh Just a dream');
 }
 
 sub draw_wow($c) {
@@ -280,10 +280,10 @@ sub draw_wow($c) {
   $c.set_line_width(2.0);
   $c.rgba(0.3, 1.0, 0.3, 1.0);
   fancy_cairo_stroke($c, True);
-  draw_twisted(-20, -150, 'Serif 60', 'WOW!');
+  draw_twisted($c, -20, -150, 'Serif 60', 'WOW!');
 }
 
-sub MAIN($ouput_filename) {
+sub MAIN($output_filename) {
   my $surface = Cairo::Image.new(FORMAT_ARGB32, 1000, 800);
   my $cr = Cairo::Context.new($surface);
   $cr.rgb(1, 1, 1);
