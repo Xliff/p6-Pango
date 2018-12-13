@@ -59,6 +59,12 @@ sub pango_layout_get_line (PangoLayout $layout, int32 $line)
   { * }
 
 
+sub pango_layout_get_line_readonly (PangoLayout $layout, int32 $line)
+  returns PangoLayoutLine
+  is native(pango)
+  is export
+  { * }
+
 sub pango_layout_get_lines (PangoLayout $layout)
   returns GSList
   is native(pango)

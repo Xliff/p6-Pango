@@ -189,6 +189,12 @@ D
     );
   }
 
+  method text is rw {
+    Proxy.new:
+      FETCH => -> $              { self.get_text },
+      STORE => -> $, Str() $text { self.set_text($text) }
+  }
+
   method width is rw {
     Proxy.new(
       FETCH => sub ($) {
@@ -247,9 +253,14 @@ D
     pango_layout_get_line_count($!pl);
   }
 
-  method get_line (PangoLayout $layout, Int() $line) {
+  method get_line (Int() $line) {
     my $l = self.RESOLVE-INT($line);
-    pango_layout_get_line ($!pl, $l);
+    pango_layout_get_line($!pl, $l);
+  }
+  
+  method get_line_readonly(Int() $line) {
+    my $l = self.RESOLVE-INT($line);
+    pango_layout_get_line_readonly($!pl, $l);
   }
 
   method get_lines {
