@@ -21,7 +21,7 @@ class Pango::Cairo {
   submethod BUILD(:$context, :$update, :$cr) {
     $!ct = $cr;
     $!pc = self.create_context;
-    self.update_context;
+    self.update_context if $update;
   }
 
   multi method new (cairo_t $cr, :$update = True) {

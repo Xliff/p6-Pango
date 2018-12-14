@@ -5,13 +5,19 @@ use Pango::Cairo;
 use Pango::FontDescription;
 
 sub fancy_cairo_stroke($c, $preserve) {
-  my $line_width = $c.line_width;
-  my $path := $c.copy_path;
+  # say 'Fancy stroke';
   my @dash = (10, 10);
+  #
+  # # Dashed
 
   $c.save;
   $c.rgb(1, 0, 0);
-  $c.set_dash(@dash, @dash.elems, 0);
+  my $line_width = $c.line_width;
+  my $path := $c.copy_path;
+  $c.new_path;
+  $c.save;
+  $c.line_width /= 3;
+  $c.set_dash(@dash, 0);
   # The easy way. (Remember to either bind or decontainerize, with <>!)
   for $path -> $p {
     given $p[0].data-type {
@@ -28,24 +34,34 @@ sub fancy_cairo_stroke($c, $preserve) {
   $c.stroke;
   $c.restore;
 
+  # # Points
+  say "CP2: ({ $c.get_current_point.join(', ') })";
   $c.save;
+  $c.rgb(0, 1, 0);
   $c.line_width = $line_width * 4;
   $c.line_cap = LINE_CAP_ROUND;
+
+  my $first = True;
   for $path -> $p {
     given $p[0].data-type {
       when PATH_MOVE_TO {
+        say "P Move to: { $p[1].point.x }, { $p[1].point.y }";
         $c.move_to($p[1].point.x, $p[1].point.y);
       }
       when PATH_LINE_TO {
+        say "P2 Line to: { $p[1].point.x }, { $p[1].point.y }";
         $c.line_to(0, 0, :relative);
         $c.move_to($p[1].point.x, $p[1].point.y);
       }
       when PATH_CURVE_TO {
         $c.line_to(0, 0, :relative);
+        say "P3 Line to: { $p[1].point.x }, { $p[1].point.y }";
         $c.move_to($p[1].point.x, $p[1].point.y);
         $c.line_to(0, 0, :relative);
+        say "P3 Line to: { $p[2].point.x }, { $p[2].point.y }";
         $c.move_to($p[2].point.x, $p[2].point.y);
         $c.line_to(0, 0, :relative);
+        say "P3 Line to: { $p[3].point.x }, { $p[3].point.y }";
         $c.move_to($p[3].point.x, $p[3].point.y);
       }
       when PATH_CLOSE_PATH {
@@ -53,23 +69,36 @@ sub fancy_cairo_stroke($c, $preserve) {
       }
     }
   }
+  $c.line_to(0, 0, :relative);
   $c.stroke;
   $c.restore;
 
+  say "CP3: ({ $c.get_current_point.join(', ') })";
+  $c.rgb(0, 0, 1);
   for $path -> $p {
     given $p[0].data-type {
       when PATH_MOVE_TO {
+        say "Move to: { $p[1].point.x }, { $p[1].point.y }";
         $c.move_to($p[1].point.x, $p[1].point.x);
       }
       when PATH_LINE_TO {
+        say "Line to: { $p[1].point.x }, { $p[1].point.y }";
         $c.line_to($p[1].point.x, $p[1].point.y);
       }
       when PATH_CURVE_TO {
+        say qq:to/CURVE/.chomp;
+Curve to: ({
+  $p[1].point.x }, { $p[1].point.y }), ({
+  $p[2].point.x }, { $p[2].point.y }), ({
+  $p[3].point.x }, { $p[3].point.y })
+CURVE
+
         $c.curve_to($p[1].point.x, $p[1].point.y,
                     $p[2].point.x, $p[2].point.y,
                     $p[3].point.x, $p[3].point.y);
       }
       when PATH_CLOSE_PATH {
+        say 'Closing';
         $c.close_path;
       }
     }
@@ -79,13 +108,14 @@ sub fancy_cairo_stroke($c, $preserve) {
   $c.restore;
 }
 
-sub two_points_distance ($a, $b) {
-  my ($dx, $dy) = ( $b.point.x - $a.point.x, $b.point.y - $a.point.y );
+sub two_points_distance ($a, $b --> num64) {
+  my num64 ($dx, $dy) = ( $b.point.x - $a.point.x, $b.point.y - $a.point.y );
   ($dx² + $dy²).sqrt;
 }
 
 sub curve_length(*@xy is copy) {
-  my ($length, $current_point) = (0);
+  my $current_point;
+  my num64 $length = 0.Num;
   my $c = Cairo::Context.create( Cairo::Image.create(FORMAT_A8, 0, 0) );
   my $path = $c.copy_path(:flat);
   @xy .= rotor(2);
@@ -109,24 +139,24 @@ sub curve_length(*@xy is copy) {
 }
 
 sub parameterize_path($path) {
-  my ($d, $lmt, $p);
-  my $cp = cairo_path_data_t.new;
+  my num64 @p;
+  my ($cp, $lmt) = (cairo_path_data_t.new xx 2);
 
   # The hard way.
   loop (my $i = 0; $i < $path.num_data; $i += $path.data[$i].header.length) {
-    $d = $path.get_data($i);
-    $p[$i] = 0;
+    my $d = $path.get_data($i);
+    @p[$i] = 0.Num;
     given $d[0].data-type {
       when PATH_MOVE_TO {
         $cp = $lmt = $d[1];
       }
       when PATH_CLOSE_PATH | PATH_LINE_TO {
         my $dd = $_ == PATH_CLOSE_PATH ?? $lmt !! $d[1];
-        $p[$i] = two_points_distance($cp, $dd);
+        @p[$i] = two_points_distance($cp, $dd);
         $cp = $d[1];
       }
       when PATH_CURVE_TO {
-        $p[$i] = curve_length(  $cp.point.x,   $cp.point.y,
+        @p[$i] = curve_length(  $cp.point.x,   $cp.point.y,
                               $d[1].point.x, $d[1].point.y,
                               $d[2].point.x, $d[2].point.y,
                               $d[3].point.x, $d[3].point.y);
@@ -134,7 +164,7 @@ sub parameterize_path($path) {
       }
     }
   }
-  $p;
+  @p;
 }
 
 sub transform_path($path, &f:($, $, $), $c) {
@@ -143,27 +173,30 @@ sub transform_path($path, &f:($, $, $), $c) {
       when PATH_CURVE_TO {
         f($c, $p[3].point.x, $p[3].point.y);
         f($c, $p[2].point.x, $p[2].point.y);
+        proceed;
       }
-      when PATH_MOVE_TO | PATH_LINE_TO {
+      when PATH_CURVE_TO | PATH_MOVE_TO | PATH_LINE_TO {
         f($c, $p[1].point.x, $p[1].point.y);
       }
     }
   }
 }
 
-sub point_on_path(%param, $x is rw, $y is rw) {
-  my ($the_x, $the_y, $dx, $dy, $ratio, %r) = ($x, $y);
+sub point_on_path(%param, num64 $x is rw, num64 $y is rw) {
+  my ($the_x, $the_y, $dx, $dy, %r) = ($x, $y);
   my ($cp, $lmt) = (cairo_path_data_t.new xx 2);
+  my num64 $ratio;
   my $parameter = %param<parameterization>;
 
   my $i;
   loop (
     $i = 0;
-    $i + %param<path>.data[$i].leader.length < %param<path>.num_data &&
+    $i + %param<path>.data[$i].length < %param<path>.num_data &&
       ($the_x > $parameter[$i] ||
        %param<path>.data[$i].data-type == PATH_MOVE_TO);
-    $i += %param<path>.data[$i].header.length
+    $i += %param<path>.data[$i].length
   ) {
+    #say "I: $i / { %param<path>.num_data }";
     my $d = %param<path>.get_data($i);
 
     $the_x -= $parameter[$i];
@@ -176,8 +209,8 @@ sub point_on_path(%param, $x is rw, $y is rw) {
     $d = %param<path>.get_data($i);
     given $d[0].data-type  {
       when PATH_CLOSE_PATH | PATH_LINE_TO {
-        my $dd = $_ == PATH_CLOSE_PATH ?? $lmt !! $d[1];
-        $ratio = $the_x / $parameter[i];
+        my $dd := $_ == PATH_CLOSE_PATH ?? $lmt !! $d[1];
+        $ratio = $the_x / $parameter[$i];
         $x = $cp.point.x * (1 - $ratio) + $dd.point.x * $ratio;
         $y = $cp.point.y * (1 - $ratio) + $dd.point.y * $ratio;
 
@@ -244,7 +277,7 @@ sub draw_text($c, $x, $y, $f, $t) {
   $layout.font_description = $desc;
   $layout.text = $t;
   my $line = $layout.get_line_readonly(0);
-  $c.move_to($x.Num, $y.Num);
+  $c.move_to($x, $y);
   Pango::Cairo.new($c.context, :!update).layout_line_path($line);
 
   $font_opts.destroy, $desc.free
@@ -259,9 +292,10 @@ sub draw_twisted($c, $x, $y, $f, $t) {
   map_path_onto($c, $path);
   $c.fill(:preserve);
   $c.save;
-  $c.rgb( (0.1).Num, (0.1).Num, (0.1).Num );
+  $c.rgb(0.1, 0.1, 0.1);
   $c.stroke;
-  $c.restore xx 2;
+  $c.restore;
+  $c.restore;
 }
 
 sub draw_dream($c) {
@@ -272,17 +306,19 @@ sub draw_dream($c) {
   $c.line_width = 1.5;
   $c.rgba(0.3, 0.3, 1.0, 0.3);
   fancy_cairo_stroke($c, True);
-  draw_twisted($c, 0, 0, 'Serif 72', 'It was a dream... Oh Just a dream');
+
+  $c.new_path; # Debug only
+  #draw_twisted($c, 0, 0, 'Serif 72', 'It was a dream... Oh Just a dream');
 }
 
 sub draw_wow($c) {
-  $c.move_to(400, 700);
+  $c.move_to(400, 780);
   $c.curve_to(50, -50, 150, -50, 200, 0, :relative);
-  $c.scale(1.Num, 2.Num);
-  $c.line_width = 2.0;
+  $c.scale(1, 2);
+  $c.line_width = 2;
   $c.rgba(0.3, 1.0, 0.3, 1.0);
   fancy_cairo_stroke($c, True);
-  draw_twisted($c, -20, -150, 'Serif 60', 'WOW!');
+  #draw_twisted($c, -20, -150, 'Serif 60', 'WOW!');
 }
 
 sub MAIN($output_filename) {
