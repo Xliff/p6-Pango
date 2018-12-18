@@ -5,11 +5,9 @@ use Pango::Cairo;
 use Pango::FontDescription;
 
 sub fancy_cairo_stroke($c, $preserve) {
-  # say 'Fancy stroke';
   my @dash = (10, 10);
-  #
-  # # Dashed
 
+  # # Dashed
   $c.save;
   $c.rgb(1, 0, 0);
   my $line_width = $c.line_width;
@@ -86,6 +84,7 @@ sub fancy_cairo_stroke($c, $preserve) {
         $c.line_to($p[1].point.x, $p[1].point.y);
       }
       when PATH_CURVE_TO {
+        say "CPC: ({ $c.get_current_point.join(', ') })";
         say qq:to/CURVE/.chomp;
 Curve to: ({
   $p[1].point.x }, { $p[1].point.y }), ({

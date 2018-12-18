@@ -1,5 +1,7 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 
@@ -74,9 +76,16 @@ sub pango_ft2_render (
   is export
   { * }
 
+# Originally:
+# sub pango_ft2_render_layout (
+#   FT_BitMap $bitmap,
+#   PangoLayout $layout,
+#   gint $x,
+#   gint $y
+# )
 sub pango_ft2_render_layout (
-  FT_Bitmap $bitmap,
   PangoLayout $layout,
+  Pointer $bitmap,
   gint $x,
   gint $y
 )

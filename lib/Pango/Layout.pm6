@@ -257,7 +257,7 @@ D
     my $l = self.RESOLVE-INT($line);
     pango_layout_get_line($!pl, $l);
   }
-  
+
   method get_line_readonly(Int() $line) {
     my $l = self.RESOLVE-INT($line);
     pango_layout_get_line_readonly($!pl, $l);
@@ -354,8 +354,8 @@ D
     pango_layout_move_cursor_visually($!pl, $s, $oi, $ot, $d, $ni, $nt);
   }
 
-  method set_markup (Str() $markup, int32 $length) {
-    my int32 $l = self.RESOLVE-INT($length);
+  method set_markup (Str() $markup, int32 $length?) {
+    my int32 $l = self.RESOLVE-INT($length // -1);
     pango_layout_set_markup($!pl, $markup, $l);
   }
 

@@ -1,5 +1,7 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 
@@ -115,7 +117,7 @@ sub pango_fc_fontset_key_get_matrix (PangoFcFontsetKey $key)
   { * }
 
 sub pango_fc_fontset_key_get_resolution (PangoFcFontsetKey $key)
-  returns double
+  returns gdouble
   is native(pango)
   is export
   { * }

@@ -1,9 +1,13 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
-use Pango::Raw::TYpes;
+use Pango::Raw::Types;
+use Pango::Raw::FontMap;
 
 class Pango::FontMap {
+  has PangoFontMap $!fm;
 
   method changed {
     pango_font_map_changed($!fm);
@@ -30,12 +34,12 @@ class Pango::FontMap {
   multi method list_families {
     my $fl = CArray[CArray[Pointer[PangoFontFamily]]];
     $fl[0] = CArray[Pointer[PangoFontFamily]].new;
-    my($nf, @f) = (0);
+    my ($nf, @f) = (0);
     samewith($fl, $nf);
     @f.push( $fl[0][$_].deref ) for ^$nf;
     @f;
   }
-  method list_families (
+  multi method list_families (
     CArray[CArray[Pointer[PangoFontFamily]]] $families,
     Int $n_families is rw;
   ) {

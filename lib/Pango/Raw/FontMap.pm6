@@ -1,5 +1,7 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 
@@ -36,7 +38,7 @@ sub pango_font_map_get_type ()
 
 sub pango_font_map_list_families (
   PangoFontMap $fontmap,
-  PangoFontFamily $families,
+  CArray[CArray[Pointer[PangoFontFamily]]] $families,
   int $n_families
 )
   is native(pango)

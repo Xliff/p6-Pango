@@ -1,12 +1,14 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::FT2FontMap;
 use Pango::Raw::Types;
 
-use Pango::FCFontMap;
+use Pango::FontMap::FC;
 
-class Pango::FT2FontMap is Pango::FCFontMap {
+class Pango::FontMap::FT2 is Pango::FontMap::FC {
   has PangoFT2FontMap $!pft2fm;
 
   submethod BUILD(:$ft2map) {
@@ -69,7 +71,17 @@ class Pango::FT2FontMap is Pango::FCFontMap {
   #   pango_ft2_get_unknown_glyph($!pft2fm);
   # }
 
+  method !resolve_bitmap($buf) {
+    do given $buf {
+      when Buf[uint8] { nativecast(Pointer, $_) }
+      default {
+        die "Pango::FontMap::FT2.render_layout handling of { .^name } NYI."
+      }
+    }
+  }
+
   method render (
+    $buf,
     PangoFont $font,
     PangoGlyphString $glyphs,
     gint $x,
@@ -77,50 +89,62 @@ class Pango::FT2FontMap is Pango::FCFontMap {
   ) {
     my @i = ($x, $y);
     my gint ($xx, $yy) = self.RESOLVE-INT(@i);
-    pango_ft2_render($!pft2fm, $font, $glyphs, $x, $y);
+    my $b = self!resolve_bitmap($buf);
+    pango_ft2_render($b, $font, $glyphs, $x, $y);
   }
 
   method render_layout (
+    $buf,
     PangoLayout $layout,
     Int() $x,
     Int() $y
   ) {
     my @i = ($x, $y);
     my gint ($xx, $yy) = self.RESOLVE-INT(@i);
-    pango_ft2_render_layout($!pft2fm, $layout, $xx, $yy);
+    # Will need type dependent handling, here. For now, handle only Buf
+    my $b = self!resolve_bitmap($buf);
+
+    pango_ft2_render_layout($layout, $b, $xx, $yy);
   }
 
   method render_layout_line (
+    $buf,
     PangoLayoutLine $line,
     Int() $x,
     Int() $y
   ) {
     my @i = ($x, $y);
     my gint ($xx, $yy) = self.RESOLVE-INT(@i);
-    pango_ft2_render_layout_line($!pft2fm, $line, $xx, $yy);
+    my $b = self!resolve_bitmap($buf);
+    pango_ft2_render_layout_line($b, $line, $xx, $yy);
   }
 
   method render_layout_line_subpixel (
+    $buf,
     PangoLayoutLine $line,
     Int() $x,
     Int() $y
   ) {
     my @i = ($x, $y);
     my gint ($xx, $yy) = self.RESOLVE-INT(@i);
-    pango_ft2_render_layout_line_subpixel($!pft2fm, $line, $xx, $yy);
+    my $b = self!resolve_bitmap($buf);
+    pango_ft2_render_layout_line_subpixel($b, $line, $xx, $yy);
   }
 
   method render_layout_subpixel (
+    $buf,
     PangoLayout $layout,
     Int() $x,
     Int() $y
   ) {
     my @i = ($x, $y);
     my gint ($xx, $yy) = self.RESOLVE-INT(@i);
-    pango_ft2_render_layout_subpixel($!pft2fm, $layout, $xx, $yy);
+    my $b = self!resolve_bitmap($buf);
+    pango_ft2_render_layout_subpixel($b, $layout, $xx, $yy);
   }
 
   method render_transformed (
+    $buf,
     PangoMatrix $matrix,
     PangoFont $font,
     PangoGlyphString $glyphs,
@@ -129,8 +153,9 @@ class Pango::FT2FontMap is Pango::FCFontMap {
   ) {
     my @i = ($x, $y);
     my gint ($xx, $yy) = self.RESOLVE-INT(@i);
+    my $b = self!resolve_bitmap($buf);
     pango_ft2_render_transformed(
-      $!pft2fm, $matrix, $font, $glyphs, $xx, $yy
+      $b, $matrix, $font, $glyphs, $xx, $yy
     );
   }
 

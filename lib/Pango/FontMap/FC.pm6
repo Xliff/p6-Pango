@@ -1,5 +1,7 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::FcFontMap;
 use Pango::Raw::Types;
@@ -8,7 +10,7 @@ use Pango::FontMap;
 
 use Pango::Roles::Types;
 
-class Pango::FcFontMap is Pango::FontMap {
+class Pango::FontMap::FC is Pango::FontMap {
   also does Pango::Roles::Types;
 
   has PangoFcFontMap $!pfcfm;
