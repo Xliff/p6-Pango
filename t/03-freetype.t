@@ -9,11 +9,13 @@ $ft-support = (
 
 use Cairo;
 use Pango::Cairo;
+use Pango::FontDescription;
 use Pango::FontMap::FT2;
+use Pango::Layout;
 use Pango::Raw::Types;
 
 sub MAIN ($filename = 'test-font.png') {
-  die q:to/DIE/.chomp;
+  die q:to/DIE/.chomp unless $ft-support;
 This script requires both the FreeType2 libraries and the Font::FreeType
 package to install.
 DIE
@@ -51,20 +53,22 @@ DIE
   $layout.font_description = $font_desc;
   $font_map.load_font($context, $font_desc);
   $layout.width = 150 * PANGO_SCALE;
-  $layout(qq:to/TEXT/);
+  $layout.set_markup(qq:to/TEXT/);
 <span foreground="blue" font_family="Station">
    <b> bold </b>
    <u> is </u>
    <i> nice </i>
 </span>
 <tt> hello </tt>
-<span font_family="sans" font_stretch="ultracondensed" letter_spacing="500" {
-} font_weight="light"> SANS</span>
+<span font_family="sans" font_stretch="ultracondensed" letter_spacing="500" \
+font_weight="light"> SANS</span>
 <span foreground="#FFCC00"> colored</span>
 TEXT
 
-  $layout($buf, 30, 100);
-  Pango::Cairo.new($cr).update_layout($layout);
+  # Next should be a static call to Pango::FT2::Render, rather
+  # than to a Pango::FontMap::FT2!
+  $font_map.render_layout($buf, $layout, 30, 100);
+  Pango::Cairo.new($cr.context).update_layout($layout);
   say "Error: Couldn't write png to $filename"
     unless $surf.write_png($filename) == STATUS_SUCCESS
 }

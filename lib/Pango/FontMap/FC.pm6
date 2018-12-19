@@ -18,6 +18,7 @@ class Pango::FontMap::FC is Pango::FontMap {
   # Really should have some form of protection.
   method setFCFontMap($fontmap) {
     $!pfcfm = cast(PangoFcFontMap, $fontmap);
+    self.setFontMap( cast(PangoFontMap, $fontmap) );
   }
 
   method add_decoder_find_func (
@@ -40,10 +41,6 @@ D
 
   method config_changed {
     pango_fc_font_map_config_changed($!pfcfm);
-  }
-
-  method create_context {
-    pango_fc_font_map_create_context($!pfcfm);
   }
 
   method find_decoder (FcPattern $pattern) {

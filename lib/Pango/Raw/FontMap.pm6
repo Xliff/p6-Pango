@@ -38,8 +38,8 @@ sub pango_font_map_get_type ()
 
 sub pango_font_map_list_families (
   PangoFontMap $fontmap,
-  CArray[CArray[Pointer[PangoFontFamily]]] $families,
-  int $n_families
+  CArray[CArray[PangoFontFamily]] $families,
+  int32 $n_families is rw
 )
   is native(pango)
   is export

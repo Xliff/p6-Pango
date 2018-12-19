@@ -31,7 +31,7 @@ class Pango::Layout {
     $o.upref;
     $o;
   }
-  multi method new (PangoContext $context) {
+  multi method new (PangoContext() $context) {
     my $layout = pango_layout_new($context);
     self.bless(:$layout);
   }

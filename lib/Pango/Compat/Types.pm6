@@ -28,6 +28,7 @@ constant gobject    is export = 'gobject-2.0',v0;
 constant cairo      is export = 'cairo',v2;
 constant pango      is export = 'pango-1.0',v0;
 constant pangocairo is export = 'pangocairo-1.0',v0;
+constant pangoft2   is export = 'pangoft2-1.0',v0;
 
 sub g_destroy_none(Pointer)
   is export

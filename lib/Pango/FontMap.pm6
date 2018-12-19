@@ -3,18 +3,23 @@ use v6.c;
 use NativeCall;
 
 use Pango::Compat::Types;
+use Pango::Context;
 use Pango::Raw::Types;
 use Pango::Raw::FontMap;
 
 class Pango::FontMap {
   has PangoFontMap $!fm;
 
+  method setFontMap(PangoFontMap $fontmap) {
+    $!fm = $fontmap;
+  }
+
   method changed {
     pango_font_map_changed($!fm);
   }
 
   method create_context {
-    pango_font_map_create_context($!fm);
+    Pango::Context.new( pango_font_map_create_context($!fm) );
   }
 
   method get_serial {
@@ -40,10 +45,10 @@ class Pango::FontMap {
     @f;
   }
   multi method list_families (
-    CArray[CArray[Pointer[PangoFontFamily]]] $families,
+    CArray[CArray[PangoFontFamily]] $families,
     Int $n_families is rw;
   ) {
-    my gint $nf = 0;
+    my int32 $nf = 0;
     my $rc = pango_font_map_list_families($!fm, $families, $nf);
     $n_families = $nf;
     $rc;
@@ -51,7 +56,7 @@ class Pango::FontMap {
 
   method load_font (
     PangoContext() $context,
-    PangoFontDescription $desc
+    PangoFontDescription() $desc
   ) {
     pango_font_map_load_font($!fm, $context, $desc);
   }

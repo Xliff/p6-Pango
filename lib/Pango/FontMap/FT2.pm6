@@ -25,11 +25,6 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
     self.bless(:$ft2map);
   }
 
-  # Uses the superclass, instead of pango_ft2_font_map_create_context()
-  method create_context {
-    nextwith( cast(PangoFontMap, $!pft2fm) );
-  }
-
   # method for_display
   #   is DEPRECATED
   # {
@@ -82,10 +77,10 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
 
   method render (
     $buf,
-    PangoFont $font,
-    PangoGlyphString $glyphs,
-    gint $x,
-    gint $y
+    PangoFont() $font,
+    PangoGlyphString() $glyphs,
+    Int() $x,
+    Int() $y
   ) {
     my @i = ($x, $y);
     my gint ($xx, $yy) = self.RESOLVE-INT(@i);
@@ -95,7 +90,7 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
 
   method render_layout (
     $buf,
-    PangoLayout $layout,
+    PangoLayout() $layout,
     Int() $x,
     Int() $y
   ) {
@@ -109,7 +104,7 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
 
   method render_layout_line (
     $buf,
-    PangoLayoutLine $line,
+    PangoLayoutLine() $line,
     Int() $x,
     Int() $y
   ) {
@@ -121,7 +116,7 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
 
   method render_layout_line_subpixel (
     $buf,
-    PangoLayoutLine $line,
+    PangoLayoutLine() $line,
     Int() $x,
     Int() $y
   ) {
@@ -133,7 +128,7 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
 
   method render_layout_subpixel (
     $buf,
-    PangoLayout $layout,
+    PangoLayout() $layout,
     Int() $x,
     Int() $y
   ) {
@@ -145,9 +140,9 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
 
   method render_transformed (
     $buf,
-    PangoMatrix $matrix,
-    PangoFont $font,
-    PangoGlyphString $glyphs,
+    PangoMatrix() $matrix,
+    PangoFont() $font,
+    PangoGlyphString() $glyphs,
     Int() $x,
     Int() $y
   ) {
