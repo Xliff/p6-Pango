@@ -109,7 +109,6 @@ constant va_list             is export := Pointer;
 
 constant FcConfig            is export := Pointer;
 constant FcPattern           is export := Pointer;
-constant FT_Bitmap           is export := Pointer;
 
 constant GAsyncReadyCallback is export := Pointer;
 constant GCallback           is export := Pointer;

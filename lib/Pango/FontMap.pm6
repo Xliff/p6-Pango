@@ -19,7 +19,9 @@ class Pango::FontMap {
   }
 
   method create_context {
-    Pango::Context.new( pango_font_map_create_context($!fm) );
+    my $pc = Pango::Context.new;
+    $pc.font_map = $!fm;
+    $pc;
   }
 
   method get_serial {
@@ -37,8 +39,8 @@ class Pango::FontMap {
   }
 
   multi method list_families {
-    my $fl = CArray[CArray[Pointer[PangoFontFamily]]];
-    $fl[0] = CArray[Pointer[PangoFontFamily]].new;
+    my $fl = CArray[CArray[PangoFontFamily]];
+    $fl[0] = CArray[PangoFontFamily].new;
     my ($nf, @f) = (0);
     samewith($fl, $nf);
     @f.push( $fl[0][$_].deref ) for ^$nf;

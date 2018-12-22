@@ -1,13 +1,7 @@
 use v6.c;
 
-my $ft-support;
-try require ::('Font::FreeType');
-try require ::('Font::FreeType::Native');
-$ft-support = (
-  ::('Font::FreeType'), ::('Font::FreeType::Native')
-).none ~~ Failure;
-
 use Cairo;
+use Pango::Compat::FreeType;
 use Pango::Cairo;
 use Pango::FontDescription;
 use Pango::FontMap::FT2;
@@ -15,22 +9,19 @@ use Pango::Layout;
 use Pango::Raw::Types;
 
 sub MAIN ($filename = 'test-font.png') {
-  die q:to/DIE/.chomp unless $ft-support;
-This script requires both the FreeType2 libraries and the Font::FreeType
-package to install.
-DIE
+  my $bmp = FT_Bitmap.new(width => 640, rows => 480, num_grays => 256);
+  ($bmp.pitch, $bmp.pixel_mode) = (($bmp.width + 3) +& -4, FT_PIXEL_MODE_GRAY);
 
-  my ($width, $height) = (640, 480);
-  my $buf = Buf[uint8].new($width * $height, 0);
   my $surf = Cairo::Image.create(
-    FORMAT_A8, $width, $height, $buf, True
+    FORMAT_A8, $bmp.width, $bmp.rows, $bmp.buffer, True
   );
+
   die q:to/DIE/.chomp without $surf;
 Error! Could not create the surface, and cannot continue.
 DIE
 
   my $cr = Cairo::Context.new($surf);
-  die q:to/DIE/.chom without $cr;
+  die q:to/DIE/.chomp without $cr;
 Error! Apparently ran out of memory, and cannot continue.
 DIE
 
@@ -65,10 +56,17 @@ font_weight="light"> SANS</span>
 <span foreground="#FFCC00"> colored</span>
 TEXT
 
-  # Next should be a static call to Pango::FT2::Render, rather
-  # than to a Pango::FontMap::FT2!
-  $font_map.render_layout($buf, $layout, 30, 100);
+  $bmp.buffer_pointer;
+  $font_map.render_layout($bmp, $layout, 30, 100);
+  say $bmp.buffer.^name;
+  $bmp.buffer_pointer;
+  $bmp.buffer_pointer;
+
   Pango::Cairo.new($cr.context).update_layout($layout);
-  say "Error: Couldn't write png to $filename"
-    unless $surf.write_png($filename) == STATUS_SUCCESS
+  try {
+    CATCH {
+      default { say "Error: Couldn't write png to $filename: { .message }"; }
+    }
+    $surf.write_png($filename)
+  }
 }
