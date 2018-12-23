@@ -18,9 +18,11 @@ class Pango::Cairo {
   has cairo_t        $!ct;
   has                $!pc;
 
+  # Where was :$context intended? $!pc?
+
   submethod BUILD(:$context, :$update, :$cr) {
     $!ct = $cr;
-    $!pc = self.create_context;
+    $!pc = $context // self.create_context;
     self.update_context if $update;
   }
 
@@ -28,7 +30,7 @@ class Pango::Cairo {
     self.bless(:$cr, :$update);
   }
   multi method new_with_fontmap (PangoFontMap() $fontmap, cairo_t $cr) {
-    my $context = self.font_map_create_context($fontmap);
+    my $context = Pango::Context.new( self.font_map_create_context($fontmap) );
     self.bless(:$context, :$cr);
   }
 

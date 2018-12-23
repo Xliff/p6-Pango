@@ -25,6 +25,9 @@ class Pango::Layout {
   method Pango::Raw::Types::PangoLayout {
     $!pl;
   }
+  method layout {
+    $!pl;
+  }
 
   multi method new (PangoLayout $layout) {
     my $o = self.bless(:$layout);

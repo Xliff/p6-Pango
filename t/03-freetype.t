@@ -1,6 +1,7 @@
 use v6.c;
 
 use Cairo;
+use Pango::Raw::Cairo;
 use Pango::Compat::FreeType;
 use Pango::Cairo;
 use Pango::FontDescription;
@@ -21,6 +22,7 @@ Error! Could not create the surface, and cannot continue.
 DIE
 
   my $cr = Cairo::Context.new($surf);
+  say $cr.status;
   die q:to/DIE/.chomp without $cr;
 Error! Apparently ran out of memory, and cannot continue.
 DIE
@@ -40,29 +42,29 @@ DIE
 Error! Cannot create the Pango layout, and cannot continue.
 DIE
 
+  # Check layout for issues since nothing is happening to context.
   my $font_desc = Pango::FontDescription.new_from_string('Station 35');
   $layout.font_description = $font_desc;
   $font_map.load_font($context, $font_desc);
   $layout.width = 150 * PANGO_SCALE;
-  $layout.set_markup(qq:to/TEXT/);
+  $layout.set_markup(q:to/TEXT/);
 <span foreground="blue" font_family="Station">
    <b> bold </b>
    <u> is </u>
    <i> nice </i>
 </span>
 <tt> hello </tt>
-<span font_family="sans" font_stretch="ultracondensed" letter_spacing="500" \
-font_weight="light"> SANS</span>
+<span font_family="sans" font_stretch="ultracondensed" letter_spacing="500" font_weight="light"> SANS</span>
 <span foreground="#FFCC00"> colored</span>
 TEXT
 
-  $bmp.buffer_pointer;
   $font_map.render_layout($bmp, $layout, 30, 100);
-  say $bmp.buffer.^name;
-  $bmp.buffer_pointer;
-  $bmp.buffer_pointer;
+  # Problem is here? -- Convert these to C equivs and see.
+  #Pango::Cairo.new($cr.context).update_layout($layout);
+  #my $pc = pango_cairo_create_context($cr.context);
 
-  Pango::Cairo.new($cr.context).update_layout($layout);
+  # CAIRO context, not a Pango context.
+  pango_cairo_update_layout($cr.context, $layout.layout);
   try {
     CATCH {
       default { say "Error: Couldn't write png to $filename: { .message }"; }
