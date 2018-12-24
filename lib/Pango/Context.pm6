@@ -20,6 +20,7 @@ class Pango::Context {
 
   submethod BUILD (:$context) {
     $!pc = $context;
+    $!ref = $!pc.p;
   }
   submethod DESTROY {
     self.downref;

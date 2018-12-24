@@ -14,13 +14,14 @@ use Pango::FontDescription;
 use Pango::LayoutIter;
 
 class Pango::Layout {
-  also does Pango::Roles::Types;
   also does Pango::Roles::References;
+  also does Pango::Roles::Types;
 
   has PangoLayout $!pl;
 
   submethod BUILD(:$layout) {
     $!pl = $layout;
+    $!ref = $!pl.p;
   }
 
   method Pango::Raw::Types::PangoLayout {
