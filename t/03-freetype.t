@@ -11,8 +11,8 @@ use Pango::Raw::Layout;
 use Pango::Compat::FreeType;
 #use Pango::Cairo;
 #use Pango::FontDescription;
-#use Pango::FontMap::FT2;
-#use Pango::Layout;
+use Pango::FontMap::FT2;
+use Pango::Layout;
 use Pango::Raw::Types;
 
 sub cairo_format_stride_for_width(int32, int32)
@@ -64,34 +64,28 @@ DIE
 Error! Apparently ran out of memory, and cannot continue.
 DIE
 
-  #my $font_map = Pango::FontMap::FT2.new;
-  my $font_map = pango_ft2_font_map_new();
+  my $font_map = Pango::FontMap::FT2.new;
   die q:to/DIE/.chomp without $font_map;
 Error! Cannot create the pango font map, and cannot continue.
 DIE
 
-  #my $context = $font_map.create_context;
-  my $context = pango_font_map_create_context($font_map);
+  my $context = $font_map.create_context;
   die q:to/DIE/.chomp without $context;
 Error! Cannot create Pango font context, and cannot contiune.
 DIE
 
-  #my $layout = Pango::Layout.new($context);
-  my $layout = pango_layout_new($context);
+  my $layout = Pango::Layout.new($context);
   die q:to/DIE/.chomp without $layout;
 Error! Cannot create the Pango layout, and cannot continue.
 DIE
 
   # Check layout for issues since nothing is happening to context.
-  #my $font_desc = Pango::FontDescription.new_from_string('Station 35');
-  my $font_desc = pango_font_description_from_string('Station 35');
-  #$layout.font_description = $font_desc;
-  pango_layout_set_font_description($layout, $font_desc);
-  #$font_map.load_font($context, $font_desc);
-  pango_font_map_load_font($font_map, $context, $font_desc);
-  #$layout.width = 150 * PANGO_SCALE;
-  pango_layout_set_width($layout, 150 * PANGO_SCALE);
-  #$layout.set_markup(q:to/TEXT/);
+  my $font_desc = Pango::FontDescription.new_from_string('Station 35');
+  $layout.font_description = $font_desc;
+  $font_map.load_font($context, $font_desc);
+  $layout.width = 150 * PANGO_SCALE;
+  #pango_layout_set_width($layout.layout, 150 * PANGO_SCALE);
+
   my $mu = q:to/TEXT/;
 <span foreground="blue" font_family="Station">
    <b> bold </b>
@@ -103,11 +97,10 @@ DIE
 <span foreground="#FFCC00"> colored</span>
 TEXT
 
+  # Remove carriage returns to match C version.
   $mu ~~ s:g/\n//;
-  pango_layout_set_markup($layout, $mu, -1);
-
-  #$font_map.render_layout($bmp, $layout, 30, 100);
-  pango_ft2_render_layout($bmp, $layout, 30, 100);
+  $layout.set_markup($mu);
+  $font_map.render_layout($bmp, $layout, 30, 100);
 
   # Problem is here? -- Convert these to C equivs and see.
   #Pango::Cairo.new($cr.context).update_layout($layout);
@@ -115,7 +108,7 @@ TEXT
 
   # CAIRO context, not a Pango context.
   #pango_cairo_update_layout($cr.context, $layout.layout);
-  pango_cairo_update_layout($cr, $layout);
+  pango_cairo_update_layout($cr, $layout.layout);
   try {
     CATCH {
       default { say "Error: Couldn't write png to $filename: { .message }"; }

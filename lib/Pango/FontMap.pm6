@@ -10,6 +10,13 @@ use Pango::Raw::FontMap;
 class Pango::FontMap {
   has PangoFontMap $!fm;
 
+  method Pango::Compat::Types::PangoFontMap {
+    $!fm;
+  }
+  method fontmap {
+    $!fm;
+  }
+
   method setFontMap(PangoFontMap $fontmap) {
     $!fm = $fontmap;
   }

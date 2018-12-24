@@ -358,8 +358,12 @@ D
     pango_layout_move_cursor_visually($!pl, $s, $oi, $ot, $d, $ni, $nt);
   }
 
-  method set_markup (Str() $markup, int32 $length?) {
-    my int32 $l = self.RESOLVE-INT($length // -1);
+  multi method set_markup (Str() $markup) {
+    samewith($markup, -1);
+  }
+  multi method set_markup (Str() $markup, Int() $length) {
+    $length = -1 without $length;
+    my int32 $l = self.RESOLVE-INT($length);
     pango_layout_set_markup($!pl, $markup, $l);
   }
 
