@@ -10,6 +10,7 @@ use Pango::Raw::Layout;
 use Pango::Roles::Types;
 use Pango::Roles::References;
 
+use Pango::FontDescription;
 use Pango::LayoutIter;
 
 class Pango::Layout {
@@ -98,7 +99,7 @@ class Pango::Layout {
   method font_description is rw {
     Proxy.new(
       FETCH => sub ($) {
-        pango_layout_get_font_description($!pl);
+        Pango::FontDescription.new( pango_layout_get_font_description($!pl) );
       },
       STORE => sub ($, PangoFontDescription() $desc is copy) {
         pango_layout_set_font_description($!pl, $desc);
