@@ -40,6 +40,12 @@ class Pango::Layout {
     my $layout = pango_layout_new($context);
     self.bless(:$layout);
   }
+  multi method new (Mu $p) {
+    die "Cannot create Pango::Layout from { $p.^name }";
+  }
+  multi method new {
+    die 'Must pass a parameter to Pango::Layout.new';
+  }
 
   method copy {
     my $layout = pango_layout_copy($!pl);

@@ -12,6 +12,8 @@ use Pango::Roles::Types;
 use Pango::Context;
 use Pango::Layout;
 
+# Consider augment to Cairo::Context to add type coercion.
+
 class Pango::Cairo {
   also does Pango::Roles::Types;
 
