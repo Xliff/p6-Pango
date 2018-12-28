@@ -71,13 +71,14 @@ sub fancy_cairo_stroke($c, $preserve) {
   $c.stroke;
   $c.restore;
 
+  $c.save;
   say "CP3: ({ $c.get_current_point.join(', ') })";
   $c.rgb(0, 0, 1);
   for $path -> $p {
     given $p[0].data-type {
       when PATH_MOVE_TO {
         say "Move to: { $p[1].point.x }, { $p[1].point.y }";
-        $c.move_to($p[1].point.x, $p[1].point.x);
+        $c.move_to($p[1].point.x, $p[1].point.y);
       }
       when PATH_LINE_TO {
         say "Line to: { $p[1].point.x }, { $p[1].point.y }";
@@ -298,15 +299,16 @@ sub draw_twisted($c, $x, $y, $f, $t) {
 }
 
 sub draw_dream($c) {
-  $c.move_to(50, 650);
-  $c.line_to(250, 50, :relative);
-  $c.curve_to(250, 50, 600, -50, 600, -250, :relative);
-  $c.curve_to(0, -400, -300, -100, -800, -300, :relative);
-  $c.line_width = 1.5;
-  $c.rgba(0.3, 0.3, 1.0, 0.3);
+  $c.context.move_to(50.Num, 650.Num);
+  $c.context.rel_line_to(250.Num, 50.Num);
+  $c.context.rel_curve_to(250.Num, 50.Num, 600.Num, -50.Num, 600.Num, -250.Num);
+  $c.context.rel_curve_to(0.Num, -400.Num, -300.Num, -100.Num, -800.Num, -300.Num);
+  $c.context.set_line_width(1.5.Num);
+  $c.context.set_source_rgba(0.3.Num, 0.3.Num, 1.0.Num, 0.3.Num);
   fancy_cairo_stroke($c, True);
 
-  $c.new_path; # Debug only
+  # Fancy is not saving/restoring properly?
+  $c.new_path;
   #draw_twisted($c, 0, 0, 'Serif 72', 'It was a dream... Oh Just a dream');
 }
 
@@ -317,7 +319,7 @@ sub draw_wow($c) {
   $c.line_width = 2;
   $c.rgba(0.3, 1.0, 0.3, 1.0);
   fancy_cairo_stroke($c, True);
-  #draw_twisted($c, -20, -150, 'Serif 60', 'WOW!');
+  draw_twisted($c, -20, -150, 'Serif 60', 'WOW!');
 }
 
 sub MAIN($output_filename) {
