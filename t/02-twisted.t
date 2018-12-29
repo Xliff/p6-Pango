@@ -151,16 +151,22 @@ sub parameterize_path($path) {
   @p;
 }
 
-sub transform_path($path, &f:($, num64, num64), $c) {
+sub transform_path($path, &f:($, num64 is rw, num64 is rw), $c) {
   for $path<> -> $p {
     given $p[0].data-type {
       when PATH_CURVE_TO {
+        print "P3 ({$p[3].x}, {$p[3].y}) -> ";
         f($c, $p[3].point.x, $p[3].point.y);
+        say " Out = ({$p[3].x}, {$p[3].y})";
         f($c, $p[2].point.x, $p[2].point.y);
+        print "P2 ({$p[2].x}, {$p[2].y}) -> ";
+        say " Out = ({$p[2].x}, {$p[2].y})";
         proceed;
       }
       when PATH_CURVE_TO | PATH_MOVE_TO | PATH_LINE_TO {
+        print "P1 ({$p[1].x}, {$p[1].y}) -> ";
         f($c, $p[1].point.x, $p[1].point.y);
+        say " Out = ({$p[1].x}, {$p[1].y})";
       }
     }
   }
@@ -245,9 +251,11 @@ sub point_on_path(%param, num64 $x is rw, num64 $y is rw) {
 
         $ratio = $the_y / ($dx² + $dy²).sqrt;
         ($x, $y) »+=« (-$dy * $ratio, $dx * $ratio);
+
       }
     }
   }
+  print "($x, $y)";
 }
 
 sub map_path_onto($c, $path) {
@@ -273,8 +281,7 @@ sub draw_text($c, $x, $y, $f, $t) {
   $layout.text = $t;
   my $line = $layout.get_line_readonly(0);
   $c.move_to($x, $y);
-  #$pc.layout_line_path($line);
-  $pc.layout_path($layout);
+  $pc.layout_line_path($line);
 
   $font_opts.destroy && $desc.free;
 }
@@ -285,7 +292,7 @@ sub draw_twisted($c, $x, $y, $f, $t) {
   my $path = $c.copy_path(:flat);
   $c.new_path;
   draw_text($c, $x, $y, $f, $t);
-  #map_path_onto($c, $path);
+  map_path_onto($c, $path);
   $c.fill(:preserve);
   $c.save;
   $c.rgb(0.1, 0.1, 0.1);
@@ -305,7 +312,8 @@ sub draw_dream($c) {
 
   # Fancy is not saving/restoring properly?
   #$c.new_path;
-  draw_twisted($c, 0, 0, 'Serif 40', 'It was a dream... Oh Just a dream');
+
+  #draw_twisted($c, 0, 0, 'Serif 40', 'It was a dream... Oh Just a dream');
 }
 
 sub draw_wow($c) {
@@ -316,7 +324,7 @@ sub draw_wow($c) {
   $c.rgba(0.3, 1.0, 0.3, 1.0);
   fancy_cairo_stroke($c, True);
   #draw_twisted($c, -20, -150, 'Serif 60', 'WOW!');
-  draw_twisted($c, -20, 0, 'Serif 60', 'WOW!');
+  draw_twisted($c, 0, 150, 'Serif 60', 'WOW!');
 }
 
 sub MAIN($output_filename) {
