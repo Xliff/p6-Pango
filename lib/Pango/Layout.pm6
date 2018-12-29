@@ -12,6 +12,7 @@ use Pango::Roles::References;
 
 use Pango::FontDescription;
 use Pango::LayoutIter;
+use Pango::LayoutLine;
 
 class Pango::Layout {
   also does Pango::Roles::References;
@@ -266,12 +267,12 @@ D
 
   method get_line (Int() $line) {
     my $l = self.RESOLVE-INT($line);
-    pango_layout_get_line($!pl, $l);
+    Pango::LayoutLine.new( pango_layout_get_line($!pl, $l), :!ref );
   }
 
   method get_line_readonly(Int() $line) {
     my $l = self.RESOLVE-INT($line);
-    pango_layout_get_line_readonly($!pl, $l);
+    Pango::LayoutLine.new( pango_layout_get_line_readonly($!pl, $l), :!ref );
   }
 
   method get_lines {

@@ -4,3 +4,4 @@
 	pango_script_
 - Link in the XFT backend to libxft (?)
 - All miscellaneous routines to Pango::Misc catchall
+- Add aliasing

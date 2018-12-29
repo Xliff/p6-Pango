@@ -323,8 +323,8 @@ sub pango_layout_line_get_x_ranges (
   PangoLayoutLine $line,
   gint $start_index,
   gint $end_index,
-  gint $ranges,
-  gint $n_ranges
+  CArray[CArray[int32]] $ranges,
+  gint $n_ranges is rw
 )
   is native(pango)
   is export
@@ -354,8 +354,8 @@ sub pango_layout_line_unref (PangoLayoutLine $line)
 sub pango_layout_line_x_to_index (
   PangoLayoutLine $line,
   gint $x_pos,
-  gint $index_,
-  gint $trailing
+  gint $index is rw,
+  gint $trailing is rw
 )
   returns uint32
   is native(pango)
