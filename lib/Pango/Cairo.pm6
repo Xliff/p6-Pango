@@ -28,6 +28,9 @@ class Pango::Cairo {
     self.update_context if $update;
   }
 
+  multi method new (Cairo::Context $cr, :$update = True) {
+    samewith($cr.context, :$update);
+  }
   multi method new (cairo_t $cr, :$update = True) {
     self.bless(:$cr, :$update);
   }
@@ -65,14 +68,26 @@ class Pango::Cairo {
 
   method context_set_shape_renderer (
     &func,
-    $data,
+    $data is copy = Pointer,
     &dnotify = Callable
   ) {
-    die q:to/D/.chomp unless $data.REPR eq <CStruct CPoitner>.any;
-<data> parameter must be of CStruct or CPointer representation
-D
+    with $data {
+      when .defined.not        { }
+      when .REPR eq 'CPointer' { }
+      when .REPR eq 'CStruct'  { $data = nativecast(Pointer, $data) }
+      default {
+        die qq:to/D/.chomp;
+        <data> parameter { $data.^name } must be of CStruct or CPointer { ''
+        } representation
+        D
+      }
+    }
 
-    pango_cairo_context_set_shape_renderer($!pc.context, &func, $data, &dnotify);
+    say &func.REPR;
+    say $data.REPR;
+    say &dnotify.REPR;
+    #pango_cairo_context_set_shape_renderer($!pc.context, &func, $data, &dnotify);
+    pango_cairo_context_set_shape_renderer($!pc.context, &func, $data, Pointer);
   }
 
   method create_context(Pango::Cairo:D: ) {
