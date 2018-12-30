@@ -20,9 +20,9 @@ sub pango_cairo_context_get_shape_renderer (
 
 sub pango_cairo_context_set_shape_renderer (
   PangoContext $context,
-  &func:(cairo_t, PangoAttrShape, guint32, Pointer),
+  &func (cairo_t, PangoAttrShape, guint32, Pointer),
   gpointer $data,
-  &dnotify:(Pointer)
+  Pointer # &dnotify (Pointer)
 )
   is native(pangocairo)
   is export

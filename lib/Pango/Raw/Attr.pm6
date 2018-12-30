@@ -1,66 +1,72 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 
 unit package Pango::Raw::Attr;
 
 sub pango_attr_background_alpha_new (guint16 $alpha)
-  returns PangoAttributeInt
+  returns PangoAttrInt
   is native(pango)
   is export
   { * }
 
 sub pango_attr_background_new (guint16 $red, guint16 $green, guint16 $blue)
-  returns PangoAttributeColor
+  returns PangoAttrColor
   is native(pango)
   is export
   { * }
 
 sub pango_attr_fallback_new (gboolean $enable_fallback)
-  returns PangoAttributeInt
+  returns PangoAttrInt
   is native(pango)
   is export
   { * }
 
 sub pango_attr_family_new (Str $family)
-  returns PangoAttributeString
+  returns PangoAttrString
   is native(pango)
   is export
   { * }
 
 sub pango_attr_font_desc_new (PangoFontDescription $desc)
-  returns PangoAttributeFontDesc
+  returns PangoAttrFontDesc
   is native(pango)
   is export
   { * }
 
 sub pango_attr_font_features_new (Str $features)
-  returns PangoAttributeFontFeatures
+  returns PangoAttrFontFeatures
   is native(pango)
   is export
   { * }
 
 sub pango_attr_foreground_alpha_new (guint16 $alpha)
-  returns PangoAttributeInt
+  returns PangoAttrInt
   is native(pango)
   is export
   { * }
 
 sub pango_attr_foreground_new (guint16 $red, guint16 $green, guint16 $blue)
-  returns PangoAttributeColor
+  returns PangoAttrColor
   is native(pango)
   is export
   { * }
 
-sub pango_attr_gravity_hint_new (PangoGravityHint $hint)
-  returns PangoAttributeInt
+sub pango_attr_gravity_hint_new (
+  uint32 $hint                    # PangoGravityHint $hint
+)
+  returns PangoAttrInt
   is native(pango)
   is export
   { * }
 
-sub pango_attr_gravity_new (PangoGravity $gravity)
-  returns PangoAttributeInt
+sub pango_attr_gravity_new (
+  uint32 $gravity                 # PangoGravity $gravity
+)
+  returns PangoAttrInt
   is native(pango)
   is export
   { * }
@@ -76,7 +82,10 @@ sub pango_attr_iterator_destroy (PangoAttrIterator $iterator)
   is export
   { * }
 
-sub pango_attr_iterator_get (PangoAttrIterator $iterator, PangoAttrType $type)
+sub pango_attr_iterator_get (
+  PangoAttrIterator $iterator,
+  uint32 $type                    # PangoAttrType $type
+)
   returns PangoAttribute
   is native(pango)
   is export
@@ -114,13 +123,13 @@ sub pango_attr_iterator_range (
   { * }
 
 sub pango_attr_language_new (PangoLanguage $language)
-  returns PangoAttributeLanguage
+  returns PangoAttrLanguage
   is native(pango)
   is export
   { * }
 
 sub pango_attr_letter_spacing_new (gint $letter_spacing)
-  returns PangoAttributeInt
+  returns PangoAttrInt
   is native(pango)
   is export
   { * }
@@ -138,7 +147,7 @@ sub pango_attr_list_copy (PangoAttrList $list)
 
 sub pango_attr_list_filter (
   PangoAttrList $list,
-  &func (PangoAttrribute, Pointer --> gboolean),
+  &func (PangoAttribute, Pointer --> gboolean),
   gpointer $data
 )
   returns PangoAttrList
