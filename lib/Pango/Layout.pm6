@@ -74,7 +74,7 @@ class Pango::Layout {
       FETCH => sub ($) {
         pango_layout_get_attributes($!pl);
       },
-      STORE => sub ($, PangoAttrList $attrs is copy) {
+      STORE => sub ($, PangoAttrList() $attrs is copy) {
         pango_layout_set_attributes($!pl, $attrs);
       }
     );
