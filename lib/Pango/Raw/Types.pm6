@@ -218,10 +218,16 @@ class PangoXFTFont          is repr('CPointer') is export does Pango::Roles::Poi
 class PangoXFTRenderer      is repr('CPointer') is export does Pango::Roles::Pointers { }
 
 class PangoRectangle does Pango::Roles::Pointers {
-  has gint $.x     is rw;
-  has gint $.y     is rw;
-  has gint $.width is rw;
-  has gint $.heigh is rw;
+  has gint $.x      is rw;
+  has gint $.y      is rw;
+  has gint $.width  is rw;
+  has gint $.height is rw;
+
+  submethod BUILD (:$!x, :$!y, :$!width, :$!height) { }
+
+  method new($x, $y, $width, $height) {
+    self.bless(:$x, :$y, :$width, :$height);
+  }
 }
 
 class PangoLogAttr is repr('CStruct') is export does Pango::Roles::Pointers {
@@ -350,7 +356,7 @@ class PangoAttribute is repr('CStruct') is export { ... }
 
 role PangoAttributeRole {
   method attr { nativecast(PangoAttribute, self) }
-  method Pango::Raw::Types::PangoAttribute { self.attt }
+  method Pango::Raw::Types::PangoAttribute { self.attr }
 }
 
 class PangoAttribute
@@ -358,8 +364,8 @@ class PangoAttribute
   does PangoAttributeRole
 {
   has Pointer $.klass;
-  has guint   $.start_index;
-  has guint   $.end_index;
+  has guint   $.start_index is rw;
+  has guint   $.end_index   is rw;
 }
 
 class PangoAttrString is repr('CStruct')
@@ -422,7 +428,7 @@ class PangoAttrShape is repr('CStruct')
   does PangoAttributeRole
 {
   HAS PangoAttribute $.attr;
-  HAS PangoRectangle $.ink_rect;
+  HAS PangoRectangle $.ink_rect    ;
   HAS PangoRectangle $.logical_rect;
 
   has Pointer        $.data;
@@ -461,3 +467,9 @@ class PangoAttrFontFeatures is repr('CStruct')
   HAS PangoAttribute $.attr;
   has Str            $.features;
 }
+
+subset PangoAttributes is export where
+  PangoAttribute        | PangoAttrString | PangoAttrLanguage |
+  PangoAttrColor        | PangoAttrInt    | PangoAttrFloat    |
+  PangoAttrFontDesc     | PangoAttrShape  | PangoAttrSize     |
+  PangoAttrFontFeatures;
