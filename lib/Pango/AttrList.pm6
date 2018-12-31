@@ -15,50 +15,54 @@ class Pango::AttrList {
     $!pal = $list;
   }
 
+  method Pango::Raw::Types::PangoAttrList {
+    $!pal;
+  }
+
   method new {
     my $list = pango_attr_list_new();
     self.bless(:$list);
   }
 
-  method change (PangoAttribute $attr) {
-    pango_attr_list_change($!pa, $attr);
+  method change (PangoAttributes $attr) {
+    pango_attr_list_change($!pal, $attr.attr);
   }
 
   method copy {
-    pango_attr_list_copy($!pa);
+    pango_attr_list_copy($!pal);
   }
 
   method filter (&func, gpointer $data = gpointer) {
-    pango_attr_list_filter($!pa, &func, $data);
+    pango_attr_list_filter($!pal, &func, $data);
   }
 
   method get_iterator {
-    pango_attr_list_get_iterator($!pa);
+    pango_attr_list_get_iterator($!pal);
   }
 
   method get_type {
     pango_attr_list_get_type();
   }
 
-  method insert (PangoAttribute $attr) {
-    pango_attr_list_insert($!pa, $attr);
+  method insert (PangoAttributes $attr) {
+    pango_attr_list_insert($!pal, $attr.attr);
   }
 
-  method insert_before (PangoAttribute $attr) {
-    pango_attr_list_insert_before($!pa, $attr);
+  method insert_before (PangoAttributes $attr) {
+    pango_attr_list_insert_before($!pal, $attr.attr);
   }
 
   method upref {
-    pango_attr_list_ref($!pa);
+    pango_attr_list_ref($!pal);
   }
 
   method splice (PangoAttrList $other, Int() $pos, Int() $len) {
     my @i = ($pos, $len);
     my gint ($p, $l) = self.RESOLVE-INT(@i);
-    pango_attr_list_splice($!pa, $other, $pos, $len);
+    pango_attr_list_splice($!pal, $other, $pos, $len);
   }
 
   method downref {
-    pango_attr_list_unref($!pa);
+    pango_attr_list_unref($!pal);
   }
 }
