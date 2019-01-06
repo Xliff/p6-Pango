@@ -14,7 +14,7 @@ constant BULLET = '•';
 my $text = q:to/TEXT/.chomp;
 The GNOME project provides two things:
   • The GNOME desktop environment
-  • The GNOME development platformm
+  • The GNOME development platform
   • Planet GNOME
 TEXT
 
@@ -28,14 +28,14 @@ M 58.791,93.913 C 59.898,102.367 52.589,106.542 45.431,101.092 C 22.644,83.743 8
 P
 
 grammar MiniSVG {
-  regex TOP   { <OP>+                    }
-  regex OP    { <OPS>+ 'z' \v+           }
-  regex OPS   { <OP-M> | <OP-C> | <OP-L> }
+   regex TOP  { <OP>+                    }
+    regex OP  { <OPS>+ 'z' \v+           }
+   regex OPS  { <OP-M> | <OP-C> | <OP-L> }
   token point { <x=num> ',' <y=num>      }
-  rule OP-M   { 'M' <point>              }
-  rule OP-C   { 'C' <point> ** 3         }
-  rule OP-L   { 'L' <point>              }
-  token num   {  '-'? \d+ [ '.' \d+ ]?   }
+   rule OP-M  { 'M' <point>              }
+   rule OP-C  { 'C' <point> ** 3         }
+   rule OP-L  { 'L' <point>              }
+    token num {  '-'? \d+ [ '.' \d+ ]?   }
 }
 class MiniSVGAction {
    has $.cr;
@@ -50,8 +50,8 @@ class MiniSVGAction {
    method OP-C($/)  { $!cr.curve_to( |@( $/<point> ).map( *.made ).flat ) }
 }
 
-# Is this returning a P6scalar? It SHOULDN'T be!
 sub mini_svg_render (Cairo::cairo_t $c, uint32 $dp) {
+  say "Rendering";
   my num64 ($x, $y);
   $c.get_current_point($x, $y);
   $c.translate($x, $y);
@@ -59,11 +59,10 @@ sub mini_svg_render (Cairo::cairo_t $c, uint32 $dp) {
   my $p = MiniSVG.parse(
     %gnomeFootLogo<path>, actions => MiniSVGAction.new( cr => $c )
   );
-  (my $d) = $c.fill if $dp;
+  $c.fill if $dp;
 }
 
 sub mini_svg_shape_renderer (Cairo::cairo_t $c, PangoAttrShape $a, uint32 $dp, Pointer $d) {
-  say "Hallo!";
   my $sx = $a.ink_rect.width  / (PANGO_SCALE * %gnomeFootLogo<width>);
   my $sy = $a.ink_rect.height / (PANGO_SCALE * %gnomeFootLogo<height>);
   $c.move_to($a.ink_rect.x / PANGO_SCALE, $a.ink_rect.y / PANGO_SCALE);
@@ -72,6 +71,7 @@ sub mini_svg_shape_renderer (Cairo::cairo_t $c, PangoAttrShape $a, uint32 $dp, P
 }
 
 sub get_layout($c) {
+  state $setted = False;
   my $pc = Pango::Cairo.new($c);
   my $layout = $pc.create_layout;
   my $ir = PangoRectangle.new(
@@ -82,12 +82,15 @@ sub get_layout($c) {
   );
 
   $layout.text = $text;
-  $pc.context_set_shape_renderer(&mini_svg_shape_renderer);
+  unless $setted {
+    say "Setting";
+    $pc.context_set_shape_renderer(&mini_svg_shape_renderer);
+    $setted = True;
+  }
 
   my $attrs = Pango::AttrList.new;
 
   for ( $text ~~ m:g/"{ BULLET }"/ ) -> $m {
-    say "M: { $m.from } -> { $m.to }";
     my $attr = Pango::Attr.shape_new_with_data($ir, $lr);
 
     $attr.attr.start_index = $m.from;
@@ -95,7 +98,6 @@ sub get_layout($c) {
     $attrs.insert($attr);
   }
   $layout.attributes = $attrs;
-  $layout.gist.say;
   $layout;
 }
 

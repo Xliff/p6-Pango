@@ -358,7 +358,7 @@ role PangoAttributeRole {
   method attr {
     nativecast(PangoAttribute, self)
   }
-  
+
   method Pango::Raw::Types::PangoAttribute {
     self ~~ PangoAttribute ?? self !! self.attr
   }
