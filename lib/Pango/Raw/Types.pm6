@@ -355,8 +355,13 @@ class PangoColor is repr('CStruct')
 class PangoAttribute is repr('CStruct') is export { ... }
 
 role PangoAttributeRole {
-  method attr { nativecast(PangoAttribute, self) }
-  method Pango::Raw::Types::PangoAttribute { self.attr }
+  method attr {
+    nativecast(PangoAttribute, self)
+  }
+  
+  method Pango::Raw::Types::PangoAttribute {
+    self ~~ PangoAttribute ?? self !! self.attr
+  }
 }
 
 class PangoAttribute

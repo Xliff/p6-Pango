@@ -326,7 +326,9 @@ sub pango_attr_size_new_absolute (gint $size)
   is export
   { * }
 
-sub pango_attr_stretch_new (PangoStretch $stretch)
+sub pango_attr_stretch_new (
+  uint32 $stretch                 # PangoStretch $stretch
+)
   returns PangoAttrInt
   is native(pango)
   is export
@@ -348,20 +350,24 @@ sub pango_attr_strikethrough_new (gboolean $strikethrough)
   is export
   { * }
 
-sub pango_attr_style_new (PangoStyle $style)
+sub pango_attr_style_new (
+  uint32 $style                   # PangoStyle $style
+)
   returns PangoAttrInt
   is native(pango)
   is export
   { * }
 
-sub pango_attr_type_get_name (PangoAttrType $type)
+sub pango_attr_type_get_name (
+  uint32 $type                    # PangoAttrType $type
+)
   returns Str
   is native(pango)
   is export
   { * }
 
 sub pango_attr_type_register (Str $name)
-  returns PangoAttrType
+  returns uint32 # PangoAttrType
   is native(pango)
   is export
   { * }
@@ -376,19 +382,25 @@ sub pango_attr_underline_color_new (
   is export
   { * }
 
-sub pango_attr_underline_new (PangoUnderline $underline)
+sub pango_attr_underline_new (
+  uint32 $underline               # PangoUnderline $underline
+)
   returns PangoAttrInt
   is native(pango)
   is export
   { * }
 
-sub pango_attr_variant_new (PangoVariant $variant)
+sub pango_attr_variant_new (
+  uint32 $variant                 # PangoVariant $variant
+)
   returns PangoAttrInt
   is native(pango)
   is export
   { * }
 
-sub pango_attr_weight_new (PangoWeight $weight)
+sub pango_attr_weight_new (
+  uint32 $weight                  # PangoWeight $weight
+)
   returns PangoAttrInt
   is native(pango)
   is export

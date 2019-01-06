@@ -34,9 +34,13 @@ class Pango::Cairo {
   multi method new (cairo_t $cr, :$update = True) {
     self.bless(:$cr, :$update);
   }
-  multi method new_with_fontmap (PangoFontMap() $fontmap, cairo_t $cr) {
+  multi method new_with_fontmap (
+    PangoFontMap() $fontmap,
+    cairo_t $cr,
+    :$update = True
+  ) {
     my $context = Pango::Context.new( self.font_map_create_context($fontmap) );
-    self.bless(:$context, :$cr);
+    self.bless(:$context, :$update, :$cr);
   }
 
   method context_font_options is rw {
@@ -62,42 +66,50 @@ class Pango::Cairo {
     );
   }
 
-  method context_get_shape_renderer (Pointer $data = Pointer) {
-    pango_cairo_context_get_shape_renderer($!pc.context, $data);
+  # method !resolve-data ($data) {
+  #   do given $data {
+  #     when .defined.not        { Pointer }
+  #     when .REPR eq 'CPointer' { }
+  #     when .REPR eq 'CStruct'  { nativecast(Pointer, $data) }
+  #     default {
+  #       die qq:to/D/.chomp;
+  #       <data> parameter { $data.^name } must be of CStruct or CPointer { ''
+  #       } representation
+  #       D
+  #     }
+  #   }
+  # }
+
+  method context_get_shape_renderer {
+    pango_cairo_context_get_shape_renderer($!pc.context, Pointer);
   }
 
   method context_set_shape_renderer (
     &func,
-    $data is copy = Pointer,
+    $data?,
     &dnotify = Callable
   ) {
-    with $data {
-      when .defined.not        { }
-      when .REPR eq 'CPointer' { }
-      when .REPR eq 'CStruct'  { $data = nativecast(Pointer, $data) }
-      default {
-        die qq:to/D/.chomp;
-        <data> parameter { $data.^name } must be of CStruct or CPointer { ''
-        } representation
-        D
-      }
-    }
-
-    say &func.REPR;
-    say $data.REPR;
-    say &dnotify.REPR;
-    #pango_cairo_context_set_shape_renderer($!pc.context, &func, $data, &dnotify);
-    pango_cairo_context_set_shape_renderer($!pc.context, &func, $data, Pointer);
+    pango_cairo_context_set_shape_renderer(
+      $!pc.context,
+      -> $ct, $ps, $dp, $ {
+        say "Hello!";
+        &func($ct, $ps, $dp, $data, self)
+      },
+      Pointer,
+      Pointer
+    );
   }
 
   method create_context(Pango::Cairo:D: ) {
     Pango::Context.new( pango_cairo_create_context($!ct) );
   }
 
+  # To prevent confusion, this should probably be the only
+  # version of this method.
   multi method create_layout {
-    samewith($!ct);
+    Pango::Layout.new( pango_cairo_create_layout($!ct) );
   }
-  multi method create_layout(cairo_t $context) {
+  multi method create_layout(Pango::Cairo:U: cairo_t $context) {
     Pango::Layout.new( pango_cairo_create_layout($context) );
   }
 
@@ -160,8 +172,8 @@ class Pango::Cairo {
   multi method update_context {
     samewith($!pc);
   }
-  multi method update_context(PangoContext() $pc) {
-    pango_cairo_update_context($!ct, $pc);
+  multi method update_context(PangoContext() $apc) {
+    pango_cairo_update_context($!ct, $apc);
   }
 
   method update_layout (PangoLayout() $layout) {

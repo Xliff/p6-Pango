@@ -104,7 +104,7 @@ sub curve_length(*@xy is copy --> num64) {
   my $path = $c.copy_path(:flat);
   @xy .= rotor(2);
 
-  $c.move_to(|@xy[0]);
+  $c.move_to(|@xy[0].flat);
   $c.curve_to(|(@xy[1..3].flat));
   # Instead of binding, we decontainerize to allow looping over $path
   for $path<> -> $p {
@@ -323,11 +323,10 @@ sub draw_wow($c) {
   $c.line_width = 2;
   $c.rgba(0.3, 1.0, 0.3, 1.0);
   fancy_cairo_stroke($c, True);
-  #draw_twisted($c, -20, -150, 'Serif 60', 'WOW!');
-  draw_twisted($c, 0, 150, 'Serif 60', 'WOW!');
+  draw_twisted($c, -20, -150, 'Serif 60', 'WOW!');
 }
 
-sub MAIN($output_filename) {
+sub MAIN($output_filename = 'pango-twisted.png') {
   my $surface = Cairo::Image.create(FORMAT_ARGB32, 1000, 800);
   my $cr = Cairo::Context.new($surface);
   $cr.rgb(1, 1, 1);
