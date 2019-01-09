@@ -1,5 +1,7 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 
@@ -31,7 +33,7 @@ sub pango_tab_array_get_size (PangoTabArray $tab_array)
 sub pango_tab_array_get_tab (
   PangoTabArray $tab_array,
   gint $tab_index,
-  PangoTabAlign $alignment is rw,
+  uint32 $alignment is rw,        # PangoTabAlign
   gint $location is rw
 )
   is native(pango)
@@ -40,7 +42,7 @@ sub pango_tab_array_get_tab (
 
 sub pango_tab_array_get_tabs (
   PangoTabArray $tab_array,
-  PangoTabAlign $alignments,
+  uint32 $alignment is rw,        # PangoTabAlign
   gint $locations
 )
   is native(pango)
@@ -70,7 +72,7 @@ sub pango_tab_array_resize (PangoTabArray $tab_array, gint $new_size)
 sub pango_tab_array_set_tab (
   PangoTabArray $tab_array,
   gint $tab_index,
-  PangoTabAlign $alignment,
+  uint32 $alignment is rw,        # PangoTabAlign
   gint $location
 )
   is native(pango)

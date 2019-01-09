@@ -89,6 +89,8 @@ class Pango::Cairo {
     $data?,
     &dnotify = Callable
   ) {
+    CATCH { default { .message.say } }
+    
     pango_cairo_context_set_shape_renderer(
       $!pc.context,
       -> $ct, $ps, $dp, $ {

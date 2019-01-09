@@ -1,5 +1,7 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Tabs;
 use Pango::Raw::Types;
@@ -15,10 +17,20 @@ class Pango::Tabs {
     $!pta = $tabs;
   }
 
+  method Pango::Raw::Types::PangoTabArray {
+    $!pta;
+  }
+  method array {
+    $!pta;
+  }
+
+  multi method new (PangoTabArray $tabs) {
+    self.bless(:$tabs);
+  }
   multi method new (Int() $initial_size, Int() $positions_in_pixels) {
     my gint $is = self.RESOLVE-INT($initial_size);
     my guint $pip = self.RESOLVE-BOOL($positions_in_pixels);
-    my $tabs = pango_tab_array_new($is, $pip)
+    my $tabs = pango_tab_array_new($is, $pip);
     self.bless(:$tabs);
   }
   multi method new (Int() $positions_in_pixels, @l) {
@@ -69,7 +81,7 @@ class Pango::Tabs {
     }
     @c;
   }
-  method get_tabs (@alignments, @locations) {
+  multi method get_tabs (@alignments, @locations) {
     my $a = CArray[uint32].new;
     my $l = CArray[gint].new;
     pango_tab_array_get_tabs($!pta, $a, $l);
@@ -121,7 +133,7 @@ class Pango::Tabs {
 
     my $ti = 0;
     #for @a Z @l -> $a, $l {
-    for @l -> $l{
+    for @l -> $l {
       # self.set_tab($ti++, $a, $l);
       self.set_tab($ti++, $l);
     }

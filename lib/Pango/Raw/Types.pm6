@@ -189,6 +189,10 @@ sub PANGO_GRAVITY_IS_IMPROPER(PangoGravity $g) {
   $g == (PANGO_GRAVITY_NORTH, PANGO_GRAVITY_WEST).any
 }
 
+our enum PangoTabAlign is export <
+  PANGO_TAB_LEFT
+>;
+
 class PangoAttrList         is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoAttrIterator     is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoCairoFont        is repr('CPointer') is export does Pango::Roles::Pointers { }
@@ -448,6 +452,12 @@ class PangoAttrShape is repr('CStruct')
     my $buf = buf8.allocate(20);
     my $len = set-function-ptr-p($buf, '%lld', &func);
     Pointer.new($buf.subbuf(^$len).decode.Int);
+  }
+
+  method data is rw {
+    Proxy.new:
+      FETCH => -> $       { $.data },
+      STORE => -> $, \val { $!data = nativecast(Pointer, val) };
   }
 
   method set-copy-func(&func)    {    $!copy_func := self!set-func(&func) }

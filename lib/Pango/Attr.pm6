@@ -109,10 +109,15 @@ class Pango::Attr {
   method shape_new_with_data (
     PangoRectangle $ink_rect,
     PangoRectangle $logical_rect,
-    gpointer $data = Pointer,
+    $data is copy = Pointer,
     &copy_func = Callable,
     &destroy_func = Callable
   ) {
+    $data = do given $data.REPR {
+      when 'CArray' | 'CStruct'  { nativecast(Pointer, $data) }
+      when 'CPointer'            { $_ }
+      default                    { $_ }
+    }
     pango_attr_shape_new_with_data(
       $ink_rect, $logical_rect, $data, &copy_func, &destroy_func
     );
