@@ -19,12 +19,13 @@ class Pango::Cairo {
 
   has cairo_t        $!ct;
   has                $!pc;
+  has                $!pl;
 
   # Where was :$context intended? $!pc?
 
   submethod BUILD(:$context, :$update, :$cr) {
     $!ct = $cr;
-    $!pc = $context // self.create_context;
+    $!pc = $context // self.create_pc_context;
     self.update_context if $update;
   }
 
@@ -34,7 +35,16 @@ class Pango::Cairo {
   multi method new (cairo_t $cr, :$update = True) {
     self.bless(:$cr, :$update);
   }
-  multi method new_with_fontmap (
+
+  method pango_context {
+    $!pc;
+  }
+
+  method cairo_context {
+    $!ct;
+  }
+
+  method new_with_fontmap (
     PangoFontMap() $fontmap,
     cairo_t $cr,
     :$update = True
@@ -81,7 +91,11 @@ class Pango::Cairo {
   # }
 
   method context_get_shape_renderer {
-    pango_cairo_context_get_shape_renderer($!pc.context, Pointer);
+    my $p = Pointer.new;
+    pango_cairo_context_get_shape_renderer(
+      $!pl.get_context,
+      $p
+    );
   }
 
   method context_set_shape_renderer (
@@ -90,29 +104,33 @@ class Pango::Cairo {
     &dnotify = Callable
   ) {
     CATCH { default { .message.say } }
-    
+
+    self.create_context without $!pl;
+    # Yes. This is fucking confusing! We want the LAYOUT context, not the
+    # PangoCairo context or the Cairo context.
     pango_cairo_context_set_shape_renderer(
-      $!pc.context,
+      $!pl.get_context,
       -> $ct, $ps, $dp, $ {
-        say "Hello!";
-        &func($ct, $ps, $dp, $data, self)
+        CATCH { default { .message.say } }
+
+        &func($ct, $ps, $dp, $data)
       },
       Pointer,
       Pointer
     );
   }
 
-  method create_context(Pango::Cairo:D: ) {
+  method create_pc_context(Pango::Cairo:D: ) {
     Pango::Context.new( pango_cairo_create_context($!ct) );
   }
 
   # To prevent confusion, this should probably be the only
   # version of this method.
   multi method create_layout {
-    Pango::Layout.new( pango_cairo_create_layout($!ct) );
+    $!pl = Pango::Layout.new( pango_cairo_create_layout($!ct) );
   }
   multi method create_layout(Pango::Cairo:U: cairo_t $context) {
-    Pango::Layout.new( pango_cairo_create_layout($context) );
+    $!pl = Pango::Layout.new( pango_cairo_create_layout($context) );
   }
 
   method error_underline_path (

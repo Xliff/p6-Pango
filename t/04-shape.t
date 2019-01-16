@@ -9,7 +9,8 @@ use Pango::Attr;
 use Pango::AttrList;
 use Pango::Cairo;
 
-constant BULLET = '•';
+#constant BULLET = '•';
+constant BULLET = '*';
 
 class MiniSvg is repr('CStruct') {
   has num64 $.width  is rw;
@@ -30,9 +31,9 @@ class MiniSvg is repr('CStruct') {
 
 my $text = q:to/TEXT/.chomp;
 The GNOME project provides two things:
-  • The GNOME desktop environment
-  • The GNOME development platform
-  • Planet GNOME
+  * The GNOME desktop environment
+  * The GNOME development platform
+  * Planet GNOME
 TEXT
 
 # my %gnomeFootLogo = ( width => 96.2152, height => 118.26 );
@@ -72,12 +73,11 @@ class MiniSVGAction {
    method point($/) { make ($/<x>.made, $/<y>.made)    }
    method OP($/)    { $!cr.close_path                  }
    method OP-M($/)  { $!cr.move_to(  |$/<point>.made ) }
-   method OP-L($/)  { $!cr.line_to(  |$/<point>.made ) }
+   method OP-L($/)  { $!cr.line_to( |$/<point>.made )  }
    method OP-C($/)  { $!cr.curve_to( |@( $/<point> ).map( *.made ).flat ) }
 }
 
 sub mini_svg_render (Cairo::cairo_t $c, uint32 $dp) {
-  say "Rendering";
   my num64 ($x, $y);
   $c.get_current_point($x, $y);
   $c.translate($x, $y);
@@ -89,14 +89,14 @@ sub mini_svg_render (Cairo::cairo_t $c, uint32 $dp) {
   $c.fill if $dp;
 }
 
-sub mini_svg_shape_renderer (Cairo::cairo_t $c, PangoAttrShape $a, uint32 $dp, $d, $pc) {
+sub mini_svg_shape_renderer (Cairo::cairo_t $c, PangoAttrShape $a, uint32 $dp, $d) {
   # my $sx = $a.ink_rect.width  / (PANGO_SCALE * %gnomeFootLogo<width>);
   # my $sy = $a.ink_rect.height / (PANGO_SCALE * %gnomeFootLogo<height>);
   my $sx = $a.ink_rect.width  / (PANGO_SCALE * $GFL.width);
   my $sy = $a.ink_rect.height / (PANGO_SCALE * $GFL.height);
-  say "{ $sx }, { $sy }";
-  $c.move_to($a.ink_rect.x / PANGO_SCALE, $a.ink_rect.y / PANGO_SCALE);
-  $c.scale($sx, $sy);
+  my ($mx, $my) = ($a.ink_rect.x / PANGO_SCALE, $a.ink_rect.y / PANGO_SCALE);
+  $c.move_to($mx.Num, $my.Num);
+  $c.scale($sx.Num, $sy.Num);
   mini_svg_render($c, $dp);
 }
 
@@ -114,17 +114,16 @@ sub get_layout($c) {
   say "LR: { $lr.gist }";
 
   $layout.text = $text;
-  say "Setting";
   $pc.context_set_shape_renderer(&mini_svg_shape_renderer);
 
+  my $s = $pc.context_get_shape_renderer();
   my $attrs = Pango::AttrList.new;
 
-  for 5..7 {
-  #for ( $text ~~ m:g/"{ BULLET }"/ ) -> $m {
+  for ( $text ~~ m:g/"{ BULLET }"/ ) -> $m {
     my $attr = Pango::Attr.shape_new_with_data($ir, $lr, $GFL);
 
-    $attr.attr.start_index = $_;      # $m.from;
-    $attr.attr.end_index   = $_ + 1;  # $m.to;
+    $attr.attr.start_index = $m.from;
+    $attr.attr.end_index   = $m.to;
     $attrs.insert($attr);
   }
   $layout.attributes = $attrs;

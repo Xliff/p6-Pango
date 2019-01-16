@@ -13,7 +13,7 @@ sub pango_cairo_context_get_shape_renderer (
   gpointer $data
 )
   #returns &func:(cairo_t, PangoAttrShape, guint32, Pointer)
-  returns uint64
+  returns Pointer
   is native(pangocairo)
   is export
   { * }
