@@ -15,7 +15,15 @@ class Pango::FontMetrics {
     $!pfm = $metrics;
   }
 
-  method new {
+  submethod DESTROY {
+    self.downref;
+  }
+
+  multi method new(PangoFontMetrics $metrics) {
+    my $o = self.bless(:$metrics);
+    $o.upref;
+  }
+  multi method new {
     my $metrics = pango_font_metrics_new();
     self.bless(:$metrics);
   }
@@ -54,6 +62,7 @@ class Pango::FontMetrics {
 
   method upref {
     pango_font_metrics_ref($!pfm);
+    self;
   }
 
   method downref {

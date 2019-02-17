@@ -10,7 +10,7 @@ use Pango::Raw::Context;
 use Pango::Roles::References;
 use Pango::Roles::Types;
 
-use Pango::Matrix;
+use Pango::Metrics;
 
 class Pango::Context {
   also does Pango::Roles::References;
@@ -125,7 +125,6 @@ class Pango::Context {
     );
   }
 
-
   method changed {
     pango_context_changed($!pc);
   }
@@ -134,8 +133,12 @@ class Pango::Context {
     PangoGravity( pango_context_get_gravity($!pc) );
   }
 
-  method get_metrics (PangoFontDescription $desc, PangoLanguage $language) {
-    Pango::FontMatrix.new( pango_context_get_metrics($!pc, $desc, $language) );
+  method get_metrics (
+    PangoFontDescription() $desc,
+    Int() $language = self.language
+  ) {
+    my uint32 $l = self.RESOLVE-UINT($language);
+    Pango::FontMetrics.new( pango_context_get_metrics($!pc, $desc, $l) );
   }
 
   method get_serial {

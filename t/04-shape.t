@@ -69,11 +69,11 @@ class MiniSVGAction {
 
    submethod BUILD (:$!cr) { }
 
-   method num($/)   { make $/.Num;                     }
-   method point($/) { make ($/<x>.made, $/<y>.made)    }
-   method OP($/)    { $!cr.close_path                  }
-   method OP-M($/)  { $!cr.move_to(  |$/<point>.made ) }
-   method OP-L($/)  { $!cr.line_to( |$/<point>.made )  }
+   method num($/)   { make $/.Num;                      }
+   method point($/) { make ($/<x>.made, $/<y>.made)     }
+   method OP($/)    { $!cr.close_path                   }
+   method OP-M($/)  { $!cr.move_to(  |$/<point>.made )  }
+   method OP-L($/)  { $!cr.line_to(  |$/<point>.made )  }
    method OP-C($/)  { $!cr.curve_to( |@( $/<point> ).map( *.made ).flat ) }
 }
 
@@ -83,15 +83,13 @@ sub mini_svg_render (Cairo::cairo_t $c, uint32 $dp) {
   $c.translate($x, $y);
 
   my $p = MiniSVG.parse(
-    #%gnomeFootLogo<path>, actions => MiniSVGAction.new( cr => $c )
     $GFL.path, actions => MiniSVGAction.new( cr => $c )
   );
   $c.fill if $dp;
 }
 
 sub mini_svg_shape_renderer (Cairo::cairo_t $c, PangoAttrShape $a, uint32 $dp, $d) {
-  # my $sx = $a.ink_rect.width  / (PANGO_SCALE * %gnomeFootLogo<width>);
-  # my $sy = $a.ink_rect.height / (PANGO_SCALE * %gnomeFootLogo<height>);
+  # Note use of type coercion, since we are using non-coerced methods.
   my $sx = $a.ink_rect.width  / (PANGO_SCALE * $GFL.width);
   my $sy = $a.ink_rect.height / (PANGO_SCALE * $GFL.height);
   my ($mx, $my) = ($a.ink_rect.x / PANGO_SCALE, $a.ink_rect.y / PANGO_SCALE);

@@ -126,11 +126,11 @@ class Pango::Cairo {
 
   # To prevent confusion, this should probably be the only
   # version of this method.
-  multi method create_layout {
+  multi method create_layout(Pango::Cairo:D:) {
     $!pl = Pango::Layout.new( pango_cairo_create_layout($!ct) );
   }
   multi method create_layout(Pango::Cairo:U: cairo_t $context) {
-    $!pl = Pango::Layout.new( pango_cairo_create_layout($context) );
+    Pango::Layout.new( pango_cairo_create_layout($context) );
   }
 
   method error_underline_path (
