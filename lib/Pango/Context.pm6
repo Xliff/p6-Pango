@@ -10,7 +10,7 @@ use Pango::Raw::Context;
 use Pango::Roles::References;
 use Pango::Roles::Types;
 
-use Pango::Metrics;
+use Pango::FontMetrics;
 
 class Pango::Context {
   also does Pango::Roles::References;
