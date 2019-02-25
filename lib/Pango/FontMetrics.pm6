@@ -7,7 +7,7 @@ use Pango::Raw::DescriptionMetrics;
 use Pango::Roles::Types;
 
 class Pango::FontMetrics {
-  also does Panto::Roles::Types;
+  also does Pango::Roles::Types;
 
   has PangoFontMetrics $!pfm;
 
