@@ -243,7 +243,6 @@ our enum GFileCreateFlags is export (
   G_FILE_CREATE_REPLACE_DESTINATION => 2
 );
 
-class cairo_content_t       is repr('CPointer') is export does Pango::Roles::Pointers { }
 class cairo_font_options_t  is repr('CPointer') is export does Pango::Roles::Pointers { }
 #class cairo_surface_t       is repr('CPointer') is export does Pango::Roles::Pointers { }
 
