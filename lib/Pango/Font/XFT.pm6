@@ -4,9 +4,9 @@ use Pango::Compat::Types;
 use Pango::Raw::XFT;
 use Pango::Raw::Types;
 
-use Pango::FCFont;
+use Pango::Font::FC;
 
-class Pango::XFTFont is Pango::FCFont {
+class Pango::XFTFont is Pango::Font::FC {
   has PangoFont $!pxftf;
 
   method get_display {
