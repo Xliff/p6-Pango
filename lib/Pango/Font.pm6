@@ -5,8 +5,11 @@ use Pango::Raw::Types;
 
 use Pango::Roles::Types;
 
+# Grab raw calls. Yes, the name is confusing. Sorry about that.
+use Pango::Raw::DescriptionMetrics;
+
 class Pango::Font {
-  also does Panto::Roles::Types;
+  also does Pango::Roles::Types;
 
   has PangoFont $!pf;
 

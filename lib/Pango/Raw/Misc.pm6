@@ -1,14 +1,16 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 
 unit package Pango::Raw::Misc;
 
 sub pango_version_check (
-  int $required_major,
-  int $required_minor,
-  int $required_micro
+  int32 $required_major,
+  int32 $required_minor,
+  int32 $required_micro
 )
   returns Str
   is native(pango)
@@ -103,7 +105,7 @@ sub pango_version ()
   { * }
 
 sub pango_version_string ()
-  returns char
+  returns Str
   is native(pango)
   is export
   { * }

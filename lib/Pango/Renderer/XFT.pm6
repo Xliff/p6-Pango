@@ -7,7 +7,8 @@ use Pango::Raw::XFT;
 use Pango::Renderer;
 
 class Pango::Renderer::XFT is Pango::Renderer {
-  has PangoXFTRender $!pxftr;   # Or is it XftDraw?
+  has PangoXFTRender $!pxftr;   
+  has XftDraw $!draw;
 
   method layout (
     XftColor $color,
@@ -15,9 +16,11 @@ class Pango::Renderer::XFT is Pango::Renderer {
     Int() $x,
     Int() $y
   ) {
+    die 'You must call Pango::XFT::Renderer.set_draw before calling this method'
+      unless $!draw;
     my @i = ($x, $y);
     my gint ($xx, $yy) = self.RESOLVE-INT(@i);
-    pango_xft_render_layout($!pxftr, $color, $layout, $xx, $yy);
+    pango_xft_render_layout($!draw, $color, $layout, $xx, $yy);
   }
 
   method layout_line (
@@ -26,9 +29,11 @@ class Pango::Renderer::XFT is Pango::Renderer {
     Int() $x,
     Int() $y
   ) {
+    die 'You must call Pango::XFT::Renderer.set_draw before calling this method'
+      unless $!draw;
     my @i = ($x, $y);
     my gint ($xx, $yy) = self.RESOLVE-INT(@i);
-    pango_xft_render_layout_line($!pxftr, $color, $line, $xx, $yy);
+    pango_xft_render_layout_line($!draw, $color, $line, $xx, $yy);
   }
 
   method pango_xft_picture_render (
@@ -39,10 +44,12 @@ class Pango::Renderer::XFT is Pango::Renderer {
     Int() $x,
     Int() $y
   ) {
+    die 'You must call Pango::XFT::Renderer.set_draw before calling this method'
+      unless $!draw;
     my @i = ($x, $y);
     my gint ($xx, $yy) = self.RESOLVE-INT(@i);
     pango_xft_picture_render(
-      $!pxftr, $src_picture, $dest_picture, $font, $glyphs, $xx, $yy
+      $!draw, $src_picture, $dest_picture, $font, $glyphs, $xx, $yy
     );
   }
 
@@ -53,9 +60,11 @@ class Pango::Renderer::XFT is Pango::Renderer {
     Int() $x,
     Int() $y
   ) {
+    die 'You must call Pango::XFT::Renderer.set_draw before calling this method'
+      unless $!draw;
     my @i = ($x, $y);
     my gint ($xx, $yy) = self.RESOLVE-INT(@i);
-    pango_xft_render($!pxftr, $color, $font, $glyphs, $xx, $yy);
+    pango_xft_render($!draw, $color, $font, $glyphs, $xx, $yy);
   }
 
   method pango_xft_renderer_get_type () {
@@ -64,15 +73,16 @@ class Pango::Renderer::XFT is Pango::Renderer {
 
   method pango_xft_renderer_new (Int() $screen) {
     my gint $s = self.RESOLVE-INT($screen);
-    pango_xft_renderer_new($!pxftr, $s);
+    pango_xft_renderer_new($!draw, $s);
   }
 
-  method pango_xft_renderer_set_default_color (PangoColor $default_color) {
+  method pango_xft_renderer_set_default_color (PangoColor() $default_color) {
     pango_xft_renderer_set_default_color($!pxftr, $default_color);
   }
 
   method pango_xft_renderer_set_draw (XftDraw $draw) {
     pango_xft_renderer_set_draw($!pxftr, $draw);
+    $!draw = $draw;
   }
 
   method transformed (
@@ -80,13 +90,14 @@ class Pango::Renderer::XFT is Pango::Renderer {
     PangoMatrix() $matrix,
     PangoFont() $font,
     PangoGlyphString() $glyphs,
-    Int() $xx,
-    Int() $yy
+    Int() $x,
+    Int() $y
   ) {
-    my @i = ($x, $y);
-    my gint ($xx, $yy) = self.RESOLVE-INT(@i);
+    die 'You must call Pango::XFT::Renderer.set_draw before calling this method'
+      unless $!draw;
+    my gint ($xx, $yy) = self.RESOLVE-INT($x, $y);
     pango_xft_render_transformed(
-      $!pxftr, $color, $matrix, $font, $glyphs, $xx, $yy
+      $!draw, $color, $matrix, $font, $glyphs, $xx, $yy
     );
   }
 

@@ -22,10 +22,10 @@ class Pango::Color {
   ### ATTRIBUTES FOR RGB ###
   method r is rw {
     Proxy.new(
-      FETCH => $ {
+      FETCH => -> $ {
         $!pc.red
       },
-      STORE => $, Int() $val {
+      STORE => -> $, Int() $val {
         my guint16 $v = self.RESOLVE-UINT16($val);
         $!pc.red = $val;
       }
@@ -34,10 +34,10 @@ class Pango::Color {
 
   method g is rw {
     Proxy.new(
-      FETCH => $ {
+      FETCH => -> $ {
         $!pc.green
       },
-      STORE => $, Int() $val {
+      STORE => -> $, Int() $val {
         my guint16 $v = self.RESOLVE-UINT16($val);
         $!pc.green = $val;
       }
@@ -46,10 +46,10 @@ class Pango::Color {
 
   method b is rw {
     Proxy.new(
-      FETCH => $ {
+      FETCH => -> $ {
         $!pc.blue
       },
-      STORE => $, Int() $val {
+      STORE => -> $, Int() $val {
         my guint16 $v = self.RESOLVE-UINT16($val);
         $!pc.blue = $val;
       }

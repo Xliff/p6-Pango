@@ -17,11 +17,11 @@ class Pango::GlyphItemIter {
   }
 
   method copy {
-    Pango::GlyphItemIter.new( pango_glyph_item_iter_copy($!pgi) );
+    Pango::GlyphItemIter.new( pango_glyph_item_iter_copy($!pgii) );
   }
 
   method free {
-    pango_glyph_item_iter_free($!pgi);
+    pango_glyph_item_iter_free($!pgii);
   }
 
   method get_type {
@@ -29,18 +29,18 @@ class Pango::GlyphItemIter {
   }
 
   method init_end (PangoGlyphItem() $glyph_item, Str() $text) {
-    so pango_glyph_item_iter_init_end($!pgi, $glyph_item, $text);
+    so pango_glyph_item_iter_init_end($!pgii, $glyph_item, $text);
   }
 
   method init_start (PangoGlyphItem() $glyph_item, Str() $text) {
-    so pango_glyph_item_iter_init_start($!pgi, $glyph_item, $text);
+    so pango_glyph_item_iter_init_start($!pgii, $glyph_item, $text);
   }
 
   method next_cluster {
-    so pango_glyph_item_iter_next_cluster($!pgi);
+    so pango_glyph_item_iter_next_cluster($!pgii);
   }
 
   method prev_cluster {
-    so pango_glyph_item_iter_prev_cluster($!pgi);
+    so pango_glyph_item_iter_prev_cluster($!pgii);
   }
 }

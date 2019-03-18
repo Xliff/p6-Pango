@@ -7,7 +7,7 @@ use Cairo;
 use Pango::Roles::Pointers;
 
 # Number of times I've had to force compile the whole project.
-constant forced = 0;
+my constant forced = 13;
 
 our $DEBUG is export = 0;
 
@@ -89,6 +89,7 @@ constant gdouble             is export := num64;
 constant gfloat              is export := num32;
 constant gint                is export := int32;
 constant gint16              is export := int16;
+constant gint32              is export := int32;
 constant gint64              is export := int64;
 constant gint8               is export := int8;
 constant glong               is export := int64;

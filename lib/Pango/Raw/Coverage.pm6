@@ -1,5 +1,7 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 
@@ -11,7 +13,7 @@ sub pango_coverage_copy (PangoCoverage $coverage)
   is export
   { * }
 
-sub pango_coverage_from_bytes (Str $bytes, int32 $n_bytes)
+sub pango_coverage_from_bytes (CArray[Str] $bytes, int32 $n_bytes)
   returns PangoCoverage
   is native(pango)
   is export
@@ -51,7 +53,7 @@ sub pango_coverage_set (
 
 sub pango_coverage_to_bytes (
   PangoCoverage $coverage,
-  CArray[Str] $bytes,
+  CArray[CArray[uint8]] $bytes,
   int32 $n_bytes is rw
 )
   is native(pango)

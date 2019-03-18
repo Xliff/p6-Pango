@@ -6,11 +6,11 @@ use Pango::Raw::Types;
 
 use Pango::Roles::Types;
 
-class Pango::FCFont {
-  has PangoFCFont $!pfcf;
+class Pango::Font::FC {
+  has PangoFcFont $!pfcf;
 
   submethod BUILD (:$font) {
-    selt.setFCFont($font);
+    self.setFCFont($font);
   }
 
   method setFCFont ($font) {

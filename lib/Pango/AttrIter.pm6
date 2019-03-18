@@ -20,19 +20,19 @@ class Pango::AttrIter {
   }
 
   method copy {
-    pango_attr_iterator_copy($!pa);
+    pango_attr_iterator_copy($!pai);
   }
 
   method destroy {
-    pango_attr_iterator_destroy($!pa);
+    pango_attr_iterator_destroy($!pai);
   }
 
   method get (PangoAttrType $type) {
-    pango_attr_iterator_get($!pa, $type);
+    pango_attr_iterator_get($!pai, $type);
   }
 
   method get_attrs {
-    pango_attr_iterator_get_attrs($!pa);
+    pango_attr_iterator_get_attrs($!pai);
   }
 
   method get_font (
@@ -40,16 +40,16 @@ class Pango::AttrIter {
     PangoLanguage() $language,
     GSList() $extra_attrs
   ) {
-    pango_attr_iterator_get_font($!pa, $desc, $language, $extra_attrs);
+    pango_attr_iterator_get_font($!pai, $desc, $language, $extra_attrs);
   }
 
   method next {
-    pango_attr_iterator_next($!pa);
+    pango_attr_iterator_next($!pai);
   }
 
   method range (Int() $start, Int() $end) {
     my @i = ($start, $end);
     my gint ($s, $e) = self.RESOLVE-INT(@i);
-    pango_attr_iterator_range($!pa, $start, $end);
+    pango_attr_iterator_range($!pai, $start, $end);
   }
 }

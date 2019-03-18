@@ -1,5 +1,7 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 
@@ -24,7 +26,7 @@ sub pango_language_get_sample_string (PangoLanguage $language)
   { * }
 
 sub pango_language_get_scripts (PangoLanguage $language, int32 $num_scripts)
-  returns PangoScript
+  returns uint32 # PangoScript
   is native(pango)
   is export
   { * }

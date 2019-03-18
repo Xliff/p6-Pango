@@ -1,5 +1,7 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Coverage;
 use Pango::Raw::Types;
@@ -43,7 +45,7 @@ class Pango::Coverage {
       when Blob { $_.decode('ASCII').encode('ASCII') }
     });
     $nb = $n_bytes // $b.elems;
-    pango_coverage_from_bytes($!pc, $n_bytes);
+    pango_coverage_from_bytes($b, $nb);
   }
 
   method get (Int() $index) {
@@ -66,14 +68,17 @@ class Pango::Coverage {
   }
 
   multi method to_bytes {
-    my ($b, $nb) = ('', 0);
+    my ($b, $nb) = (Blob[uint8].new, 0);
     samewith($b, $nb);
   }
-  multi method to_bytes (Str $bytes, Int $n_bytes is rw) {
-    my $ba = CArray[Str].new;
+  multi method to_bytes (Blob $bytes is rw, Int $n_bytes is rw) {
+    my $ba = CArray[CArray[uint8]].new;
     my int32 $nb = 0;
-    pango_coverage_to_bytes($!pc, $bytes, $nb);
-    ($bytes, $n_bytes) = ($ba[0], $nb);
+    pango_coverage_to_bytes($!pc, $ba, $nb);
+    my @ba;
+    @ba[$_] = $ba[0][$_] for $ba[0].elems; 
+    my Blob $b = Blob[uint8].new(@ba);
+    ($bytes, $n_bytes) = ($b, $nb);
   }
 
   method downref {

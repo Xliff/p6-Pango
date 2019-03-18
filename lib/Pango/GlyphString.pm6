@@ -1,12 +1,13 @@
 use v6.c;
 
+use Pango::Compat::GList;
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 use Pango::Raw::GlyphString;
 
 use Pango::Roles::Types;
 
-class PangoGlyphString {
+class Pango::GlyphString {
   also does Pango::Roles::Types;
 
   has PangoGlyphString $!pgs;
@@ -22,6 +23,13 @@ class PangoGlyphString {
   method new {
     my $glyphstring = pango_glyph_string_new();
     self.bless(:$glyphstring);
+  }
+
+  # STATIC
+  # Generic subroutine not tied to any specific object. Consider a catch-all
+  # class or package for these.
+  method reorder_items (GList() $items) {
+    Pango::Compat::GList.new( pango_reorder_items($items) );
   }
 
   method copy {
@@ -83,12 +91,6 @@ class PangoGlyphString {
     my ($l, $i, $xp) = self.RESOLVE-INT(@i);
     my gboolean $t = self.RESOLVE-BOOL($trailing);
     pango_glyph_string_index_to_x($!pgs, $text, $l, $analysis, $i, $t, $xp);
-  }
-
-  # Generic subroutine not tied to any specific object. Consider a catch-all
-  # class or package for these.
-  method reorder_items {
-    pango_reorder_items($!pgs);
   }
 
   method shape (

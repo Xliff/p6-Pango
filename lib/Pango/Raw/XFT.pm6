@@ -1,17 +1,19 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 
 unit package Pango::Raw::XFT;
 
-sub pango_xft_font_get_font (PangoFont $font)
+sub pango_xft_font_get_font (PangoXFTFont $font)
   returns XftFont
   is native(pango)
   is export
   { * }
 
-sub pango_xft_font_get_glyph (PangoFont $font, gunichar $wc)
+sub pango_xft_font_get_glyph (PangoXFTFont $font, gunichar $wc)
   returns guint
   is native(pango)
   is export
@@ -23,25 +25,25 @@ sub pango_xft_font_get_type ()
   is export
   { * }
 
-sub pango_xft_font_get_unknown_glyph (PangoFont $font, gunichar $wc)
+sub pango_xft_font_get_unknown_glyph (PangoXFTFont $font, gunichar $wc)
   returns PangoGlyph
   is native(pango)
   is export
   { * }
 
-sub pango_xft_font_has_char (PangoFont $font, gunichar $wc)
+sub pango_xft_font_has_char (PangoXFTFont $font, gunichar $wc)
   returns uint32
   is native(pango)
   is export
   { * }
 
-sub pango_xft_font_lock_face (PangoFont $font)
+sub pango_xft_font_lock_face (PangoXFTFont $font)
   returns FT_Face
   is native(pango)
   is export
   { * }
 
-sub pango_xft_font_unlock_face (PangoFont $font)
+sub pango_xft_font_unlock_face (PangoXFTFont $font)
   is native(pango)
   is export
   { * }
@@ -127,13 +129,13 @@ sub pango_xft_renderer_get_type ()
   { * }
 
 sub pango_xft_renderer_new (Display $display, int32 $screen)
-  returns PangoRenderer
+  returns PangoXFTRenderer
   is native(pango)
   is export
   { * }
 
 sub pango_xft_renderer_set_default_color (
-  PangoXftRenderer $xftrenderer,
+  PangoXFTRender $xftrenderer,
   PangoColor $default_color
 )
   is native(pango)
@@ -141,7 +143,7 @@ sub pango_xft_renderer_set_default_color (
   { * }
 
 sub pango_xft_renderer_set_draw (
-  PangoXftRenderer $xftrenderer,
+  PangoXFTRender $xftrenderer,
   XftDraw $draw
 )
   is native(pango)
@@ -159,4 +161,10 @@ sub pango_xft_render_transformed (
 )
   is native(pango)
   is export
+  { * }
+  
+sub pango_xft_font_get_display (PangoXFTFont $font)
+  returns Display
+  is native(pango)
+  is export 
   { * }

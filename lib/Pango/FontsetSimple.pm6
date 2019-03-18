@@ -4,6 +4,8 @@ use Pango::Compat::Types;
 use Pango::Raw::Fontset;
 use Pango::Raw::Types;
 
+use Pango::Fontset;
+
 class Pango::FontsetSimple is Pango::Fontset {
   has PangoFontsetSimple $!pfss;
 
@@ -12,13 +14,13 @@ class Pango::FontsetSimple is Pango::Fontset {
     self.setFontset($simple);
   }
 
-  method new {
-    my $simple = pango_fontset_simple_new();
+  method new(PangoLanguage() $lang) {
+    my $simple = pango_fontset_simple_new($lang);
     self.bless(:$simple);
   }
 
   method append (PangoFont() $font) {
-    pango_fontset_simple_append($!pfs, $font);
+    pango_fontset_simple_append($!pfss, $font);
   }
 
   method get_type {
@@ -26,7 +28,7 @@ class Pango::FontsetSimple is Pango::Fontset {
   }
 
   method size {
-    pango_fontset_simple_size($!pfs);
+    pango_fontset_simple_size($!pfss);
   }
 
 }

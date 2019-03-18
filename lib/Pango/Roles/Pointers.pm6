@@ -3,7 +3,7 @@ use v6.c;
 use NativeCall;
 
 # Number of times compilation has been forced.
-constant forced = 0;
+my constant forced = 13;
 
 role Pango::Roles::Pointers {
 

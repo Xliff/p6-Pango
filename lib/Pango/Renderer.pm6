@@ -1,5 +1,6 @@
 use v6.c;
 
+use Pango::Compat::Types;
 use Pango::Raw::Types;
 use Pango::Raw::Renderer;
 
@@ -7,11 +8,11 @@ class Pango::Renderer {
   has PangoRenderer $!pr;
 
   method activate {
-    pango_renderer_activate($!p);
+    pango_renderer_activate($!pr);
   }
 
   method deactivate {
-    pango_renderer_deactivate($!p);
+    pango_renderer_deactivate($!pr);
   }
 
   method draw_error_underline (
@@ -20,56 +21,57 @@ class Pango::Renderer {
     Int() $width,
     Int() $height
   ) {
-    pango_renderer_draw_error_underline($!p, $x, $y, $width, $height);
+    pango_renderer_draw_error_underline($!pr, $x, $y, $width, $height);
   }
 
   method draw_glyph (
-    PangoFont $font,
-    PangoGlyph $glyph,
-    double $x,
-    double $y
+    PangoFont() $font,
+    PangoGlyph() $glyph,
+    Num() $x,
+    Num() $y
   ) {
-    pango_renderer_draw_glyph($!p, $font, $glyph, $x, $y);
+    my gdouble ($xx, $yy) = ($x, $y);
+    pango_renderer_draw_glyph($!pr, $font, $glyph, $xx, $yy);
   }
 
   method draw_glyph_item (
     Str() $text,
-    PangoGlyphItem $glyph_item,
+    PangoGlyphItem() $glyph_item,
     Int() $x,
     Int() $y
   ) {
-    pango_renderer_draw_glyph_item($!p, $text, $glyph_item, $x, $y);
+    pango_renderer_draw_glyph_item($!pr, $text, $glyph_item, $x, $y);
   }
 
   method draw_glyphs (
-    PangoFont $font,
-    PangoGlyphString $glyphs,
+    PangoFont() $font,
+    PangoGlyphString() $glyphs,
     Int() $x,
     Int() $y
   ) {
-    pango_renderer_draw_glyphs($!p, $font, $glyphs, $x, $y);
+    pango_renderer_draw_glyphs($!pr, $font, $glyphs, $x, $y);
   }
 
-  method draw_layout (PangoLayout $layout, Int() $x, Int() $y) {
-    pango_renderer_draw_layout($!p, $layout, $x, $y);
+  method draw_layout (PangoLayout() $layout, Int() $x, Int() $y) {
+    pango_renderer_draw_layout($!pr, $layout, $x, $y);
   }
 
-  method draw_layout_line (PangoLayoutLine $line, Int() $x, Int() $y) {
-    pango_renderer_draw_layout_line($!p, $line, $x, $y);
+  method draw_layout_line (PangoLayoutLine() $line, Int() $x, Int() $y) {
+    pango_renderer_draw_layout_line($!pr, $line, $x, $y);
   }
 
   method draw_rectangle (
-    PangoRenderPart $part,
+    PangoRenderPart() $part,
     Int() $x,
     Int() $y,
     Int() $width,
     Int() $height
   ) {
-    pango_renderer_draw_rectangle($!p, $part, $x, $y, $width, $height);
+    pango_renderer_draw_rectangle($!pr, $part, $x, $y, $width, $height);
   }
 
   method draw_trapezoid (
-    PangoRenderPart $part,
+    PangoRenderPart() $part,
     Num() $y1,
     Num() $x11,
     Num() $x21,
@@ -78,40 +80,40 @@ class Pango::Renderer {
     Num() $x22
   ) {
     pango_renderer_draw_trapezoid(
-      $!p, $part, $y1, $x11, $x21, $y2, $x12, $x22
+      $!pr, $part, $y1, $x11, $x21, $y2, $x12, $x22
     );
   }
 
-  method get_alpha (PangoRenderPart $part) {
-    pango_renderer_get_alpha($!p, $part);
+  method get_alpha (PangoRenderPart() $part) {
+    pango_renderer_get_alpha($!pr, $part);
   }
 
-  method get_color (PangoRenderPart $part) {
-    pango_renderer_get_color($!p, $part);
+  method get_color (PangoRenderPart() $part) {
+    pango_renderer_get_color($!pr, $part);
   }
 
   method get_layout {
-    pango_renderer_get_layout($!p);
+    pango_renderer_get_layout($!pr);
   }
 
   method get_layout_line {
-    pango_renderer_get_layout_line($!p);
+    pango_renderer_get_layout_line($!pr);
   }
 
   method get_type {
     pango_renderer_get_type();
   }
 
-  method part_changed (PangoRenderPart $part) {
-    pango_renderer_part_changed($!p, $part);
+  method part_changed (PangoRenderPart() $part) {
+    pango_renderer_part_changed($!pr, $part);
   }
 
-  method set_alpha (PangoRenderPart $part, Int() $alpha) {
-    my guint16 = $alpha;
-    pango_renderer_set_alpha($!p, $part, $alpha);
+  method set_alpha (PangoRenderPart() $part, Int() $alpha) {
+    my guint16 $a = self.RESOLVE-UINT16($alpha);
+    pango_renderer_set_alpha($!pr, $part, $a);
   }
 
-  method set_color (PangoRenderPart $part, PangoColor $color) {
-    pango_renderer_set_color($!p, $part, $color);
+  method set_color (PangoRenderPart() $part, PangoColor() $color) {
+    pango_renderer_set_color($!pr, $part, $color);
   }
 }

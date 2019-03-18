@@ -6,8 +6,8 @@ use Pango::Raw::Types;
 
 use Pango::Font::FC;
 
-class Pango::XFTFont is Pango::Font::FC {
-  has PangoFont $!pxftf;
+class Pango::Font::XFT is Pango::Font::FC {
+  has PangoXFTFont $!pxftf;
 
   method get_display {
     pango_xft_font_get_display($!pxftf);

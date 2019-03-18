@@ -1,5 +1,7 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 
@@ -47,7 +49,7 @@ sub pango_fontset_simple_new (PangoLanguage $language)
   { * }
 
 sub pango_fontset_simple_size (PangoFontsetSimple $fontset)
-  returns int
+  returns int32
   is native(pango)
   is export
   { * }

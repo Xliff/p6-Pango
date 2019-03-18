@@ -2,3 +2,5 @@
 dead/
 isolate/
 *.bak
+*.bump
+.touch/

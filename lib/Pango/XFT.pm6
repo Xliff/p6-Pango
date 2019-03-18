@@ -21,7 +21,7 @@ class Pango::XFT {
     $data,
     &notify = Callable
   ) {
-    die q:to/D/.chomp unless $user_data.REPR eq <CPointer CStruct>.any;
+    die q:to/D/.chomp unless $data.REPR eq <CPointer CStruct>.any;
 <user_data> parameter must be of CPointer or CStruct representation.
 D
 

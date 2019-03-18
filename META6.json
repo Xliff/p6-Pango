@@ -21,7 +21,6 @@
       "Pango::XFT"                     :  "lib/Pango/XFT.pm6"                    ,
       "Pango::Compat::Raw::GList"      :  "lib/Pango/Compat/Raw/GList.pm6"       ,
       "Pango::Compat::Raw::GSList"     :  "lib/Pango/Compat/Raw/GSList.pm6"      ,
-      "Pango::Font"                    :  "lib/Pango/Font.pm6"                   ,
       "Pango::Raw::Attr"               :  "lib/Pango/Raw/Attr.pm6"               ,
       "Pango::Raw::Cairo"              :  "lib/Pango/Raw/Cairo.pm6"              ,
       "Pango::Raw::Context"            :  "lib/Pango/Raw/Context.pm6"            ,
@@ -43,17 +42,16 @@
       "Pango::Renderer"                :  "lib/Pango/Renderer.pm6"               ,
       "Pango::Renderer::XFT"           :  "lib/Pango/Renderer/XFT.pm6"           ,
       "Pango::Tabs"                    :  "lib/Pango/Tabs.pm6"                   ,
-      "Pango::Utils"                   :  "lib/Pango/Utils.pm6"                  ,
       "Pango::Attr"                    :  "lib/Pango/Attr.pm6"                   ,
       "Pango::AttrIter"                :  "lib/Pango/AttrIter.pm6"               ,
       "Pango::AttrList"                :  "lib/Pango/AttrList.pm6"               ,
-      "Pango::Cairo::FontMap"          :  "lib/Pango/Cairo/FontMap.pm6"          ,
       "Pango::Color"                   :  "lib/Pango/Color.pm6"                  ,
       "Pango::Compat::GList"           :  "lib/Pango/Compat/GList.pm6"           ,
       "Pango::Compat::GSList"          :  "lib/Pango/Compat/GSList.pm6"          ,
       "Pango::Coverage"                :  "lib/Pango/Coverage.pm6"               ,
       "Pango::FcFontKey"               :  "lib/Pango/FcFontKey.pm6"              ,
       "Pango::FcFontsetKey"            :  "lib/Pango/FcFontsetKey.pm6"           ,
+      "Pango::Font"                    :  "lib/Pango/Font.pm6"                   ,
       "Pango::Font::FC"                :  "lib/Pango/Font/FC.pm6"                ,
       "Pango::Font::XFT"               :  "lib/Pango/Font/XFT.pm6"               ,
       "Pango::FontDescription"         :  "lib/Pango/FontDescription.pm6"        ,
@@ -68,6 +66,7 @@
       "Pango::Language"                :  "lib/Pango/Language.pm6"               ,
       "Pango::LayoutIter"              :  "lib/Pango/LayoutIter.pm6"             ,
       "Pango::LayoutLine"              :  "lib/Pango/LayoutLine.pm6"             ,
+      "Pango::MarkupParser"            :  "lib/Pango/MarkupParser.pm6"           ,
       "Pango::Matrix"                  :  "lib/Pango/Matrix.pm6"                 ,
       "Pango::Misc"                    :  "lib/Pango/Misc.pm6"                   ,
       "Pango::Context"                 :  "lib/Pango/Context.pm6"                ,
@@ -75,7 +74,8 @@
       "Pango::FontMap::FC"             :  "lib/Pango/FontMap/FC.pm6"             ,
       "Pango::FontMap::FT2"            :  "lib/Pango/FontMap/FT2.pm6"            ,
       "Pango::Layout"                  :  "lib/Pango/Layout.pm6"                 ,
-      "Pango::Cairo"                   :  "lib/Pango/Cairo.pm6"                  
+      "Pango::Cairo"                   :  "lib/Pango/Cairo.pm6"                  ,
+      "Pango::Cairo::FontMap"          :  "lib/Pango/Cairo/FontMap.pm6"          
     },
     "name": "Perl6-Pango",
     "perl": "6.c",
@@ -88,6 +88,24 @@
     "support": {"source": null},
     "authors": ["clifton.wood@gmail.com"]
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

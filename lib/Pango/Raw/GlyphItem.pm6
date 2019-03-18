@@ -1,5 +1,7 @@
 use v6.c;
 
+use NativeCall;
+
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 
@@ -88,7 +90,7 @@ sub pango_glyph_item_letter_space (
   PangoGlyphItem $glyph_item,
   Str $text,
   PangoLogAttr $log_attrs,
-  fint $letter_spacing
+  int32 $letter_spacing
 )
   is native(pango)
   is export

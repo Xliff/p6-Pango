@@ -152,7 +152,7 @@ sub pango_font_family_is_monospace (PangoFontFamily $family)
 
 sub pango_font_family_list_faces (
   PangoFontFamily $family,
-  PangoFontFace $faces,
+  CArray[CArray[CArray[PangoFontFace]]] $faces,
   gint $n_faces
 )
   is native(pango)

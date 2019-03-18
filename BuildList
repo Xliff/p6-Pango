@@ -12,7 +12,6 @@ Pango::Roles::Types
 Pango::XFT
 Pango::Compat::Raw::GList
 Pango::Compat::Raw::GSList
-Pango::Font
 Pango::Raw::Attr
 Pango::Raw::Cairo
 Pango::Raw::Context
@@ -34,17 +33,16 @@ Pango::Raw::Tabs
 Pango::Renderer
 Pango::Renderer::XFT
 Pango::Tabs
-Pango::Utils
 Pango::Attr
 Pango::AttrIter
 Pango::AttrList
-Pango::Cairo::FontMap
 Pango::Color
 Pango::Compat::GList
 Pango::Compat::GSList
 Pango::Coverage
 Pango::FcFontKey
 Pango::FcFontsetKey
+Pango::Font
 Pango::Font::FC
 Pango::Font::XFT
 Pango::FontDescription
@@ -59,6 +57,7 @@ Pango::GlyphString
 Pango::Language
 Pango::LayoutIter
 Pango::LayoutLine
+Pango::MarkupParser
 Pango::Matrix
 Pango::Misc
 Pango::Context
@@ -67,3 +66,4 @@ Pango::FontMap::FC
 Pango::FontMap::FT2
 Pango::Layout
 Pango::Cairo
+Pango::Cairo::FontMap

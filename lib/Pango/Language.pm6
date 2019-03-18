@@ -24,7 +24,7 @@ class Pango::Language {
   }
 
   method get_default {
-    pango_language_get_default($!pl);
+    self.bless( language => pango_language_get_default() );
   }
 
   method get_sample_string {

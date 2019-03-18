@@ -193,32 +193,41 @@ our enum PangoTabAlign is export <
   PANGO_TAB_LEFT
 >;
 
-class PangoAttrList         is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoAttrIter         is repr("CPointer") is export does Pango::Roles::Pointers { }
 class PangoAttrIterator     is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoAttrList         is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoCairo            is repr("CPointer") is export does Pango::Roles::Pointers { }
 class PangoCairoFont        is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoCairoFontMap     is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoContext          is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoCoverage         is repr('CPointer') is export does Pango::Roles::Pointers { }
-class PangoEngineShape      is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoEngineLang       is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoEngineShape      is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFcDecoder        is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoFcFont           is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoFCFont           is repr("CPointer") is export does Pango::Roles::Pointers { }
 class PangoFcFontKey        is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFcFontMap        is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFcFontsetKey     is repr('CPointer') is export does Pango::Roles::Pointers { }
-class PangoFT2FontMap       is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFont             is repr('CPointer') is export does Pango::Roles::Pointers { }
-class PangoFontset          is repr('CPointer') is export does Pango::Roles::Pointers { }
-class PangoFontsetSimple    is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFontDescription  is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFontFace         is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFontFamily       is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFontMap          is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoFontMetrics      is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoFontset          is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoFontsetSimple    is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoFT               is repr("CPointer") is export does Pango::Roles::Pointers { }
+class PangoFT2FontMap       is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoLanguage         is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoLayout           is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoLayoutIter       is repr('CPointer') is export does Pango::Roles::Pointers { }
 class PangoLayoutLine       is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoMarkupParser     is repr("CPointer") is export does Pango::Roles::Pointers { }
+class PangoRenderer         is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoRenderPart       is repr("CPointer") is export does Pango::Roles::Pointers { }
 class PangoXFTFont          is repr('CPointer') is export does Pango::Roles::Pointers { }
+class PangoXFTRender        is repr("CPointer") is export does Pango::Roles::Pointers { }
 class PangoXFTRenderer      is repr('CPointer') is export does Pango::Roles::Pointers { }
 
 class PangoRectangle does Pango::Roles::Pointers {
