@@ -1,5 +1,7 @@
 use v6.c;
 
+use Method::Also;
+
 use Cairo;
 use Pango::Compat::Types;
 use Pango::Raw::Cairo;
@@ -20,12 +22,12 @@ class Pango::Cairo::FontMap {
     self.bless(:$fontmap);
   }
 
-  method new_for_font_type(cairo_font_type_t $type) {
+  method new_for_font_type(cairo_font_type_t $type) is also<new-for-font-type> {
     my $fontmap = pango_cairo_font_map_new_for_font_type($type);
     self.bless(:$fontmap);
   }
 
-  method create_context(PangoFontMap() $pfm) {
+  method create_context(PangoFontMap() $pfm) is also<create-context> {
     # DEPRECATED.
     #pango_cairo_font_map_create_context($!pc);
     Pango::Context.new( pango_font_map_create_context($pfm) );
@@ -56,7 +58,7 @@ class Pango::Cairo::FontMap {
   #   );
   # }
   
-  method get_font_type {
+  method get_font_type is also<get-font-type> {
     pango_cairo_font_map_get_font_type($!pcfm);
   }
 

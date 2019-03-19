@@ -1,5 +1,7 @@
 use v6.c;
 
+use Method::Also;
+
 use Pango::Compat::Types;
 use Pango::Raw::XFT;
 use Pango::Raw::Types;
@@ -9,15 +11,15 @@ use Pango::Font::FC;
 class Pango::Font::XFT is Pango::Font::FC {
   has PangoXFTFont $!pxftf;
 
-  method get_display {
+  method get_display is also<get-display> {
     pango_xft_font_get_display($!pxftf);
   }
 
-  method get_font {
+  method get_font is also<get-font> {
     pango_xft_font_get_font($!pxftf);
   }
 
-  method get_type {
+  method get_type is also<get-type> {
     pango_xft_font_get_type();
   }
 

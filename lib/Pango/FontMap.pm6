@@ -1,5 +1,6 @@
 use v6.c;
 
+use Method::Also;
 use NativeCall;
 
 use Pango::Compat::Types;
@@ -25,27 +26,28 @@ class Pango::FontMap {
     pango_font_map_changed($!fm);
   }
 
-  method create_context {
+  method create_context is also<create-context> {
     my $pc = Pango::Context.new;
     $pc.font_map = $!fm;
     $pc;
   }
 
-  method get_serial {
+  method get_serial is also<get-serial> {
     pango_font_map_get_serial($!fm);
   }
 
   method get_shape_engine_type
     is DEPRECATED
+    is also<get-shape-engine-type> 
   {
     pango_font_map_get_shape_engine_type($!fm);
   }
 
-  method get_type {
+  method get_type is also<get-type> {
     pango_font_map_get_type();
   }
 
-  multi method list_families {
+  multi method list_families is also<list-families> {
     my $fl = CArray[CArray[PangoFontFamily]];
     $fl[0] = CArray[PangoFontFamily].new;
     my ($nf, @f) = (0);
@@ -56,7 +58,9 @@ class Pango::FontMap {
   multi method list_families (
     CArray[CArray[PangoFontFamily]] $families,
     Int $n_families is rw;
-  ) {
+  ) 
+    is also<list-families> 
+  {
     my int32 $nf = 0;
     my $rc = pango_font_map_list_families($!fm, $families, $nf);
     $n_families = $nf;
@@ -66,7 +70,9 @@ class Pango::FontMap {
   method load_font (
     PangoContext() $context,
     PangoFontDescription() $desc
-  ) {
+  ) 
+    is also<load-font> 
+  {
     pango_font_map_load_font($!fm, $context, $desc);
   }
 
@@ -74,7 +80,9 @@ class Pango::FontMap {
     PangoContext() $context,
     PangoFontDescription $desc,
     PangoLanguage $language
-  ) {
+  ) 
+    is also<load-fontset> 
+  {
     pango_font_map_load_fontset($!fm, $context, $desc, $language);
   }
 

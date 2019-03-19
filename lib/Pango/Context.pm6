@@ -1,5 +1,6 @@
 use v6.c;
 
+use Method::Also;
 use NativeCall;
 
 use Pango::Compat::GList;
@@ -43,7 +44,7 @@ class Pango::Context {
     self.bless(:$context);
   }
 
-  method base_dir is rw {
+  method base_dir is rw is also<base-dir> {
     Proxy.new(
       FETCH => sub ($) {
         PangoDirection( pango_context_get_base_dir($!pc) );
@@ -55,7 +56,7 @@ class Pango::Context {
     );
   }
 
-  method base_gravity is rw {
+  method base_gravity is rw is also<base-gravity> {
     Proxy.new(
       FETCH => sub ($) {
         PangoGravity( pango_context_get_base_gravity($!pc) );
@@ -67,7 +68,7 @@ class Pango::Context {
     );
   }
 
-  method font_description is rw {
+  method font_description is rw is also<font-description> {
     Proxy.new(
       FETCH => sub ($) {
         Pango::FontDescription.new(
@@ -80,7 +81,7 @@ class Pango::Context {
     );
   }
 
-  method font_map is rw {
+  method font_map is rw is also<font-map> {
     Proxy.new(
       FETCH => sub ($) {
         Pango::FontMap.new( pango_context_get_font_map($!pc) );
@@ -91,7 +92,7 @@ class Pango::Context {
     );
   }
 
-  method gravity_hint is rw {
+  method gravity_hint is rw is also<gravity-hint> {
     Proxy.new(
       FETCH => sub ($) {
         PangoGravityHint( pango_context_get_gravity_hint($!pc) );
@@ -129,27 +130,29 @@ class Pango::Context {
     pango_context_changed($!pc);
   }
 
-  method get_gravity {
+  method get_gravity is also<get-gravity> {
     PangoGravity( pango_context_get_gravity($!pc) );
   }
 
   method get_metrics (
     PangoFontDescription() $desc,
     Int() $language = self.language
-  ) {
+  ) 
+    is also<get-metrics> 
+  {
     my uint32 $l = self.RESOLVE-UINT($language);
     Pango::FontMetrics.new( pango_context_get_metrics($!pc, $desc, $l) );
   }
 
-  method get_serial {
+  method get_serial is also<get-serial> {
     pango_context_get_serial($!pc);
   }
 
-  method get_type {
+  method get_type is also<get-type> {
     pango_context_get_type();
   }
 
-  multi method list_families {
+  multi method list_families is also<list-families> {
     my $f = CArray[CArray[Pointer[PangoFontFamily]]].new;
     my $nf = 0;
     my @families;
@@ -161,17 +164,21 @@ class Pango::Context {
   multi method list_families (
     CArray[CArray[Pointer[PangoFontFamily]]] $families,
     Int $n_families is rw
-  ) {
+  ) 
+    is also<list-families> 
+  {
     my gint $nf = self.RESOLVE-INT($n_families);
     pango_context_list_families($!pc, $families, $nf);
     $n_families = $nf;
   }
 
-  method load_font (PangoFontDescription $desc) {
+  method load_font (PangoFontDescription $desc) is also<load-font> {
     Pango::Font.new( pango_context_load_font($!pc, $desc) );
   }
 
-  method load_fontset (PangoFontDescription $desc, PangoLanguage $language) {
+  method load_fontset (PangoFontDescription $desc, PangoLanguage $language) 
+    is also<load-fontset> 
+  {
     Pango::Fontset.new( pango_context_load_fontset($!pc, $desc, $language) );
   }
 
@@ -182,7 +189,9 @@ class Pango::Context {
     Int() $length,
     PangoAttrList $attrs,
     PangoAttrIterator $cached_iter
-  ) {
+  ) 
+    is also<pango-itemize> 
+  {
     my @i = ($start_index, $length);
     my gint ($si, $l) = self.RESOLVE-INT(@i);
     GList.new(
@@ -199,7 +208,9 @@ class Pango::Context {
     Int() $length,
     PangoAttrList $attrs,
     PangoAttrIterator $cached_iter
-  ) {
+  ) 
+    is also<pango-itemize-with-base-dir> 
+  {
     my guint $bd = self.RESOLVE-UINT($base_dir);
     my @i = ($start_index, $length);
     my gint ($si, $l) = self.RESOLVE-INT(@i);

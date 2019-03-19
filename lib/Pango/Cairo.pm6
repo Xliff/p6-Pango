@@ -1,5 +1,6 @@
 use v6.c;
 
+use Method::Also;
 use NativeCall;
 
 use Cairo;
@@ -36,11 +37,11 @@ class Pango::Cairo {
     self.bless(:$cr, :$update);
   }
 
-  method pango_context {
+  method pango_context is also<pango-context> {
     $!pc;
   }
 
-  method cairo_context {
+  method cairo_context is also<cairo-context> {
     $!ct;
   }
 
@@ -48,12 +49,14 @@ class Pango::Cairo {
     PangoFontMap() $fontmap,
     cairo_t $cr,
     :$update = True
-  ) {
+  ) 
+    is also<new-with-fontmap> 
+  {
     my $context = Pango::Context.new( self.font_map_create_context($fontmap) );
     self.bless(:$context, :$update, :$cr);
   }
 
-  method context_font_options is rw {
+  method context_font_options is rw is also<context-font-options> {
     Proxy.new(
       FETCH => sub ($) {
         pango_cairo_context_get_font_options($!pc.context);
@@ -64,7 +67,7 @@ class Pango::Cairo {
     );
   }
 
-  method context_resolution is rw {
+  method context_resolution is rw is also<context-resolution> {
     Proxy.new(
       FETCH => sub ($) {
         pango_cairo_context_get_resolution($!pc.context);
@@ -90,7 +93,7 @@ class Pango::Cairo {
   #   }
   # }
 
-  method context_get_shape_renderer {
+  method context_get_shape_renderer is also<context-get-shape-renderer> {
     my $p = Pointer.new;
     pango_cairo_context_get_shape_renderer(
       $!pl.get_context,
@@ -102,7 +105,9 @@ class Pango::Cairo {
     &func,
     $data?,
     &dnotify = Callable
-  ) {
+  ) 
+    is also<context-set-shape-renderer> 
+  {
     CATCH { default { .message.say } }
 
     self.create_context without $!pl;
@@ -120,16 +125,18 @@ class Pango::Cairo {
     );
   }
 
-  method create_pc_context(Pango::Cairo:D: ) {
+  method create_pc_context(Pango::Cairo:D: ) is also<create-pc-context> {
     Pango::Context.new( pango_cairo_create_context($!ct) );
   }
 
   # To prevent confusion, this should probably be the only
   # version of this method.
-  multi method create_layout(Pango::Cairo:D:) {
+  multi method create_layout(Pango::Cairo:D:) is also<create-layout> {
     $!pl = Pango::Layout.new( pango_cairo_create_layout($!ct) );
   }
-  multi method create_layout(Pango::Cairo:U: cairo_t $context) {
+  multi method create_layout(Pango::Cairo:U: cairo_t $context) 
+    is also<create-layout> 
+  {
     Pango::Layout.new( pango_cairo_create_layout($context) );
   }
 
@@ -138,28 +145,36 @@ class Pango::Cairo {
     Num() $y,
     Num() $width,
     Num() $height
-  ) {
+  ) 
+    is also<error-underline-path> 
+  {
     my gdouble ($xx, $yy, $w, $h) = ($x, $y, $width, $height);
     pango_cairo_error_underline_path($!ct, $xx, $yy, $w, $h);
   }
 
-  method font_get_scaled_font(PangoCairoFont $font) {
+  method font_get_scaled_font(PangoCairoFont $font) 
+    is also<font-get-scaled-font> 
+  {
     pango_cairo_font_get_scaled_font($font);
   }
 
-  method font_get_type {
+  method font_get_type is also<font-get-type> {
     pango_cairo_font_get_type();
   }
 
-  method glyph_string_path (PangoFont() $font, PangoGlyphString() $glyphs) {
+  method glyph_string_path (PangoFont() $font, PangoGlyphString() $glyphs) 
+    is also<glyph-string-path> 
+  {
     pango_cairo_glyph_string_path($!ct, $font, $glyphs);
   }
 
-  method layout_line_path (PangoLayoutLine() $line) {
+  method layout_line_path (PangoLayoutLine() $line) 
+    is also<layout-line-path> 
+  {
     pango_cairo_layout_line_path($!ct, $line);
   }
 
-  method layout_path (PangoLayout() $layout) {
+  method layout_path (PangoLayout() $layout) is also<layout-path> {
     pango_cairo_layout_path($!ct, $layout);
   }
 
@@ -168,35 +183,39 @@ class Pango::Cairo {
     Num() $y,
     Num() $width,
     Num() $height
-  ) {
+  ) is also<show-error-underline> {
     my gdouble ($xx, $yy, $w, $h) = ($x, $y, $width, $height);
     pango_cairo_show_error_underline($!ct, $xx, $yy, $w, $h);
   }
 
-  method show_glyph_item (Str() $text, PangoGlyphItem() $glyph_item) {
+  method show_glyph_item (Str() $text, PangoGlyphItem() $glyph_item) 
+    is also<show-glyph-item> 
+  {
     pango_cairo_show_glyph_item($!ct, $text, $glyph_item);
   }
 
-  method show_glyph_string (PangoFont $font, PangoGlyphString $glyphs) {
+  method show_glyph_string (PangoFont $font, PangoGlyphString $glyphs) 
+    is also<show-glyph-string> 
+  {
     pango_cairo_show_glyph_string($!ct, $font, $glyphs);
   }
 
-  method show_layout (PangoLayout() $layout) {
+  method show_layout (PangoLayout() $layout) is also<show-layout> {
     pango_cairo_show_layout($!ct, $layout);
   }
 
-  method show_layout_line (PangoLayoutLine() $line) {
+  method show_layout_line (PangoLayoutLine() $line) is also<show-layout-line> {
     pango_cairo_show_layout_line($!ct, $line);
   }
 
-  multi method update_context {
+  multi method update_context is also<update-context> {
     samewith($!pc);
   }
-  multi method update_context(PangoContext() $apc) {
+  multi method update_context(PangoContext() $apc) is also<update-context> {
     pango_cairo_update_context($!ct, $apc);
   }
 
-  method update_layout (PangoLayout() $layout) {
+  method update_layout (PangoLayout() $layout) is also<update-layout> {
     pango_cairo_update_layout($!ct, $layout);
   }
 

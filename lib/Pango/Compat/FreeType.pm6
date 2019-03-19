@@ -1,5 +1,6 @@
 use v6.c;
 
+use Method::Also;
 use NativeCall;
 
 unit package Pango::Compat::FreeType;
@@ -39,7 +40,7 @@ class FT_Bitmap is repr('CStruct') is export {
     is native
     { * };
 
-  method buffer_pointer {
+  method buffer_pointer is also<buffer-pointer> {
     say +( nativecast(Pointer, $!buffer) );
   }
 
@@ -74,3 +75,4 @@ class FT_Bitmap is repr('CStruct') is export {
     self.bless(:$rows, :$width, :$num_grays);
   }
 }
+

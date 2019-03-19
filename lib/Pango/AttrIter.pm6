@@ -1,5 +1,7 @@
 use v6.c;
 
+use Method::Also;
+
 use Pango::Compat::Types;
 use Pango::Raw::Attr;
 use Pango::Raw::Types;
@@ -31,7 +33,7 @@ class Pango::AttrIter {
     pango_attr_iterator_get($!pai, $type);
   }
 
-  method get_attrs {
+  method get_attrs is also<get-attrs> {
     pango_attr_iterator_get_attrs($!pai);
   }
 
@@ -39,7 +41,9 @@ class Pango::AttrIter {
     PangoFontDescription() $desc,
     PangoLanguage() $language,
     GSList() $extra_attrs
-  ) {
+  ) 
+    is also<get-font> 
+  {
     pango_attr_iterator_get_font($!pai, $desc, $language, $extra_attrs);
   }
 

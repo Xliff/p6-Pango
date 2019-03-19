@@ -1,5 +1,6 @@
 use v6.c;
 
+use Method::Also;
 use NativeCall;
 
 use Pango::Compat::Types;
@@ -25,7 +26,9 @@ class Pango::FontMap::FC is Pango::FontMap {
     &findfunc,
     $user_data,
     &dnotify
-  ) {
+  ) 
+    is also<add-decoder-find-func> 
+  {
     die q:to/D/.chomp unless $user_data.REPR eq <CPointer CStruct>.any;
 <user_data> parameter must be of CPointer or CStruct representation.
 D
@@ -35,19 +38,19 @@ D
     );
   }
 
-  method cache_clear {
+  method cache_clear is also<cache-clear> {
     pango_fc_font_map_cache_clear($!pfcfm);
   }
 
-  method config_changed {
+  method config_changed is also<config-changed> {
     pango_fc_font_map_config_changed($!pfcfm);
   }
 
-  method find_decoder (FcPattern $pattern) {
+  method find_decoder (FcPattern $pattern) is also<find-decoder> {
     pango_fc_font_map_find_decoder($!pfcfm, $pattern);
   }
 
-  method get_type {
+  method get_type is also<get-type> {
     pango_fc_font_map_get_type();
   }
 

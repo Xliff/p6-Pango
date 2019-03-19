@@ -1,5 +1,7 @@
 use v6.c;
 
+use Method::Also;
+
 use Pango::Compat::Types;
 use Pango::Raw::GlyphItem;
 use Pango::Raw::Types;
@@ -25,7 +27,7 @@ class Pango::GlyphItem {
     self.bless($item);
   }
 
-  method apply_attrs (Str() $text, PangoAttrList $list) {
+  method apply_attrs (Str() $text, PangoAttrList $list) is also<apply-attrs> {
     pango_glyph_item_apply_attrs($!pgi, $text, $list);
   }
 
@@ -37,7 +39,9 @@ class Pango::GlyphItem {
     pango_glyph_item_free($!pgi);
   }
 
-  method get_logical_widths (Str() $text, Int() $logical_widths) {
+  method get_logical_widths (Str() $text, Int() $logical_widths) 
+    is also<get-logical-widths> 
+  {
     my gint $lw = self.RESOLVE-INT($logical_widths);
     pango_glyph_item_get_logical_widths($!pgi, $text, $lw);
   }
@@ -46,7 +50,7 @@ class Pango::GlyphItem {
     Str() $text,
     PangoLogAttr $log_attrs,
     Int() $letter_spacing
-  ) {
+  ) is also<letter-space> {
     my gint $ls = self.RESOLVE-INT($letter_spacing);
     pango_glyph_item_letter_space($!pgi, $text, $log_attrs, $ls);
   }

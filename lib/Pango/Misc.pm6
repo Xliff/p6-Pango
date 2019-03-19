@@ -1,5 +1,7 @@
 use v6.c;
 
+use Method::Also;
+
 use Pango::Compat::Types;
 use Pango::Raw::Misc;
 use Pango::Raw::Types;
@@ -15,15 +17,21 @@ class Pango::Misc {
     pango_version_check($required_major, $required_minor, $required_micro);
   }
 
-  method pango_config_key_get (Str() $key) is DEPRECATED {
+  method pango_config_key_get (Str() $key) 
+    is DEPRECATED 
+    is also<pango-config-key-get> 
+  {
     pango_config_key_get($key);
   }
 
-  method pango_config_key_get_system (Str() $key) is DEPRECATED {
+  method pango_config_key_get_system (Str() $key) 
+    is DEPRECATED 
+    is also<pango-config-key-get-system> 
+  {
     pango_config_key_get_system($key);
   }
 
-  method pango_is_zero_width (gunichar $ch) {
+  method pango_is_zero_width (gunichar $ch) is also<pango-is-zero-width> {
     pango_is_zero_width($ch);
   }
 
@@ -31,7 +39,9 @@ class Pango::Misc {
     Str() $text,
     int $length,
     PangoDirection $pbase_dir
-  ) {
+  ) 
+    is also<pango-log2vis-get-embedding-levels> 
+  {
     pango_log2vis_get_embedding_levels($text, $length, $pbase_dir);
   }
 
@@ -41,6 +51,7 @@ class Pango::Misc {
     int $n_families
   )
     is DEPRECATED
+    is also<pango-lookup-aliases> 
   {
     pango_lookup_aliases($fontname, $families, $n_families);
   }
@@ -49,7 +60,9 @@ class Pango::Misc {
     Str() $str,
     PangoStretch $stretch is rw,
     gboolean $warn
-  ) {
+  ) 
+    is also<pango-parse-stretch> 
+  {
     pango_parse_stretch($str, $stretch, $warn);
   }
 
@@ -57,7 +70,9 @@ class Pango::Misc {
     Str() $str,
     PangoStyle $style is rw,
     gboolean $warn
-  ) {
+  ) 
+    is also<pango-parse-style> 
+  {
     pango_parse_style($str, $style, $warn);
   }
 
@@ -65,7 +80,9 @@ class Pango::Misc {
     Str() $str,
     PangoVariant $variant is rw,
     gboolean $warn
-  ) {
+  ) 
+    is also<pango-parse-variant> 
+  {
     pango_parse_variant($str, $variant, $warn);
   }
 
@@ -73,15 +90,19 @@ class Pango::Misc {
     Str() $str,
     PangoWeight $weight is rw,
     gboolean $warn
-  ) {
+  ) 
+    is also<pango-parse-weight> 
+  {
     pango_parse_weight($str, $weight, $warn);
   }
 
-  method pango_quantize_line_geometry (int $thickness, int $position) {
+  method pango_quantize_line_geometry (int $thickness, int $position) 
+    is also<pango-quantize-line-geometry> 
+  {
     pango_quantize_line_geometry($thickness, $position);
   }
 
-  method pango_version {
+  method pango_version is also<pango-version> {
     pango_version();
   }
 

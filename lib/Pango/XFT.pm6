@@ -1,5 +1,7 @@
 use v6.c;
 
+use Method::Also;
+
 use Pango::Compat::Types;
 use Pango::Raw::Types;
 use Pango::Raw::XFT;
@@ -9,7 +11,7 @@ use Pango::Roles::Types;
 class Pango::XFT {
   also does Pango::Roles::Types;
 
-  method get_font_map (Display $display, Int() $screen) {
+  method get_font_map (Display $display, Int() $screen) is also<get-font-map> {
     my gint $s = self.RESOLVE-INT($screen);
     pango_xft_get_font_map($display, $s);
   }
@@ -20,7 +22,9 @@ class Pango::XFT {
     &func,
     $data,
     &notify = Callable
-  ) {
+  ) 
+    is also<set-default-substitute> 
+  {
     die q:to/D/.chomp unless $data.REPR eq <CPointer CStruct>.any;
 <user_data> parameter must be of CPointer or CStruct representation.
 D
@@ -29,12 +33,16 @@ D
     pango_xft_set_default_substitute($display, $s, &func, $data, &notify);
   }
 
-  method shutdown_display (Display $display, Int() $screen) {
+  method shutdown_display (Display $display, Int() $screen) 
+    is also<shutdown-display> 
+  {
     my gint $s = self.RESOLVE-INT($screen);
     pango_xft_shutdown_display($display, $s);
   }
 
-  method substitute_changed (Display $display, Int() $screen) {
+  method substitute_changed (Display $display, Int() $screen) 
+    is also<substitute-changed> 
+  {
     my gint $s = self.RESOLVE-INT($screen);
     pango_xft_substitute_changed($display, $s);
   }

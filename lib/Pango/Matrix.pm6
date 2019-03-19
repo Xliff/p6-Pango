@@ -36,16 +36,16 @@ class Pango::Matrix {
     pango_matrix_free($!pm);
   }
 
-  method get_font_scale_factor {
+  method get_font_scale_factor is also<get-font-scale-factor> {
     pango_matrix_get_font_scale_factor($!pm);
   }
 
-  method get_font_scale_factors (Num() $xscale, Num() $yscale) {
+  method get_font_scale_factors (Num() $xscale, Num() $yscale) is also<get-font-scale-factors> {
     my gdouble ($xs, $ys) = ($xscale, $yscale);
     pango_matrix_get_font_scale_factors($!pm, $xs, $ys);
   }
 
-  method get_type {
+  method get_type is also<get-type> {
     pango_matrix_get_type();
   }
 
@@ -59,23 +59,23 @@ class Pango::Matrix {
     pango_matrix_scale($!pm, $scale_x, $scale_y);
   }
 
-  method transform_distance (Num() $dx is rw, Num() $dy is rw) {
+  method transform_distance (Num() $dx is rw, Num() $dy is rw) is also<transform-distance> {
     my gdouble ($ddx, $ddy) = ($dx, $dy);
     pango_matrix_transform_distance($!pm, $ddx, $ddy);
     ($dx, $dy) = ($ddx, $ddy);
   }
 
-  method transform_pixel_rectangle (PangoRectangle $rect) {
+  method transform_pixel_rectangle (PangoRectangle $rect) is also<transform-pixel-rectangle> {
     pango_matrix_transform_pixel_rectangle($!pm, $rect);
   }
 
-  method transform_point (Num() $x is rw, Num() $y is rw) {
+  method transform_point (Num() $x is rw, Num() $y is rw) is also<transform-point> {
     my gdouble ($xx, $yy) = ($x, $y);
     pango_matrix_transform_point($!pm, $xx, $yy);
     ($x, $y) = ($xx, $yy);
   }
 
-  method transform_rectangle (PangoRectangle $rect) {
+  method transform_rectangle (PangoRectangle $rect) is also<transform-rectangle> {
     pango_matrix_transform_rectangle($!pm, $rect);
   }
 
@@ -85,3 +85,4 @@ class Pango::Matrix {
   }
 
 }
+

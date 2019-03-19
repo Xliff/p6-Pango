@@ -1,5 +1,7 @@
 use v6.c;
 
+use Method::Also;
+
 use Pango::Compat::Types;
 use Pango::Raw::Attr;
 use Pango::Raw::Types;
@@ -20,7 +22,7 @@ class Pango::Color {
   }
 
   ### ATTRIBUTES FOR RGB ###
-  method r is rw {
+  method r is also<red> is rw {
     Proxy.new(
       FETCH => -> $ {
         $!pc.red
@@ -32,7 +34,7 @@ class Pango::Color {
     );
   }
 
-  method g is rw {
+  method g is also<green> is rw {
     Proxy.new(
       FETCH => -> $ {
         $!pc.green
@@ -44,7 +46,7 @@ class Pango::Color {
     );
   }
 
-  method b is rw {
+  method b is also<blue> is rw {
     Proxy.new(
       FETCH => -> $ {
         $!pc.blue
@@ -75,7 +77,7 @@ class Pango::Color {
     pango_color_parse($!pc, $spec);
   }
 
-  method to_string {
+  method to_string is also<to-string> {
     pango_color_to_string($!pc);
   }
 }

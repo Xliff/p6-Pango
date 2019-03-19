@@ -1,5 +1,6 @@
 use v6.c;
 
+use Method::Also;
 use NativeCall;
 
 use Pango::Compat::Types;
@@ -20,7 +21,7 @@ class Pango::FontDescription {
   method Pango::Raw::Types::PangoFontDescription {
     $!pfd;
   }
-  method font_description {
+  method font_description is also<font-description> {
     $!pfd;
   }
 
@@ -29,7 +30,7 @@ class Pango::FontDescription {
     self.bless(:$description);
   }
 
-  method new_from_string(Str $str) {
+  method new_from_string(Str $str) is also<new-from-string> {
     my $description = pango_font_description_from_string($str);
     self.bless(:$description);
   }
@@ -131,7 +132,9 @@ class Pango::FontDescription {
   method better_match (
     PangoFontDescription() $old_match,
     PangoFontDescription() $new_match
-  ) {
+  ) 
+    is also<better-match> 
+  {
     so pango_font_description_better_match($!pfd, $old_match, $new_match);
   }
 
@@ -143,7 +146,7 @@ class Pango::FontDescription {
     pango_font_description_copy($!pfd);
   }
 
-  method copy_static {
+  method copy_static is also<copy-static> {
     pango_font_description_copy_static($!pfd);
   }
 
@@ -155,11 +158,11 @@ class Pango::FontDescription {
     pango_font_description_free($!pfd);
   }
 
-  method get_set_fields {
+  method get_set_fields is also<get-set-fields> {
     pango_font_description_get_set_fields($!pfd);
   }
 
-  method get_size_is_absolute {
+  method get_size_is_absolute is also<get-size-is-absolute> {
     pango_font_description_get_size_is_absolute($!pfd);
   }
 
@@ -178,12 +181,14 @@ class Pango::FontDescription {
   method merge_static (
     PangoFontDescription() $desc_to_merge,
     Int() $replace_existing
-  ) {
+  ) 
+    is also<merge-static> 
+  {
     my gboolean $re = self.RESOLVE-BOOL($replace_existing);
     pango_font_description_merge_static($!pfd, $desc_to_merge, $re);
   }
 
-  multi method multi_free(@descs) {
+  multi method multi_free(@descs) is also<multi-free> {
     my $descs = CArray[Pointer[PangoFontDescription]].new;
     my $d = 0;
     for @descs {
@@ -203,38 +208,42 @@ D
   method descriptions_free (
     CArray[Pointer[PangoFontDescription]] $descs,
     Int() $n_descs
-  ) {
+  ) 
+    is also<descriptions-free> 
+  {
     my gint $nd = self.RESOLVE-UINT($n_descs);
     pango_font_descriptions_free($descs, $nd);
   }
 
-  method set_absolute_size (gdouble $size) {
+  method set_absolute_size (gdouble $size) is also<set-absolute-size> {
     pango_font_description_set_absolute_size($!pfd, $size);
   }
 
-  method set_family_static (Str() $family) {
+  method set_family_static (Str() $family) is also<set-family-static> {
     pango_font_description_set_family_static($!pfd, $family);
   }
 
-  method set_variations_static (Str() $settings) {
+  method set_variations_static (Str() $settings) 
+    is also<set-variations-static> 
+  {
     pango_font_description_set_variations_static($!pfd, $settings);
   }
 
-  method to_filename {
+  method to_filename is also<to-filename> {
     pango_font_description_to_filename($!pfd);
   }
 
-  method to_string {
+  method to_string is also<to-string> {
     pango_font_description_to_string($!pfd);
   }
 
-  method unset_fields (PangoFontMask $to_unset) {
+  method unset_fields (PangoFontMask $to_unset) is also<unset-fields> {
     pango_font_description_unset_fields($!pfd, $to_unset);
   }
 
 }
 
-sub infix:<eqv> (Pango::FontDescription $a, Pango::FontDescription $b)
+multi sub infix:<eqv> (Pango::FontDescription $a, Pango::FontDescription $b)
   is export
 {
   $a.equal($b);

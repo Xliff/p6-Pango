@@ -1,5 +1,7 @@
 use v6.c;
 
+use Method::Also;
+
 use Pango::Compat::Types;
 use Pango::Raw::Attr;
 use Pango::Raw::Types;
@@ -36,11 +38,11 @@ class Pango::AttrList {
     pango_attr_list_filter($!pal, &func, $data);
   }
 
-  method get_iterator {
+  method get_iterator is also<get-iterator> {
     pango_attr_list_get_iterator($!pal);
   }
 
-  method get_type {
+  method get_type is also<get-type> {
     pango_attr_list_get_type();
   }
 
@@ -48,7 +50,7 @@ class Pango::AttrList {
     pango_attr_list_insert($!pal, $attr.attr);
   }
 
-  method insert_before (PangoAttributes $attr) {
+  method insert_before (PangoAttributes $attr) is also<insert-before> {
     pango_attr_list_insert_before($!pal, $attr.attr);
   }
 

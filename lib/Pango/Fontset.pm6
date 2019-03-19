@@ -1,5 +1,6 @@
 use v6.c;
 
+use Method::Also;
 use NativeCall;
 
 use Pango::Compat::Types;
@@ -48,13 +49,14 @@ D
     pango_fontset_foreach($!pfs, &func, $data);
   }
 
-  method get_font (Int() $wc) {
+  method get_font (Int() $wc) is also<get-font> {
     my gint $wwc = self.RESOLVE-UINT($wc);
     pango_fontset_get_font($!pfs, $wwc);
   }
 
-  method get_metrics {
+  method get_metrics is also<get-metrics> {
     pango_fontset_get_metrics($!pfs);
   }
 
 }
+

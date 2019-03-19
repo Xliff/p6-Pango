@@ -1,5 +1,7 @@
 use v6.c;
 
+use Method::Also;
+
 use Pango::Compat::Types;
 use Pango::Raw::Language;
 use Pango::Raw::Types;
@@ -18,29 +20,29 @@ class Pango::Language {
   method new(Str() $s) {
     self.from_string($s);
   }
-  method from_string(Str() $s) {
+  method from_string(Str() $s) is also<from-string> {
     my $language = pango_language_from_string($s);
     self.bless(:$language);
   }
 
-  method get_default {
+  method get_default is also<get-default> {
     self.bless( language => pango_language_get_default() );
   }
 
-  method get_sample_string {
+  method get_sample_string is also<get-sample-string> {
     pango_language_get_sample_string($!pl);
   }
 
-  method get_scripts (Int() $num_scripts) {
+  method get_scripts (Int() $num_scripts) is also<get-scripts> {
     my gint $ns = self.RESOLVE-INT($num_scripts);
     pango_language_get_scripts($!pl, $num_scripts);
   }
 
-  method get_type {
+  method get_type is also<get-type> {
     pango_language_get_type();
   }
 
-  method includes_script (Int() $script) {
+  method includes_script (Int() $script) is also<includes-script> {
     my uint32 $s = self.RESOLVE-UINT($script);
     pango_language_includes_script($!pl, $s);
   }
@@ -49,7 +51,7 @@ class Pango::Language {
     pango_language_matches($!pl, $range_list);
   }
 
-  method to_string {
+  method to_string is also<to-string> {
     pango_language_to_string($!pl);
   }
 

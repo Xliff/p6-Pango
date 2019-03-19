@@ -1,5 +1,6 @@
 use v6.c;
 
+use Method::Also;
 use NativeCall;
 
 use Pango::Compat::Types;
@@ -196,3 +197,4 @@ sub g_list_sort_with_data (
   is native(glib)
   is export
   { * }
+

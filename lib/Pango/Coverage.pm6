@@ -1,5 +1,6 @@
 use v6.c;
 
+use Method::Also;
 use NativeCall;
 
 use Pango::Compat::Types;
@@ -36,7 +37,7 @@ class Pango::Coverage {
     self.bless(:$coverage);
   }
 
-  method from_bytes ($bytes, $n_bytes?) {
+  method from_bytes ($bytes, $n_bytes?) is also<from-bytes> {
     # Force ASCII byute stream.
     my gint32 $nb;
     my $b = CArray[uint8].new(do given $bytes {
@@ -67,11 +68,13 @@ class Pango::Coverage {
     pango_coverage_set($!pc, $i, $l);
   }
 
-  multi method to_bytes {
+  multi method to_bytes is also<to-bytes> {
     my ($b, $nb) = (Blob[uint8].new, 0);
     samewith($b, $nb);
   }
-  multi method to_bytes (Blob $bytes is rw, Int $n_bytes is rw) {
+  multi method to_bytes (Blob $bytes is rw, Int $n_bytes is rw) 
+    is also<to-bytes> 
+  {
     my $ba = CArray[CArray[uint8]].new;
     my int32 $nb = 0;
     pango_coverage_to_bytes($!pc, $ba, $nb);

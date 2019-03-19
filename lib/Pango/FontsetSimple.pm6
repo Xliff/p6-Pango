@@ -1,5 +1,7 @@
 use v6.c;
 
+use Method::Also;
+
 use Pango::Compat::Types;
 use Pango::Raw::Fontset;
 use Pango::Raw::Types;
@@ -23,7 +25,7 @@ class Pango::FontsetSimple is Pango::Fontset {
     pango_fontset_simple_append($!pfss, $font);
   }
 
-  method get_type {
+  method get_type is also<get-type> {
     pango_fontset_simple_get_type();
   }
 
