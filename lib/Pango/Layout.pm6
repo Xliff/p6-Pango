@@ -301,13 +301,15 @@ D
     pango_layout_get_log_attrs_readonly($!pl, $na);
   }
 
-  multi method get_pixel_size is also<get-pixel-size> {
+  proto method get_pixel_size (|) 
+    is also<get-pixel-size>
+    { * }
+    
+  multi method get_pixel_size {
     my ($w, $h) = (0 xx 2);
     samewith($w, $h);
   }
-  multi method get_pixel_size (Int() $width is rw, Int() $height is rw) 
-    is also<get-pixel-size> 
-  {
+  multi method get_pixel_size (Int() $width is rw, Int() $height is rw) {
     my @i = ($width, $height);
     my gint ($w, $h) = self.RESOLVE-INT(@i);
     pango_layout_get_pixel_size($!pl, $w, $h);
@@ -317,14 +319,16 @@ D
   method get_serial is also<get-serial> {
     pango_layout_get_serial($!pl);
   }
+  
+  proto method get_size (|)
+    is also<get-size>
+    { * }
 
-  multi method get_size is also<get-size> {
+  multi method get_size {
     my ($w, $h) = (0 xx 2);
     samewith($w, $h);
   }
-  multi method get_size (Int() $width is rw, Int() $height is rw) 
-    is also<get-size> 
-  {
+  multi method get_size (Int() $width is rw, Int() $height is rw) {
     my @i = ($width, $height);
     my gint ($w, $h) = self.RESOLVE-INT(@i);
     pango_layout_get_size($!pl, $w, $h);
@@ -383,11 +387,15 @@ D
     my int32 ($oi, $ot, $d, $ni, $nt) = self.RESOLVE-INT(@i);
     pango_layout_move_cursor_visually($!pl, $s, $oi, $ot, $d, $ni, $nt);
   }
+  
+  proto method set_markup (|)
+    is also<set-markup>
+    { * }
 
-  multi method set_markup (Str() $markup) is also<set-markup> {
+  multi method set_markup (Str() $markup) {
     samewith($markup, -1);
   }
-  multi method set_markup (Str() $markup, Int() $length) is also<set-markup> {
+  multi method set_markup (Str() $markup, Int() $length) {
     $length = -1 without $length;
     my int32 $l = self.RESOLVE-INT($length);
     pango_layout_set_markup($!pl, $markup, $l);

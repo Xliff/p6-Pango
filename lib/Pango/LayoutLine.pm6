@@ -46,9 +46,11 @@ class Pango::LayoutLine {
     pango_layout_line_get_pixel_extents($!pll, $ink_rect, $logical_rect);
   }
 
-  multi method get_x_ranges(Int() $start_index, Int() $end_index) 
+  proto method get_x_ranges (|)
     is also<get-x-ranges> 
-  {
+    { * }
+    
+  multi method get_x_ranges(Int() $start_index, Int() $end_index) {
     my @ranges;
     my Int $n_ranges = 0;
     samewith($start_index, $end_index, @ranges, $n_ranges);
@@ -59,9 +61,7 @@ class Pango::LayoutLine {
     Int() $end_index,
     @ranges,
     Int $n_ranges is rw
-  ) 
-    is also<get-x-ranges> 
-  {
+  ) {
     my $ca = CArray[CArray[int32]].new;
     my @i = ($start_index, $end_index, 0);
     my int32 ($si, $ei, $nr) = self.RESOLVE-INT(@i);
@@ -70,17 +70,17 @@ class Pango::LayoutLine {
     $n_ranges = $nr;
     Nil;
   }
+  
+  proto method index_to_x (|)
+    is also<index-to-x>
+    { * }
 
-  multi method index_to_x (Int() $index, Int() $trailing) 
-    is also<index-to-x> 
-  {
+  multi method index_to_x (Int() $index, Int() $trailing) {
     my Int $xp = 0;
     samewith($index, $trailing, $xp);
     $xp;
   }
-  multi method index_to_x (Int() $index, Int() $trailing, Int $x_pos is rw) 
-    is also<index-to-x> 
-  {
+  multi method index_to_x (Int() $index, Int() $trailing, Int $x_pos is rw) {
     my gboolean $t = self.RESOLVE-BOOL($trailing);
     my int32 ($i, $xp) = ( self.RESOLVE-INT($index), 0 );
     my $rc = pango_layout_line_index_to_x($!pll, $i, $t, $xp);
@@ -95,8 +95,12 @@ class Pango::LayoutLine {
   method downref {
     pango_layout_line_unref($!pll);
   }
+  
+  proto method x_to_index (|)
+    is also<x-to-index>
+    { * }
 
-  multi method x_to_index (Int() $x_pos) is also<x-to-index> {
+  multi method x_to_index (Int() $x_pos) {
     my Int ($i, $t) = (0, 0);
     my $rc = samewith($x_pos, $i, $t);
     ($i, $t, $rc);
@@ -105,9 +109,7 @@ class Pango::LayoutLine {
     Int() $x_pos,
     Int:D $index is rw,
     Int:D $trailing is rw
-  ) 
-    is also<x-to-index> 
-  {
+  ) {
     my int32 $xp = self.RESOLVE-INT($x_pos);
     my int32 ($i, $t) = (0, 0);
     my $rc = pango_layout_line_x_to_index($!pll, $xp, $i, $t);

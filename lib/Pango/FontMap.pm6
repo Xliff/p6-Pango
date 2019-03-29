@@ -47,7 +47,11 @@ class Pango::FontMap {
     pango_font_map_get_type();
   }
 
-  multi method list_families is also<list-families> {
+  proto method list_families
+    is also<list-families>
+    { * }
+    
+  multi method list_families {
     my $fl = CArray[CArray[PangoFontFamily]];
     $fl[0] = CArray[PangoFontFamily].new;
     my ($nf, @f) = (0);
@@ -58,9 +62,7 @@ class Pango::FontMap {
   multi method list_families (
     CArray[CArray[PangoFontFamily]] $families,
     Int $n_families is rw;
-  ) 
-    is also<list-families> 
-  {
+  )  {
     my int32 $nf = 0;
     my $rc = pango_font_map_list_families($!fm, $families, $nf);
     $n_families = $nf;

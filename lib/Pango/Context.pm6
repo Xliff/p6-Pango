@@ -151,8 +151,12 @@ class Pango::Context {
   method get_type is also<get-type> {
     pango_context_get_type();
   }
+  
+  proto method list_families (|) 
+    is also<list-families> 
+    { * }
 
-  multi method list_families is also<list-families> {
+  multi method list_families {
     my $f = CArray[CArray[Pointer[PangoFontFamily]]].new;
     my $nf = 0;
     my @families;
@@ -164,9 +168,7 @@ class Pango::Context {
   multi method list_families (
     CArray[CArray[Pointer[PangoFontFamily]]] $families,
     Int $n_families is rw
-  ) 
-    is also<list-families> 
-  {
+  ) {
     my gint $nf = self.RESOLVE-INT($n_families);
     pango_context_list_families($!pc, $families, $nf);
     $n_families = $nf;

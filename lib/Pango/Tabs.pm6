@@ -59,7 +59,11 @@ class Pango::Tabs {
     pango_tab_array_get_size($!pta);
   }
 
-  multi method get_tab ( Int() $tab_index ) is also<get-tab> {
+  proto method get_tab (|)
+    is also<get-tab>
+    { * }
+    
+  multi method get_tab ( Int() $tab_index ) {
     my ($a, $l);
     samewith($tab_index, $a, $l);
   }
@@ -67,16 +71,18 @@ class Pango::Tabs {
     Int() $tab_index,
     Int() $alignment is rw,           # PangoTabAlign $alignment,
     Int() $location
-  ) 
-    is also<get-tab> 
-  {
+  ) {
     my gint ($ti, $l) = ( self.RESOLVE-INT($tab_index), 0 );
     my guint32 $a = 0;
     pango_tab_array_get_tab($!pta, $tab_index, $a, $l);
     ($alignment, $location) = ($a, $l);
   }
-
-  multi method get_tabs is also<get-tabs> {
+  
+  proto method get_tabs
+    is also<get-tabs>
+    { * }
+    
+  multi method get_tabs {
     my (@a, @l);
     samewith(@a, @l);
     my @c = do for @a Z @l -> ($a, $l) {
@@ -84,7 +90,7 @@ class Pango::Tabs {
     }
     @c;
   }
-  multi method get_tabs (@alignments, @locations) is also<get-tabs> {
+  multi method get_tabs (@alignments, @locations) {
     my $a = CArray[uint32].new;
     my $l = CArray[gint].new;
     pango_tab_array_get_tabs($!pta, $a, $l);
@@ -102,6 +108,9 @@ class Pango::Tabs {
     pango_tab_array_resize($!pta, $ns);
   }
 
+  proto method set_tab (|)
+    is also<set-tab>
+    { * }
   # Interface WOULD be the following:
   # method set_tab (
   #   Int() $tab_index,
@@ -110,12 +119,10 @@ class Pango::Tabs {
   # )
   #... but current implementation forces $alignment to always be
   # PANGO_TAB_LEFT, hence we have the following sub definitions:
-  method set_tab (
+  multi method set_tab (
     Int() $tab_index,
     Int() $location
-  ) 
-    is also<set-tab> 
- {
+  ) {
     my @i = ($tab_index, $location);
     my gint ($t, $l) = self.RESOLVE-INT(@i);
     #my guint $a = self.RESOLVE-UINT($alignment);
@@ -128,7 +135,7 @@ class Pango::Tabs {
   # }
 
   #multi
-  method set_tabs (@l) is also<set-tabs> {
+  multi method set_tabs (@l) {
     # die '<alignments> and <locations> must be the same size'
     #   unless +@a == +@l;
     # die '<alignment> must consist of Integer-compatible elements'
