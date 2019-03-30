@@ -1,5 +1,7 @@
 use v6.c;
 
+use Method::Also;
+
 use Pango::Compat::Types;
 use Pango::Raw::Matrix;
 use Pango::Raw::Types;
@@ -85,4 +87,3 @@ class Pango::Matrix {
   }
 
 }
-

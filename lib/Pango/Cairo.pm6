@@ -131,12 +131,14 @@ class Pango::Cairo {
 
   # To prevent confusion, this should probably be the only
   # version of this method.
-  multi method create_layout(Pango::Cairo:D:) is also<create-layout> {
+  proto method create_layout (|)
+    is also<create-layout>
+  { * }
+  
+  multi method create_layout(Pango::Cairo:D:) {
     $!pl = Pango::Layout.new( pango_cairo_create_layout($!ct) );
   }
-  multi method create_layout(Pango::Cairo:U: cairo_t $context) 
-    is also<create-layout> 
-  {
+  multi method create_layout(Pango::Cairo:U: cairo_t $context) {
     Pango::Layout.new( pango_cairo_create_layout($context) );
   }
 
@@ -183,7 +185,9 @@ class Pango::Cairo {
     Num() $y,
     Num() $width,
     Num() $height
-  ) is also<show-error-underline> {
+  ) 
+    is also<show-error-underline> 
+  {
     my gdouble ($xx, $yy, $w, $h) = ($x, $y, $width, $height);
     pango_cairo_show_error_underline($!ct, $xx, $yy, $w, $h);
   }
@@ -208,10 +212,14 @@ class Pango::Cairo {
     pango_cairo_show_layout_line($!ct, $line);
   }
 
-  multi method update_context is also<update-context> {
+  proto method update_context (|)
+    is also<update-context>
+  { * }
+  
+  multi method update_context {
     samewith($!pc);
   }
-  multi method update_context(PangoContext() $apc) is also<update-context> {
+  multi method update_context(PangoContext() $apc) {
     pango_cairo_update_context($!ct, $apc);
   }
 

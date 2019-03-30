@@ -67,14 +67,16 @@ class Pango::Coverage {
     my uint32 $l = self.RESOLVE-UINT($level);
     pango_coverage_set($!pc, $i, $l);
   }
+  
+  proto method to_bytes (|) 
+    is also<to-bytes> 
+  { * }
 
-  multi method to_bytes is also<to-bytes> {
+  multi method to_bytes {
     my ($b, $nb) = (Blob[uint8].new, 0);
     samewith($b, $nb);
   }
-  multi method to_bytes (Blob $bytes is rw, Int $n_bytes is rw) 
-    is also<to-bytes> 
-  {
+  multi method to_bytes (Blob $bytes is rw, Int $n_bytes is rw) {
     my $ba = CArray[CArray[uint8]].new;
     my int32 $nb = 0;
     pango_coverage_to_bytes($!pc, $ba, $nb);

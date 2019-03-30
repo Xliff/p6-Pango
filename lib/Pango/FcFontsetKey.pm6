@@ -1,5 +1,7 @@
 use v6.c;
 
+use Method::Also;
+
 use Pango::Compat::Types;
 use Pango::Raw::FcFontMap;
 use Pango::Raw::Types;
@@ -32,4 +34,3 @@ class Pango::FcFontsetKey {
   }
 
 }
-
