@@ -4,3 +4,4 @@ isolate/
 *.bak
 *.bump
 .touch/
+LastBuildResults
