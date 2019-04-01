@@ -1,8 +1,5 @@
 {
-    "depends": [
-        "Cairo",
-        "Method::Also",
-    ],
+    "depends": [ "Cairo", "Method::Also" ],
     "description": "Perl6 library bindings for Pango",
     "version": "r0.1",
     "meta-version": "0",
@@ -88,28 +85,3 @@
     "support": {"source": null},
     "authors": ["clifton.wood@gmail.com"]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

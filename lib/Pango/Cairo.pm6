@@ -154,7 +154,7 @@ class Pango::Cairo {
     pango_cairo_error_underline_path($!ct, $xx, $yy, $w, $h);
   }
 
-  method font_get_scaled_font(PangoCairoFont $font) 
+  method font_get_scaled_font(PangoCairoFont() $font) 
     is also<font-get-scaled-font> 
   {
     pango_cairo_font_get_scaled_font($font);
@@ -198,7 +198,7 @@ class Pango::Cairo {
     pango_cairo_show_glyph_item($!ct, $text, $glyph_item);
   }
 
-  method show_glyph_string (PangoFont $font, PangoGlyphString $glyphs) 
+  method show_glyph_string (PangoFont() $font, PangoGlyphString() $glyphs) 
     is also<show-glyph-string> 
   {
     pango_cairo_show_glyph_string($!ct, $font, $glyphs);
