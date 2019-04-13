@@ -18,12 +18,7 @@ class Pango::Tabs {
     $!pta = $tabs;
   }
 
-  method Pango::Raw::Types::PangoTabArray {
-    $!pta;
-  }
-  method array {
-    $!pta;
-  }
+  method Pango::Raw::Types::PangoTabArray is also<TabArray> { $!pta }
 
   multi method new (PangoTabArray $tabs) {
     self.bless(:$tabs);

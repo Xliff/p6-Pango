@@ -176,7 +176,23 @@ class Pango::Cairo {
     pango_cairo_layout_line_path($!ct, $line);
   }
 
-  method layout_path (PangoLayout() $layout) is also<layout-path> {
+  proto method layout_path (|) 
+    is also<layout-path>
+  { * }
+  
+  multi method layout_path (Pango::Cairo:U: 
+    Cairo::Context $cr, 
+    PangoLayout() $layout
+  ) {
+    samewith($cr.context, $layout);
+  }
+  multi method layout_path (Pango::Cairo:U:
+    cairo_t $cr,
+    PangoLayout() $layout
+  ) {
+    pango_cairo_layout_path($cr, $layout);
+  }
+  multi method layout_path (PangoLayout() $layout) is also<layout-path> {
     pango_cairo_layout_path($!ct, $layout);
   }
 

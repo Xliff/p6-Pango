@@ -17,16 +17,18 @@ class Pango::AttrList {
     $!pal = $list;
   }
 
-  method Pango::Raw::Types::PangoAttrList {
-    $!pal;
-  }
+  method Pango::Raw::Types::PangoAttrList is also<AttrList> { $!pal }
 
-  method new {
+  multi method new (PangoAttrList $list) {
+    my $o = self.bless(:$list);
+    $o.upref;
+  }
+  multi method new {
     my $list = pango_attr_list_new();
     self.bless(:$list);
   }
 
-  method change (PangoAttributes $attr) {
+  method change (PangoAttributes() $attr) {
     pango_attr_list_change($!pal, $attr.attr);
   }
 
@@ -46,25 +48,26 @@ class Pango::AttrList {
     pango_attr_list_get_type();
   }
 
-  method insert (PangoAttributes $attr) {
+  method insert (PangoAttributes() $attr) {
     pango_attr_list_insert($!pal, $attr.attr);
   }
 
-  method insert_before (PangoAttributes $attr) is also<insert-before> {
+  method insert_before (PangoAttributes() $attr) is also<insert-before> {
     pango_attr_list_insert_before($!pal, $attr.attr);
   }
 
-  method upref {
+  method ref is also<upref> {
     pango_attr_list_ref($!pal);
+    self;
   }
 
-  method splice (PangoAttrList $other, Int() $pos, Int() $len) {
+  method splice (PangoAttrList() $other, Int() $pos, Int() $len) {
     my @i = ($pos, $len);
     my gint ($p, $l) = self.RESOLVE-INT(@i);
     pango_attr_list_splice($!pal, $other, $pos, $len);
   }
 
-  method downref {
+  method unref is also<downref> {
     pango_attr_list_unref($!pal);
   }
 }

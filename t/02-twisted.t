@@ -200,9 +200,9 @@ sub point_on_path(%param, num64 $x is rw, num64 $y is rw) {
 
     $the_x -= $parameter[$i];
     given $d[0].data-type {
-      when PATH_MOVE_TO  { $cp = $lmt = $d[1]; }
-      when PATH_LINE_TO  { $cp        = $d[1]; }
-      when PATH_CURVE_TO { $cp        = $d[3]; }
+      when PATH_MOVE_TO  { $cp = $lmt = $d[1] }
+      when PATH_LINE_TO  { $cp        = $d[1] }
+      when PATH_CURVE_TO { $cp        = $d[3] }
     }
 
     $d = %param<path>.get_data($i);
@@ -265,7 +265,7 @@ sub map_path_onto($c, $path) {
   $c.new_path;
   transform_path($cp, &point_on_path, %param);
   $c.append_path($cp);
-  #$path.destroy;
+  $path.destroy;
 }
 
 sub draw_text($c, $x, $y, $f, $t) {
@@ -293,6 +293,7 @@ sub draw_twisted($c, $x, $y, $f, $t) {
   $c.new_path;
   draw_text($c, $x, $y, $f, $t);
   map_path_onto($c, $path);
+  #$path.destroy;
   $c.fill(:preserve);
   $c.save;
   $c.rgb(0.1, 0.1, 0.1);
@@ -313,7 +314,7 @@ sub draw_dream($c) {
   # Fancy is not saving/restoring properly?
   #$c.new_path;
 
-  #draw_twisted($c, 0, 0, 'Serif 40', 'It was a dream... Oh Just a dream');
+  draw_twisted($c, 0, 0, 'Serif 40', 'It was a dream... Oh Just a dream');
 }
 
 sub draw_wow($c) {

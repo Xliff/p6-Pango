@@ -260,6 +260,23 @@ D
     my gint $i = self.RESOLVE-INT($index);
     pango_layout_get_cursor_pos($!pl, $i, $strong_pos, $weak_pos);
   }
+  
+  proto method get_extents (|)
+    is also<get-extents> 
+  { * }
+  
+  method get_extents is also<extents> {
+    my ($ir, $lr) = PangoRectangle.new xx 2;
+    samewith($ir, $lr);
+  }
+  
+  method get_extents (
+    PangoRectangle $ink_rect, 
+    PangoRectangle $logical_rect
+  ) {
+    pango_layout_get_extents($!pl, $ink_rect, $logical_rect);
+    ($ink_rect, $logical_rect);
+  }
 
   method get_iter is also<get-iter> {
     Pango::LayoutIter.new( pango_layout_get_iter($!pl) );
@@ -299,6 +316,27 @@ D
   {
     my gint $na = self.RESOLVE-INT($n_attrs);
     pango_layout_get_log_attrs_readonly($!pl, $na);
+  }
+
+  proto method get_pixel_extents (|) 
+    is also<get_pixel_extents>
+  { * }
+  
+  multi method get_pixel_extents 
+    is also<
+      pixel_extents
+      pixel-extents
+    }
+  {
+    my ($ir, $lr) = PangoRectangle.new xx 2;
+    samewith($ir, $lr);
+  }
+  method get_pixel_extents (
+    PangoRectangle $ink_rect, 
+    PangoRectangle $logical_rect
+  ) {
+    pango_layout_get_pixel_extents($!pl, $ink_rect, $logical_rect);
+    ($ink_rect, $logical_rect);
   }
 
   proto method get_pixel_size (|) 

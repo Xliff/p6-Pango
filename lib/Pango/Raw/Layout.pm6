@@ -39,6 +39,16 @@ sub pango_layout_get_cursor_pos (
   is native(pango)
   is export
   { * }
+  
+sub pango_layout_get_extents (
+  PangoLayout $layout, 
+  PangoRectangle $ink_rect, 
+  PangoRectangle $logical_rect
+)
+  is native(pango)
+  is export
+  { * }
+
 
 sub pango_layout_get_iter (PangoLayout $layout)
   returns PangoLayoutIter
@@ -88,6 +98,15 @@ sub pango_layout_get_log_attrs (
 
 sub pango_layout_get_log_attrs_readonly (PangoLayout $layout, gint $n_attrs)
   returns PangoLogAttr
+  is native(pango)
+  is export
+  { * }
+  
+sub pango_layout_get_pixel_extents (
+  PangoLayout $layout, 
+  PangoRectangle $ink_rect, 
+  PangoRectangle $logical_rect
+)
   is native(pango)
   is export
   { * }
