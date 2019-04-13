@@ -265,12 +265,11 @@ D
     is also<get-extents> 
   { * }
   
-  method get_extents is also<extents> {
+  multi method get_extents is also<extents> {
     my ($ir, $lr) = PangoRectangle.new xx 2;
     samewith($ir, $lr);
   }
-  
-  method get_extents (
+  multi method get_extents (
     PangoRectangle $ink_rect, 
     PangoRectangle $logical_rect
   ) {
@@ -319,19 +318,19 @@ D
   }
 
   proto method get_pixel_extents (|) 
-    is also<get_pixel_extents>
+    is also<get-pixel-extents>
   { * }
   
-  multi method get_pixel_extents 
+  multi method get_pixel_extents
     is also<
       pixel_extents
       pixel-extents
-    }
+    >
   {
     my ($ir, $lr) = PangoRectangle.new xx 2;
     samewith($ir, $lr);
   }
-  method get_pixel_extents (
+  multi method get_pixel_extents (
     PangoRectangle $ink_rect, 
     PangoRectangle $logical_rect
   ) {
