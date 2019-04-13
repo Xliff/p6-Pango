@@ -69,6 +69,20 @@ sub clear_error($error = $ERROR) is export {
   $ERROR = Nil;
 }
 
+sub set_error(CArray $e) is export {
+  $ERROR = $e[0] with $e[0];
+}
+
+sub unstable_get_type($name, &sub, $n is rw, $t is rw) is export {
+  return $t if ($n // 0) > 0;
+  repeat {
+    $t = &sub();
+    die "{ $name }.get_type could not get stable result"
+      if $n++ > 20;
+  } until $t == &sub();
+  $t;
+}
+
 constant Display             is export := Pointer;
 constant FT_Face             is export := Pointer;
 constant Picture             is export := Pointer;

@@ -17,10 +17,20 @@ class Pango::Language {
     $!pl = $language;
   }
 
-  method new(Str() $s) {
+  multi method new (PangoLanguage $language) {
+    self.bless($language);
+  }
+  multi method new(Str() $s) {
     self.from_string($s);
   }
-  method from_string(Str() $s) is also<from-string> {
+  
+  method from_string(Str() $s) 
+    is also<
+      from-string
+      new_from_string
+      new-from-string
+    > 
+  {
     my $language = pango_language_from_string($s);
     self.bless(:$language);
   }
@@ -39,7 +49,8 @@ class Pango::Language {
   }
 
   method get_type is also<get-type> {
-    pango_language_get_type();
+    state ($n, $t);
+    unstable_get_type( self.^name, &pango_language_get_type, $n, $t );
   }
 
   method includes_script (Int() $script) is also<includes-script> {
