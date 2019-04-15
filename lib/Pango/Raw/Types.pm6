@@ -238,7 +238,7 @@ class PangoRectangle does Pango::Roles::Pointers {
 
   submethod BUILD (:$!x, :$!y, :$!width, :$!height) { }
 
-  method new($x, $y, $width, $height) {
+  method new($x = 0, $y = 0, $width = 0, $height = 0) {
     self.bless(:$x, :$y, :$width, :$height);
   }
 }

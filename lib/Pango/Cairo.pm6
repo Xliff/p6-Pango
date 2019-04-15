@@ -49,8 +49,8 @@ class Pango::Cairo {
     PangoFontMap() $fontmap,
     cairo_t $cr,
     :$update = True
-  ) 
-    is also<new-with-fontmap> 
+  )
+    is also<new-with-fontmap>
   {
     my $context = Pango::Context.new( self.font_map_create_context($fontmap) );
     self.bless(:$context, :$update, :$cr);
@@ -105,8 +105,8 @@ class Pango::Cairo {
     &func,
     $data?,
     &dnotify = Callable
-  ) 
-    is also<context-set-shape-renderer> 
+  )
+    is also<context-set-shape-renderer>
   {
     CATCH { default { .message.say } }
 
@@ -134,7 +134,7 @@ class Pango::Cairo {
   proto method create_layout (|)
     is also<create-layout>
   { * }
-  
+
   multi method create_layout(Pango::Cairo:D:) {
     $!pl = Pango::Layout.new( pango_cairo_create_layout($!ct) );
   }
@@ -147,15 +147,15 @@ class Pango::Cairo {
     Num() $y,
     Num() $width,
     Num() $height
-  ) 
-    is also<error-underline-path> 
+  )
+    is also<error-underline-path>
   {
     my gdouble ($xx, $yy, $w, $h) = ($x, $y, $width, $height);
     pango_cairo_error_underline_path($!ct, $xx, $yy, $w, $h);
   }
 
-  method font_get_scaled_font(PangoCairoFont() $font) 
-    is also<font-get-scaled-font> 
+  method font_get_scaled_font(PangoCairoFont() $font)
+    is also<font-get-scaled-font>
   {
     pango_cairo_font_get_scaled_font($font);
   }
@@ -164,24 +164,24 @@ class Pango::Cairo {
     pango_cairo_font_get_type();
   }
 
-  method glyph_string_path (PangoFont() $font, PangoGlyphString() $glyphs) 
-    is also<glyph-string-path> 
+  method glyph_string_path (PangoFont() $font, PangoGlyphString() $glyphs)
+    is also<glyph-string-path>
   {
     pango_cairo_glyph_string_path($!ct, $font, $glyphs);
   }
 
-  method layout_line_path (PangoLayoutLine() $line) 
-    is also<layout-line-path> 
+  method layout_line_path (PangoLayoutLine() $line)
+    is also<layout-line-path>
   {
     pango_cairo_layout_line_path($!ct, $line);
   }
 
-  proto method layout_path (|) 
+  proto method layout_path (|)
     is also<layout-path>
   { * }
-  
-  multi method layout_path (Pango::Cairo:U: 
-    Cairo::Context $cr, 
+
+  multi method layout_path (Pango::Cairo:U:
+    Cairo::Context $cr,
     PangoLayout() $layout
   ) {
     samewith($cr.context, $layout);
@@ -192,7 +192,7 @@ class Pango::Cairo {
   ) {
     pango_cairo_layout_path($cr, $layout);
   }
-  multi method layout_path (PangoLayout() $layout) is also<layout-path> {
+  multi method layout_path (PangoLayout() $layout) {
     pango_cairo_layout_path($!ct, $layout);
   }
 
@@ -201,21 +201,21 @@ class Pango::Cairo {
     Num() $y,
     Num() $width,
     Num() $height
-  ) 
-    is also<show-error-underline> 
+  )
+    is also<show-error-underline>
   {
     my gdouble ($xx, $yy, $w, $h) = ($x, $y, $width, $height);
     pango_cairo_show_error_underline($!ct, $xx, $yy, $w, $h);
   }
 
-  method show_glyph_item (Str() $text, PangoGlyphItem() $glyph_item) 
-    is also<show-glyph-item> 
+  method show_glyph_item (Str() $text, PangoGlyphItem() $glyph_item)
+    is also<show-glyph-item>
   {
     pango_cairo_show_glyph_item($!ct, $text, $glyph_item);
   }
 
-  method show_glyph_string (PangoFont() $font, PangoGlyphString() $glyphs) 
-    is also<show-glyph-string> 
+  method show_glyph_string (PangoFont() $font, PangoGlyphString() $glyphs)
+    is also<show-glyph-string>
   {
     pango_cairo_show_glyph_string($!ct, $font, $glyphs);
   }
@@ -231,7 +231,7 @@ class Pango::Cairo {
   proto method update_context (|)
     is also<update-context>
   { * }
-  
+
   multi method update_context {
     samewith($!pc);
   }
