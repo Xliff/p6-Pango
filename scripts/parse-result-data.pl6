@@ -1,5 +1,7 @@
+#!/usr/bin/env perl6
 use v6.c;
 
+#use Grammar::Tracer;
 use JSON::Fast;
 
 grammar ParseBuildResults {
@@ -27,7 +29,7 @@ grammar ParseBuildResults {
     ^^ \s* '=== ' <module> ' ===' $$
   }
   regex stage {
-    ^^ 'Stage ' <stage_type> \s* ': ' [
+    ^^ 'Stage ' <stage_type> \s* ':' [
       \s* <num> \s*
       |
       \s* <err_msg> \s*
@@ -37,7 +39,7 @@ grammar ParseBuildResults {
     '===SORRY!===' .+? <?before \v '==='> $$
   }
   token module {
-    (\w+)+ % '::'
+    $<name>=[ (\w+)+ % '::' ] [\h* $<salt>='*']?
   }
   token num {
     \d+ '.' \d+
@@ -73,7 +75,8 @@ class ResultsBuilder {
       next unless $p.defined;
       %st{$p.key} = $p.value;
     }
-    %sec{$/<header>.made} = %st;
+    %sec{$/<header>.made<name>} = %st;
+    %sec<tainted> = $/<header>.made<salt>.defined;
     make %sec;
   }
 
@@ -83,7 +86,7 @@ class ResultsBuilder {
 
   method module($/) {
     say "Found { $/.Str } section" if $*debug;
-    make $/.Str;
+    make $/.Hash;
   }
 
   method err_msg($/) {
