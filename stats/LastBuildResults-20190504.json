@@ -1,0 +1,702 @@
+{
+  "Pango::MarkupParser": {
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "mast": 0.003e0,
+    "parse": 1.342e0,
+    "mbc": 0e0,
+    "start": 0e0
+  },
+  "Pango::Raw::Cairo": {
+    "mbc": 0e0,
+    "start": 0e0,
+    "parse": 2.113e0,
+    "mast": 0.003e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "moar": 0e0,
+    "ast": 0e0
+  },
+  "Pango::Fontset": {
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 1.369e0,
+    "mast": 0.003e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0
+  },
+  "Pango::Color": {
+    "mbc": 0.001e0,
+    "start": 0e0,
+    "parse": 1.388e0,
+    "mast": 0.003e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0
+  },
+  "Pango::FontMap": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "mast": 0.003e0,
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 1.424e0
+  },
+  "Pango::Compat::Types": {
+    "optimize": 0.005e0,
+    "syntaxcheck": 0e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "mbc": 0.001e0,
+    "parse": 2.071e0,
+    "start": 0e0,
+    "mast": 0.004e0
+  },
+  "Pango::Raw::Types": {
+    "parse": 2.237e0,
+    "mbc": 0.001e0,
+    "start": 0e0,
+    "mast": 0.004e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.002e0
+  },
+  "Pango::Roles::Types": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "parse": 1.455e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "mast": 0.003e0
+  },
+  "Pango::Raw::Renderer": {
+    "ast": 0e0,
+    "moar": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 1.767e0,
+    "mast": 0.003e0
+  },
+  "Pango::Raw::FCFont": {
+    "moar": 0e0,
+    "ast": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "mbc": 0e0,
+    "parse": 1.423e0,
+    "start": 0e0,
+    "mast": 0.003e0
+  },
+  "Pango::Tabs": {
+    "mast": 0.003e0,
+    "mbc": 0e0,
+    "parse": 1.39e0,
+    "start": 0e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0
+  },
+  "Pango::FontMap::FT2": {
+    "moar": 0e0,
+    "ast": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "mast": 0.003e0,
+    "mbc": 0e0,
+    "parse": 1.571e0,
+    "start": 0e0
+  },
+  "Pango::Cairo": {
+    "mast": 0.004e0,
+    "parse": 1.695e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0
+  },
+  "Pango::Compat::Raw::GList": {
+    "mast": 0.007e0,
+    "start": 0e0,
+    "mbc": 0.001e0,
+    "parse": 2.063e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0
+  },
+  "Pango::Cairo::FontMap": {
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "parse": 1.438e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "mast": 0.003e0
+  },
+  "Pango::Roles::Pointers": {
+    "moar": 0e0,
+    "ast": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "mast": 0.003e0,
+    "parse": 1.298e0,
+    "mbc": 0e0,
+    "start": 0e0
+  },
+  "Method::Also": {
+    "mast": 0.003e0,
+    "parse": 0.885e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "moar": 0e0
+  },
+  "Pango::Language": {
+    "mast": 0.003e0,
+    "parse": 1.353e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "moar": 0e0,
+    "ast": 0e0
+  },
+  "Pango::Raw::Misc": {
+    "ast": 0e0,
+    "moar": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 1.722e0,
+    "mast": 0.003e0
+  },
+  "Pango::Raw::FontMap": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "mast": 0.003e0,
+    "mbc": 0e0,
+    "parse": 1.538e0,
+    "start": 0e0
+  },
+  "Pango::Attr": {
+    "parse": 1.521e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "mast": 0.003e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0
+  },
+  "Pango::Coverage": {
+    "mast": 0.003e0,
+    "parse": 1.394e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "ast": 0e0,
+    "moar": 0e0
+  },
+  "SUMMARY": {
+    "sys": 8.58e0,
+    "real": 119.55e0,
+    "user": 157.47e0
+  },
+  "Pango::Context": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "mast": 0.003e0,
+    "parse": 1.547e0,
+    "mbc": 0e0,
+    "start": 0e0
+  },
+  "Pango::XFT": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "parse": 1.451e0,
+    "mast": 0.003e0
+  },
+  "Pango::Raw::Attr": {
+    "ast": 0e0,
+    "moar": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "mbc": 0.001e0,
+    "start": 0e0,
+    "parse": 2.607e0,
+    "mast": 0.003e0
+  },
+  "Pango::Raw::DescriptionMetrics": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "mast": 0.003e0,
+    "parse": 2.756e0,
+    "mbc": 0.001e0,
+    "start": 0e0
+  },
+  "Pango::FontDescription": {
+    "mbc": 0e0,
+    "start": 0e0,
+    "parse": 1.528e0,
+    "mast": 0.003e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "moar": 0e0
+  },
+  "Cairo": {
+    "optimize": 0.002e0,
+    "syntaxcheck": 0e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "mbc": 0.001e0,
+    "parse": 9.734e0,
+    "start": 0e0,
+    "mast": 0.005e0
+  },
+  "DEPENDENCIES": {
+    "real": 2.54e0,
+    "user": 3.18e0,
+    "sys": 0.24e0
+  },
+  "Pango::Compat::GList": {
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 1.536e0,
+    "mast": 0.003e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0
+  },
+  "Pango::GlyphItemIter": {
+    "moar": 0e0,
+    "ast": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "mast": 0.003e0,
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 1.277e0
+  },
+  "Pango::Raw::Matrix": {
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 1.705e0,
+    "mast": 0.003e0
+  },
+  "Pango::FcFontsetKey": {
+    "mast": 0.003e0,
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 1.36e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0
+  },
+  "Pango::GlyphString": {
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "mbc": 0e0,
+    "parse": 1.482e0,
+    "start": 0e0,
+    "mast": 0.003e0
+  },
+  "Pango::Raw::Coverage": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "mast": 0.003e0,
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 1.454e0
+  },
+  "Pango::Raw::FcFontMap": {
+    "mbc": 0e0,
+    "parse": 1.718e0,
+    "start": 0e0,
+    "mast": 0.003e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0
+  },
+  "Pango::Raw::Tabs": {
+    "ast": 0e0,
+    "moar": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 1.597e0,
+    "mast": 0.003e0
+  },
+  "Pango::FontMap::FC": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "mast": 0.003e0,
+    "parse": 1.472e0,
+    "mbc": 0e0,
+    "start": 0e0
+  },
+  "Pango::Raw::GlyphItem": {
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 1.649e0,
+    "mast": 0.003e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "moar": 0e0,
+    "ast": 0e0
+  },
+  "Pango::FontsetSimple": {
+    "ast": 0e0,
+    "moar": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 1.328e0,
+    "mast": 0.003e0
+  },
+  "Pango::LayoutIter": {
+    "moar": 0e0,
+    "ast": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "mast": 0.003e0,
+    "mbc": 0e0,
+    "parse": 1.419e0,
+    "start": 0e0
+  },
+  "Pango::Layout": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "mbc": 0e0,
+    "parse": 1.832e0,
+    "start": 0e0,
+    "mast": 0.003e0
+  },
+  "Pango::Compat::FreeType": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "mast": 0.003e0,
+    "mbc": 0e0,
+    "parse": 1.402e0,
+    "start": 0e0
+  },
+  "Pango::GlyphItem": {
+    "ast": 0e0,
+    "moar": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "parse": 1.367e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "mast": 0.003e0
+  },
+  "Pango::FontMetrics": {
+    "ast": 0e0,
+    "moar": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "mast": 0.003e0,
+    "mbc": 0e0,
+    "parse": 1.359e0,
+    "start": 0e0
+  },
+  "Pango::Raw::Utils": {
+    "mast": 0.003e0,
+    "mbc": 0e0,
+    "parse": 1.427e0,
+    "start": 0e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0
+  },
+  "Pango::Raw::Context": {
+    "mbc": 0e0,
+    "parse": 1.903e0,
+    "start": 0e0,
+    "mast": 0.003e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "moar": 0e0,
+    "ast": 0e0
+  },
+  "Pango::Compat::Raw::GSList": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "mast": 0.003e0,
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 2.004e0
+  },
+  "Pango::Raw::Layout": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "parse": 3.423e0,
+    "mbc": 0.001e0,
+    "start": 0e0,
+    "mast": 0.003e0
+  },
+  "Pango::Renderer": {
+    "mbc": 0e0,
+    "start": 0e0,
+    "parse": 1.39e0,
+    "mast": 0.006e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0
+  },
+  "Pango::Font::XFT": {
+    "mast": 0.003e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "parse": 1.357e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "moar": 0e0,
+    "ast": 0e0
+  },
+  "Pango::Roles::References": {
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 1.422e0,
+    "mast": 0.003e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "moar": 0e0,
+    "ast": 0e0
+  },
+  "Pango::FcFontKey": {
+    "mbc": 0e0,
+    "parse": 1.276e0,
+    "start": 0e0,
+    "mast": 0.003e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0
+  },
+  "Pango::FontFace": {
+    "ast": 0e0,
+    "moar": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "mast": 0.003e0,
+    "mbc": 0e0,
+    "parse": 1.382e0,
+    "start": 0e0
+  },
+  "Pango::AttrList": {
+    "mbc": 0e0,
+    "start": 0e0,
+    "parse": 1.336e0,
+    "mast": 0.003e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "moar": 0e0,
+    "ast": 0e0
+  },
+  "Pango::FontFamily": {
+    "mast": 0.003e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "parse": 1.367e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "moar": 0e0
+  },
+  "Pango::LayoutLine": {
+    "ast": 0e0,
+    "moar": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "mbc": 0e0,
+    "parse": 1.389e0,
+    "start": 0e0,
+    "mast": 0.003e0
+  },
+  "Pango::Matrix": {
+    "mast": 0.003e0,
+    "parse": 1.387e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0
+  },
+  "Pango::Raw::Fontset": {
+    "moar": 0e0,
+    "ast": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "mast": 0.003e0,
+    "parse": 1.55e0,
+    "mbc": 0e0,
+    "start": 0e0
+  },
+  "Pango::Raw::FT2FontMap": {
+    "mbc": 0e0,
+    "parse": 1.719e0,
+    "start": 0e0,
+    "mast": 0.003e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "moar": 0e0
+  },
+  "Pango::AttrIter": {
+    "ast": 0e0,
+    "moar": 0e0,
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "parse": 1.355e0,
+    "mast": 0.003e0
+  },
+  "Pango::Misc": {
+    "mbc": 0e0,
+    "parse": 1.317e0,
+    "start": 0e0,
+    "mast": 0.003e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "moar": 0e0,
+    "ast": 0e0
+  },
+  "Pango::Raw::XFT": {
+    "mast": 0.003e0,
+    "mbc": 0e0,
+    "parse": 1.901e0,
+    "start": 0e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0
+  },
+  "Pango::Raw::GlyphString": {
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "parse": 1.746e0,
+    "mast": 0.003e0
+  },
+  "Pango::Raw::Language": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "start": 0e0,
+    "mbc": 0e0,
+    "parse": 1.458e0,
+    "mast": 0.003e0
+  },
+  "Pango::Roles::Protection": {
+    "mast": 0.003e0,
+    "mbc": 0e0,
+    "parse": 0.771e0,
+    "start": 0e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0
+  },
+  "Pango::Compat::GSList": {
+    "mast": 0.003e0,
+    "mbc": 0e0,
+    "parse": 1.506e0,
+    "start": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "ast": 0e0,
+    "moar": 0e0
+  },
+  "Pango::Font": {
+    "ast": 0e0,
+    "moar": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "parse": 1.357e0,
+    "mast": 0.003e0
+  },
+  "Pango::Font::FC": {
+    "parse": 1.402e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "mast": 0.003e0,
+    "moar": 0e0,
+    "ast": 0e0,
+    "optimize": 0.001e0,
+    "syntaxcheck": 0e0
+  },
+  "Pango::Renderer::XFT": {
+    "syntaxcheck": 0e0,
+    "optimize": 0.001e0,
+    "ast": 0e0,
+    "moar": 0e0,
+    "mast": 0.003e0,
+    "mbc": 0e0,
+    "start": 0e0,
+    "parse": 1.334e0
+  }
+}
