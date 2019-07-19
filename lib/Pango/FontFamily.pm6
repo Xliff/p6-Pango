@@ -17,6 +17,10 @@ class Pango::FontFamily {
   submethod BUILD (:$face) {
     $!pff = $face;
   }
+  
+  method new (PangoFontFamily $face) {
+    self.bless(:$face);
+  }
 
   method get_name is also<get-name> {
     pango_font_family_get_name($!pff);
@@ -32,4 +36,3 @@ class Pango::FontFamily {
   }
 
 }
-
