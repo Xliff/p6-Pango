@@ -6,3 +6,4 @@ isolate/
 .touch/
 LastBuildResults
 LastBuildResults.*
+scripts/
