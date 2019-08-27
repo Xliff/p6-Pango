@@ -7,3 +7,5 @@ isolate/
 LastBuildResults
 LastBuildResults.*
 scripts/
+scripts.old/
+scripts.old2/

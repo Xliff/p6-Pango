@@ -26,14 +26,16 @@ class Pango::Layout {
     $!ref = $!pl.p;
   }
 
-  method Pango::Raw::Types::PangoLayout {
-    $!pl;
-  }
-  method layout {
-    $!pl;
-  }
+  method Pango::Raw::Types::PangoLayout
+    is also<
+      PangoLayout
+      layout
+    >
+  { $!pl; }
 
-  proto method new(|) { * }
+  proto method new(|)
+  { * }
+  
   multi method new (PangoLayout $layout) {
     my $o = self.bless(:$layout);
     $o.upref;
@@ -254,23 +256,23 @@ D
     Int() $index,
     PangoRectangle $strong_pos,
     PangoRectangle $weak_pos
-  ) 
-    is also<get-cursor-pos> 
+  )
+    is also<get-cursor-pos>
   {
     my gint $i = self.RESOLVE-INT($index);
     pango_layout_get_cursor_pos($!pl, $i, $strong_pos, $weak_pos);
   }
-  
+
   proto method get_extents (|)
-    is also<get-extents> 
+    is also<get-extents>
   { * }
-  
+
   multi method get_extents is also<extents> {
     my ($ir, $lr) = PangoRectangle.new xx 2;
     samewith($ir, $lr);
   }
   multi method get_extents (
-    PangoRectangle $ink_rect, 
+    PangoRectangle $ink_rect,
     PangoRectangle $logical_rect
   ) {
     pango_layout_get_extents($!pl, $ink_rect, $logical_rect);
@@ -303,24 +305,24 @@ D
     pango_layout_get_lines_readonly($!pl);
   }
 
-  method get_log_attrs (PangoLogAttr $attrs, Int() $n_attrs) 
-    is also<get-log-attrs> 
+  method get_log_attrs (PangoLogAttr $attrs, Int() $n_attrs)
+    is also<get-log-attrs>
   {
     my gint $na = self.RESOLVE-INT($n_attrs);
     pango_layout_get_log_attrs($!pl, $attrs, $na);
   }
 
-  method get_log_attrs_readonly (Int() $n_attrs) 
-    is also<get-log-attrs-readonly> 
+  method get_log_attrs_readonly (Int() $n_attrs)
+    is also<get-log-attrs-readonly>
   {
     my gint $na = self.RESOLVE-INT($n_attrs);
     pango_layout_get_log_attrs_readonly($!pl, $na);
   }
 
-  proto method get_pixel_extents (|) 
+  proto method get_pixel_extents (|)
     is also<get-pixel-extents>
   { * }
-  
+
   multi method get_pixel_extents
     is also<
       pixel_extents
@@ -331,17 +333,17 @@ D
     samewith($ir, $lr);
   }
   multi method get_pixel_extents (
-    PangoRectangle $ink_rect, 
+    PangoRectangle $ink_rect,
     PangoRectangle $logical_rect
   ) {
     pango_layout_get_pixel_extents($!pl, $ink_rect, $logical_rect);
     ($ink_rect, $logical_rect);
   }
 
-  proto method get_pixel_size (|) 
+  proto method get_pixel_size (|)
     is also<get-pixel-size>
     { * }
-    
+
   multi method get_pixel_size {
     my ($w, $h) = (0 xx 2);
     samewith($w, $h);
@@ -356,7 +358,7 @@ D
   method get_serial is also<get-serial> {
     pango_layout_get_serial($!pl);
   }
-  
+
   proto method get_size (|)
     is also<get-size>
     { * }
@@ -385,8 +387,8 @@ D
     Int() $trailing,
     Int() $line,
     Int() $x_pos
-  ) 
-    is also<index-to-line-x> 
+  )
+    is also<index-to-line-x>
   {
     my gboolean $t = self.RESOLVE-BOOL($trailing);
     my @i = ($index, $line, $x_pos);
@@ -394,8 +396,8 @@ D
     pango_layout_index_to_line_x($!pl, $ii, $t, $ll, $xp);
   }
 
-  method index_to_pos (Int() $index, PangoRectangle $pos) 
-    is also<index-to-pos> 
+  method index_to_pos (Int() $index, PangoRectangle $pos)
+    is also<index-to-pos>
   {
     my gint $i = self.RESOLVE-INT($index);
     pango_layout_index_to_pos($!pl, $i, $pos);
@@ -416,15 +418,15 @@ D
     Int() $direction,
     Int() $new_index,
     Int() $new_trailing
-  ) 
-    is also<move-cursor-visually> 
+  )
+    is also<move-cursor-visually>
   {
     my gboolean $s = self.RESOLVE-BOOL($strong);
     my @i = ($old_index, $old_trailing, $direction, $new_index, $new_trailing);
     my int32 ($oi, $ot, $d, $ni, $nt) = self.RESOLVE-INT(@i);
     pango_layout_move_cursor_visually($!pl, $s, $oi, $ot, $d, $ni, $nt);
   }
-  
+
   proto method set_markup (|)
     is also<set-markup>
     { * }
@@ -443,8 +445,8 @@ D
     Int() $length,
     Int() $accel_marker,
     Int() $accel_char
-  ) 
-    is also<set-markup-with-accel> 
+  )
+    is also<set-markup-with-accel>
   {
     my int32 $l = self.RESOLVE-INT($length);
     my @u = ($accel_marker, $accel_char);
@@ -452,8 +454,8 @@ D
     pango_layout_set_markup_with_accel($!pl, $markup, $l, $am, $ac);
   }
 
-  method set_text (Str() $text, Int() $length = $text.chars) 
-    is also<set-text> 
+  method set_text (Str() $text, Int() $length = $text.chars)
+    is also<set-text>
   {
     my int32 $l = self.RESOLVE-INT($length);
     pango_layout_set_text($!pl, $text, $length);
@@ -464,8 +466,8 @@ D
     Int() $y,
     Int() $index,
     Int() $trailing
-  ) 
-    is also<xy-to-index> 
+  )
+    is also<xy-to-index>
   {
     my @i = ($x, $y, $index, $trailing);
     my int32 ($xx, $yy, $i, $t) = self.RESOLVE-INT(@i);
