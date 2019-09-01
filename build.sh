@@ -16,3 +16,4 @@ echo -e "Dependency Generation\n=====================" >> LastBuildResults
   done;
   echo;
 )' 2>&1 | tee -a LastBuildResults
+cp LastBuildResults stats/LastBuildResults-`date +%Y%m%d`

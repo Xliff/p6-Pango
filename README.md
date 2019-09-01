@@ -27,5 +27,3 @@ If you just want to run the examples, you can do:
 ```
 ./p6gtkexec t/<name of example>
 ```
-
-Unfortunately, compile times are very long for this project, but I hope you find it interesting!
