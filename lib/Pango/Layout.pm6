@@ -35,7 +35,7 @@ class Pango::Layout {
 
   proto method new(|)
   { * }
-  
+
   multi method new (PangoLayout $layout) {
     my $o = self.bless(:$layout);
     $o.upref;
@@ -108,7 +108,13 @@ class Pango::Layout {
     );
   }
 
-  method font_description is rw is also<font-description> {
+  method font_description is rw
+    is also<
+      font-description
+      font_desc
+      font-desc
+    >
+  {
     Proxy.new(
       FETCH => sub ($) {
         Pango::FontDescription.new( pango_layout_get_font_description($!pl) );
