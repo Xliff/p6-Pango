@@ -6,3 +6,4 @@
 - All miscellaneous routines to Pango::Misc catchall
 √ Add aliasing
 √ Pango specific build system
+- Regenerate missing stats for September 3rd and 6th 2019.
