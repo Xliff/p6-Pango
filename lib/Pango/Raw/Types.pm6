@@ -11,9 +11,9 @@ constant PANGO_SCALE    is export = 1024;
 constant PangoTabArray  is export := CArray[gint];
 constant PangoAttrClass is export := Pointer;
 
-constant PANGO_GLYPH_EMPTY is export         = 0x0FFFFFFF;
-constant PANGO_GLYPH_INVALID_INPUT is export = 0xFFFFFFFF;
-constant PANGO_GLYPH_UNKNOWN_FLAG is export  = 0x10000000;
+constant PANGO_GLYPH_EMPTY         is export  = 0x0FFFFFFF;
+constant PANGO_GLYPH_INVALID_INPUT is export  = 0xFFFFFFFF;
+constant PANGO_GLYPH_UNKNOWN_FLAG  is export  = 0x10000000;
 
 constant PANGO_ATTR_INDEX_FROM_TEXT_BEGINNING = 0;
 constant PANGO_ATTR_INDEX_TO_TEXT_END         = 4294967295;
@@ -25,16 +25,16 @@ sub PANGO_MATRIX_INIT is export {
   PangoMatrix.new( :xx(1), :xy(0), :yx(0), :yy(1), :x0(0), :y0(0) );
 }
 
-sub       PANGO_PIXELS($d) { (($d.Int + 512)  +> 10) }
-sub PANGO_PIXELS_FLOOR($d) { ($d.Int          +> 10) }
-sub  PANGO_PIXELS_CEIL($d) { (($d.Int + 1023) +> 10) }
+sub       PANGO_PIXELS($d) is export { (($d.Int + 512)  +> 10) }
+sub PANGO_PIXELS_FLOOR($d) is export { ($d.Int          +> 10) }
+sub  PANGO_PIXELS_CEIL($d) is export { (($d.Int + 1023) +> 10) }
 
-sub    PANGO_ASCENT(PangoRectangle $r) { -$r.y            }
-sub   PANGO_DESCENT(PangoRectangle $r) { $r.y + $r.height }
-sub  PANGO_LBEARING(PangoRectangle $r) { $r.x             }
-sub  PANGO_RBEARING(PangoRectangle $r) { $r.x + $r.width  }
+sub    PANGO_ASCENT(PangoRectangle $r) is export { -$r.y            }
+sub   PANGO_DESCENT(PangoRectangle $r) is export { $r.y + $r.height }
+sub  PANGO_LBEARING(PangoRectangle $r) is export { $r.x             }
+sub  PANGO_RBEARING(PangoRectangle $r) is export { $r.x + $r.width  }
 
-sub PANGO_GET_UNKNOWN_GLYPH(Int() $wc) { $wc +| PANGO_GLYPH_UNKNOWN_FLAG }
+sub PANGO_GET_UNKNOWN_GLYPH(Int() $wc) is export { $wc +| PANGO_GLYPH_UNKNOWN_FLAG }
 
 our enum PangoAlignment is export <
   PANGO_ALIGN_LEFT
