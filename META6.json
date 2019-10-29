@@ -1,6 +1,6 @@
 {
     "depends": [ 
-	    "Cairo", "Method::Also", "Inline::Perl5", "RandomColor"
+	    "Cairo", "Method::Also", "Inline::Perl5", "RandomColor", "Config::INI"
     ],
     "description": "Perl6 library bindings for Pango",
     "version": "r0.1",
