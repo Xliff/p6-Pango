@@ -9,13 +9,11 @@ use Pango::Raw::Types;
 use Pango::Raw::Context;
 
 use Pango::Roles::References;
-use Pango::Roles::Types;
 
 use Pango::FontMetrics;
 
 class Pango::Context {
   also does Pango::Roles::References;
-  also does Pango::Roles::Types;
 
   has PangoContext $!pc;
 
@@ -27,12 +25,12 @@ class Pango::Context {
     self.downref;
   }
 
-  method Pango::Raw::Types::PangoContext {
-    $!pc;
-  }
-  method context {
-    $!pc;
-  }
+  method Pango::Raw::Types::PangoContext
+    is also<
+      PangoContext
+      context
+    >
+  { $!pc }
 
   multi method new (PangoContext $context) {
     my $o = self.bless(:$context);
@@ -41,7 +39,8 @@ class Pango::Context {
   }
   multi method new {
     my $context = pango_context_new();
-    self.bless(:$context);
+
+    $context ?? self.bless(:$context) !! Nil;
   }
 
   method base_dir is rw is also<base-dir> {
@@ -50,7 +49,8 @@ class Pango::Context {
         PangoDirection( pango_context_get_base_dir($!pc) );
       },
       STORE => sub ($, Int() $direction is copy) {
-        my guint $d = self.RESOLVE-UINT($direction);
+        my guint $d = $direction;
+
         pango_context_set_base_dir($!pc, $d);
       }
     );
@@ -62,7 +62,8 @@ class Pango::Context {
         PangoGravity( pango_context_get_base_gravity($!pc) );
       },
       STORE => sub ($, Int() $gravity is copy) {
-        my guint $g = self.RESOLVE-UINT($gravity);
+        my guint $g = $gravity;
+
         pango_context_set_base_gravity($!pc, $g);
       }
     );
@@ -98,7 +99,7 @@ class Pango::Context {
         PangoGravityHint( pango_context_get_gravity_hint($!pc) );
       },
       STORE => sub ($, Int() $hint is copy) {
-        my guint $h = self.RESOLVE-UINT($hint);
+        my guint $h = $hint;
         pango_context_set_gravity_hint($!pc, $h);
       }
     );
@@ -137,10 +138,10 @@ class Pango::Context {
   method get_metrics (
     PangoFontDescription() $desc,
     Int() $language = self.language
-  ) 
-    is also<get-metrics> 
+  )
+    is also<get-metrics>
   {
-    my uint32 $l = self.RESOLVE-UINT($language);
+    my uint32 $l = $language;
     Pango::FontMetrics.new( pango_context_get_metrics($!pc, $desc, $l) );
   }
 
@@ -151,9 +152,9 @@ class Pango::Context {
   method get_type is also<get-type> {
     pango_context_get_type();
   }
-  
-  proto method list_families (|) 
-    is also<list-families> 
+
+  proto method list_families (|)
+    is also<list-families>
     { * }
 
   multi method list_families {
@@ -169,7 +170,7 @@ class Pango::Context {
     CArray[CArray[Pointer[PangoFontFamily]]] $families,
     Int $n_families is rw
   ) {
-    my gint $nf = self.RESOLVE-INT($n_families);
+    my gint $nf = $n_families;
     pango_context_list_families($!pc, $families, $nf);
     $n_families = $nf;
   }
@@ -178,8 +179,8 @@ class Pango::Context {
     Pango::Font.new( pango_context_load_font($!pc, $desc) );
   }
 
-  method load_fontset (PangoFontDescription $desc, PangoLanguage $language) 
-    is also<load-fontset> 
+  method load_fontset (PangoFontDescription $desc, PangoLanguage $language)
+    is also<load-fontset>
   {
     Pango::Fontset.new( pango_context_load_fontset($!pc, $desc, $language) );
   }
@@ -191,11 +192,12 @@ class Pango::Context {
     Int() $length,
     PangoAttrList $attrs,
     PangoAttrIterator $cached_iter
-  ) 
-    is also<pango-itemize> 
+  )
+    is also<pango-itemize>
   {
     my @i = ($start_index, $length);
-    my gint ($si, $l) = self.RESOLVE-INT(@i);
+    my gint ($si, $l) = @i;
+
     GList.new(
       PangoItem,
       pango_itemize($!pc, $text, $si, $l, $attrs, $cached_iter)
@@ -210,12 +212,13 @@ class Pango::Context {
     Int() $length,
     PangoAttrList $attrs,
     PangoAttrIterator $cached_iter
-  ) 
-    is also<pango-itemize-with-base-dir> 
+  )
+    is also<pango-itemize-with-base-dir>
   {
-    my guint $bd = self.RESOLVE-UINT($base_dir);
+    my guint $bd = $base_dir;
     my @i = ($start_index, $length);
-    my gint ($si, $l) = self.RESOLVE-INT(@i);
+    my gint ($si, $l) = @i;
+
     GList.new(
       PangoItem,
       pango_itemize_with_base_dir(

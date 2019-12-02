@@ -99,13 +99,13 @@ sub two_points_distance ($a, $b --> num64) {
 
 sub curve_length(*@xy is copy --> num64) {
   my $current_point;
-  my num64 $length = 0.Num;
+  my num64 $length = 0e0;
   my $c = Cairo::Context.create( Cairo::Image.create(FORMAT_A8, 0, 0) );
   my $path = $c.copy_path(:flat);
   @xy .= rotor(2);
 
-  $c.move_to(|@xy[0].flat);
-  $c.curve_to(|(@xy[1..3].flat));
+  $c.move_to(  |@xy[0] );
+  $c.curve_to( |(@xy[1..3].List.flat) );
   # Instead of binding, we decontainerize to allow looping over $path
   for $path<> -> $p {
     given $p[0].data-type {
