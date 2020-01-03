@@ -30,8 +30,8 @@ class Pango::FontDescription {
   }
 
   method new_from_string(Str $str) is also<new-from-string> {
-    my $description =  pango_font_description_from_string($str)
-    
+    my $description =  pango_font_description_from_string($str);
+
     $description ?? self.bless( :$description ) !! Nil;
   }
 

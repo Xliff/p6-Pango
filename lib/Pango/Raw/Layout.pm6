@@ -2,7 +2,6 @@ use v6.c;
 
 use NativeCall;
 
-
 use Pango::Raw::Types;
 
 unit package Pango::Raw::PangoLayout;
@@ -39,10 +38,10 @@ sub pango_layout_get_cursor_pos (
   is native(pango)
   is export
   { * }
-  
+
 sub pango_layout_get_extents (
-  PangoLayout $layout, 
-  PangoRectangle $ink_rect, 
+  PangoLayout $layout,
+  PangoRectangle $ink_rect,
   PangoRectangle $logical_rect
 )
   is native(pango)
@@ -101,10 +100,10 @@ sub pango_layout_get_log_attrs_readonly (PangoLayout $layout, gint $n_attrs)
   is native(pango)
   is export
   { * }
-  
+
 sub pango_layout_get_pixel_extents (
-  PangoLayout $layout, 
-  PangoRectangle $ink_rect, 
+  PangoLayout $layout,
+  PangoRectangle $ink_rect,
   PangoRectangle $logical_rect
 )
   is native(pango)

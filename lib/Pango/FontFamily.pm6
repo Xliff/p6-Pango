@@ -37,7 +37,7 @@ class Pango::FontFamily {
   )
     is also<list-faces>
   {
-    my gint $nf = 0
+    my gint $nf = 0;
 
     pango_font_family_list_faces($!pff, $faces, $nf);
     $n_faces = $nf;

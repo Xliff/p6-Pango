@@ -29,7 +29,7 @@ class Pango::Font {
   method find_shaper (PangoLanguage() $language, Int() $ch)
     is also<find-shaper>
   {
-    my guiint32 $c = $ch;
+    my guint32 $c = $ch;
 
     pango_font_find_shaper($!pf, $language, $c);
   }

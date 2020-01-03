@@ -6,14 +6,14 @@ use NativeCall;
 use Pango::Raw::Types;
 use Pango::Raw::Layout;
 
-use Pango::Roles::References;
-
 use Pango::FontDescription;
 use Pango::LayoutIter;
 use Pango::LayoutLine;
 
+use GLib::Roles::References;
+
 class Pango::Layout {
-  also does Pango::Roles::References;
+  also does GLib::Roles::References;
 
   has PangoLayout $!pl;
 

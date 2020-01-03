@@ -3,6 +3,7 @@ use v6.c;
 use NativeCall;
 
 use Cairo;
+use GLib::Raw::Definitions;
 use GLib::Roles::Pointers;
 
 unit package Pango::Raw::Definitions;
@@ -43,41 +44,41 @@ constant PANGO_GLYPH_UNKNOWN_FLAG               is export  = 0x10000000;
 constant PANGO_ATTR_INDEX_FROM_TEXT_BEGINNING   is export  = 0;
 constant PANGO_ATTR_INDEX_TO_TEXT_END           is export  = 4294967295;
 
-class cairo_font_options_t  is repr('CPointer') is export does GLib::Roles::Pointers { }
+class cairo_font_options_t  is repr<CPointer> is export does GLib::Roles::Pointers { }
 
-class PangoAttrIter         is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoAttrIterator     is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoAttrList         is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoCairo            is repr("CPointer") is export does GLib::Roles::Pointers { }
-class PangoCairoFont        is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoCairoFontMap     is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoContext          is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoCoverage         is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoEngineLang       is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoEngineShape      is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoFcDecoder        is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoFcFont           is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoFCFont           is repr("CPointer") is export does GLib::Roles::Pointers { }
-class PangoFcFontKey        is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoFcFontMap        is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoFcFontsetKey     is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoFont             is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoFontDescription  is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoFontFace         is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoFontFamily       is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoFontMap          is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoFontMetrics      is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoFontset          is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoFontsetSimple    is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoFT               is repr("CPointer") is export does GLib::Roles::Pointers { }
-class PangoFT2FontMap       is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoLanguage         is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoLayout           is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoLayoutIter       is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoLayoutLine       is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoMarkupParser     is repr("CPointer") is export does GLib::Roles::Pointers { }
-class PangoRenderer         is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoRenderPart       is repr("CPointer") is export does GLib::Roles::Pointers { }
-class PangoXFTFont          is repr('CPointer') is export does GLib::Roles::Pointers { }
-class PangoXFTRender        is repr("CPointer") is export does GLib::Roles::Pointers { }
-class PangoXFTRenderer      is repr('CPointer') is export does GLib::Roles::Pointers { }
+class PangoAttrIter         is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoAttrIterator     is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoAttrList         is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoCairo            is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoCairoFont        is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoCairoFontMap     is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoContext          is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoCoverage         is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoEngineLang       is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoEngineShape      is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFcDecoder        is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFcFont           is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFCFont           is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFcFontKey        is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFcFontMap        is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFcFontsetKey     is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFont             is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFontDescription  is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFontFace         is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFontFamily       is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFontMap          is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFontMetrics      is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFontset          is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFontsetSimple    is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFT               is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoFT2FontMap       is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoLanguage         is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoLayout           is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoLayoutIter       is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoLayoutLine       is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoMarkupParser     is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoRenderer         is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoRenderPart       is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoXFTFont          is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoXFTRender        is repr<CPointer> is export does GLib::Roles::Pointers { }
+class PangoXFTRenderer      is repr<CPointer> is export does GLib::Roles::Pointers { }

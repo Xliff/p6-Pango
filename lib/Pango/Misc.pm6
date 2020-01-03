@@ -4,7 +4,6 @@ use Method::Also;
 
 use Pango::Raw::Types;
 use Pango::Raw::Misc;
-use Pango::Raw::Utils;
 
 use GLib::Roles::StaticClass;
 
@@ -17,7 +16,7 @@ class Pango::Misc {
     Int() $required_micro
   ) {
     my gint ($mj, $mn, $mc) =
-      ($required_major, $required_minorm $required_micro);
+      ($required_major, $required_minor, $required_micro);
 
     so pango_version_check($mj, $mn, $mc);
   }

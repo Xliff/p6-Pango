@@ -1,19 +1,27 @@
 use v6.c;
 
-use NativeCall;
-
+use CompUnit::Util :re-export;
 use GLib::Raw::Types;
-use Pango::Raw::Definitions;
-use Pango::Raw::Enums;
-use Pango::Raw::Structs;
-use Pango::Raw::Subs;
 
-sub EXPORT {
-  %(
-    GLib::Raw::Types::EXPORT::DEFAULT::,
-    Pango::Raw::Definitions::EXPORT::DEFAULT::,
-    Pango::Raw::Enums::EXPORT::DEFAULT::,
-    Pango::Raw::Structs::EXPORT::DEFAULT::,
-    Pango::Raw::Subs::EXPORT::DEFAULT::
-  )
+unit package Pango::Raw::Types;
+
+need GLib::Raw::Definitions;
+need GLib::Raw::Enums;
+need GLib::Raw::Structs;
+need GLib::Raw::Subs;
+need Pango::Raw::Definitions;
+need Pango::Raw::Enums;
+need Pango::Raw::Structs;
+need Pango::Raw::Subs;
+
+our @pango-exports is export;
+BEGIN {
+  @pango-exports = <
+    Pango::Raw::Definitions
+    Pango::Raw::Enums
+    Pango::Raw::Structs
+    Pango::Raw::Subs
+  >;
+
+  re-export($_) for |@glib-exports, |@pango-exports;
 }

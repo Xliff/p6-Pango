@@ -5,11 +5,7 @@ use Method::Also;
 use Pango::Raw::Types;
 use Pango::Raw::DescriptionMetrics;
 
-use Pango::Roles::Types;
-
 class Pango::FontFace {
-  also does Pango::Roles::Types;
-
   has PangoFontFace $!pff;
 
   submethod BUILD (:$face) {

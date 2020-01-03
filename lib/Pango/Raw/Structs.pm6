@@ -3,6 +3,8 @@ use v6.c;
 use NativeCall;
 
 use GLib::Raw::Definitions;
+use GLib::Raw::Structs;
+use GLib::Raw::Struct_Subs;
 use Pango::Raw::Definitions;
 use Pango::Raw::Enums;
 
@@ -10,7 +12,7 @@ use GLib::Roles::Pointers;
 
 unit package Pango::Raw::Structs;
 
-class PangoRectangle does GLib::Roles::Pointers {
+class PangoRectangle        is repr<CStruct> is export does GLib::Roles::Pointers {
   has gint $.x      is rw;
   has gint $.y      is rw;
   has gint $.width  is rw;
@@ -23,7 +25,7 @@ class PangoRectangle does GLib::Roles::Pointers {
   }
 }
 
-class PangoLogAttr is repr('CStruct') is export does GLib::Roles::Pointers {
+class PangoLogAttr          is repr<CStruct> is export does GLib::Roles::Pointers {
   has guint $.is_line_break               is rw; # :1
   has guint $.is_mandatory_break          is rw; # :1
   has guint $.is_char_break               is rw; # :1
@@ -39,10 +41,7 @@ class PangoLogAttr is repr('CStruct') is export does GLib::Roles::Pointers {
   has guint $.is_word_boundary            is rw; # :1
 }
 
-class PangoAnalysis is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-{
+class PangoAnalysis         is repr<CStruct> is export does GLib::Roles::Pointers {
   has PangoEngineShape $.shape_engine;
   has PangoEngineLang  $.lang_engine;
   has PangoFont        $.font;
@@ -54,61 +53,43 @@ class PangoAnalysis is repr('CStruct')
   has GSList           $.extra_attrs;
 }
 
-class PangoItem is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-{
+class PangoItem             is repr<CStruct> is export does GLib::Roles::Pointers {
   has gint          $.offset;
   has gint          $.length;
   has gint          $.num_chars;
   HAS PangoAnalysis $.analysis;
 }
 
-class PangoGlyphVisAttr is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-{
+class PangoGlyphVisAttr     is repr<CStruct> is export does GLib::Roles::Pointers {
   has guint $.is_cluster_start; # :1
 }
 
-class PangoGlyphGeometry is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-{
+class PangoGlyphGeometry    is repr<CStruct> is export does GLib::Roles::Pointers {
   has PangoGlyphUnit $.width;
   has PangoGlyphUnit $.x_offset;
   has PangoGlyphUnit $.y_offset;
 }
 
-class PangoGlyphInfo is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-{
+class PangoGlyphInfo        is repr<CStruct> is export does GLib::Roles::Pointers {
    has PangoGlyph         $.glyph;
    HAS PangoGlyphGeometry $.geometry;
    HAS PangoGlyphVisAttr  $.attr;
 }
 
-class PangoGlyphString is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-{
+class PangoGlyphString      is repr<CStruct> is export does GLib::Roles::Pointers {
   has gint           $.num_glyphs;
   has PangoGlyphInfo $.glyphs;
   has gint           $.log_clusters;
 }
 
-class PangoGlyphItem is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-{
+class PangoGlyphItem        is repr<CStruct> is export does GLib::Roles::Pointers {
   has PangoItem        $.item;
   has PangoGlyphString $.glyphs;
 }
 
-constant PangoLayoutRun is export := PangoGlyphItem;
+constant PangoLayoutRun     is export := PangoGlyphItem;
 
-class PangoMatrix does GLib::Roles::Pointers {
+class PangoMatrix           is repr<CStruct> is export does GLib::Roles::Pointers {
   has gdouble $.xx is rw;
   has gdouble $.xy is rw;
   has gdouble $.yx is rw;
@@ -117,10 +98,7 @@ class PangoMatrix does GLib::Roles::Pointers {
   has gdouble $.y0 is rw;
 }
 
-class PangoGlyphItemIter is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-{
+class PangoGlyphItemIter    is repr<CStruct> is export does GLib::Roles::Pointers {
   has PangoGlyphItem $.glyph_item;
   has Str            $.text;
 
@@ -133,16 +111,14 @@ class PangoGlyphItemIter is repr('CStruct')
   has gint           $.end_char;
 }
 
-class PangoColor is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-{
+class PangoColor            is repr<CStruct> is export does GLib::Roles::Pointers {
   has guint16 $.red   is rw;
   has guint16 $.green is rw;
   has guint16 $.blue  is rw;
 }
 
-class PangoAttribute is repr('CStruct') is export { ... }
+class PangoAttribute        is repr<CStruct> is export does GLib::Roles::Pointers
+{ ... }
 
 role PangoAttributeRole {
   method attr {
@@ -154,91 +130,51 @@ role PangoAttributeRole {
   }
 }
 
-class PangoAttribute
-  does GLib::Roles::Pointers
-  does PangoAttributeRole
-{
+# All remaining classes do PangoAttributeRole.
+class PangoAttribute does PangoAttributeRole {
   has Pointer $.klass;
   has guint   $.start_index is rw;
   has guint   $.end_index   is rw;
 }
 
-class PangoAttrString is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-  does PangoAttributeRole
-{
+class PangoAttrString       is repr<CStruct> is export does GLib::Roles::Pointers does PangoAttributeRole {
   HAS PangoAttribute $.attr;
   has Str            $.value;
 }
 
-class PangoAttrLanguage is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-  does PangoAttributeRole
-{
+class PangoAttrLanguage     is repr<CStruct> is export does GLib::Roles::Pointers does PangoAttributeRole {
   HAS PangoAttribute $.attr;
   has PangoLanguage  $.value;
 }
 
-class PangoAttrColor is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-  does PangoAttributeRole
-{
+class PangoAttrColor        is repr<CStruct> is export does GLib::Roles::Pointers does PangoAttributeRole {
   HAS PangoAttribute $.attr;
   has PangoColor     $.value;
 }
 
-class PangoAttrInt is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-  does PangoAttributeRole
-{
+class PangoAttrInt          is repr<CStruct> is export does GLib::Roles::Pointers does PangoAttributeRole {
   HAS PangoAttribute $.attr;
   has gint           $.value;
 }
 
-class PangoAttrFloat is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-  does PangoAttributeRole
-{
+class PangoAttrFloat        is repr<CStruct> is export does GLib::Roles::Pointers does PangoAttributeRole {
   HAS PangoAttribute $.attr;
   has gdouble        $.value;
 }
 
-class PangoAttrFontDesc is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-  does PangoAttributeRole
-{
+class PangoAttrFontDesc     is repr<CStruct> is export does GLib::Roles::Pointers does PangoAttributeRole {
   HAS PangoAttribute       $.attr;
   has PangoFontDescription $.value;
 }
 
-class PangoAttrShape is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-  does PangoAttributeRole
-{
+class PangoAttrShape        is repr<CStruct> is export does GLib::Roles::Pointers does PangoAttributeRole {
   HAS PangoAttribute $.attr;
   HAS PangoRectangle $.ink_rect    ;
   HAS PangoRectangle $.logical_rect;
 
   has Pointer        $!data;
-  #has               $copy_func (Pointer);
-  #has               $destroy_func (Pointer);
-  has Pointer        $.copy_func;
-  has Pointer        $.destroy_func;
-
-  # HACK! --
-  # See: https://stackoverflow.com/questions/48772284/putting-function-pointers-in-a-perl6-nativecall-cstruct
-  method !set-func (&func) {
-    my $buf = buf8.allocate(20);
-    my $len = set-function-ptr-p($buf, '%lld', &func);
-    Pointer.new($buf.subbuf(^$len).decode.Int);
-  }
+  has Pointer        $!copy_func;
+  has Pointer        $!destroy_func;
 
   method data is rw {
     Proxy.new:
@@ -246,30 +182,31 @@ class PangoAttrShape is repr('CStruct')
       STORE => -> $, \val { self.^attributes[3].set_value( self, nativecast(Pointer, val) ) };
   }
 
-  method set-copy-func(&func)    {    $!copy_func := self!set-func(&func) }
-  method set_destroy-func(&func) { $!destroy_func := self!set-func(&func) }
+  method copy_func is rw {
+    Proxy.new:
+      FETCH => -> $       { $!copy_func },
+      STORE => -> $, \val { self.^attributes[4].set_value( self, set_func_pointer(val, &sprintf-P-P) ) };
+  }
+
+  method destroy_func {
+    Proxy.new:
+      FETCH => -> $       { $!destroy_func },
+      STORE => -> $, \val { self.^attributes[5].set_value( self, set_func_pointer(val, &sprintf-P) ) };
+  }
 }
 
-class PangoAttrSize is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-  does PangoAttributeRole
-{
+class PangoAttrSize         is repr<CStruct> is export does GLib::Roles::Pointers does PangoAttributeRole {
   HAS PangoAttribute $.attr;
   has gint           $.size;
   has guint          $.absolute; # :1
 }
 
-class PangoAttrFontFeatures is repr('CStruct')
-  is export
-  does GLib::Roles::Pointers
-  does PangoAttributeRole
-{
+class PangoAttrFontFeatures is repr<CStruct> is export does GLib::Roles::Pointers does PangoAttributeRole {
   HAS PangoAttribute $.attr;
   has Str            $.features;
 }
 
-subset PangoAttributes is export where
+subset PangoAttributes      is export where
   PangoAttribute        | PangoAttrString | PangoAttrLanguage |
   PangoAttrColor        | PangoAttrInt    | PangoAttrFloat    |
   PangoAttrFontDesc     | PangoAttrShape  | PangoAttrSize     |

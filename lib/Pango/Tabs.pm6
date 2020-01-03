@@ -25,7 +25,7 @@ class Pango::Tabs {
   }
   multi method new (Int() $positions_in_pixels, @l) {
     die '<locations> must be a list of Integers' unless @l.all ~~ Int;
-    my $o = samewith(@l.elems, $pip);
+    my $o = samewith(@l.elems, $positions_in_pixels);
     $o.set_tabs(@l);
     $o;
   }

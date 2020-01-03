@@ -2,15 +2,12 @@ use v6.c;
 
 use Method::Also;
 
-
 use Pango::Raw::GlyphItem;
 use Pango::Raw::Types;
 
 # FINISH REFINING
 
 class Pango::GlyphItem {
-  also does Pango::Roles::Types;
-
   has PangoGlyphItem $!pgi;
 
   submethod BUILD(:$item) {
@@ -34,7 +31,7 @@ class Pango::GlyphItem {
   }
 
   method copy {
-    my $item = pango_glyph_item_copy($!pgi)
+    my $item = pango_glyph_item_copy($!pgi);
 
     $item ?? PangoGlyphItem.new($item, :!ref) !! Nil;
   }
@@ -65,7 +62,7 @@ class Pango::GlyphItem {
 
   method split (Str() $text, Int() $split_index) {
     my gint $si = $split_index;
-    my $item = pango_glyph_item_split($!pgi, $text, $si)
+    my $item = pango_glyph_item_split($!pgi, $text, $si);
 
     $item ?? Pango::GlyphItem.new($item, :!ref) !! Nil;
   }

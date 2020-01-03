@@ -3,18 +3,19 @@ use v6.c;
 use Method::Also;
 use NativeCall;
 
-use Pango::Compat::GList;
+use GLib::GList;
 
 use Pango::Raw::Types;
 use Pango::Raw::Context;
 
-use Pango::Roles::References;
-
 use Pango::FontMetrics;
 
-class Pango::Context {
-  also does Pango::Roles::References;
+use GLib::Roles::ListData;
+use GLib::Roles::References;
 
+class Pango::Context {
+  also does GLib::Roles::References;
+  
   has PangoContext $!pc;
 
   submethod BUILD (:$context) {
@@ -191,17 +192,20 @@ class Pango::Context {
     Int() $start_index,
     Int() $length,
     PangoAttrList $attrs,
-    PangoAttrIterator $cached_iter
+    PangoAttrIterator $cached_iter,
+    :$glist = False
   )
     is also<pango-itemize>
   {
-    my @i = ($start_index, $length);
-    my gint ($si, $l) = @i;
+    my gint ($si, $l) = ($start_index, $length);
+    my $pil = pango_itemize($!pc, $text, $si, $l, $attrs, $cached_iter);
 
-    GList.new(
-      PangoItem,
-      pango_itemize($!pc, $text, $si, $l, $attrs, $cached_iter)
-    );
+    return Nil unless $pil;
+    return $pil if $glist;
+
+    my $l = GLib::GList.new($pil) but GLib::Roles::ListData[PangoItem];
+
+    $l.Array;
   }
 
   # Also destined for a catchall class or package.

@@ -2,11 +2,8 @@ use v6.c;
 
 use Method::Also;
 
-
 use Pango::Raw::FCFont;
 use Pango::Raw::Types;
-
-use Pango::Roles::Types;
 
 class Pango::Font::FC {
   has PangoFcFont $!pfcf;
@@ -28,7 +25,8 @@ D
   }
 
   method get_glyph (Int() $wc) is also<get-glyph> {
-    my guint32 $wwc = self.RESOLVE-UINT($wc);
+    my guint32 $wwc = $wc;
+
     pango_fc_font_get_glyph($!pfcf, $wwc);
   }
 
@@ -37,12 +35,14 @@ D
   }
 
   method get_unknown_glyph (Int() $wc) is also<get-unknown-glyph> {
-    my guint32 $wwc = self.RESOLVE-UINT($wc);
+    my guint32 $wwc = $wc;
+
     pango_fc_font_get_unknown_glyph($!pfcf, $wwc);
   }
 
   method has_char (Int() $wc) is also<has-char> {
-    my guint32 $wwc = self.RESOLVE-UINT($wc);
+    my guint32 $wwc = $wc;
+
     pango_fc_font_has_char($!pfcf, $wc);
   }
 

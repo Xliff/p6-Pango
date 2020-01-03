@@ -3,7 +3,6 @@ use v6.c;
 use Method::Also;
 use NativeCall;
 
-
 use Pango::Context;
 use Pango::Raw::Types;
 use Pango::Raw::FontMap;
@@ -11,12 +10,12 @@ use Pango::Raw::FontMap;
 class Pango::FontMap {
   has PangoFontMap $!fm;
 
-  method Pango::Compat::Types::PangoFontMap {
-    $!fm;
-  }
-  method fontmap {
-    $!fm;
-  }
+  method Pango::Compat::Types::PangoFontMap
+    is also<
+      PangoFontMap
+      fontmap
+    >
+  { $!fm }
 
   method setFontMap(PangoFontMap $fontmap) {
     $!fm = $fontmap;
@@ -38,7 +37,7 @@ class Pango::FontMap {
 
   method get_shape_engine_type
     is DEPRECATED
-    is also<get-shape-engine-type> 
+    is also<get-shape-engine-type>
   {
     pango_font_map_get_shape_engine_type($!fm);
   }
@@ -47,33 +46,35 @@ class Pango::FontMap {
     pango_font_map_get_type();
   }
 
-  proto method list_families
+  proto method list_families (|)
     is also<list-families>
-    { * }
-    
-  multi method list_families {
-    my $fl = CArray[CArray[PangoFontFamily]];
-    $fl[0] = CArray[PangoFontFamily].new;
-    my ($nf, @f) = (0);
-    samewith($fl, $nf);
-    @f.push( $fl[0][$_].deref ) for ^$nf;
-    @f;
+  { * }
+
+  multi method list_families (:$raw = False) {
+    my ($fl, $nf) = (CArray[CArray[PangoFontFamily]], 0);
+    $fl[0] = CArray[PangoFontFamily];
+    samewith($fl, $nf, :$raw);
   }
   multi method list_families (
     CArray[CArray[PangoFontFamily]] $families,
-    Int $n_families is rw;
-  )  {
+    $n_families is rw,
+    :$raw = False
+  ) {
     my int32 $nf = 0;
     my $rc = pango_font_map_list_families($!fm, $families, $nf);
     $n_families = $nf;
-    $rc;
+
+    my @a = CArrayToArray($rc[0]);
+    return @a if $raw;
+
+    @a.map({ Pango::FontFamily.new($_) });
   }
 
   method load_font (
     PangoContext() $context,
     PangoFontDescription() $desc
-  ) 
-    is also<load-font> 
+  )
+    is also<load-font>
   {
     pango_font_map_load_font($!fm, $context, $desc);
   }
@@ -82,8 +83,8 @@ class Pango::FontMap {
     PangoContext() $context,
     PangoFontDescription $desc,
     PangoLanguage $language
-  ) 
-    is also<load-fontset> 
+  )
+    is also<load-fontset>
   {
     pango_font_map_load_fontset($!fm, $context, $desc, $language);
   }

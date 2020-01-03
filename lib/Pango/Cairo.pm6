@@ -8,16 +8,12 @@ use Cairo;
 use Pango::Raw::Cairo;
 use Pango::Raw::Types;
 
-use Pango::Roles::Types;
-
 use Pango::Context;
 use Pango::Layout;
 
 # Consider augment to Cairo::Context to add type coercion.
 
 class Pango::Cairo {
-  also does Pango::Roles::Types;
-
   has cairo_t        $!ct;
   has                $!pc;
   has                $!pl;
