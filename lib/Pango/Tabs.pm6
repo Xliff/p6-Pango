@@ -95,8 +95,8 @@ class Pango::Tabs {
     pango_tab_array_get_tabs($!pta, $a, $l);
 
     # Reset array without reassignment.
-    @alignments.splice(0, *, ()) if +@alignments;
-    @locations.splice(0, *, ())  if +@locations;
+    @alignments.splice(0, *) if +@alignments;
+    @locations.splice(0, *)  if +@locations;
 
     # Populate arrays.
     @alignments.push($a[$_]) for ^$size;
