@@ -3,23 +3,18 @@ use v6.c;
 use Method::Also;
 use NativeCall;
 
-
 use Pango::Raw::Types;
 use Pango::Raw::DescriptionMetrics;
 
-use Pango::Roles::Types;
-
 class Pango::FontFamily {
-  also does Pango::Roles::Types;
-
   has PangoFontFamily $!pff;
 
   submethod BUILD (:$face) {
     $!pff = $face;
   }
-  
+
   method new (PangoFontFamily $face) {
-    self.bless(:$face);
+    $face ?? self.bless(:$face) !! Nil;
   }
 
   method get_name is also<get-name> {
@@ -30,9 +25,23 @@ class Pango::FontFamily {
     pango_font_family_is_monospace($!pff);
   }
 
-  method list_faces (CArray[CArray[CArray[PangoFontFace]]] $faces, Int() $n_faces) is also<list-faces> {
-    my gint $nf = self.RESOLVE-INT($n_faces);
+  proto method list_faces (|)
+  { * }
+
+  multi method list_faces {
+    samewith($, $);
+  }
+  multi method list_faces (
+    CArray[CArray[CArray[PangoFontFace]]] $faces,
+    $n_faces is rw
+  )
+    is also<list-faces>
+  {
+    my gint $nf = 0
+
     pango_font_family_list_faces($!pff, $faces, $nf);
+    $n_faces = $nf;
+    $faces;
   }
 
 }

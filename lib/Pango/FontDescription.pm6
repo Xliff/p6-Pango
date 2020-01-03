@@ -21,16 +21,18 @@ class Pango::FontDescription {
   { $!pfd }
 
   multi method new (PangoFontDescription $description) {
-    self.bless( :$description );
+    $description ?? self.bless( :$description ) !! Nil;
   }
   multi method new {
-    self.bless( description => pango_font_description_new() );
+    my $description = pango_font_description_new();
+
+    $description ?? self.bless( :$description ) !! Nil;
   }
 
   method new_from_string(Str $str) is also<new-from-string> {
-    self.bless(
-      description => pango_font_description_from_string($str)
-    );
+    my $description =  pango_font_description_from_string($str)
+    
+    $description ?? self.bless( :$description ) !! Nil;
   }
 
   method family is rw {

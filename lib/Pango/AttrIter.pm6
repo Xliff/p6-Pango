@@ -2,15 +2,10 @@ use v6.c;
 
 use Method::Also;
 
-
 use Pango::Raw::Attr;
 use Pango::Raw::Types;
 
-use Pango::Roles::Types;
-
 class Pango::AttrIter {
-  also does Pango::Roles::Types;
-
   has PangoAttrIterator $!pai;
 
   submethod BUILD (:$iter) {
@@ -41,8 +36,8 @@ class Pango::AttrIter {
     PangoFontDescription() $desc,
     PangoLanguage() $language,
     GSList() $extra_attrs
-  ) 
-    is also<get-font> 
+  )
+    is also<get-font>
   {
     pango_attr_iterator_get_font($!pai, $desc, $language, $extra_attrs);
   }
@@ -52,8 +47,7 @@ class Pango::AttrIter {
   }
 
   method range (Int() $start, Int() $end) {
-    my @i = ($start, $end);
-    my gint ($s, $e) = self.RESOLVE-INT(@i);
+    my gint ($s, $e) = ($start, $end);
     pango_attr_iterator_range($!pai, $start, $end);
   }
 }

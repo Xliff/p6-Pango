@@ -2,24 +2,19 @@ use v6.c;
 
 use Method::Also;
 
-
 use Pango::Raw::Attr;
 use Pango::Raw::Types;
 
-use Pango::Roles::Types;
-
 class Pango::Color {
-  also does Pango::Roles::Types;
-
   has PangoColor $!pc;
 
   submethod BUILD (:$color) {
     $!pc = $color;
   }
 
-  method Pango::Raw::Types::PangoColor {
-    $!pc;
-  }
+  method Pango::Raw::Types::PangoColor
+    is also<PangoColor>
+  { $!pc }
 
   ### ATTRIBUTES FOR RGB ###
   method r is also<red> is rw {
@@ -28,7 +23,8 @@ class Pango::Color {
         $!pc.red
       },
       STORE => -> $, Int() $val {
-        my guint16 $v = self.RESOLVE-UINT16($val);
+        my guint16 $v = $val;
+
         $!pc.red = $val;
       }
     );
@@ -40,7 +36,8 @@ class Pango::Color {
         $!pc.green
       },
       STORE => -> $, Int() $val {
-        my guint16 $v = self.RESOLVE-UINT16($val);
+        my guint16 $v = $val;
+
         $!pc.green = $val;
       }
     );
@@ -52,21 +49,26 @@ class Pango::Color {
         $!pc.blue
       },
       STORE => -> $, Int() $val {
-        my guint16 $v = self.RESOLVE-UINT16($val);
+        my guint16 $v = $val;
+
         $!pc.blue = $val;
       }
     );
   }
 
   multi method new (PangoColor $color) {
-    self.bless($color);
+    $color ?? self.bless( :$color ) !! Nil;
   }
   multi method new {
-    self.bless( color => PangoColor.new );
+    my $color = PangoColor.new();
+
+    $color ?? self.bless( :$color ) !! Nil;
   }
 
   method copy {
-    Pango::Color.new( pango_color_copy($!pc) );
+    my $color = pango_color_copy($!pc);
+
+    $color ?? self.bless( :$color ) !! Nil;
   }
 
   method free {

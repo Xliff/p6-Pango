@@ -3,8 +3,6 @@ use v6.c;
 use NativeCall;
 use Method::Also;
 
-
-
 role Pango::Roles::References {
   has Pointer $!ref;
 

@@ -2,7 +2,6 @@ use v6.c;
 
 use Method::Also;
 
-
 use Pango::Raw::GlyphItem;
 use Pango::Raw::Types;
 
@@ -29,14 +28,14 @@ class Pango::GlyphItemIter {
     pango_glyph_item_iter_get_type();
   }
 
-  method init_end (PangoGlyphItem() $glyph_item, Str() $text) 
-    is also<init-end> 
+  method init_end (PangoGlyphItem() $glyph_item, Str() $text)
+    is also<init-end>
   {
     so pango_glyph_item_iter_init_end($!pgii, $glyph_item, $text);
   }
 
-  method init_start (PangoGlyphItem() $glyph_item, Str() $text) 
-    is also<init-start> 
+  method init_start (PangoGlyphItem() $glyph_item, Str() $text)
+    is also<init-start>
   {
     so pango_glyph_item_iter_init_start($!pgii, $glyph_item, $text);
   }

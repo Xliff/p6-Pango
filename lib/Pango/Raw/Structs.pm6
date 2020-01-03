@@ -6,9 +6,11 @@ use GLib::Raw::Definitions;
 use Pango::Raw::Definitions;
 use Pango::Raw::Enums;
 
+use GLib::Roles::Pointers;
+
 unit package Pango::Raw::Structs;
 
-class PangoRectangle does Pango::Roles::Pointers {
+class PangoRectangle does GLib::Roles::Pointers {
   has gint $.x      is rw;
   has gint $.y      is rw;
   has gint $.width  is rw;
@@ -21,7 +23,7 @@ class PangoRectangle does Pango::Roles::Pointers {
   }
 }
 
-class PangoLogAttr is repr('CStruct') is export does Pango::Roles::Pointers {
+class PangoLogAttr is repr('CStruct') is export does GLib::Roles::Pointers {
   has guint $.is_line_break               is rw; # :1
   has guint $.is_mandatory_break          is rw; # :1
   has guint $.is_char_break               is rw; # :1
@@ -39,7 +41,7 @@ class PangoLogAttr is repr('CStruct') is export does Pango::Roles::Pointers {
 
 class PangoAnalysis is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
 {
   has PangoEngineShape $.shape_engine;
   has PangoEngineLang  $.lang_engine;
@@ -54,7 +56,7 @@ class PangoAnalysis is repr('CStruct')
 
 class PangoItem is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
 {
   has gint          $.offset;
   has gint          $.length;
@@ -64,14 +66,14 @@ class PangoItem is repr('CStruct')
 
 class PangoGlyphVisAttr is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
 {
   has guint $.is_cluster_start; # :1
 }
 
 class PangoGlyphGeometry is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
 {
   has PangoGlyphUnit $.width;
   has PangoGlyphUnit $.x_offset;
@@ -80,7 +82,7 @@ class PangoGlyphGeometry is repr('CStruct')
 
 class PangoGlyphInfo is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
 {
    has PangoGlyph         $.glyph;
    HAS PangoGlyphGeometry $.geometry;
@@ -89,7 +91,7 @@ class PangoGlyphInfo is repr('CStruct')
 
 class PangoGlyphString is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
 {
   has gint           $.num_glyphs;
   has PangoGlyphInfo $.glyphs;
@@ -98,7 +100,7 @@ class PangoGlyphString is repr('CStruct')
 
 class PangoGlyphItem is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
 {
   has PangoItem        $.item;
   has PangoGlyphString $.glyphs;
@@ -106,7 +108,7 @@ class PangoGlyphItem is repr('CStruct')
 
 constant PangoLayoutRun is export := PangoGlyphItem;
 
-class PangoMatrix does Pango::Roles::Pointers {
+class PangoMatrix does GLib::Roles::Pointers {
   has gdouble $.xx is rw;
   has gdouble $.xy is rw;
   has gdouble $.yx is rw;
@@ -117,7 +119,7 @@ class PangoMatrix does Pango::Roles::Pointers {
 
 class PangoGlyphItemIter is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
 {
   has PangoGlyphItem $.glyph_item;
   has Str            $.text;
@@ -133,7 +135,7 @@ class PangoGlyphItemIter is repr('CStruct')
 
 class PangoColor is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
 {
   has guint16 $.red   is rw;
   has guint16 $.green is rw;
@@ -153,7 +155,7 @@ role PangoAttributeRole {
 }
 
 class PangoAttribute
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
   does PangoAttributeRole
 {
   has Pointer $.klass;
@@ -163,7 +165,7 @@ class PangoAttribute
 
 class PangoAttrString is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
   does PangoAttributeRole
 {
   HAS PangoAttribute $.attr;
@@ -172,7 +174,7 @@ class PangoAttrString is repr('CStruct')
 
 class PangoAttrLanguage is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
   does PangoAttributeRole
 {
   HAS PangoAttribute $.attr;
@@ -181,7 +183,7 @@ class PangoAttrLanguage is repr('CStruct')
 
 class PangoAttrColor is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
   does PangoAttributeRole
 {
   HAS PangoAttribute $.attr;
@@ -190,7 +192,7 @@ class PangoAttrColor is repr('CStruct')
 
 class PangoAttrInt is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
   does PangoAttributeRole
 {
   HAS PangoAttribute $.attr;
@@ -199,7 +201,7 @@ class PangoAttrInt is repr('CStruct')
 
 class PangoAttrFloat is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
   does PangoAttributeRole
 {
   HAS PangoAttribute $.attr;
@@ -208,7 +210,7 @@ class PangoAttrFloat is repr('CStruct')
 
 class PangoAttrFontDesc is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
   does PangoAttributeRole
 {
   HAS PangoAttribute       $.attr;
@@ -217,7 +219,7 @@ class PangoAttrFontDesc is repr('CStruct')
 
 class PangoAttrShape is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
   does PangoAttributeRole
 {
   HAS PangoAttribute $.attr;
@@ -250,7 +252,7 @@ class PangoAttrShape is repr('CStruct')
 
 class PangoAttrSize is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
   does PangoAttributeRole
 {
   HAS PangoAttribute $.attr;
@@ -260,7 +262,7 @@ class PangoAttrSize is repr('CStruct')
 
 class PangoAttrFontFeatures is repr('CStruct')
   is export
-  does Pango::Roles::Pointers
+  does GLib::Roles::Pointers
   does PangoAttributeRole
 {
   HAS PangoAttribute $.attr;

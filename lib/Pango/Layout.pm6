@@ -3,12 +3,9 @@ use v6.c;
 use Method::Also;
 use NativeCall;
 
-
-
 use Pango::Raw::Types;
 use Pango::Raw::Layout;
 
-use Pango::Roles::Types;
 use Pango::Roles::References;
 
 use Pango::FontDescription;
@@ -17,7 +14,6 @@ use Pango::LayoutLine;
 
 class Pango::Layout {
   also does Pango::Roles::References;
-  also does Pango::Roles::Types;
 
   has PangoLayout $!pl;
 
@@ -67,7 +63,7 @@ class Pango::Layout {
         PangoAlignment( pango_layout_get_alignment($!pl) );
       },
       STORE => sub ($, Int() $alignment is copy) {
-        my guint $a = self.RESOLVE-UINT($alignment);
+        my guint $a = $alignment;
         pango_layout_set_alignment($!pl, $a);
       }
     );
@@ -90,7 +86,7 @@ class Pango::Layout {
         so pango_layout_get_auto_dir($!pl);
       },
       STORE => sub ($, Int() $auto_dir is copy) {
-        my gboolean $ad = self.RESOLVE-BOOL($auto_dir);
+        my gboolean $ad = $auto_dir;
         pango_layout_set_auto_dir($!pl, $ad);
       }
     );
@@ -102,7 +98,7 @@ class Pango::Layout {
         PangoEllipsizeMode( pango_layout_get_ellipsize($!pl) );
       },
       STORE => sub ($, Int() $ellipsize is copy) {
-        my guint $e = self.RESOLVE-UINT($ellipsize);
+        my guint $e = $ellipsize;
         pango_layout_set_ellipsize($!pl, $e);
       }
     );
@@ -131,7 +127,7 @@ class Pango::Layout {
         pango_layout_get_height($!pl);
       },
       STORE => sub ($, Int() $height is copy) {
-        my gint $h = self.RESOLVE-INT($height);
+        my gint $h = $height;
         pango_layout_set_height($!pl, $h);
       }
     );
@@ -143,7 +139,7 @@ class Pango::Layout {
         pango_layout_get_indent($!pl);
       },
       STORE => sub ($, Int() $indent is copy) {
-        my gint $i = self.RESOLVE-INT($indent);
+        my gint $i = $indent;
         pango_layout_set_indent($!pl, $i);
       }
     );
@@ -155,7 +151,7 @@ class Pango::Layout {
         so pango_layout_get_justify($!pl);
       },
       STORE => sub ($, Int() $justify is copy) {
-        my gboolean $j = self.RESOLVE-BOOL($justify);
+        my gboolean $j = $justify;
         pango_layout_set_justify($!pl, $j);
       }
     );
@@ -167,7 +163,7 @@ class Pango::Layout {
         so pango_layout_get_single_paragraph_mode($!pl);
       },
       STORE => sub ($, $setting is copy) {
-        my gboolean $s = self.RESOLVE-BOOL($setting);
+        my gboolean $s = $setting;
         pango_layout_set_single_paragraph_mode($!pl, $s);
       }
     );
@@ -179,7 +175,7 @@ class Pango::Layout {
         pango_layout_get_spacing($!pl);
       },
       STORE => sub ($, Int() $spacing is copy) {
-        my gint $s = self.RESOLVE-INT($spacing);
+        my gint $s = $spacing;
         pango_layout_set_spacing($!pl, $s);
       }
     );
@@ -223,7 +219,7 @@ D
         pango_layout_get_width($!pl);
       },
       STORE => sub ($, Int() $width is copy) {
-        my gint $w = self.RESOLVE-INT($width);
+        my gint $w = $width;
         pango_layout_set_width($!pl, $w);
       }
     );
@@ -235,7 +231,7 @@ D
         PangoWrapMode( pango_layout_get_wrap($!pl) );
       },
       STORE => sub ($, Int() $wrap is copy) {
-        my uint32 $w = self.RESOLVE-UINT($wrap);
+        my uint32 $w = $wrap;
         pango_layout_set_wrap($!pl, $w);
       }
     );
@@ -265,7 +261,7 @@ D
   )
     is also<get-cursor-pos>
   {
-    my gint $i = self.RESOLVE-INT($index);
+    my gint $i = $index;
     pango_layout_get_cursor_pos($!pl, $i, $strong_pos, $weak_pos);
   }
 
@@ -294,12 +290,12 @@ D
   }
 
   method get_line (Int() $line) is also<get-line> {
-    my $l = self.RESOLVE-INT($line);
+    my $l = $line;
     Pango::LayoutLine.new( pango_layout_get_line($!pl, $l), :!ref );
   }
 
   method get_line_readonly(Int() $line) is also<get-line-readonly> {
-    my $l = self.RESOLVE-INT($line);
+    my $l = $line;
     Pango::LayoutLine.new( pango_layout_get_line_readonly($!pl, $l), :!ref );
   }
 
@@ -314,14 +310,14 @@ D
   method get_log_attrs (PangoLogAttr $attrs, Int() $n_attrs)
     is also<get-log-attrs>
   {
-    my gint $na = self.RESOLVE-INT($n_attrs);
+    my gint $na = $n_attrs;
     pango_layout_get_log_attrs($!pl, $attrs, $na);
   }
 
   method get_log_attrs_readonly (Int() $n_attrs)
     is also<get-log-attrs-readonly>
   {
-    my gint $na = self.RESOLVE-INT($n_attrs);
+    my gint $na = $n_attrs;
     pango_layout_get_log_attrs_readonly($!pl, $na);
   }
 
@@ -356,7 +352,7 @@ D
   }
   multi method get_pixel_size (Int() $width is rw, Int() $height is rw) {
     my @i = ($width, $height);
-    my gint ($w, $h) = self.RESOLVE-INT(@i);
+    my gint ($w, $h) = @i;
     pango_layout_get_pixel_size($!pl, $w, $h);
     ($width, $height) = ($w, $h);
   }
@@ -375,7 +371,7 @@ D
   }
   multi method get_size (Int() $width is rw, Int() $height is rw) {
     my @i = ($width, $height);
-    my gint ($w, $h) = self.RESOLVE-INT(@i);
+    my gint ($w, $h) = @i;
     pango_layout_get_size($!pl, $w, $h);
     ($width, $height) = ($w, $h);
   }
@@ -396,16 +392,16 @@ D
   )
     is also<index-to-line-x>
   {
-    my gboolean $t = self.RESOLVE-BOOL($trailing);
+    my gboolean $t = $trailing;
     my @i = ($index, $line, $x_pos);
-    my ($ii, $ll, $xp) = self.RESOLVE-INT(@i);
+    my ($ii, $ll, $xp) = @i;
     pango_layout_index_to_line_x($!pl, $ii, $t, $ll, $xp);
   }
 
   method index_to_pos (Int() $index, PangoRectangle $pos)
     is also<index-to-pos>
   {
-    my gint $i = self.RESOLVE-INT($index);
+    my gint $i = $index;
     pango_layout_index_to_pos($!pl, $i, $pos);
   }
 
@@ -427,9 +423,9 @@ D
   )
     is also<move-cursor-visually>
   {
-    my gboolean $s = self.RESOLVE-BOOL($strong);
+    my gboolean $s = $strong;
     my @i = ($old_index, $old_trailing, $direction, $new_index, $new_trailing);
-    my int32 ($oi, $ot, $d, $ni, $nt) = self.RESOLVE-INT(@i);
+    my int32 ($oi, $ot, $d, $ni, $nt) = @i;
     pango_layout_move_cursor_visually($!pl, $s, $oi, $ot, $d, $ni, $nt);
   }
 
@@ -442,7 +438,7 @@ D
   }
   multi method set_markup (Str() $markup, Int() $length) {
     $length = -1 without $length;
-    my int32 $l = self.RESOLVE-INT($length);
+    my int32 $l = $length;
     pango_layout_set_markup($!pl, $markup, $l);
   }
 
@@ -454,16 +450,16 @@ D
   )
     is also<set-markup-with-accel>
   {
-    my int32 $l = self.RESOLVE-INT($length);
+    my int32 $l = $length;
     my @u = ($accel_marker, $accel_char);
-    my gunichar ($am, $ac) = self.RESOLVE-UINT(@u);
+    my gunichar ($am, $ac) = @u;
     pango_layout_set_markup_with_accel($!pl, $markup, $l, $am, $ac);
   }
 
   method set_text (Str() $text, Int() $length = $text.chars)
     is also<set-text>
   {
-    my int32 $l = self.RESOLVE-INT($length);
+    my int32 $l = $length;
     pango_layout_set_text($!pl, $text, $length);
   }
 
@@ -476,7 +472,7 @@ D
     is also<xy-to-index>
   {
     my @i = ($x, $y, $index, $trailing);
-    my int32 ($xx, $yy, $i, $t) = self.RESOLVE-INT(@i);
+    my int32 ($xx, $yy, $i, $t) = @i;
     pango_layout_xy_to_index($!pl, $xx, $yy, $i, $t);
   }
   # ↑↑↑↑ METHODS ↑↑↑↑

@@ -2,7 +2,6 @@ use v6.c;
 
 use Method::Also;
 
-
 use Pango::Raw::Types;
 use Pango::Raw::DescriptionMetrics;
 
@@ -30,8 +29,8 @@ class Pango::FontFace {
   }
 
   method list_sizes (Int() $sizes, Int() $n_sizes) is also<list-sizes> {
-    my @i = ($sizes, $n_sizes);
-    my gint ($s, $ns) = self.RESOLVE-INT(@i);
+    my gint ($s, $ns) = ($sizes, $n_sizes);
+
     pango_font_face_list_sizes($!pff, $s, $ns);
   }
 }

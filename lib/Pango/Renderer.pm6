@@ -2,7 +2,6 @@ use v6.c;
 
 use Method::Also;
 
-
 use Pango::Raw::Types;
 use Pango::Raw::Renderer;
 
@@ -22,8 +21,8 @@ class Pango::Renderer {
     Int() $y,
     Int() $width,
     Int() $height
-  ) 
-    is also<draw-error-underline> 
+  )
+    is also<draw-error-underline>
   {
     pango_renderer_draw_error_underline($!pr, $x, $y, $width, $height);
   }
@@ -33,8 +32,8 @@ class Pango::Renderer {
     PangoGlyph() $glyph,
     Num() $x,
     Num() $y
-  ) 
-    is also<draw-glyph> 
+  )
+    is also<draw-glyph>
   {
     my gdouble ($xx, $yy) = ($x, $y);
     pango_renderer_draw_glyph($!pr, $font, $glyph, $xx, $yy);
@@ -45,8 +44,8 @@ class Pango::Renderer {
     PangoGlyphItem() $glyph_item,
     Int() $x,
     Int() $y
-  ) 
-    is also<draw-glyph-item> 
+  )
+    is also<draw-glyph-item>
   {
     pango_renderer_draw_glyph_item($!pr, $text, $glyph_item, $x, $y);
   }
@@ -56,20 +55,20 @@ class Pango::Renderer {
     PangoGlyphString() $glyphs,
     Int() $x,
     Int() $y
-  ) 
-    is also<draw-glyphs> 
+  )
+    is also<draw-glyphs>
   {
     pango_renderer_draw_glyphs($!pr, $font, $glyphs, $x, $y);
   }
 
-  method draw_layout (PangoLayout() $layout, Int() $x, Int() $y) 
-    is also<draw-layout> 
+  method draw_layout (PangoLayout() $layout, Int() $x, Int() $y)
+    is also<draw-layout>
   {
     pango_renderer_draw_layout($!pr, $layout, $x, $y);
   }
 
-  method draw_layout_line (PangoLayoutLine() $line, Int() $x, Int() $y) 
-    is also<draw-layout-line> 
+  method draw_layout_line (PangoLayoutLine() $line, Int() $x, Int() $y)
+    is also<draw-layout-line>
   {
     pango_renderer_draw_layout_line($!pr, $line, $x, $y);
   }
@@ -80,8 +79,8 @@ class Pango::Renderer {
     Int() $y,
     Int() $width,
     Int() $height
-  ) 
-    is also<draw-rectangle> 
+  )
+    is also<draw-rectangle>
   {
     pango_renderer_draw_rectangle($!pr, $part, $x, $y, $width, $height);
   }
@@ -94,8 +93,8 @@ class Pango::Renderer {
     Num() $y2,
     Num() $x12,
     Num() $x22
-  ) 
-    is also<draw-trapezoid> 
+  )
+    is also<draw-trapezoid>
   {
     pango_renderer_draw_trapezoid(
       $!pr, $part, $y1, $x11, $x21, $y2, $x12, $x22
@@ -126,15 +125,15 @@ class Pango::Renderer {
     pango_renderer_part_changed($!pr, $part);
   }
 
-  method set_alpha (PangoRenderPart() $part, Int() $alpha) 
-    is also<set-alpha> 
+  method set_alpha (PangoRenderPart() $part, Int() $alpha)
+    is also<set-alpha>
   {
     my guint16 $a = self.RESOLVE-UINT16($alpha);
     pango_renderer_set_alpha($!pr, $part, $a);
   }
 
-  method set_color (PangoRenderPart() $part, PangoColor() $color) 
-    is also<set-color> 
+  method set_color (PangoRenderPart() $part, PangoColor() $color)
+    is also<set-color>
   {
     pango_renderer_set_color($!pr, $part, $color);
   }

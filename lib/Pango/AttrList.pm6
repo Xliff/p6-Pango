@@ -2,22 +2,22 @@ use v6.c;
 
 use Method::Also;
 
-
 use Pango::Raw::Attr;
 use Pango::Raw::Types;
 
-use Pango::Roles::Types;
-
 class Pango::AttrList {
-  also does Pango::Roles::Types;
-
   has PangoAttrList $!pal;
 
   submethod BUILD (:$list) {
     $!pal = $list;
   }
 
-  method Pango::Raw::Types::PangoAttrList is also<AttrList> { $!pal }
+  method Pango::Raw::Types::PangoAttrList
+    is also<
+      AttrList
+      PangoAttrList
+    >
+  { $!pal }
 
   multi method new (PangoAttrList $list) {
     my $o = self.bless(:$list);
@@ -62,8 +62,7 @@ class Pango::AttrList {
   }
 
   method splice (PangoAttrList() $other, Int() $pos, Int() $len) {
-    my @i = ($pos, $len);
-    my gint ($p, $l) = self.RESOLVE-INT(@i);
+    my gint ($p, $l) = ($pos, $len);
     pango_attr_list_splice($!pal, $other, $pos, $len);
   }
 

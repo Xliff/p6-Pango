@@ -6,11 +6,7 @@ use Method::Also;
 use Pango::Raw::Types;
 use Pango::Raw::DescriptionMetrics;
 
-use Pango::Roles::Types;
-
 class Pango::FontMetrics {
-  also does Pango::Roles::Types;
-
   has PangoFontMetrics $!pfm;
 
   submethod BUILD (:$metrics) {
@@ -27,7 +23,8 @@ class Pango::FontMetrics {
   }
   multi method new {
     my $metrics = pango_font_metrics_new();
-    self.bless(:$metrics);
+
+    $metrics ?? self.bless(:$metrics) !! Nil;
   }
 
   method get_approximate_char_width is also<get-approximate-char-width> {
