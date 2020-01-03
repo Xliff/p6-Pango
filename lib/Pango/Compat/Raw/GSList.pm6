@@ -2,7 +2,7 @@ use v6.c;
 
 use NativeCall;
 
-use Pango::Compat::Types;
+
 
 unit package Pango::Compat::Raw::GSList;
 

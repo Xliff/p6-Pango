@@ -3,7 +3,7 @@ use v6.c;
 use Method::Also;
 
 use Cairo;
-use Pango::Compat::Types;
+
 use Pango::Raw::Cairo;
 use Pango::Raw::FontMap;
 use Pango::Raw::Types;

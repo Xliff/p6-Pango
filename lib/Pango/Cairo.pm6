@@ -4,7 +4,7 @@ use Method::Also;
 use NativeCall;
 
 use Cairo;
-use Pango::Compat::Types;
+
 use Pango::Raw::Cairo;
 use Pango::Raw::Types;
 

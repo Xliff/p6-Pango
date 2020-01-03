@@ -3,7 +3,7 @@ use v6.c;
 use Method::Also;
 use NativeCall;
 
-use Pango::Compat::Types;
+
 use Pango::Raw::Coverage;
 use Pango::Raw::Types;
 

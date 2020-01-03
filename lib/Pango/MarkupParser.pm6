@@ -2,7 +2,7 @@ use v6.c;
 
 use NativeCall;
 
-use Pango::Compat::Types;
+
 use Pango::Raw::Attr;
 use Pango::Raw::Types;
 use Pango::Raw::Utils;

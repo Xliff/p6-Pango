@@ -2,7 +2,7 @@ use v6.c;
 
 use Method::Also;
 
-use Pango::Compat::Types;
+
 use Pango::Raw::Misc;
 use Pango::Raw::Types;
 use Pango::Raw::Utils;

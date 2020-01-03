@@ -4,7 +4,7 @@ use Method::Also;
 use NativeCall;
 
 use Pango::Compat::GList;
-use Pango::Compat::Types;
+
 use Pango::Raw::Types;
 use Pango::Raw::Context;
 

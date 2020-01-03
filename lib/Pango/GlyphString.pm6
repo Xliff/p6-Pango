@@ -3,7 +3,7 @@ use v6.c;
 use Method::Also;
 
 use Pango::Compat::GList;
-use Pango::Compat::Types;
+
 use Pango::Raw::Types;
 use Pango::Raw::GlyphString;
 

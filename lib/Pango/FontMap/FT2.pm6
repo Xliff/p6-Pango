@@ -4,7 +4,7 @@ use Method::Also;
 use NativeCall;
 
 use Pango::Compat::FreeType;
-use Pango::Compat::Types;
+
 use Pango::Raw::FT2FontMap;
 use Pango::Raw::Types;
 
