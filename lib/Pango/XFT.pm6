@@ -12,6 +12,7 @@ class Pango::XFT {
 
   method get_font_map (Display $display, Int() $screen) is also<get-font-map> {
     my gint $s = $screen;
+    
     pango_xft_get_font_map($display, $s);
   }
 
@@ -29,6 +30,7 @@ class Pango::XFT {
 D
 
     my gint $s = $screen;
+
     pango_xft_set_default_substitute($display, $s, &func, $data, &notify);
   }
 
@@ -36,6 +38,7 @@ D
     is also<shutdown-display>
   {
     my gint $s = $screen;
+
     pango_xft_shutdown_display($display, $s);
   }
 
@@ -43,6 +46,7 @@ D
     is also<substitute-changed>
   {
     my gint $s = $screen;
+
     pango_xft_substitute_changed($display, $s);
   }
 
