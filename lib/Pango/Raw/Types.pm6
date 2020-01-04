@@ -1,7 +1,9 @@
 use v6.c;
 
 use CompUnit::Util :re-export;
-use GLib::Raw::Types;
+
+use GLib::Raw::Exports;
+use Pango::Raw::Exports;
 
 unit package Pango::Raw::Types;
 
@@ -14,14 +16,6 @@ need Pango::Raw::Enums;
 need Pango::Raw::Structs;
 need Pango::Raw::Subs;
 
-our @pango-exports is export;
 BEGIN {
-  @pango-exports = <
-    Pango::Raw::Definitions
-    Pango::Raw::Enums
-    Pango::Raw::Structs
-    Pango::Raw::Subs
-  >;
-
   re-export($_) for |@glib-exports, |@pango-exports;
 }

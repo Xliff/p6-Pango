@@ -55,7 +55,8 @@ our enum PangoVariant is export <
   PANGO_VARIANT_SMALL_CAPS
 >;
 
-our enum PangoDirection is export <
+constant PangoDirection is export := guint32;
+our enum PangoDirectionEnum is export <
   PANGO_DIRECTION_LTR
   PANGO_DIRECTION_RTL
   PANGO_DIRECTION_TTB_LTR
