@@ -48,8 +48,10 @@ class Pango::Cairo {
   )
     is also<new-with-fontmap>
   {
+
     my $context = Pango::Context.new( self.font_map_create_context($fontmap) );
-    self.bless(:$context, :$update, :$cr);
+
+    $context ?? self.bless(:$context, :$update, :$cr) !! Nil;
   }
 
   method context_font_options is rw is also<context-font-options> {
@@ -70,6 +72,7 @@ class Pango::Cairo {
       },
       STORE => sub ($, Num() $dpi is copy) {
         my gdouble $ddpi = $dpi;
+
         pango_cairo_context_set_resolution($!pc.context, $ddpi);
       }
     );
@@ -91,6 +94,7 @@ class Pango::Cairo {
 
   method context_get_shape_renderer is also<context-get-shape-renderer> {
     my $p = Pointer.new;
+
     pango_cairo_context_get_shape_renderer(
       $!pl.get_context,
       $p
@@ -134,8 +138,17 @@ class Pango::Cairo {
   multi method create_layout(Pango::Cairo:D:) {
     $!pl = Pango::Layout.new( pango_cairo_create_layout($!ct) );
   }
-  multi method create_layout(Pango::Cairo:U: cairo_t $context) {
-    Pango::Layout.new( pango_cairo_create_layout($context) );
+  multi method create_layout(
+    Pango::Cairo:U:
+    cairo_t $context,
+    :$raw = False
+  ) {
+    my $pl = pango_cairo_create_layout($context);
+
+    $pl ??
+      ( $raw ?? $pl !! Pango::Layout.new($pl) )
+      !!
+      Nil;
   }
 
   method error_underline_path (
@@ -147,6 +160,7 @@ class Pango::Cairo {
     is also<error-underline-path>
   {
     my gdouble ($xx, $yy, $w, $h) = ($x, $y, $width, $height);
+
     pango_cairo_error_underline_path($!ct, $xx, $yy, $w, $h);
   }
 
@@ -201,6 +215,7 @@ class Pango::Cairo {
     is also<show-error-underline>
   {
     my gdouble ($xx, $yy, $w, $h) = ($x, $y, $width, $height);
+
     pango_cairo_show_error_underline($!ct, $xx, $yy, $w, $h);
   }
 

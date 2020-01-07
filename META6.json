@@ -19,6 +19,7 @@
       "Pango::Raw::Enums"              :  "lib/Pango/Raw/Enums.pm6"              ,
       "Pango::Raw::Structs"            :  "lib/Pango/Raw/Structs.pm6"            ,
       "Pango::Raw::Subs"               :  "lib/Pango/Raw/Subs.pm6"               ,
+      "Pango::Raw::Exports"            :  "lib/Pango/Raw/Exports.pm6"            ,
       "Pango::Raw::Types"              :  "lib/Pango/Raw/Types.pm6"              ,
       "Pango::Raw::XFT"                :  "lib/Pango/Raw/XFT.pm6"                ,
       "Pango::XFT"                     :  "lib/Pango/XFT.pm6"                    ,

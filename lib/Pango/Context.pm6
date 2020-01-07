@@ -15,7 +15,7 @@ use GLib::Roles::References;
 
 class Pango::Context {
   also does GLib::Roles::References;
-  
+
   has PangoContext $!pc;
 
   submethod BUILD (:$context) {
@@ -47,7 +47,7 @@ class Pango::Context {
   method base_dir is rw is also<base-dir> {
     Proxy.new(
       FETCH => sub ($) {
-        PangoDirection( pango_context_get_base_dir($!pc) );
+        PangoDirectionEnum( pango_context_get_base_dir($!pc) );
       },
       STORE => sub ($, Int() $direction is copy) {
         my guint $d = $direction;
@@ -60,7 +60,7 @@ class Pango::Context {
   method base_gravity is rw is also<base-gravity> {
     Proxy.new(
       FETCH => sub ($) {
-        PangoGravity( pango_context_get_base_gravity($!pc) );
+        PangoGravityEnum( pango_context_get_base_gravity($!pc) );
       },
       STORE => sub ($, Int() $gravity is copy) {
         my guint $g = $gravity;
@@ -97,7 +97,7 @@ class Pango::Context {
   method gravity_hint is rw is also<gravity-hint> {
     Proxy.new(
       FETCH => sub ($) {
-        PangoGravityHint( pango_context_get_gravity_hint($!pc) );
+        PangoGravityHintEnum( pango_context_get_gravity_hint($!pc) );
       },
       STORE => sub ($, Int() $hint is copy) {
         my guint $h = $hint;
@@ -133,17 +133,23 @@ class Pango::Context {
   }
 
   method get_gravity is also<get-gravity> {
-    PangoGravity( pango_context_get_gravity($!pc) );
+    PangoGravityEnum( pango_context_get_gravity($!pc) );
   }
 
   method get_metrics (
     PangoFontDescription() $desc,
-    Int() $language = self.language
+    Int() $language = self.language,
+    :$raw = False
   )
     is also<get-metrics>
   {
     my uint32 $l = $language;
-    Pango::FontMetrics.new( pango_context_get_metrics($!pc, $desc, $l) );
+    my $m = pango_context_get_metrics($!pc, $desc, $l);
+
+    $m ??
+      ( $raw ?? $m !! Pango::FontMetrics.new($m) )
+      !!
+      Nil;
   }
 
   method get_serial is also<get-serial> {
@@ -151,29 +157,33 @@ class Pango::Context {
   }
 
   method get_type is also<get-type> {
-    pango_context_get_type();
+    state ($n, $t);
+
+    unstable_get_type( self.^name, &pango_context_get_type, $n, $t );
   }
 
   proto method list_families (|)
     is also<list-families>
-    { * }
+  { * }
 
-  multi method list_families {
-    my $f = CArray[CArray[Pointer[PangoFontFamily]]].new;
-    my $nf = 0;
-    my @families;
-
-    samewith($f, $nf);
-    @families.push: Pango::FontFamily.new( $f[0][$_].deref ) for ^$nf;
-    @families;
+  multi method list_families (:$raw = False) {
+    samewith($, $, :$raw);
   }
   multi method list_families (
-    CArray[CArray[Pointer[PangoFontFamily]]] $families,
-    Int $n_families is rw
+    $families   is rw,
+    $n_families is rw,
+    :$raw = False
   ) {
-    my gint $nf = $n_families;
+    my $f = CArray[CArray[Pointer[PangoFontFamily]]].new;
+    $f[0] = CArray[Pointer[PangoFontFamily]];
+
+    my gint $nf = 0;
+
     pango_context_list_families($!pc, $families, $nf);
     $n_families = $nf;
+    $families = $families[0] ?? CArrayToArray($families[0], $families) !! Nil;
+    $families .= map({ Pango::FontFamily.new($_) }) unless $raw;
+    $families
   }
 
   method load_font (PangoFontDescription $desc) is also<load-font> {
@@ -203,9 +213,9 @@ class Pango::Context {
     return Nil unless $pil;
     return $pil if $glist;
 
-    my $l = GLib::GList.new($pil) but GLib::Roles::ListData[PangoItem];
+    $pil = GLib::GList.new($pil) but GLib::Roles::ListData[PangoItem];
 
-    $l.Array;
+    $pil.Array;
   }
 
   # Also destined for a catchall class or package.

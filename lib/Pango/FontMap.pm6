@@ -43,7 +43,9 @@ class Pango::FontMap {
   }
 
   method get_type is also<get-type> {
-    pango_font_map_get_type();
+    state ($n, $t);
+
+    unstable_get_type( self.^name, &pango_font_map_get_type, $n, $t );
   }
 
   proto method list_families (|)
@@ -64,7 +66,7 @@ class Pango::FontMap {
     my $rc = pango_font_map_list_families($!fm, $families, $nf);
     $n_families = $nf;
 
-    my @a = CArrayToArray($rc[0]);
+    my @a = CArrayToArray($rc[0], $n_families);
     return @a if $raw;
 
     @a.map({ Pango::FontFamily.new($_) });
@@ -81,8 +83,8 @@ class Pango::FontMap {
 
   method load_fontset (
     PangoContext() $context,
-    PangoFontDescription $desc,
-    PangoLanguage $language
+    PangoFontDescription() $desc,
+    PangoLanguage() $language
   )
     is also<load-fontset>
   {

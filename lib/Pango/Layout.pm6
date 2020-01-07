@@ -32,7 +32,7 @@ class Pango::Layout {
   proto method new(|)
   { * }
 
-  multi method new (PangoLayout $layout) {
+  multi method new (PangoLayout $layout, :$ref = True) {
     my $o = self.bless(:$layout);
     $o.upref;
     $o;
@@ -60,10 +60,11 @@ class Pango::Layout {
   method alignment is rw {
     Proxy.new(
       FETCH => sub ($) {
-        PangoAlignment( pango_layout_get_alignment($!pl) );
+        PangoAlignmentEnum( pango_layout_get_alignment($!pl) );
       },
       STORE => sub ($, Int() $alignment is copy) {
         my guint $a = $alignment;
+
         pango_layout_set_alignment($!pl, $a);
       }
     );
@@ -86,7 +87,8 @@ class Pango::Layout {
         so pango_layout_get_auto_dir($!pl);
       },
       STORE => sub ($, Int() $auto_dir is copy) {
-        my gboolean $ad = $auto_dir;
+        my gboolean $ad = $auto_dir.so.Int;
+
         pango_layout_set_auto_dir($!pl, $ad);
       }
     );
@@ -95,10 +97,11 @@ class Pango::Layout {
   method ellipsize is rw {
     Proxy.new(
       FETCH => sub ($) {
-        PangoEllipsizeMode( pango_layout_get_ellipsize($!pl) );
+        PangoEllipsizeModeEnum( pango_layout_get_ellipsize($!pl) );
       },
       STORE => sub ($, Int() $ellipsize is copy) {
         my guint $e = $ellipsize;
+
         pango_layout_set_ellipsize($!pl, $e);
       }
     );
@@ -128,6 +131,7 @@ class Pango::Layout {
       },
       STORE => sub ($, Int() $height is copy) {
         my gint $h = $height;
+
         pango_layout_set_height($!pl, $h);
       }
     );
@@ -140,6 +144,7 @@ class Pango::Layout {
       },
       STORE => sub ($, Int() $indent is copy) {
         my gint $i = $indent;
+
         pango_layout_set_indent($!pl, $i);
       }
     );
@@ -151,7 +156,8 @@ class Pango::Layout {
         so pango_layout_get_justify($!pl);
       },
       STORE => sub ($, Int() $justify is copy) {
-        my gboolean $j = $justify;
+        my gboolean $j = $justify.so.Int;
+
         pango_layout_set_justify($!pl, $j);
       }
     );
@@ -163,7 +169,8 @@ class Pango::Layout {
         so pango_layout_get_single_paragraph_mode($!pl);
       },
       STORE => sub ($, $setting is copy) {
-        my gboolean $s = $setting;
+        my gboolean $s = $setting.so.Int;
+
         pango_layout_set_single_paragraph_mode($!pl, $s);
       }
     );
@@ -228,7 +235,7 @@ D
   method wrap is rw {
     Proxy.new(
       FETCH => sub ($) {
-        PangoWrapMode( pango_layout_get_wrap($!pl) );
+        PangoWrapModeEnum( pango_layout_get_wrap($!pl) );
       },
       STORE => sub ($, Int() $wrap is copy) {
         my uint32 $w = $wrap;
@@ -256,12 +263,13 @@ D
 
   method get_cursor_pos (
     Int() $index,
-    PangoRectangle $strong_pos,
-    PangoRectangle $weak_pos
+    PangoRectangle() $strong_pos,
+    PangoRectangle() $weak_pos
   )
     is also<get-cursor-pos>
   {
     my gint $i = $index;
+
     pango_layout_get_cursor_pos($!pl, $i, $strong_pos, $weak_pos);
   }
 
@@ -274,29 +282,46 @@ D
     samewith($ir, $lr);
   }
   multi method get_extents (
-    PangoRectangle $ink_rect,
-    PangoRectangle $logical_rect
+    PangoRectangle() $ink_rect,
+    PangoRectangle() $logical_rect
   ) {
     pango_layout_get_extents($!pl, $ink_rect, $logical_rect);
     ($ink_rect, $logical_rect);
   }
 
-  method get_iter is also<get-iter> {
-    Pango::LayoutIter.new( pango_layout_get_iter($!pl) );
+  method get_iter (:$raw = False) is also<get-iter> {
+    my $i = pango_layout_get_iter($!pl);
+
+    $i ??
+      ( $raw ?? $i !! Pango::LayoutIter.new($i) )
+      !!
+      Nil;
   }
 
   method get_line_count is also<get-line-count> {
     pango_layout_get_line_count($!pl);
   }
 
-  method get_line (Int() $line) is also<get-line> {
+  method get_line (Int() $line, :$raw = False) is also<get-line> {
     my $l = $line;
-    Pango::LayoutLine.new( pango_layout_get_line($!pl, $l), :!ref );
+    my $pll = pango_layout_get_line($!pl, $l);
+
+    $pll ??
+      ( $raw ?? $pll !! Pango::LayoutLine.new($pll, :!ref ) )
+      !!
+      Nil;
   }
 
-  method get_line_readonly(Int() $line) is also<get-line-readonly> {
+  method get_line_readonly(Int() $line, :$raw = False)
+    is also<get-line-readonly>
+  {
     my $l = $line;
-    Pango::LayoutLine.new( pango_layout_get_line_readonly($!pl, $l), :!ref );
+    my $pll = pango_layout_get_line_readonly($!pl, $l);
+
+    $pll ??
+      ( $raw ?? $pll !! Pango::LayoutLine.new($pll, :!ref ) )
+      !!
+      Nil;
   }
 
   method get_lines is also<get-lines> {
@@ -311,6 +336,7 @@ D
     is also<get-log-attrs>
   {
     my gint $na = $n_attrs;
+
     pango_layout_get_log_attrs($!pl, $attrs, $na);
   }
 
@@ -318,6 +344,7 @@ D
     is also<get-log-attrs-readonly>
   {
     my gint $na = $n_attrs;
+
     pango_layout_get_log_attrs_readonly($!pl, $na);
   }
 
@@ -335,8 +362,8 @@ D
     samewith($ir, $lr);
   }
   multi method get_pixel_extents (
-    PangoRectangle $ink_rect,
-    PangoRectangle $logical_rect
+    PangoRectangle() $ink_rect,
+    PangoRectangle() $logical_rect
   ) {
     pango_layout_get_pixel_extents($!pl, $ink_rect, $logical_rect);
     ($ink_rect, $logical_rect);
@@ -344,15 +371,15 @@ D
 
   proto method get_pixel_size (|)
     is also<get-pixel-size>
-    { * }
+  { * }
 
   multi method get_pixel_size {
-    my ($w, $h) = (0 xx 2);
-    samewith($w, $h);
+    samewith($, $);
   }
-  multi method get_pixel_size (Int() $width is rw, Int() $height is rw) {
-    my @i = ($width, $height);
-    my gint ($w, $h) = @i;
+
+  multi method get_pixel_size ($width is rw, $height is rw) {
+    my gint ($w, $h) = 0 xx 2;
+
     pango_layout_get_pixel_size($!pl, $w, $h);
     ($width, $height) = ($w, $h);
   }
@@ -363,15 +390,14 @@ D
 
   proto method get_size (|)
     is also<get-size>
-    { * }
+  { * }
 
   multi method get_size {
-    my ($w, $h) = (0 xx 2);
-    samewith($w, $h);
+    samewith($, $);
   }
-  multi method get_size (Int() $width is rw, Int() $height is rw) {
-    my @i = ($width, $height);
-    my gint ($w, $h) = @i;
+  multi method get_size ($width is rw, $height is rw) {
+    my gint ($w, $h) = 0 xx 2;
+
     pango_layout_get_size($!pl, $w, $h);
     ($width, $height) = ($w, $h);
   }
@@ -392,9 +418,9 @@ D
   )
     is also<index-to-line-x>
   {
-    my gboolean $t = $trailing;
-    my @i = ($index, $line, $x_pos);
-    my ($ii, $ll, $xp) = @i;
+    my gboolean $t = $trailing.Int.so;
+    my ($ii, $ll, $xp) = ($index, $line, $x_pos);
+
     pango_layout_index_to_line_x($!pl, $ii, $t, $ll, $xp);
   }
 
@@ -402,6 +428,7 @@ D
     is also<index-to-pos>
   {
     my gint $i = $index;
+
     pango_layout_index_to_pos($!pl, $i, $pos);
   }
 
@@ -423,22 +450,23 @@ D
   )
     is also<move-cursor-visually>
   {
-    my gboolean $s = $strong;
-    my @i = ($old_index, $old_trailing, $direction, $new_index, $new_trailing);
-    my int32 ($oi, $ot, $d, $ni, $nt) = @i;
+    my gboolean $s = $strong.Int.so;
+    my int32 ($oi, $ot, $d, $ni, $nt) =
+      ($old_index, $old_trailing, $direction, $new_index, $new_trailing);
+
     pango_layout_move_cursor_visually($!pl, $s, $oi, $ot, $d, $ni, $nt);
   }
 
   proto method set_markup (|)
     is also<set-markup>
-    { * }
+  { * }
 
   multi method set_markup (Str() $markup) {
     samewith($markup, -1);
   }
   multi method set_markup (Str() $markup, Int() $length) {
-    $length = -1 without $length;
-    my int32 $l = $length;
+    my int32 $l = $length // -1;
+
     pango_layout_set_markup($!pl, $markup, $l);
   }
 
@@ -451,8 +479,8 @@ D
     is also<set-markup-with-accel>
   {
     my int32 $l = $length;
-    my @u = ($accel_marker, $accel_char);
-    my gunichar ($am, $ac) = @u;
+    my gunichar ($am, $ac) = ($accel_marker, $accel_char);
+
     pango_layout_set_markup_with_accel($!pl, $markup, $l, $am, $ac);
   }
 
@@ -460,6 +488,7 @@ D
     is also<set-text>
   {
     my int32 $l = $length;
+
     pango_layout_set_text($!pl, $text, $length);
   }
 
@@ -471,8 +500,8 @@ D
   )
     is also<xy-to-index>
   {
-    my @i = ($x, $y, $index, $trailing);
-    my int32 ($xx, $yy, $i, $t) = @i;
+    my int32 ($xx, $yy, $i, $t) = ($x, $y, $index, $trailing);
+
     pango_layout_xy_to_index($!pl, $xx, $yy, $i, $t);
   }
   # ↑↑↑↑ METHODS ↑↑↑↑

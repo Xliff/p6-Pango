@@ -6,8 +6,12 @@ use NativeCall;
 use Pango::Raw::Attr;
 use Pango::Raw::Types;
 
+use GLib::Roles::StaticClass;
+
 # Catch-all class
 class Pango::Attr {
+  also does GLib::Roles::StaticClass;
+
   method background_alpha_new(Int() $alpha)
     is also<background-alpha-new>
   {
@@ -92,17 +96,18 @@ class Pango::Attr {
     pango_attribute_destroy($attr.attr);
   }
 
-  method pango_attribute_equal ($attr1, $attr2)
-    is also<pango-attribute-equal>
-  {
+  method equal ($attr1, $attr2) {
     die "Cannot use attribute equals (a) on incompatible object { .^name }"
       unless $attr1.^can('attr').elems && $attr1.attr ~~ PangoAttribute;
     die "Cannot use attribute equals (b) on incompatible object { .^name }"
       unless $attr2.^can('attr').elems && $attr2.attr ~~ PangoAttribute;
+
     pango_attribute_equal($attr1.attr, $attr2.attr);
   }
 
-  method init (PangoAttribute $attr, PangoAttrClass $klass) {
+  # Should be out of scope due to PangoAttrClass, so might be best to
+  # not list this in the docs.
+  method init (PangoAttribute() $attr, PangoAttrClass $klass) {
     pango_attribute_init($attr, $klass);
   }
 
@@ -116,15 +121,18 @@ class Pango::Attr {
     pango_attr_scale_new($scale);
   }
 
-  method shape_new (PangoRectangle $ink_rect, PangoRectangle $logical_rect)
+  method shape_new (
+    PangoRectangle() $ink_rect,
+    PangoRectangle() $logical_rect
+  )
     is also<shape-new>
   {
     pango_attr_shape_new($ink_rect, $logical_rect);
   }
 
   method shape_new_with_data (
-    PangoRectangle $ink_rect,
-    PangoRectangle $logical_rect,
+    PangoRectangle() $ink_rect,
+    PangoRectangle() $logical_rect,
     $data is copy = Pointer,
     &copy_func = Callable,
     &destroy_func = Callable
@@ -171,7 +179,9 @@ class Pango::Attr {
     pango_attr_strikethrough_new($st);
   }
 
-  method style_new (PangoStyle $s) is also<style-new> {
+  method style_new (Int() $style) is also<style-new> {
+    my PangoStyle $s = $style;
+
     pango_attr_style_new($s);
   }
 
@@ -207,7 +217,7 @@ class Pango::Attr {
 
   method weight_new (Int() $weight) is also<weight-new> {
     my uint32 $w = $weight;
-    
+
     pango_attr_weight_new($w);
   }
 

@@ -1,5 +1,6 @@
 use v6.c;
 
+use Method::Also;
 use NativeCall;
 
 use GLib::Raw::Definitions;
@@ -121,13 +122,24 @@ class PangoAttribute        is repr<CStruct> is export does GLib::Roles::Pointer
 { ... }
 
 role PangoAttributeRole {
-  method attr {
-    nativecast(PangoAttribute, self)
+
+  method Pango::Raw::Structs::PangoAttribute
+    is also<
+      PangoAttribute
+      attr
+    >
+  {
+    nativecast(PangoAttribute, self);
   }
 
-  method Pango::Raw::Types::PangoAttribute {
-    self ~~ PangoAttribute ?? self !! self.attr
+  method start_index is also<start-index> {
+    self.attr.start_index;
   }
+
+  method end_index is also<end-index> {
+    self.attr.end_index;
+  }
+  
 }
 
 # All remaining classes do PangoAttributeRole.

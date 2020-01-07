@@ -2,10 +2,10 @@ Cairo
 GLib::GList
 GLib::Raw::Definitions
 GLib::Raw::Enums
+GLib::Raw::Exports
 GLib::Raw::Struct_Subs
 GLib::Raw::Structs
 GLib::Raw::Subs
-GLib::Raw::Types
 GLib::Roles::ListData
 GLib::Roles::Pointers
 GLib::Roles::References
@@ -16,6 +16,7 @@ Pango::Raw::Definitions
 Pango::Raw::Enums
 Pango::Raw::Structs
 Pango::Raw::Subs
+Pango::Raw::Exports
 Pango::Raw::Types
 Pango::Raw::XFT
 Pango::XFT

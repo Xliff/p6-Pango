@@ -5,26 +5,30 @@ use Pango::Raw::Definitions;
 
 unit package Pango::Raw::Enums;
 
-our enum PangoAlignment is export <
+constant PangoAlignment is export := guint32;
+our enum PangoAlignmentEnum is export <
   PANGO_ALIGN_LEFT
   PANGO_ALIGN_CENTER
   PANGO_ALIGN_RIGHT
 >;
 
-our enum PangoWrapMode is export <
+constant PangoWrapMode is export := guint32;
+our enum PangoWrapModeEnum is export <
   PANGO_WRAP_WORD
   PANGO_WRAP_CHAR
   PANGO_WRAP_WORD_CHAR
 >;
 
-our enum PangoEllipsizeMode is export <
+constant PangoEllipsizeMode is export := guint32;
+our enum PangoEllipsizeModeEnum is export <
   PANGO_ELLIPSIZE_NONE
   PANGO_ELLIPSIZE_START
   PANGO_ELLIPSIZE_MIDDLE
   PANGO_ELLIPSIZE_END
 >;
 
-our enum PangoStretch is export <
+constant PangoStretch is export := guint32;
+our enum PangoStretchEnum is export <
   PANGO_STRETCH_ULTRA_CONDENSED
   PANGO_STRETCH_EXTRA_CONDENSED
   PANGO_STRETCH_CONDENSED
@@ -36,13 +40,15 @@ our enum PangoStretch is export <
   PANGO_STRETCH_ULTRA_EXPANDED
 >;
 
-our enum PangoStyle is export <
+constant PangoStyle is export := guint32;
+our enum PangoStyleEnum is export <
   PANGO_STYLE_NORMAL
   PANGO_STYLE_OBLIQUE
   PANGO_STYLE_ITALIC
 >;
 
-our enum PangoUnderline is export <
+constant PangoUnderline is export := guint32;
+our enum PangoUnderlineEnum is export <
   PANGO_UNDERLINE_NONE
   PANGO_UNDERLINE_SINGLE
   PANGO_UNDERLINE_DOUBLE
@@ -50,7 +56,8 @@ our enum PangoUnderline is export <
   PANGO_UNDERLINE_ERROR
 >;
 
-our enum PangoVariant is export <
+constant PangoVariant is export := guint32;
+our enum PangoVariantEnum is export <
   PANGO_VARIANT_NORMAL
   PANGO_VARIANT_SMALL_CAPS
 >;
@@ -66,7 +73,8 @@ our enum PangoDirectionEnum is export <
   PANGO_DIRECTION_NEUTRAL
 >;
 
-our enum PangoWeight is export (
+constant PangoWeight is export := guint32;
+our enum PangoWeightEnum is export (
   PANGO_WEIGHT_THIN       => 100,
   PANGO_WEIGHT_ULTRALIGHT => 200,
   PANGO_WEIGHT_LIGHT      => 300,
@@ -81,7 +89,8 @@ our enum PangoWeight is export (
   PANGO_WEIGHT_ULTRAHEAVY => 1000
 );
 
-our enum PangoFontMask is export (
+constant PangoFontMask is export := guint32;
+our enum PangoFontMaskEnum is export (
   PANGO_FONT_MASK_FAMILY     => 1,
   PANGO_FONT_MASK_STYLE      => 1 +< 1,
   PANGO_FONT_MASK_VARIANT    => 1 +< 2,
@@ -92,7 +101,8 @@ our enum PangoFontMask is export (
   PANGO_FONT_MASK_VARIATIONS => 1 +< 7,
 );
 
-our enum PangoScale (
+constant PangoScale is export := guint32;
+our enum PangoScaleEnum is export (
   PANGO_SCALE_XX_SMALL => 0.5787037037037,
   PANGO_SCALE_X_SMALL  => 0.6444444444444,
   PANGO_SCALE_SMALL    => 0.8333333333333,
@@ -102,7 +112,8 @@ our enum PangoScale (
   PANGO_SCALE_XX_LARGE => 1.728,
 );
 
-our enum PangoGravity is export <
+constant PangoGravity is export := guint32;
+our enum PangoGravityEnum is export <
   PANGO_GRAVITY_SOUTH
   PANGO_GRAVITY_EAST
   PANGO_GRAVITY_NORTH
@@ -110,13 +121,15 @@ our enum PangoGravity is export <
   PANGO_GRAVITY_AUTO
 >;
 
-our enum PangoGravityHint is export <
+constant PangoGravityHint is export := guint32;
+our enum PangoGravityHintEnum is export <
   PANGO_GRAVITY_HINT_NATURAL
   PANGO_GRAVITY_HINT_STRONG
   PANGO_GRAVITY_HINT_LINE
 >;
 
-our enum PangoAttrType is export (
+constant PangoAttrType is export := guint32;
+our enum PangoAttrTypeEnum is export (
   'PANGO_ATTR_INVALID',              # 0 is an invalid attribute type */
   'PANGO_ATTR_LANGUAGE',             # PangoAttrLanguage */
   'PANGO_ATTR_FAMILY',               # PangoAttrString */
@@ -145,13 +158,15 @@ our enum PangoAttrType is export (
   'PANGO_ATTR_BACKGROUND_ALPHA'      # PangoAttrInt */
 );
 
-our enum PangoCoverageLevel is export <
+constant PangoCoverageLevel is export := guint32;
+our enum PangoCoverageLevelEnum is export <
   PANGO_COVERAGE_NONE
   PANGO_COVERAGE_FALLBACK
   PANGO_COVERAGE_APPROXIMATE
   PANGO_COVERAGE_EXACT
 >;
 
-our enum PangoTabAlign is export <
+constant PangoTabAlign is export := guint32;
+our enum PangoTabAlignEnum is export <
   PANGO_TAB_LEFT
 >;
