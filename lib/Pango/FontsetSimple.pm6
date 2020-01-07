@@ -16,9 +16,17 @@ class Pango::FontsetSimple is Pango::Fontset {
     self.setFontset($simple);
   }
 
-  method new(PangoLanguage() $lang) {
+  method Pango::Raw::Definitions::PangoFontsetSimple
+    is also<PangoFontsetSimple>
+  { $!pfss }
+
+  multi method new (PangoFontsetSimple $simple) {
+    $simple ?? self.bless(:$simple) !! Nil;
+  }
+  multi method new (PangoLanguage() $lang) {
     my $simple = pango_fontset_simple_new($lang);
-    self.bless(:$simple);
+
+    $simple ?? self.bless(:$simple) !! Nil;
   }
 
   method append (PangoFont() $font) {

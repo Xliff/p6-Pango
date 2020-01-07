@@ -13,7 +13,7 @@ class Pango::FontDescription {
     $!pfd = $description;
   }
 
-  method Pango::Raw::Types::PangoFontDescription
+  method Pango::Raw::Definitions::PangoFontDescription
     is also<
       PangoFontDescription
       font-description

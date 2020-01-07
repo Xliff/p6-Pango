@@ -12,7 +12,7 @@ class Pango::Color {
     $!pc = $color;
   }
 
-  method Pango::Raw::Types::PangoColor
+  method Pango::Raw::Structs::PangoColor
     is also<PangoColor>
   { $!pc }
 

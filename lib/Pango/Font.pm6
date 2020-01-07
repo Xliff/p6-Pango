@@ -14,7 +14,7 @@ class Pango::Font {
     $!pf = $font;
   }
 
-  method Pango::Raw::Types::PangoFont
+  method Pango::Raw::Definitions::PangoFont
     is also<PangoFont>
   { $!pf }
 

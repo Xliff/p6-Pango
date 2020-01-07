@@ -20,22 +20,22 @@ class Pango::Context {
 
   submethod BUILD (:$context) {
     $!pc = $context;
-    $!ref = $!pc.p;
+    $!ref = cast(GObject, $!pc.p);
   }
   submethod DESTROY {
-    self.downref;
+    self.unref;
   }
 
-  method Pango::Raw::Types::PangoContext
+  method Pango::Raw::Definitions::PangoContext
     is also<
       PangoContext
       context
     >
   { $!pc }
 
-  multi method new (PangoContext $context) {
+  multi method new (PangoContext $context, :$ref = True) {
     my $o = self.bless(:$context);
-    $o.upref;
+    $o.ref if $ref;
     $o;
   }
   multi method new {

@@ -68,10 +68,10 @@ class MiniSVGAction {
    method OP-C ($/) { $!cr.curve_to( |@( $/<point> ).map( *.made ).flat ) }
 }
 
-sub mini_svg_render (Cairo::cairo_t $c, uint32 $dp) { 
+sub mini_svg_render (Cairo::cairo_t $c, uint32 $dp) {
   my num64 ($x, $y);
   $c.get_current_point($x, $y);
-  
+
   $c.translate($x, $y);
 
   my $p = MiniSVG.parse(
@@ -109,8 +109,8 @@ sub get_layout($c) {
   for ( $text ~~ m:g/"{ BULLET }"/ ) -> $m {
     my $attr = Pango::Attr.shape_new_with_data($ir, $lr, $GFL);
 
-    $attr.attr.start_index = $m.from;
-    $attr.attr.end_index   = $m.to;
+    $attr.start_index = $m.from;
+    $attr.end_index   = $m.to;
     $attrs.insert($attr);
   }
   $layout.attributes = $attrs;

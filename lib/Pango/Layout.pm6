@@ -19,10 +19,10 @@ class Pango::Layout {
 
   submethod BUILD(:$layout) {
     $!pl = $layout;
-    $!ref = $!pl.p;
+    $!ref = cast(GObject, $!pl.p);
   }
 
-  method Pango::Raw::Types::PangoLayout
+  method Pango::Raw::Definitions::PangoLayout
     is also<
       PangoLayout
       layout
@@ -34,12 +34,13 @@ class Pango::Layout {
 
   multi method new (PangoLayout $layout, :$ref = True) {
     my $o = self.bless(:$layout);
-    $o.upref;
+    $o.ref if $ref;
     $o;
   }
   multi method new (PangoContext() $context) {
     my $layout = pango_layout_new($context);
-    self.bless(:$layout);
+
+    $layout ?? self.bless(:$layout) !! Nil;
   }
   multi method new (Mu $p) {
     die "Cannot create Pango::Layout from { $p.^name }";
@@ -50,7 +51,8 @@ class Pango::Layout {
 
   method copy {
     my $layout = pango_layout_copy($!pl);
-    self.bless(:$layout);
+
+    $layout ?? Pango::Layout.new($layout, :!ref) !! Nil;
   }
 
   # ↓↓↓↓ SIGNALS ↓↓↓↓

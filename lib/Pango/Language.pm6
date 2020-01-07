@@ -12,7 +12,7 @@ class Pango::Language {
     $!pl = $language;
   }
 
-  method Pango::Raw::Types::PangoLanguage
+  method Pango::Raw::Definitions::PangoLanguage
     is also<PangoLanguage>
   { $!pl }
 

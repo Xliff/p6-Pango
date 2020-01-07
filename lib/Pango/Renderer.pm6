@@ -8,6 +8,10 @@ use Pango::Raw::Renderer;
 class Pango::Renderer {
   has PangoRenderer $!pr;
 
+  method Pango::Raw::Definitions::PangoRenderer
+    is also<PangoRenderer>
+  { $!pr }
+
   method activate {
     pango_renderer_activate($!pr);
   }

@@ -13,6 +13,10 @@ class Pango::FontFamily {
     $!pff = $face;
   }
 
+  method Pango::Raw::Definitions::PangoFontFamily
+    is also<PangoFontFamily>
+  { $!pff }
+
   method new (PangoFontFamily $face) {
     $face ?? self.bless(:$face) !! Nil;
   }

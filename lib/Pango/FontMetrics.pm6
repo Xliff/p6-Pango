@@ -17,6 +17,10 @@ class Pango::FontMetrics {
     self.downref;
   }
 
+  multi method Pango::Raw::Definitions::PangoFontMetrics
+    is also<PangoFontMetrics>
+  { $!pfm }
+
   multi method new(PangoFontMetrics $metrics) {
     my $o = self.bless(:$metrics);
     $o.upref;

@@ -14,7 +14,7 @@ class Pango::GlyphItem {
     $!pgi = $item;
   }
 
-  method Pango::Raw::Types::PangoGlyphItem
+  method Pango::Raw::Definitions::PangoGlyphItem
     is also<PangoGlyphItem>
   { $!pgi }
 

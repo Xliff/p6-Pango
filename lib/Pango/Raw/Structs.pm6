@@ -132,21 +132,32 @@ role PangoAttributeRole {
     nativecast(PangoAttribute, self);
   }
 
-  method start_index is also<start-index> {
-    self.attr.start_index;
+  # We have to do some really weird end-arounds to avoid circular references!
+  method start_index is also<start-index> is rw {
+    self ~~ PangoAttribute ??
+      self._start_index !! self.attr.start_index;
   }
 
-  method end_index is also<end-index> {
-    self.attr.end_index;
+  method end_index is also<end-index> is rw {
+    self ~~ PangoAttribute ??
+      self._end_index !! self.attr.end_index;
   }
-  
+
 }
 
 # All remaining classes do PangoAttributeRole.
 class PangoAttribute does PangoAttributeRole {
   has Pointer $.klass;
-  has guint   $.start_index is rw;
-  has guint   $.end_index   is rw;
+  has guint   $!start_index;
+  has guint   $!end_index  ;
+
+  method _start_index is rw {
+    $!start_index;
+  }
+
+  method _end_index is rw {
+    $!end_index;
+  }
 }
 
 class PangoAttrString       is repr<CStruct> is export does GLib::Roles::Pointers does PangoAttributeRole {

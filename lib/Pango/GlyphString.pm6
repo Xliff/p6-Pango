@@ -16,7 +16,7 @@ class Pango::GlyphString {
     $!pgs = $glyphstring;
   }
 
-  method Pango::Raw::Types::PangoGlyphString
+  method Pango::Raw::Definitions::PangoGlyphString
     is also<PangoGlyphString>
   { $!pgs }
 

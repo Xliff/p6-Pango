@@ -12,7 +12,7 @@ class Pango::AttrList {
     $!pal = $list;
   }
 
-  method Pango::Raw::Types::PangoAttrList
+  method Pango::Raw::Definitions::PangoAttrList
     is also<
       AttrList
       PangoAttrList

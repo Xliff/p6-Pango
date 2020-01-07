@@ -18,21 +18,21 @@ class Pango::LayoutLine {
     self.downref;
   }
 
+  method Pango::Raw::Definitions::PangoLayoutLine
+    is also<PangoLayoutLine>
+  { $!pll }
+
   method new (PangoLayoutLine $line, :$ref = True) {
     my $o = self.bless(:$line);
     $o.upref if $ref;
     $o;
   }
-
-  method Pango::Raw::Types::PangoLayoutLine {
-    $!pll;
-  }
-
+  
   method get_extents (
     PangoRectangle() $ink_rect,
     PangoRectangle() $logical_rect
-  ) 
-    is also<get-extents> 
+  )
+    is also<get-extents>
   {
     pango_layout_line_get_extents($!, $ink_rect, $logical_rect);
   }
@@ -40,16 +40,16 @@ class Pango::LayoutLine {
   method get_pixel_extents (
     PangoRectangle() $ink_rect,
     PangoRectangle() $logical_rect
-  ) 
-    is also<get-pixel-extents> 
+  )
+    is also<get-pixel-extents>
   {
     pango_layout_line_get_pixel_extents($!pll, $ink_rect, $logical_rect);
   }
 
   proto method get_x_ranges (|)
-    is also<get-x-ranges> 
+    is also<get-x-ranges>
     { * }
-    
+
   multi method get_x_ranges(Int() $start_index, Int() $end_index) {
     my @ranges;
     my Int $n_ranges = 0;
@@ -70,7 +70,7 @@ class Pango::LayoutLine {
     $n_ranges = $nr;
     Nil;
   }
-  
+
   proto method index_to_x (|)
     is also<index-to-x>
     { * }
@@ -95,7 +95,7 @@ class Pango::LayoutLine {
   method downref {
     pango_layout_line_unref($!pll);
   }
-  
+
   proto method x_to_index (|)
     is also<x-to-index>
     { * }

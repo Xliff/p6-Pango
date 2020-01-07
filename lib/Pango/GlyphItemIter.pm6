@@ -12,12 +12,18 @@ class Pango::GlyphItemIter {
     $!pgii = $iter;
   }
 
+  method Pango::Raw::Definitions::PangoGlyphItemIter
+    is also<PangoGlyphItemIter>
+  { $!pgii }
+
   method new (PangoGlyphItemIter $iter) {
-    self.bless(:$iter);
+    $iter ?? self.bless(:$iter) !! Nil;
   }
 
   method copy {
-    Pango::GlyphItemIter.new( pango_glyph_item_iter_copy($!pgii) );
+    my $iter = pango_glyph_item_iter_copy($!pgii);
+    
+    $iter ?? Pango::GlyphItemIter.new($iter) !! Nil;
   }
 
   method free {
@@ -25,7 +31,9 @@ class Pango::GlyphItemIter {
   }
 
   method get_type is also<get-type> {
-    pango_glyph_item_iter_get_type();
+    state ($n, $t);
+
+    unstable_get_type( self.^name, &pango_glyph_item_iter_get_type, $n, $t );
   }
 
   method init_end (PangoGlyphItem() $glyph_item, Str() $text)

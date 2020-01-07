@@ -10,23 +10,24 @@ use Pango::Raw::FontMap;
 class Pango::FontMap {
   has PangoFontMap $!fm;
 
-  method Pango::Compat::Types::PangoFontMap
+  method Pango::Raw::Definitions::PangoFontMap
     is also<
       PangoFontMap
       fontmap
     >
   { $!fm }
 
-  method setFontMap(PangoFontMap $fontmap) {
+  method setFontMap (PangoFontMap $fontmap) {
     $!fm = $fontmap;
   }
 
   method changed {
-    pango_font_map_changed($!fm);
+    so pango_font_map_changed($!fm);
   }
 
   method create_context is also<create-context> {
     my $pc = Pango::Context.new;
+    return Nil unless $pc;
     $pc.font_map = $!fm;
     $pc;
   }

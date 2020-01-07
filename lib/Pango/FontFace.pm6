@@ -12,6 +12,10 @@ class Pango::FontFace {
     $!pff = $face;
   }
 
+  method Pango::Raw::Definitions::PangoFontFace
+    is also<PangoFontFace>
+  { $!pff }
+
   method describe {
     pango_font_face_describe($!pff);
   }

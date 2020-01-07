@@ -13,7 +13,7 @@ class Pango::Tabs {
     $!pta = $tabs;
   }
 
-  method Pango::Raw::Types::PangoTabArray
+  method Pango::Raw::Definitions::PangoTabArray
     is also<
       TabArray
       PangoTabArray

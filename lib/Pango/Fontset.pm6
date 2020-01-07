@@ -15,7 +15,7 @@ class Pango::Fontset {
     self.setFontset($set);
   }
 
-  method Pango::Raw::Types::PangoFontset
+  method Pango::Raw::Definitions::PangoFontset
     is also<PangoFontset>
   { $!pfs }
 

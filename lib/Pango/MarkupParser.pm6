@@ -5,7 +5,11 @@ use NativeCall;
 use Pango::Raw::Attr;
 use Pango::Raw::Types;
 
+use GLib::Roles::StaticClass;
+
 class Pango::MarkupParser {
+  also does GLib::Roles::StaticClass;
+  
   # has PangoMarkupParser $!pmp;
 
   # Object method requires more GLib integration than is necessary since

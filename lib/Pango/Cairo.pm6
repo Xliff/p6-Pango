@@ -33,9 +33,13 @@ class Pango::Cairo {
     self.bless(:$cr, :$update);
   }
 
-  method pango_context is also<pango-context> {
-    $!pc;
-  }
+  method Pango::Raw::Definitions::PangoContext
+    is also<
+      pango-context
+      pango_context
+      PangoContext
+    >
+  { $!pc }
 
   method cairo_context is also<cairo-context> {
     $!ct;
@@ -125,8 +129,18 @@ class Pango::Cairo {
     );
   }
 
-  method create_pc_context(Pango::Cairo:D: ) is also<create-pc-context> {
-    Pango::Context.new( pango_cairo_create_context($!ct) );
+  method create_pc_context(
+    Pango::Cairo:D:
+    :$raw = False
+  )
+    is also<create-pc-context>
+  {
+    my $c = pango_cairo_create_context($!ct);
+
+    $c ??
+      ( $raw ?? $c !! Pango::Context.new($c) )
+      !!
+      Nil;
   }
 
   # To prevent confusion, this should probably be the only
@@ -135,8 +149,12 @@ class Pango::Cairo {
     is also<create-layout>
   { * }
 
-  multi method create_layout(Pango::Cairo:D:) {
-    $!pl = Pango::Layout.new( pango_cairo_create_layout($!ct) );
+  multi method create_layout(Pango::Cairo:D: :$raw = False) {
+    my $layout = pango_cairo_create_layout($!ct);
+
+    $!pl = $layout ?? Pango::Layout.new($layout) !! Nil;
+    warn 'Could not create Pango::Layout!' unless $!pl;
+    $!pl;
   }
   multi method create_layout(
     Pango::Cairo:U:

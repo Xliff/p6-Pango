@@ -16,6 +16,10 @@ class Pango::AttrIter {
     $!pai = $iter;
   }
 
+  method Pango::Raw::Definitions::PangoAttrIterator
+    is also<PangoAttrIter>
+  { $!pai }
+
   method new (PangoAttrIter $iter) {
     self.bless(:$iter);
   }
