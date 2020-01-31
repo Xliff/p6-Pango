@@ -1,10 +1,6 @@
 {
     "depends": [
-	    "Cairo",
-      "Method::Also",
-      "Inline::Perl5",
-      "RandomColor",
-      "Config::INI",
+      "Cairo",
       "p6-GLib"
     ],
     "description": "Perl6 library bindings for Pango",
@@ -80,11 +76,7 @@
     "name": "Perl6-Pango",
     "perl": "6.c",
     "test-depends": ["Test::META"],
-    "build-depends": [
-      "Text::Table::Simple",
-      "Dependency::Sort",
-      "File::Find"
-    ],
+    "build-depends": [ ],
     "support": {"source": null},
     "authors": ["clifton.wood@gmail.com"]
 }
