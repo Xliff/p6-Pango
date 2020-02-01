@@ -7,8 +7,8 @@ GLib::Raw::Struct_Subs
 GLib::Raw::Structs
 GLib::Raw::Subs
 GLib::Roles::ListData
+GLib::Roles::Object
 GLib::Roles::Pointers
-GLib::Roles::References
 GLib::Roles::StaticClass
 Method::Also
 Pango::Compat::FreeType

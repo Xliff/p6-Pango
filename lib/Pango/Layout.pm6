@@ -10,16 +10,17 @@ use Pango::FontDescription;
 use Pango::LayoutIter;
 use Pango::LayoutLine;
 
-use GLib::Roles::References;
+use GLib::Roles::Object;
 
 class Pango::Layout {
-  also does GLib::Roles::References;
+  also does GLib::Roles::Object;
 
-  has PangoLayout $!pl;
+  has PangoLayout $!pl is implementor;
 
   submethod BUILD(:$layout) {
     $!pl = $layout;
-    $!ref = cast(GObject, $!pl.p);
+
+    self.roleInit-Object;
   }
 
   method Pango::Raw::Definitions::PangoLayout

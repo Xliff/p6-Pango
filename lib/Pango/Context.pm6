@@ -11,16 +11,17 @@ use Pango::Raw::Context;
 use Pango::FontMetrics;
 
 use GLib::Roles::ListData;
-use GLib::Roles::References;
+use GLib::Roles::Object;
 
 class Pango::Context {
-  also does GLib::Roles::References;
+  also does GLib::Roles::Object;
 
-  has PangoContext $!pc;
+  has PangoContext $!pc is implementor;
 
   submethod BUILD (:$context) {
     $!pc = $context;
-    $!ref = cast(GObject, $!pc.p);
+    
+    self.roleInit-Object;
   }
   submethod DESTROY {
     self.unref;
