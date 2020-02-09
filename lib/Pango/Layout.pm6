@@ -6,6 +6,7 @@ use NativeCall;
 use Pango::Raw::Types;
 use Pango::Raw::Layout;
 
+use Pango::Context;
 use Pango::FontDescription;
 use Pango::LayoutIter;
 use Pango::LayoutLine;
@@ -34,11 +35,23 @@ class Pango::Layout {
   { * }
 
   multi method new (PangoLayout $layout, :$ref = True) {
+    return Nil unless $layout;
+    
     my $o = self.bless(:$layout);
     $o.ref if $ref;
     $o;
   }
-  multi method new (PangoContext() $context) {
+  multi method new ($context is copy) {
+    my $compatible = $context ~~ (Pango::Context, PangoContext).any;
+    my $coercible  = $context.^can('PangoContext').elems;
+
+    die qq:to/DIE/ unless $compatible || $coercible;
+      \$context must be PangoContext-compatible value. A {
+      $context.^name } does not appear to be so.
+      DIE
+
+    $context .= PangoContext if $coercible;
+
     my $layout = pango_layout_new($context);
 
     $layout ?? self.bless(:$layout) !! Nil;
