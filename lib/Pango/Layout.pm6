@@ -18,7 +18,7 @@ class Pango::Layout {
 
   has PangoLayout $!pl is implementor;
 
-  submethod BUILD(:$layout) {
+  multi submethod BUILD(:$layout is required) {
     $!pl = $layout;
 
     self.roleInit-Object;
@@ -36,7 +36,7 @@ class Pango::Layout {
 
   multi method new (PangoLayout $layout, :$ref = True) {
     return Nil unless $layout;
-    
+
     my $o = self.bless(:$layout);
     $o.ref if $ref;
     $o;
