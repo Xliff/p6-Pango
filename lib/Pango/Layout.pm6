@@ -18,7 +18,7 @@ class Pango::Layout {
 
   has PangoLayout $!pl is implementor;
 
-  multi submethod BUILD(:$layout is required) {
+  submethod BUILD(:$layout) {
     $!pl = $layout;
 
     self.roleInit-Object;

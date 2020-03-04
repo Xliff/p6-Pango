@@ -18,7 +18,7 @@ class Pango::Context {
 
   has PangoContext $!pc is implementor;
 
-  multi submethod BUILD (:$context is required) {
+  submethod BUILD (:$context) {
     $!pc = $context;
 
     self.roleInit-Object;
