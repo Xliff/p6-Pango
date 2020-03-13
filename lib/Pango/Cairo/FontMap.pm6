@@ -35,7 +35,7 @@ class Pango::Cairo::FontMap {
 
   method default is rw {
     Proxy.new(
-      FETCH => -> $ {
+      FETCH => sub ($) {
         pango_cairo_font_map_get_default()
       },
       STORE => -> $, PangoFontMap() $fontmap {
@@ -48,7 +48,7 @@ class Pango::Cairo::FontMap {
   #
   # method resolution is rw {
   #   Proxy.new(
-  #     FETCH => -> $ {
+  #     FETCH => sub ($) {
   #       pango_font_map_get_resolution($!pcfm);
   #     },
   #     STORE => -> $, Num() $dpi {

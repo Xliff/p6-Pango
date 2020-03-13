@@ -232,7 +232,7 @@ D
 
   method text is rw {
     Proxy.new:
-      FETCH => -> $              { self.get_text },
+      FETCH => sub ($)              { self.get_text },
       STORE => -> $, Str() $text { self.set_text($text) }
   }
 

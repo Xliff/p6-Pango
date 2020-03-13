@@ -19,7 +19,7 @@ class Pango::Color {
   ### ATTRIBUTES FOR RGB ###
   method r is also<red> is rw {
     Proxy.new(
-      FETCH => -> $ {
+      FETCH => sub ($) {
         $!pc.red
       },
       STORE => -> $, Int() $val {
@@ -32,7 +32,7 @@ class Pango::Color {
 
   method g is also<green> is rw {
     Proxy.new(
-      FETCH => -> $ {
+      FETCH => sub ($) {
         $!pc.green
       },
       STORE => -> $, Int() $val {
@@ -45,7 +45,7 @@ class Pango::Color {
 
   method b is also<blue> is rw {
     Proxy.new(
-      FETCH => -> $ {
+      FETCH => sub ($) {
         $!pc.blue
       },
       STORE => -> $, Int() $val {

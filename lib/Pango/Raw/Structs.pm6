@@ -201,19 +201,19 @@ class PangoAttrShape        is repr<CStruct> is export does GLib::Roles::Pointer
 
   method data is rw {
     Proxy.new:
-      FETCH => -> $       { $!data },
+      FETCH => sub ($)       { $!data },
       STORE => -> $, \val { self.^attributes[3].set_value( self, nativecast(Pointer, val) ) };
   }
 
   method copy_func is rw {
     Proxy.new:
-      FETCH => -> $       { $!copy_func },
+      FETCH => sub ($)       { $!copy_func },
       STORE => -> $, \val { self.^attributes[4].set_value( self, set_func_pointer(val, &sprintf-P-P) ) };
   }
 
   method destroy_func {
     Proxy.new:
-      FETCH => -> $       { $!destroy_func },
+      FETCH => sub ($)       { $!destroy_func },
       STORE => -> $, \val { self.^attributes[5].set_value( self, set_func_pointer(val, &sprintf-P) ) };
   }
 }
