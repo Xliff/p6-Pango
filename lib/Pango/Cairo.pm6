@@ -4,11 +4,9 @@ use Method::Also;
 use NativeCall;
 
 use Cairo;
-use Pango::Compat::Types;
+
 use Pango::Raw::Cairo;
 use Pango::Raw::Types;
-
-use Pango::Roles::Types;
 
 use Pango::Context;
 use Pango::Layout;
@@ -16,8 +14,6 @@ use Pango::Layout;
 # Consider augment to Cairo::Context to add type coercion.
 
 class Pango::Cairo {
-  also does Pango::Roles::Types;
-
   has cairo_t        $!ct;
   has                $!pc;
   has                $!pl;
@@ -37,9 +33,13 @@ class Pango::Cairo {
     self.bless(:$cr, :$update);
   }
 
-  method pango_context is also<pango-context> {
-    $!pc;
-  }
+  method Pango::Raw::Definitions::PangoContext
+    is also<
+      pango-context
+      pango_context
+      PangoContext
+    >
+  { $!pc }
 
   method cairo_context is also<cairo-context> {
     $!ct;
@@ -52,8 +52,10 @@ class Pango::Cairo {
   )
     is also<new-with-fontmap>
   {
+
     my $context = Pango::Context.new( self.font_map_create_context($fontmap) );
-    self.bless(:$context, :$update, :$cr);
+
+    $context ?? self.bless(:$context, :$update, :$cr) !! Nil;
   }
 
   method context_font_options is rw is also<context-font-options> {
@@ -74,6 +76,7 @@ class Pango::Cairo {
       },
       STORE => sub ($, Num() $dpi is copy) {
         my gdouble $ddpi = $dpi;
+
         pango_cairo_context_set_resolution($!pc.context, $ddpi);
       }
     );
@@ -95,6 +98,7 @@ class Pango::Cairo {
 
   method context_get_shape_renderer is also<context-get-shape-renderer> {
     my $p = Pointer.new;
+
     pango_cairo_context_get_shape_renderer(
       $!pl.get_context,
       $p
@@ -125,8 +129,18 @@ class Pango::Cairo {
     );
   }
 
-  method create_pc_context(Pango::Cairo:D: ) is also<create-pc-context> {
-    Pango::Context.new( pango_cairo_create_context($!ct) );
+  method create_pc_context(
+    Pango::Cairo:D:
+    :$raw = False
+  )
+    is also<create-pc-context>
+  {
+    my $c = pango_cairo_create_context($!ct);
+
+    $c ??
+      ( $raw ?? $c !! Pango::Context.new($c) )
+      !!
+      Nil;
   }
 
   # To prevent confusion, this should probably be the only
@@ -135,11 +149,24 @@ class Pango::Cairo {
     is also<create-layout>
   { * }
 
-  multi method create_layout(Pango::Cairo:D:) {
-    $!pl = Pango::Layout.new( pango_cairo_create_layout($!ct) );
+  multi method create_layout(Pango::Cairo:D: :$raw = False) {
+    my $layout = pango_cairo_create_layout($!ct);
+
+    $!pl = $layout ?? Pango::Layout.new($layout) !! Nil;
+    warn 'Could not create Pango::Layout!' unless $!pl;
+    $!pl;
   }
-  multi method create_layout(Pango::Cairo:U: cairo_t $context) {
-    Pango::Layout.new( pango_cairo_create_layout($context) );
+  multi method create_layout(
+    Pango::Cairo:U:
+    cairo_t $context,
+    :$raw = False
+  ) {
+    my $pl = pango_cairo_create_layout($context);
+
+    $pl ??
+      ( $raw ?? $pl !! Pango::Layout.new($pl) )
+      !!
+      Nil;
   }
 
   method error_underline_path (
@@ -151,6 +178,7 @@ class Pango::Cairo {
     is also<error-underline-path>
   {
     my gdouble ($xx, $yy, $w, $h) = ($x, $y, $width, $height);
+
     pango_cairo_error_underline_path($!ct, $xx, $yy, $w, $h);
   }
 
@@ -205,6 +233,7 @@ class Pango::Cairo {
     is also<show-error-underline>
   {
     my gdouble ($xx, $yy, $w, $h) = ($x, $y, $width, $height);
+
     pango_cairo_show_error_underline($!ct, $xx, $yy, $w, $h);
   }
 

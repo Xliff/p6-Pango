@@ -3,17 +3,12 @@ use v6.c;
 use Method::Also;
 use NativeCall;
 
-use Pango::Compat::Types;
 use Pango::Raw::FcFontMap;
 use Pango::Raw::Types;
 
 use Pango::FontMap;
 
-use Pango::Roles::Types;
-
 class Pango::FontMap::FC is Pango::FontMap {
-  also does Pango::Roles::Types;
-
   has PangoFcFontMap $!pfcfm;
 
   # Really should have some form of protection.
@@ -26,8 +21,8 @@ class Pango::FontMap::FC is Pango::FontMap {
     &findfunc,
     $user_data,
     &dnotify
-  ) 
-    is also<add-decoder-find-func> 
+  )
+    is also<add-decoder-find-func>
   {
     die q:to/D/.chomp unless $user_data.REPR eq <CPointer CStruct>.any;
 <user_data> parameter must be of CPointer or CStruct representation.

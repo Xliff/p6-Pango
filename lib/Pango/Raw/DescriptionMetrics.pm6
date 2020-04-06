@@ -2,7 +2,7 @@ use v6.c;
 
 use NativeCall;
 
-use Pango::Compat::Types;
+
 use Pango::Raw::Types;
 
 unit package Pango::Raw::DescriptionMetrics;
@@ -153,7 +153,7 @@ sub pango_font_family_is_monospace (PangoFontFamily $family)
 sub pango_font_family_list_faces (
   PangoFontFamily $family,
   CArray[CArray[CArray[PangoFontFace]]] $faces,
-  gint $n_faces
+  gint $n_faces is rw
 )
   is native(pango)
   is export

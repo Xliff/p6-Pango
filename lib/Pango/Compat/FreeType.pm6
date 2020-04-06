@@ -46,7 +46,7 @@ class FT_Bitmap is repr('CStruct') is export {
 
   method buffer is rw {
     Proxy.new(
-      FETCH => -> $ { $!buffer },
+      FETCH => sub ($) { $!buffer },
       STORE => -> $, Pointer $val {
         use nqp;
         nqp::bindattr(

@@ -3,15 +3,11 @@ use v6.c;
 use Method::Also;
 use NativeCall;
 
-use Pango::Compat::Types;
+
 use Pango::Raw::Coverage;
 use Pango::Raw::Types;
 
-use Pango::Roles::Types;
-
 class Pango::Coverage {
-  also does Pango::Roles::Types;
-
   has PangoCoverage $!pc;
 
   submethod BUILD (:$coverage) {
@@ -22,9 +18,9 @@ class Pango::Coverage {
     self.downref;
   }
 
-  multi method new (PangoCoverage $coverage) {
+  multi method new (PangoCoverage $coverage, :$ref = True) {
     my $o = self.bless(:$coverage);
-    $o.upref;
+    $o.upref if $ref;
     $o;
   }
   multi method new {
@@ -50,7 +46,7 @@ class Pango::Coverage {
   }
 
   method get (Int() $index) {
-    my gint $i = self.RESOLVE-INT($index);
+    my gint $i = $index;
     pango_coverage_get($!pc, $i);
   }
 
@@ -63,26 +59,25 @@ class Pango::Coverage {
   }
 
   method set ( Int() $index, Int() $level ) {
-    my int32 $i = self.RESOLVE-INT($index);
-    my uint32 $l = self.RESOLVE-UINT($level);
+    my int32 $i = $index;
+    my uint32 $l = $level;
     pango_coverage_set($!pc, $i, $l);
   }
-  
-  proto method to_bytes (|) 
-    is also<to-bytes> 
+
+  proto method to_bytes (|)
+    is also<to-bytes>
   { * }
 
   multi method to_bytes {
     my ($b, $nb) = (Blob[uint8].new, 0);
     samewith($b, $nb);
   }
-  multi method to_bytes (Blob $bytes is rw, Int $n_bytes is rw) {
+  multi method to_bytes ($bytes is rw, $n_bytes is rw) {
     my $ba = CArray[CArray[uint8]].new;
+    $ba[0] = CArray[uint8];
     my int32 $nb = 0;
     pango_coverage_to_bytes($!pc, $ba, $nb);
-    my @ba;
-    @ba[$_] = $ba[0][$_] for $ba[0].elems; 
-    my Blob $b = Blob[uint8].new(@ba);
+    my Blob $b = Blob[uint8].new($ba);
     ($bytes, $n_bytes) = ($b, $nb);
   }
 

@@ -1,6 +1,7 @@
 {
-    "depends": [ 
-	    "Cairo", "Method::Also", "Inline::Perl5", "RandomColor", "Config::INI"
+    "depends": [
+      "Cairo",
+      "p6-GLib"
     ],
     "description": "Perl6 library bindings for Pango",
     "version": "r0.1",
@@ -8,18 +9,16 @@
     "license": "GPL-3.0",
     "source-url": "http://github.com/Xliff/p6-Pango.git",
     "provides": {
-      "Pango::Roles::Pointers"         :  "lib/Pango/Roles/Pointers.pm6"         ,
-      "Pango::Compat::Types"           :  "lib/Pango/Compat/Types.pm6"           ,
       "Pango::Compat::FreeType"        :  "lib/Pango/Compat/FreeType.pm6"        ,
-      "Pango::Raw::Types"              :  "lib/Pango/Raw/Types.pm6"              ,
-      "Pango::Raw::Utils"              :  "lib/Pango/Raw/Utils.pm6"              ,
-      "Pango::Raw::XFT"                :  "lib/Pango/Raw/XFT.pm6"                ,
-      "Pango::Roles::References"       :  "lib/Pango/Roles/References.pm6"       ,
       "Pango::Roles::Protection"       :  "lib/Pango/Roles/Protection.pm6"       ,
-      "Pango::Roles::Types"            :  "lib/Pango/Roles/Types.pm6"            ,
+      "Pango::Raw::Definitions"        :  "lib/Pango/Raw/Definitions.pm6"        ,
+      "Pango::Raw::Enums"              :  "lib/Pango/Raw/Enums.pm6"              ,
+      "Pango::Raw::Structs"            :  "lib/Pango/Raw/Structs.pm6"            ,
+      "Pango::Raw::Subs"               :  "lib/Pango/Raw/Subs.pm6"               ,
+      "Pango::Raw::Exports"            :  "lib/Pango/Raw/Exports.pm6"            ,
+      "Pango::Raw::Types"              :  "lib/Pango/Raw/Types.pm6"              ,
+      "Pango::Raw::XFT"                :  "lib/Pango/Raw/XFT.pm6"                ,
       "Pango::XFT"                     :  "lib/Pango/XFT.pm6"                    ,
-      "Pango::Compat::Raw::GList"      :  "lib/Pango/Compat/Raw/GList.pm6"       ,
-      "Pango::Compat::Raw::GSList"     :  "lib/Pango/Compat/Raw/GSList.pm6"      ,
       "Pango::Raw::Attr"               :  "lib/Pango/Raw/Attr.pm6"               ,
       "Pango::Raw::Cairo"              :  "lib/Pango/Raw/Cairo.pm6"              ,
       "Pango::Raw::Context"            :  "lib/Pango/Raw/Context.pm6"            ,
@@ -45,8 +44,6 @@
       "Pango::AttrIter"                :  "lib/Pango/AttrIter.pm6"               ,
       "Pango::AttrList"                :  "lib/Pango/AttrList.pm6"               ,
       "Pango::Color"                   :  "lib/Pango/Color.pm6"                  ,
-      "Pango::Compat::GList"           :  "lib/Pango/Compat/GList.pm6"           ,
-      "Pango::Compat::GSList"          :  "lib/Pango/Compat/GSList.pm6"          ,
       "Pango::Coverage"                :  "lib/Pango/Coverage.pm6"               ,
       "Pango::FcFontKey"               :  "lib/Pango/FcFontKey.pm6"              ,
       "Pango::FcFontsetKey"            :  "lib/Pango/FcFontsetKey.pm6"           ,
@@ -79,17 +76,7 @@
     "name": "Perl6-Pango",
     "perl": "6.c",
     "test-depends": ["Test::META"],
-    "build-depends": [
-      "Text::Table::Simple",
-      "Dependency::Sort",
-      "File::Find"
-    ],
+    "build-depends": [ ],
     "support": {"source": null},
     "authors": ["clifton.wood@gmail.com"]
 }
-
-
-
-
-
-

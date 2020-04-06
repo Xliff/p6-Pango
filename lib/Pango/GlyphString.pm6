@@ -2,40 +2,56 @@ use v6.c;
 
 use Method::Also;
 
-use Pango::Compat::GList;
-use Pango::Compat::Types;
+use GLib::GList;
+
 use Pango::Raw::Types;
 use Pango::Raw::GlyphString;
 
-use Pango::Roles::Types;
+use GLib::Roles::ListData;
 
 class Pango::GlyphString {
-  also does Pango::Roles::Types;
-
   has PangoGlyphString $!pgs;
 
   submethod BUILD (:$glyphstring) {
     $!pgs = $glyphstring;
   }
 
-  method Pango::Raw::Types::PangoGlyphString {
-    $!pgs;
-  }
+  method Pango::Raw::Definitions::PangoGlyphString
+    is also<PangoGlyphString>
+  { $!pgs }
 
-  method new {
+  multi method new (PangoGlyphString $glyphstring) {
+    $glyphstring ?? self.bless(:$glyphstring) !! Nil;
+  }
+  multi method new {
     my $glyphstring = pango_glyph_string_new();
-    self.bless(:$glyphstring);
+
+    $glyphstring ?? self.bless(:$glyphstring) !! Nil;
   }
 
-  # STATIC
   # Generic subroutine not tied to any specific object. Consider a catch-all
   # class or package for these.
-  method reorder_items (GList() $items) is also<reorder-items> {
-    Pango::Compat::GList.new( pango_reorder_items($items) );
+  method reorder_items (
+    Pango::GlyphString:U:
+    GList() $items,
+    :$glist = False
+  )
+    is also<reorder-items>
+  {
+    my $ril = pango_reorder_items($items);
+
+    return Nil unless $ril;
+    return $ril if $glist;
+
+    my $l = GLib::GList.new($ril) but GLib::Roles::ListData[PangoItem];
+
+    $l.Array;
   }
 
   method copy {
-    pango_glyph_string_copy($!pgs);
+    my $glyphstring = pango_glyph_string_copy($!pgs);
+
+    $glyphstring ?? Pango::GlyphString.new($glyphstring) !! Nil;
   }
 
   method extents (
@@ -52,11 +68,10 @@ class Pango::GlyphString {
     PangoFont() $font,
     PangoRectangle $irect,
     PangoRectangle $lrect
-  ) 
-    is also<extents-range> 
+  )
+    is also<extents-range>
   {
-    my @i = ($start, $end);
-    my gint ($s, $e) = self.RESOLVE-INT(@i);
+    my gint ($s, $e) = ($start, $end);
     pango_glyph_string_extents_range($!pgs, $s, $e, $font, $irect, $lrect);
   }
 
@@ -69,11 +84,11 @@ class Pango::GlyphString {
     Int() $length,
     Int() $embedding_level,
     Int() $logical_widths
-  ) 
-    is also<get-logical-widths> 
+  )
+    is also<get-logical-widths>
   {
-    my @i = ($length, $embedding_level, $logical_widths);
-    my ($l, $el, $lw) = self.RESOLVE-INT(@i);
+    my ($l, $el, $lw) = ($length, $embedding_level, $logical_widths);
+
     pango_glyph_string_get_logical_widths($!pgs, $text, $l, $el, $lw);
   }
 
@@ -92,12 +107,12 @@ class Pango::GlyphString {
     Int() $index,
     Int() $trailing,
     Int() $x_pos
-  ) 
-    is also<index-to-x> 
+  )
+    is also<index-to-x>
   {
-    my @i = ($length, $index, $x_pos);
-    my ($l, $i, $xp) = self.RESOLVE-INT(@i);
-    my gboolean $t = self.RESOLVE-BOOL($trailing);
+    my ($l, $i, $xp) = ($length, $index, $x_pos);
+    my gboolean $t = $trailing;
+
     pango_glyph_string_index_to_x($!pgs, $text, $l, $analysis, $i, $t, $xp);
   }
 
@@ -117,11 +132,11 @@ class Pango::GlyphString {
     Int() $paragraph_length,
     PangoAnalysis $analysis,
     PangoGlyphString() $glyphs
-  ) 
-    is also<shape-full> 
+  )
+    is also<shape-full>
   {
-    my @i = ($item_length, $paragraph_length);
-    my ($il, $pl) = self.RESOLVE-INT(@i);
+    my ($il, $pl) = ($item_length, $paragraph_length);
+
     pango_shape_full(
       $item_text,
       $il,
@@ -133,7 +148,8 @@ class Pango::GlyphString {
   }
 
   method set_size (Int() $new_len) is also<set-size> {
-    my gint $nl = self.RESOLVE-INT($new_len);
+    my gint $nl = $new_len;
+
     pango_glyph_string_set_size($!pgs, $nl);
   }
 
@@ -144,11 +160,11 @@ class Pango::GlyphString {
     Int() $x_pos,
     Int() $index,
     Int() $trailing
-  ) 
-    is also<x-to-index> 
+  )
+    is also<x-to-index>
   {
-    my @i = ($length, $x_pos, $index, $trailing);
-    my ($l, $xp, $i, $t) = self.RESOLVE-INT(@i);
+    my ($l, $xp, $i, $t) = ($length, $x_pos, $index, $trailing);
+
     pango_glyph_string_x_to_index($!pgs, $text, $l, $analysis, $xp, $i, $t);
   }
 

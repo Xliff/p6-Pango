@@ -2,20 +2,19 @@ use v6.c;
 
 use Method::Also;
 
-use Pango::Compat::Types;
 use Pango::Raw::Types;
 use Pango::Raw::DescriptionMetrics;
 
-use Pango::Roles::Types;
-
 class Pango::FontFace {
-  also does Pango::Roles::Types;
-
   has PangoFontFace $!pff;
 
   submethod BUILD (:$face) {
     $!pff = $face;
   }
+
+  method Pango::Raw::Definitions::PangoFontFace
+    is also<PangoFontFace>
+  { $!pff }
 
   method describe {
     pango_font_face_describe($!pff);
@@ -30,8 +29,8 @@ class Pango::FontFace {
   }
 
   method list_sizes (Int() $sizes, Int() $n_sizes) is also<list-sizes> {
-    my @i = ($sizes, $n_sizes);
-    my gint ($s, $ns) = self.RESOLVE-INT(@i);
+    my gint ($s, $ns) = ($sizes, $n_sizes);
+
     pango_font_face_list_sizes($!pff, $s, $ns);
   }
 }

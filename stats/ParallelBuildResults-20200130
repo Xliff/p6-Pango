@@ -1,0 +1,1672 @@
+Processing requirements for module Pango::Attr...
+Processing requirements for module Pango::AttrIter...
+Processing requirements for module Pango::AttrList...
+Processing requirements for module Pango::Cairo...
+Processing requirements for module Pango::Cairo::FontMap...
+Processing requirements for module Pango::Color...
+Processing requirements for module Pango::Compat::FreeType...
+Processing requirements for module Pango::Context...
+Processing requirements for module Pango::Coverage...
+Processing requirements for module Pango::FcFontKey...
+Processing requirements for module Pango::FcFontsetKey...
+Processing requirements for module Pango::Font...
+Processing requirements for module Pango::Font::FC...
+Processing requirements for module Pango::Font::XFT...
+Processing requirements for module Pango::FontDescription...
+Processing requirements for module Pango::FontFace...
+Processing requirements for module Pango::FontFamily...
+Processing requirements for module Pango::FontMap...
+Processing requirements for module Pango::FontMap::FC...
+Processing requirements for module Pango::FontMap::FT2...
+Processing requirements for module Pango::FontMetrics...
+Processing requirements for module Pango::Fontset...
+Processing requirements for module Pango::FontsetSimple...
+Processing requirements for module Pango::GlyphItem...
+Processing requirements for module Pango::GlyphItemIter...
+Processing requirements for module Pango::GlyphString...
+Processing requirements for module Pango::Language...
+Processing requirements for module Pango::Layout...
+Processing requirements for module Pango::LayoutIter...
+Processing requirements for module Pango::LayoutLine...
+Processing requirements for module Pango::MarkupParser...
+Processing requirements for module Pango::Matrix...
+Processing requirements for module Pango::Misc...
+Processing requirements for module Pango::Raw::Attr...
+Processing requirements for module Pango::Raw::Cairo...
+Processing requirements for module Pango::Raw::Context...
+Processing requirements for module Pango::Raw::Coverage...
+Processing requirements for module Pango::Raw::Definitions...
+Processing requirements for module Pango::Raw::DescriptionMetrics...
+Processing requirements for module Pango::Raw::Enums...
+Processing requirements for module Pango::Raw::Exports...
+Processing requirements for module Pango::Raw::FCFont...
+Processing requirements for module Pango::Raw::FT2FontMap...
+Processing requirements for module Pango::Raw::FcFontMap...
+Processing requirements for module Pango::Raw::FontMap...
+Processing requirements for module Pango::Raw::Fontset...
+Processing requirements for module Pango::Raw::GlyphItem...
+Processing requirements for module Pango::Raw::GlyphString...
+Processing requirements for module Pango::Raw::Language...
+Processing requirements for module Pango::Raw::Layout...
+Processing requirements for module Pango::Raw::Matrix...
+Processing requirements for module Pango::Raw::Misc...
+Processing requirements for module Pango::Raw::Renderer...
+Processing requirements for module Pango::Raw::Structs...
+Processing requirements for module Pango::Raw::Subs...
+Processing requirements for module Pango::Raw::Tabs...
+Processing requirements for module Pango::Raw::Types...
+Processing requirements for module Pango::Raw::XFT...
+Processing requirements for module Pango::Renderer...
+Processing requirements for module Pango::Renderer::XFT...
+Processing requirements for module Pango::Roles::Protection...
+Processing requirements for module Pango::Tabs...
+Processing requirements for module Pango::XFT...
+
+A resolution order is:
+
+Cairo
+GLib::GList
+GLib::Raw::Definitions
+GLib::Raw::Enums
+GLib::Raw::Exports
+GLib::Raw::Struct_Subs
+GLib::Raw::Structs
+GLib::Raw::Subs
+GLib::Roles::ListData
+GLib::Roles::Pointers
+GLib::Roles::References
+GLib::Roles::StaticClass
+Method::Also
+Pango::Compat::FreeType
+Pango::Raw::Definitions
+Pango::Raw::Enums
+Pango::Raw::Structs
+Pango::Raw::Subs
+Pango::Raw::Exports
+Pango::Raw::Types
+Pango::Raw::XFT
+Pango::XFT
+Pango::Raw::Attr
+Pango::Raw::Cairo
+Pango::Raw::Context
+Pango::Raw::Coverage
+Pango::Raw::DescriptionMetrics
+Pango::Raw::FCFont
+Pango::Raw::FT2FontMap
+Pango::Raw::FcFontMap
+Pango::Raw::FontMap
+Pango::Raw::Fontset
+Pango::Raw::GlyphItem
+Pango::Raw::GlyphString
+Pango::Raw::Language
+Pango::Raw::Layout
+Pango::Raw::Matrix
+Pango::Raw::Misc
+Pango::Raw::Renderer
+Pango::Raw::Tabs
+Pango::Renderer
+Pango::Renderer::XFT
+Pango::Tabs
+Pango::Attr
+Pango::AttrIter
+Pango::AttrList
+Pango::Color
+Pango::Coverage
+Pango::FcFontKey
+Pango::FcFontsetKey
+Pango::Font
+Pango::Font::FC
+Pango::Font::XFT
+Pango::FontDescription
+Pango::FontFace
+Pango::FontFamily
+Pango::FontMetrics
+Pango::Fontset
+Pango::FontsetSimple
+Pango::GlyphItem
+Pango::GlyphItemIter
+Pango::GlyphString
+Pango::Language
+Pango::LayoutIter
+Pango::LayoutLine
+Pango::MarkupParser
+Pango::Matrix
+Pango::Misc
+Pango::Context
+Pango::FontMap
+Pango::FontMap::FC
+Pango::FontMap::FT2
+Pango::Layout
+Pango::Cairo
+Pango::Cairo::FontMap
+
+Other dependencies are:
+
+Cairo
+GLib::GList
+GLib::Raw::Definitions
+GLib::Raw::Enums
+GLib::Raw::Exports
+GLib::Raw::Struct_Subs
+GLib::Raw::Structs
+GLib::Raw::Subs
+GLib::Roles::ListData
+GLib::Roles::Pointers
+GLib::Roles::References
+GLib::Roles::StaticClass
+Method::Also
+NativeCall
+
+Provides section:
+
+New provides section written to META6.json.
+A (Cairo): »»»»»»»»»»»»»» 1 R: 74
+A (GLib::GList): »»»»»»»»»»»»»» 2 R: 73
+A (GLib::Raw::Definitions): »»»»»»»»»»»»»» 3 R: 72
+A (GLib::Raw::Enums): »»»»»»»»»»»»»» 4 R: 71
+A (GLib::Raw::Exports): »»»»»»»»»»»»»» 5 R: 70
+A (GLib::Raw::Struct_Subs): »»»»»»»»»»»»»» 6 R: 69
+A (GLib::Raw::Structs): »»»»»»»»»»»»»» 7 R: 68
+A (GLib::Raw::Subs): »»»»»»»»»»»»»» 8 R: 67
+A (GLib::Roles::ListData): »»»»»»»»»»»»»» 9 R: 66
+A (GLib::Roles::Pointers): »»»»»»»»»»»»»» 10 R: 65
+A (GLib::Roles::References): »»»»»»»»»»»»»» 11 R: 64
+A (GLib::Roles::StaticClass): »»»»»»»»»»»»»» 12 R: 63
+A (Method::Also): »»»»»»»»»»»»»» 13 R: 62
+A (Pango::Compat::FreeType): »»»»»»»»»»»»»» 14 R: 61
+A (Pango::Raw::Definitions): »»»»»»»»»»»»»» 15 R: 60
+ === GLib::GList === 
+Stage start      :   0.000
+Stage parse      :   2.051
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+GLib::GList compile time: 2.0984105
+W: »»»»»»»»»»»»»» 14
+ === GLib::Raw::Subs === 
+Stage start      :   0.000
+Stage parse      :   2.021
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+GLib::Raw::Subs compile time: 2.1805715
+ === GLib::Raw::Struct_Subs === 
+Stage start      :   0.000
+Stage parse      :   2.078
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+GLib::Raw::Struct_Subs compile time: 2.2052825
+W: »»»»»»»»»»»»»» 13
+ === Method::Also === 
+Stage start      :   0.000
+Stage parse      :   1.963
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.006
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Method::Also compile time: 2.1121384
+ === GLib::Raw::Exports === 
+Stage start      :   0.000
+Stage parse      :   2.100
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.006
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+GLib::Raw::Exports compile time: 2.2194769
+ === GLib::Roles::References === 
+Stage start      :   0.000
+Stage parse      :   2.004
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+GLib::Roles::References compile time: 2.1304521
+W: »»»»»»»»»»»»»» 10
+ === GLib::Roles::ListData === 
+Stage start      :   0.000
+Stage parse      :   2.075
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.000
+Stage moar       :   0.000
+
+GLib::Roles::ListData compile time: 2.169973
+W: »»»»»»»»»»»»»» 8
+ === GLib::Raw::Definitions === 
+Stage start      :   0.000
+Stage parse      :   2.205
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+GLib::Raw::Definitions compile time: 2.25283751
+W: »»»»»»»»»»»»»» 7
+ === Cairo === 
+Stage start      :   0.000
+Stage parse      :   2.271
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Cairo compile time: 2.339666
+W: »»»»»»»»»»»»»» 6
+ === GLib::Raw::Enums === 
+Stage start      :   0.000
+Stage parse      :   2.279
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.004
+Stage mast       :   0.008
+Stage mbc        :   0.003
+Stage moar       :   0.000
+
+GLib::Raw::Enums compile time: 2.3337196
+W: »»»»»»»»»»»»»» 5
+ === GLib::Roles::Pointers === 
+Stage start      :   0.000
+Stage parse      :   2.227
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.000
+Stage moar       :   0.000
+
+GLib::Roles::Pointers compile time: 2.26490669
+W: »»»»»»»»»»»»»» 4
+ === GLib::Raw::Structs === 
+Stage start      :   0.000
+Stage parse      :   2.303
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.000
+Stage moar       :   0.000
+
+GLib::Raw::Structs compile time: 2.3460673
+W: »»»»»»»»»»»»»» 3
+ === Pango::Compat::FreeType === 
+Stage start      :   0.000
+Stage parse      :   2.210
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.000
+Stage moar       :   0.000
+
+Pango::Compat::FreeType compile time: 2.30046449
+W: »»»»»»»»»»»»»» 2
+ === GLib::Roles::StaticClass === 
+Stage start      :   0.000
+Stage parse      :   2.377
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.000
+Stage moar       :   0.000
+
+GLib::Roles::StaticClass compile time: 2.43860253
+W: »»»»»»»»»»»»»» 1
+ === Pango::Raw::Definitions === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Definitions.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.209
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.005
+    Stage mast       :   0.062
+    Stage mbc        :   0.002
+Stage parse      :   3.560
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Definitions compile time: 3.6616902
+W: »»»»»»»»»»»»»» 0
+A (Pango::Raw::Enums): »»»»»»»»»»»»»» 1 R: 59
+ === Pango::Raw::Enums === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Enums.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.483
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.008
+    Stage mast       :   0.130
+    Stage mbc        :   0.001
+Stage parse      :   2.690
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Enums compile time: 2.7330937
+W: »»»»»»»»»»»»»» 0
+A (Pango::Raw::Structs): »»»»»»»»»»»»»» 1 R: 58
+ === Pango::Raw::Structs === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Structs.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.336
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.029
+    Stage mast       :   0.106
+    Stage mbc        :   0.005
+Stage parse      :   2.565
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Structs compile time: 2.61050099
+W: »»»»»»»»»»»»»» 0
+A (Pango::Raw::Subs): »»»»»»»»»»»»»» 1 R: 57
+A (Pango::Raw::Exports): »»»»»»»»»»»»»» 2 R: 56
+ === Pango::Raw::Exports === 
+Stage start      :   0.000
+Stage parse      :   1.051
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+
+Pango::Raw::Exports compile time: 1.0881585
+W: »»»»»»»»»»»»»» 1
+ === Pango::Raw::Subs === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Subs.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.183
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.005
+    Stage mast       :   0.050
+    Stage mbc        :   0.002
+Stage parse      :   2.365
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Subs compile time: 2.4204417
+W: »»»»»»»»»»»»»» 0
+A (Pango::Raw::Types): »»»»»»»»»»»»»» 1 R: 55
+ === Pango::Raw::Types === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Types.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.199
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.001
+    Stage mast       :   0.055
+    Stage mbc        :   0.001
+Stage parse      :   2.379
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.004
+Stage mast       :   0.009
+Stage mbc        :   0.005
+Stage moar       :   0.000
+
+Pango::Raw::Types compile time: 2.43247566
+W: »»»»»»»»»»»»»» 0
+A (Pango::Raw::XFT): »»»»»»»»»»»»»» 1 R: 54
+ === Pango::Raw::XFT === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/XFT.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.423
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.017
+    Stage mast       :   0.096
+    Stage mbc        :   0.003
+Stage parse      :   3.672
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::XFT compile time: 3.7159653
+W: »»»»»»»»»»»»»» 0
+A (Pango::XFT): »»»»»»»»»»»»»» 1 R: 53
+A (Pango::Raw::Attr): »»»»»»»»»»»»»» 2 R: 52
+A (Pango::Raw::Cairo): »»»»»»»»»»»»»» 3 R: 51
+A (Pango::Raw::Context): »»»»»»»»»»»»»» 4 R: 50
+A (Pango::Raw::Coverage): »»»»»»»»»»»»»» 5 R: 49
+A (Pango::Raw::DescriptionMetrics): »»»»»»»»»»»»»» 6 R: 48
+A (Pango::Raw::FCFont): »»»»»»»»»»»»»» 7 R: 47
+A (Pango::Raw::FT2FontMap): »»»»»»»»»»»»»» 8 R: 46
+A (Pango::Raw::FcFontMap): »»»»»»»»»»»»»» 9 R: 45
+A (Pango::Raw::FontMap): »»»»»»»»»»»»»» 10 R: 44
+A (Pango::Raw::Fontset): »»»»»»»»»»»»»» 11 R: 43
+A (Pango::Raw::GlyphItem): »»»»»»»»»»»»»» 12 R: 42
+A (Pango::Raw::GlyphString): »»»»»»»»»»»»»» 13 R: 41
+A (Pango::Raw::Language): »»»»»»»»»»»»»» 14 R: 40
+A (Pango::Raw::Layout): »»»»»»»»»»»»»» 15 R: 39
+A (Pango::Raw::Matrix): »»»»»»»»»»»»»» 16 R: 38
+A (Pango::Raw::Misc): »»»»»»»»»»»»»» 17 R: 37
+A (Pango::Raw::Renderer): »»»»»»»»»»»»»» 18 R: 36
+A (Pango::Raw::Tabs): »»»»»»»»»»»»»» 19 R: 35
+ === Pango::XFT === 
+Stage start      :   0.000
+
+    precomp lib/Pango/XFT.pm6
+    Stage start      :   0.000
+    Stage parse      :   3.157
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.026
+    Stage mast       :   0.135
+    Stage mbc        :   0.008
+Stage parse      :   6.692
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.020
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::XFT compile time: 6.7739876
+W: »»»»»»»»»»»»»» 18
+ === Pango::Raw::FCFont === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/FCFont.pm6
+    Stage start      :   0.000
+    Stage parse      :   4.653
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.061
+    Stage mast       :   0.171
+    Stage mbc        :   0.006
+Stage parse      :   8.134
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.007
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::FCFont compile time: 8.28471572
+W: »»»»»»»»»»»»»» 17
+ === Pango::Raw::Fontset === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Fontset.pm6
+    Stage start      :   0.001
+    Stage parse      :   4.735
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.052
+    Stage mast       :   0.213
+    Stage mbc        :   0.007
+Stage parse      :   8.294
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.008
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Fontset compile time: 8.4511317
+W: »»»»»»»»»»»»»» 16
+ === Pango::Raw::Language === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Language.pm6
+    Stage start      :   0.000
+    Stage parse      :   4.832
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.022
+    Stage mast       :   0.275
+    Stage mbc        :   0.004
+Stage parse      :   8.283
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.007
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Language compile time: 8.534794
+W: »»»»»»»»»»»»»» 15
+ === Pango::Raw::FontMap === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/FontMap.pm6
+    Stage start      :   0.000
+    Stage parse      :   4.815
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.035
+    Stage mast       :   0.417
+    Stage mbc        :   0.011
+Stage parse      :   8.466
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.015
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::FontMap compile time: 8.610056
+W: »»»»»»»»»»»»»» 14
+ === Pango::Raw::Coverage === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Coverage.pm6
+    Stage start      :   0.000
+    Stage parse      :   5.352
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.023
+    Stage mast       :   0.160
+    Stage mbc        :   0.007
+Stage parse      :   8.580
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.006
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Coverage compile time: 8.6710129
+W: »»»»»»»»»»»»»» 13
+ === Pango::Raw::Tabs === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Tabs.pm6
+    Stage start      :   0.000
+    Stage parse      :   5.191
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.033
+    Stage mast       :   0.184
+    Stage mbc        :   0.007
+Stage parse      :   8.451
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.007
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Tabs compile time: 8.78569029
+W: »»»»»»»»»»»»»» 12
+ === Pango::Raw::Matrix === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Matrix.pm6
+    Stage start      :   0.000
+    Stage parse      :   5.834
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.031
+    Stage mast       :   0.204
+    Stage mbc        :   0.008
+Stage parse      :   9.019
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Matrix compile time: 9.2624008
+W: »»»»»»»»»»»»»» 11
+ === Pango::Raw::GlyphItem === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/GlyphItem.pm6
+    Stage start      :   0.000
+    Stage parse      :   6.054
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.027
+    Stage mast       :   0.211
+    Stage mbc        :   0.008
+Stage parse      :   9.199
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.007
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::GlyphItem compile time: 9.375739
+W: »»»»»»»»»»»»»» 10
+ === Pango::Raw::GlyphString === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/GlyphString.pm6
+    Stage start      :   0.000
+    Stage parse      :   6.310
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.037
+    Stage mast       :   0.205
+    Stage mbc        :   0.008
+Stage parse      :   9.276
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::GlyphString compile time: 9.4471419
+W: »»»»»»»»»»»»»» 9
+ === Pango::Raw::Misc === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Misc.pm6
+    Stage start      :   0.000
+    Stage parse      :   5.811
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.029
+    Stage mast       :   0.242
+    Stage mbc        :   0.008
+Stage parse      :   9.178
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.007
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Misc compile time: 9.4814645
+W: »»»»»»»»»»»»»» 8
+ === Pango::Raw::FT2FontMap === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/FT2FontMap.pm6
+    Stage start      :   0.000
+    Stage parse      :   6.889
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.046
+    Stage mast       :   0.230
+    Stage mbc        :   0.009
+Stage parse      :   9.545
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::FT2FontMap compile time: 9.6376274
+W: »»»»»»»»»»»»»» 7
+ === Pango::Raw::FcFontMap === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/FcFontMap.pm6
+    Stage start      :   0.000
+    Stage parse      :   6.901
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.058
+    Stage mast       :   0.279
+    Stage mbc        :   0.013
+Stage parse      :   9.652
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::FcFontMap compile time: 9.760815
+W: »»»»»»»»»»»»»» 6
+ === Pango::Raw::Renderer === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Renderer.pm6
+    Stage start      :   0.000
+    Stage parse      :   7.135
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.050
+    Stage mast       :   0.268
+    Stage mbc        :   0.009
+Stage parse      :   9.579
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Renderer compile time: 9.8547714
+W: »»»»»»»»»»»»»» 5
+A (Pango::Renderer): »»»»»»»»»»»»»» 6 R: 34
+ === Pango::Raw::Context === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Context.pm6
+    Stage start      :   0.000
+    Stage parse      :   8.089
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.051
+    Stage mast       :   0.241
+    Stage mbc        :   0.005
+Stage parse      :  10.235
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.006
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Context compile time: 10.30350194
+W: »»»»»»»»»»»»»» 5
+ === Pango::Raw::Cairo === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Cairo.pm6
+    Stage start      :   0.000
+    Stage parse      :   8.676
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.055
+    Stage mast       :   0.176
+    Stage mbc        :   0.007
+Stage parse      :  10.554
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Cairo compile time: 10.59867584
+W: »»»»»»»»»»»»»» 4
+ === Pango::Raw::Attr === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Attr.pm6
+    Stage start      :   0.000
+    Stage parse      :  10.935
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.041
+    Stage mast       :   0.287
+    Stage mbc        :   0.006
+Stage parse      :  12.772
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Attr compile time: 12.8287197
+W: »»»»»»»»»»»»»» 3
+ === Pango::Renderer === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Renderer.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.475
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.018
+    Stage mast       :   0.070
+    Stage mbc        :   0.005
+Stage parse      :   2.888
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Renderer compile time: 2.9585462
+W: »»»»»»»»»»»»»» 2
+A (Pango::Renderer::XFT): »»»»»»»»»»»»»» 3 R: 33
+A (Pango::Tabs): »»»»»»»»»»»»»» 4 R: 32
+A (Pango::Attr): »»»»»»»»»»»»»» 5 R: 31
+A (Pango::AttrIter): »»»»»»»»»»»»»» 6 R: 30
+A (Pango::AttrList): »»»»»»»»»»»»»» 7 R: 29
+A (Pango::Color): »»»»»»»»»»»»»» 8 R: 28
+A (Pango::Coverage): »»»»»»»»»»»»»» 9 R: 27
+A (Pango::FcFontKey): »»»»»»»»»»»»»» 10 R: 26
+A (Pango::FcFontsetKey): »»»»»»»»»»»»»» 11 R: 25
+ === Pango::Raw::DescriptionMetrics === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/DescriptionMetrics.pm6
+    Stage start      :   0.000
+    Stage parse      :  11.201
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.045
+    Stage mast       :   0.239
+    Stage mbc        :   0.006
+Stage parse      :  13.165
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.009
+Stage mbc        :   0.002
+Stage moar       :   0.000
+
+Pango::Raw::DescriptionMetrics compile time: 13.278632
+W: »»»»»»»»»»»»»» 10
+A (Pango::Font): »»»»»»»»»»»»»» 11 R: 24
+A (Pango::Font::FC): »»»»»»»»»»»»»» 12 R: 23
+ === Pango::Raw::Layout === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Layout.pm6
+    Stage start      :   0.000
+    Stage parse      :  13.593
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.079
+    Stage mast       :   0.406
+    Stage mbc        :   0.010
+Stage parse      :  16.731
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.006
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Raw::Layout compile time: 16.9228483
+W: »»»»»»»»»»»»»» 11
+ === Pango::FcFontsetKey === 
+Stage start      :   0.000
+
+    precomp lib/Pango/FcFontsetKey.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.043
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.014
+    Stage mast       :   0.079
+    Stage mbc        :   0.009
+Stage parse      :   4.549
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::FcFontsetKey compile time: 4.63939615
+W: »»»»»»»»»»»»»» 10
+ === Pango::Coverage === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Coverage.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.357
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.042
+    Stage mast       :   0.152
+    Stage mbc        :   0.007
+Stage parse      :   4.668
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Coverage compile time: 4.744802
+W: »»»»»»»»»»»»»» 9
+ === Pango::AttrList === 
+Stage start      :   0.000
+
+    precomp lib/Pango/AttrList.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.369
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.030
+    Stage mast       :   0.109
+    Stage mbc        :   0.009
+Stage parse      :   4.700
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.005
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::AttrList compile time: 4.7912775
+W: »»»»»»»»»»»»»» 8
+ === Pango::FcFontKey === 
+Stage start      :   0.000
+
+    precomp lib/Pango/FcFontKey.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.154
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.017
+    Stage mast       :   0.090
+    Stage mbc        :   0.011
+Stage parse      :   4.706
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.007
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::FcFontKey compile time: 4.82477684
+W: »»»»»»»»»»»»»» 7
+ === Pango::Renderer::XFT === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Renderer/XFT.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.337
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.020
+    Stage mast       :   0.119
+    Stage mbc        :   0.011
+Stage parse      :   4.833
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Renderer::XFT compile time: 4.9037164
+W: »»»»»»»»»»»»»» 6
+ === Pango::Font === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Font.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.535
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.023
+    Stage mast       :   0.086
+    Stage mbc        :   0.005
+Stage parse      :   4.621
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.005
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Font compile time: 4.7009341
+W: »»»»»»»»»»»»»» 5
+ === Pango::AttrIter === 
+Stage start      :   0.000
+
+    precomp lib/Pango/AttrIter.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.873
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.023
+    Stage mast       :   0.172
+    Stage mbc        :   0.009
+Stage parse      :   5.042
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::AttrIter compile time: 5.094312
+W: »»»»»»»»»»»»»» 4
+ === Pango::Font::FC === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Font/FC.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.425
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.024
+    Stage mast       :   0.106
+    Stage mbc        :   0.006
+Stage parse      :   4.680
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Font::FC compile time: 4.7556465
+W: »»»»»»»»»»»»»» 3
+A (Pango::Font::XFT): »»»»»»»»»»»»»» 4 R: 22
+ === Pango::Attr === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Attr.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.682
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.041
+    Stage mast       :   0.214
+    Stage mbc        :   0.012
+Stage parse      :   5.073
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Attr compile time: 5.14354616
+ === Pango::Color === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Color.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.776
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.041
+    Stage mast       :   0.104
+    Stage mbc        :   0.010
+Stage parse      :   5.039
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Color compile time: 5.1546019
+A (Pango::FontDescription): »»»»»»»»»»»»»» 5 R: 21
+A (Pango::FontFace): »»»»»»»»»»»»»» 6 R: 20
+A (Pango::FontFamily): »»»»»»»»»»»»»» 7 R: 19
+A (Pango::FontMetrics): »»»»»»»»»»»»»» 8 R: 18
+A (Pango::Fontset): »»»»»»»»»»»»»» 9 R: 17
+W: »»»»»»»»»»»»»» 7
+ === Pango::Tabs === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Tabs.pm6
+    Stage start      :   0.000
+    Stage parse      :   3.034
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.063
+    Stage mast       :   0.206
+    Stage mbc        :   0.010
+Stage parse      :   5.369
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.005
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Tabs compile time: 5.41986299
+W: »»»»»»»»»»»»»» 6
+ === Pango::FontFace === 
+Stage start      :   0.000
+
+    precomp lib/Pango/FontFace.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.579
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.013
+    Stage mast       :   0.057
+    Stage mbc        :   0.005
+Stage parse      :   3.146
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::FontFace compile time: 3.1981366
+W: »»»»»»»»»»»»»» 5
+ === Pango::Font::XFT === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Font/XFT.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.593
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.010
+    Stage mast       :   0.050
+    Stage mbc        :   0.007
+Stage parse      :   3.240
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Font::XFT compile time: 3.2850117
+W: »»»»»»»»»»»»»» 4
+ === Pango::FontFamily === 
+Stage start      :   0.000
+
+    precomp lib/Pango/FontFamily.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.640
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.011
+    Stage mast       :   0.093
+    Stage mbc        :   0.005
+Stage parse      :   3.261
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::FontFamily compile time: 3.31928674
+W: »»»»»»»»»»»»»» 3
+ === Pango::Fontset === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Fontset.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.567
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.012
+    Stage mast       :   0.078
+    Stage mbc        :   0.005
+Stage parse      :   3.244
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Fontset compile time: 3.3367473
+ === Pango::FontMetrics === 
+Stage start      :   0.000
+
+    precomp lib/Pango/FontMetrics.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.669
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.014
+    Stage mast       :   0.071
+    Stage mbc        :   0.005
+Stage parse      :   3.263
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::FontMetrics compile time: 3.3422559
+W: »»»»»»»»»»»»»» 2
+A (Pango::FontsetSimple): »»»»»»»»»»»»»» 3 R: 16
+A (Pango::GlyphItem): »»»»»»»»»»»»»» 4 R: 15
+A (Pango::GlyphItemIter): »»»»»»»»»»»»»» 5 R: 14
+A (Pango::GlyphString): »»»»»»»»»»»»»» 6 R: 13
+A (Pango::Language): »»»»»»»»»»»»»» 7 R: 12
+A (Pango::LayoutIter): »»»»»»»»»»»»»» 8 R: 11
+A (Pango::LayoutLine): »»»»»»»»»»»»»» 9 R: 10
+A (Pango::MarkupParser): »»»»»»»»»»»»»» 10 R: 9
+A (Pango::Matrix): »»»»»»»»»»»»»» 11 R: 8
+A (Pango::Misc): »»»»»»»»»»»»»» 12 R: 7
+A (Pango::Context): »»»»»»»»»»»»»» 13 R: 6
+W: »»»»»»»»»»»»»» 12
+ === Pango::FontDescription === 
+Stage start      :   0.000
+
+    precomp lib/Pango/FontDescription.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.086
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.027
+    Stage mast       :   0.101
+    Stage mbc        :   0.005
+Stage parse      :   4.099
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.007
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::FontDescription compile time: 4.1586127
+W: »»»»»»»»»»»»»» 11
+ === Pango::GlyphItemIter === 
+Stage start      :   0.000
+
+    precomp lib/Pango/GlyphItemIter.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.120
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.016
+    Stage mast       :   0.095
+    Stage mbc        :   0.007
+Stage parse      :   4.512
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::GlyphItemIter compile time: 4.56506207
+W: »»»»»»»»»»»»»» 10
+ === Pango::FontsetSimple === 
+Stage start      :   0.000
+
+    precomp lib/Pango/FontsetSimple.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.135
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.013
+    Stage mast       :   0.071
+    Stage mbc        :   0.006
+Stage parse      :   4.715
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.007
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::FontsetSimple compile time: 4.7698823
+W: »»»»»»»»»»»»»» 9
+ === Pango::Language === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Language.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.285
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.026
+    Stage mast       :   0.081
+    Stage mbc        :   0.009
+Stage parse      :   4.674
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Language compile time: 4.80616635
+W: »»»»»»»»»»»»»» 8
+ === Pango::Misc === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Misc.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.296
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.038
+    Stage mast       :   0.111
+    Stage mbc        :   0.005
+Stage parse      :   4.799
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Misc compile time: 4.9331225
+W: »»»»»»»»»»»»»» 7
+ === Pango::LayoutIter === 
+Stage start      :   0.000
+
+    precomp lib/Pango/LayoutIter.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.400
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.030
+    Stage mast       :   0.160
+    Stage mbc        :   0.007
+Stage parse      :   4.878
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::LayoutIter compile time: 4.96107458
+W: »»»»»»»»»»»»»» 6
+ === Pango::MarkupParser === 
+Stage start      :   0.000
+
+    precomp lib/Pango/MarkupParser.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.403
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.017
+    Stage mast       :   0.127
+    Stage mbc        :   0.008
+Stage parse      :   4.951
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::MarkupParser compile time: 5.0352787
+W: »»»»»»»»»»»»»» 5
+ === Pango::GlyphString === 
+Stage start      :   0.000
+
+    precomp lib/Pango/GlyphString.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.285
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.030
+    Stage mast       :   0.111
+    Stage mbc        :   0.012
+Stage parse      :   4.993
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::GlyphString compile time: 5.07265672
+W: »»»»»»»»»»»»»» 4
+ === Pango::Matrix === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Matrix.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.770
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.037
+    Stage mast       :   0.156
+    Stage mbc        :   0.007
+Stage parse      :   4.978
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Matrix compile time: 5.088664
+W: »»»»»»»»»»»»»» 3
+ === Pango::GlyphItem === 
+Stage start      :   0.000
+
+    precomp lib/Pango/GlyphItem.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.878
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.023
+    Stage mast       :   0.094
+    Stage mbc        :   0.009
+Stage parse      :   5.041
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::GlyphItem compile time: 5.11321036
+W: »»»»»»»»»»»»»» 2
+ === Pango::LayoutLine === 
+Stage start      :   0.000
+
+    precomp lib/Pango/LayoutLine.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.503
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.023
+    Stage mast       :   0.188
+    Stage mbc        :   0.011
+Stage parse      :   5.118
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::LayoutLine compile time: 5.224314
+W: »»»»»»»»»»»»»» 1
+ === Pango::Context === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Context.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.916
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.030
+    Stage mast       :   0.121
+    Stage mbc        :   0.006
+Stage parse      :   5.274
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+
+Pango::Context compile time: 5.4095275
+W: »»»»»»»»»»»»»» 0
+A (Pango::FontMap): »»»»»»»»»»»»»» 1 R: 5
+ === Pango::FontMap === 
+Stage start      :   0.000
+
+    precomp lib/Pango/FontMap.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.355
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.010
+    Stage mast       :   0.061
+    Stage mbc        :   0.004
+Stage parse      :   2.629
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+
+Pango::FontMap compile time: 2.675693
+W: »»»»»»»»»»»»»» 0
+A (Pango::FontMap::FC): »»»»»»»»»»»»»» 1 R: 4
+ === Pango::FontMap::FC === 
+Stage start      :   0.000
+
+    precomp lib/Pango/FontMap/FC.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.226
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.008
+    Stage mast       :   0.063
+    Stage mbc        :   0.003
+Stage parse      :   2.482
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+
+Pango::FontMap::FC compile time: 2.52475726
+W: »»»»»»»»»»»»»» 0
+A (Pango::FontMap::FT2): »»»»»»»»»»»»»» 1 R: 3
+A (Pango::Layout): »»»»»»»»»»»»»» 2 R: 2
+ === Pango::FontMap::FT2 === 
+Stage start      :   0.000
+
+    precomp lib/Pango/FontMap/FT2.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.362
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.020
+    Stage mast       :   0.075
+    Stage mbc        :   0.004
+Stage parse      :   2.696
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+
+Pango::FontMap::FT2 compile time: 2.7404342
+W: »»»»»»»»»»»»»» 1
+ === Pango::Layout === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Layout.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.655
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.047
+    Stage mast       :   0.135
+    Stage mbc        :   0.005
+Stage parse      :   3.046
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+
+Pango::Layout compile time: 3.0943163
+W: »»»»»»»»»»»»»» 0
+A (Pango::Cairo): »»»»»»»»»»»»»» 1 R: 1
+A (Pango::Cairo::FontMap): »»»»»»»»»»»»»» 2 R: 0
+ === Pango::Cairo::FontMap === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Cairo/FontMap.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.254
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.013
+    Stage mast       :   0.060
+    Stage mbc        :   0.004
+Stage parse      :   2.551
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+
+Pango::Cairo::FontMap compile time: 2.6028622
+ === Pango::Cairo === 
+Stage start      :   0.000
+
+    precomp lib/Pango/Cairo.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.469
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.023
+    Stage mast       :   0.098
+    Stage mbc        :   0.005
+Stage parse      :   2.820
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+
+Pango::Cairo compile time: 2.8665872
+Total compile time: 55.9401686s

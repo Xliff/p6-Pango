@@ -3,7 +3,7 @@ use v6.c;
 use NativeCall;
 
 use Cairo;
-use Pango::Compat::Types;
+
 use Pango::Raw::Types;
 
 unit package Pango::Raw::Cairo;

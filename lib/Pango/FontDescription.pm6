@@ -13,7 +13,7 @@ class Pango::FontDescription {
     $!pfd = $description;
   }
 
-  method Pango::Raw::Types::PangoFontDescription
+  method Pango::Raw::Definitions::PangoFontDescription
     is also<
       PangoFontDescription
       font-description
@@ -21,16 +21,18 @@ class Pango::FontDescription {
   { $!pfd }
 
   multi method new (PangoFontDescription $description) {
-    self.bless( :$description );
+    $description ?? self.bless( :$description ) !! Nil;
   }
   multi method new {
-    self.bless( description => pango_font_description_new() );
+    my $description = pango_font_description_new();
+
+    $description ?? self.bless( :$description ) !! Nil;
   }
 
   method new_from_string(Str $str) is also<new-from-string> {
-    self.bless(
-      description => pango_font_description_from_string($str)
-    );
+    my $description =  pango_font_description_from_string($str);
+
+    $description ?? self.bless( :$description ) !! Nil;
   }
 
   method family is rw {
@@ -47,7 +49,7 @@ class Pango::FontDescription {
   method gravity is rw {
     Proxy.new(
       FETCH => sub ($) {
-        PangoGravity( pango_font_description_get_gravity($!pfd) );
+        PangoGravityEnum( pango_font_description_get_gravity($!pfd) );
       },
       STORE => sub ($, Int() $gravity is copy) {
         my uint32 $g = $gravity;
@@ -73,7 +75,7 @@ class Pango::FontDescription {
   method stretch is rw {
     Proxy.new(
       FETCH => sub ($) {
-        PangoStretch( pango_font_description_get_stretch($!pfd) );
+        PangoStretchEnum( pango_font_description_get_stretch($!pfd) );
       },
       STORE => sub ($, Int() $stretch is copy) {
         my uint32 $s = $stretch;
@@ -86,7 +88,7 @@ class Pango::FontDescription {
   method style is rw {
     Proxy.new(
       FETCH => sub ($) {
-        PangoStyle( pango_font_description_get_style($!pfd) );
+        PangoStyleEnum( pango_font_description_get_style($!pfd) );
       },
       STORE => sub ($, Int() $style is copy) {
         my uint32 $s = $style;
@@ -99,7 +101,7 @@ class Pango::FontDescription {
   method variant is rw {
     Proxy.new(
       FETCH => sub ($) {
-        PangoVariant( pango_font_description_get_variant($!pfd) );
+        PangoVariantEnum( pango_font_description_get_variant($!pfd) );
       },
       STORE => sub ($, Int() $variant is copy) {
         my uint32 $v = $variant;
@@ -123,7 +125,7 @@ class Pango::FontDescription {
   method weight is rw {
     Proxy.new(
       FETCH => sub ($) {
-        PangoWeight( pango_font_description_get_weight($!pfd) );
+        PangoWeightEnum( pango_font_description_get_weight($!pfd) );
       },
       STORE => sub ($, Int() $weight is copy) {
         my uint32 $w = $weight;
@@ -160,8 +162,16 @@ class Pango::FontDescription {
     pango_font_description_copy_static($!pfd);
   }
 
-  method equal (PangoFontDescription() $desc2) {
-    so pango_font_description_equal($!pfd, $desc2);
+  multi method equal (PangoFontDescription() $desc2) {
+    Pango::FontDescription.equal($!pfd, $desc2);
+  }
+
+  multi method equal (
+    Pango::FontDescription:U:
+    PangoFontDescription $desc1,
+    PangoFontDescription $desc2
+  ) {
+    so pango_font_description_equal($desc1, $desc2);
   }
 
   method free {
@@ -269,14 +279,22 @@ D
     pango_font_description_to_string($!pfd);
   }
 
-  method unset_fields (PangoFontMask() $to_unset) is also<unset-fields> {
-    pango_font_description_unset_fields($!pfd, $to_unset);
+  method unset_fields (Int() $to_unset) is also<unset-fields> {
+    my PangoFontMask $t = $to_unset;
+
+    pango_font_description_unset_fields($!pfd, $t);
   }
 
 }
 
-multi sub infix:<eqv> (Pango::FontDescription $a, Pango::FontDescription $b)
+multi sub infix:<eqv> (Pango::FontDescription $a, PangoFontDescription() $b)
   is export
 {
   $a.equal($b);
+}
+
+multi sub infix:<eqv> (PangoFontDescription $a, PangoFontDescription() $b)
+  is export
+{
+  Pango::FontDescription.equal($a, $b);
 }

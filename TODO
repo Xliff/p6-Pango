@@ -7,3 +7,4 @@
 √ Add aliasing
 √ Pango specific build system
 - Regenerate missing stats for September 3rd and 6th 2019.
+- Check use of GLib::Roles::References on Pango::Context (is this a GObject?)

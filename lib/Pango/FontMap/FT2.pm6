@@ -4,9 +4,9 @@ use Method::Also;
 use NativeCall;
 
 use Pango::Compat::FreeType;
-use Pango::Compat::Types;
-use Pango::Raw::FT2FontMap;
 use Pango::Raw::Types;
+
+use Pango::Raw::FT2FontMap;
 
 use Pango::FontMap::FC;
 
@@ -18,13 +18,14 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
     self.setFCFontMap($ft2map);
   }
 
-  method Pango::Raw::Types::PangoFT2FontMap {
-    $!pft2fm;
-  }
+  method Pango::Raw::Definitions::PangoFT2FontMap
+    is also<PangoFT2FontMap>
+  { $!pft2fm }
 
   method new {
     my $ft2map = pango_ft2_font_map_new();
-    self.bless(:$ft2map);
+
+    $ft2map ?? self.bless(:$ft2map) !! Nil;
   }
 
   # method for_display
@@ -34,7 +35,9 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
   # }
 
   method get_type is also<get-type> {
-    pango_ft2_font_map_get_type();
+    state ($n, $t);
+
+    unstable_get_type( self.^name, &pango_ft2_font_map_get_type, $n, $t );
   }
 
   # method pango_ft2_font_get_coverage (PangoLanguage() $language)
@@ -85,8 +88,7 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
     Int() $x,
     Int() $y
   ) {
-    my @i = ($x, $y);
-    my gint ($xx, $yy) = self.RESOLVE-INT(@i);
+    my gint ($xx, $yy) = ($x, $y);
     pango_ft2_render($bmp, $font, $glyphs, $x, $y);
   }
 
@@ -95,11 +97,11 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
     PangoLayout() $layout,
     Int() $x,
     Int() $y
-  ) 
-    is also<render-layout> 
+  )
+    is also<render-layout>
   {
-    my @i = ($x, $y);
-    my gint ($xx, $yy) = self.RESOLVE-INT(@i);
+    my gint ($xx, $yy) = ($x, $y);
+
     pango_ft2_render_layout($bmp, $layout, $xx, $yy);
   }
 
@@ -108,11 +110,11 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
     PangoLayoutLine() $line,
     Int() $x,
     Int() $y
-  ) 
-    is also<render-layout-line> 
+  )
+    is also<render-layout-line>
   {
-    my @i = ($x, $y);
-    my gint ($xx, $yy) = self.RESOLVE-INT(@i);
+    my gint ($xx, $yy) = ($x, $y);
+
     pango_ft2_render_layout_line($bmp, $line, $xx, $yy);
   }
 
@@ -121,11 +123,11 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
     PangoLayoutLine() $line,
     Int() $x,
     Int() $y
-  ) 
-    is also<render-layout-line-subpixel> 
+  )
+    is also<render-layout-line-subpixel>
   {
-    my @i = ($x, $y);
-    my gint ($xx, $yy) = self.RESOLVE-INT(@i);
+    my gint ($xx, $yy) = ($x, $y);
+
     pango_ft2_render_layout_line_subpixel($bmp, $line, $xx, $yy);
   }
 
@@ -134,11 +136,11 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
     PangoLayout() $layout,
     Int() $x,
     Int() $y
-  ) 
-    is also<render-layout-subpixel> 
+  )
+    is also<render-layout-subpixel>
   {
-    my @i = ($x, $y);
-    my gint ($xx, $yy) = self.RESOLVE-INT(@i);
+    my gint ($xx, $yy) = ($x, $y);
+
     pango_ft2_render_layout_subpixel($bmp, $layout, $xx, $yy);
   }
 
@@ -149,18 +151,18 @@ class Pango::FontMap::FT2 is Pango::FontMap::FC {
     PangoGlyphString() $glyphs,
     Int() $x,
     Int() $y
-  ) 
-    is also<render-transformed> 
+  )
+    is also<render-transformed>
   {
-    my @i = ($x, $y);
-    my gint ($xx, $yy) = self.RESOLVE-INT(@i);
+    my gint ($xx, $yy) = ($x, $y);
+
     pango_ft2_render_transformed(
       $bmp, $matrix, $font, $glyphs, $xx, $yy
     );
   }
 
-  method set_default_substitute (&func, $data, &notify = Callable) 
-    is also<set-default-substitute> 
+  method set_default_substitute (&func, $data, &notify = Callable)
+    is also<set-default-substitute>
   {
     die q:to/D/.chomp unless $data.REPR eq <CStruct CPoitner>.any;
 <data> parameter must be of CStruct or CPointer representation
@@ -171,10 +173,11 @@ D
     );
   }
 
-  method set_resolution (Num() $dpi_x, Num() $dpi_y) 
-    is also<set-resolution> 
+  method set_resolution (Num() $dpi_x, Num() $dpi_y)
+    is also<set-resolution>
   {
     my gdouble ($dx, $dy) = ($dpi_x, $dpi_y);
+
     pango_ft2_font_map_set_resolution($!pft2fm, $dx, $dy);
   }
 

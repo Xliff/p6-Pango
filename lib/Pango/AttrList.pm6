@@ -2,22 +2,22 @@ use v6.c;
 
 use Method::Also;
 
-use Pango::Compat::Types;
 use Pango::Raw::Attr;
 use Pango::Raw::Types;
 
-use Pango::Roles::Types;
-
 class Pango::AttrList {
-  also does Pango::Roles::Types;
-
   has PangoAttrList $!pal;
 
   submethod BUILD (:$list) {
     $!pal = $list;
   }
 
-  method Pango::Raw::Types::PangoAttrList is also<AttrList> { $!pal }
+  method Pango::Raw::Definitions::PangoAttrList
+    is also<
+      AttrList
+      PangoAttrList
+    >
+  { $!pal }
 
   multi method new (PangoAttrList $list) {
     my $o = self.bless(:$list);
@@ -32,28 +32,40 @@ class Pango::AttrList {
     pango_attr_list_change($!pal, $attr.attr);
   }
 
-  method copy {
-    pango_attr_list_copy($!pal);
+  method copy (:$raw) {
+    my $list = pango_attr_list_copy($!pal);
+
+    $list ??
+      ( $raw ?? $list !! Pango::AttrList.new($list) )
+      !!
+      Nil;
   }
 
   method filter (&func, gpointer $data = gpointer) {
     pango_attr_list_filter($!pal, &func, $data);
   }
 
-  method get_iterator is also<get-iterator> {
-    pango_attr_list_get_iterator($!pal);
+  method get_iterator (:$raw = False) is also<get-iterator> {
+    my $iter = pango_attr_list_get_iterator($!pal);
+
+    $iter ??
+      ( $raw ?? $iter !! Pango::AttrIter.new($iter) )
+      !!
+      Nil;
   }
 
   method get_type is also<get-type> {
-    pango_attr_list_get_type();
+    state ($n, $t);
+
+    unstable_get_type( self.^name, &pango_attr_list_get_type, $n, $t );
   }
 
   method insert (PangoAttributes() $attr) {
-    pango_attr_list_insert($!pal, $attr.attr);
+    pango_attr_list_insert($!pal, $attr);
   }
 
   method insert_before (PangoAttributes() $attr) is also<insert-before> {
-    pango_attr_list_insert_before($!pal, $attr.attr);
+    pango_attr_list_insert_before($!pal, $attr);
   }
 
   method ref is also<upref> {
@@ -62,8 +74,8 @@ class Pango::AttrList {
   }
 
   method splice (PangoAttrList() $other, Int() $pos, Int() $len) {
-    my @i = ($pos, $len);
-    my gint ($p, $l) = self.RESOLVE-INT(@i);
+    my gint ($p, $l) = ($pos, $len);
+    
     pango_attr_list_splice($!pal, $other, $pos, $len);
   }
 

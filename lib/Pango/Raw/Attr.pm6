@@ -2,7 +2,7 @@ use v6.c;
 
 use NativeCall;
 
-use Pango::Compat::Types;
+
 use Pango::Raw::Types;
 
 unit package Pango::Raw::Attr;
@@ -100,8 +100,8 @@ sub pango_attr_iterator_get_attrs (PangoAttrIterator $iterator)
 sub pango_attr_iterator_get_font (
   PangoAttrIterator $iterator,
   PangoFontDescription $desc,
-  PangoLanguage $language,
-  GSList $extra_attrs
+  CArray[PangoLanguage] $language,
+  CArray[GSList] $extra_attrs
 )
   is native(pango)
   is export
@@ -115,8 +115,8 @@ sub pango_attr_iterator_next (PangoAttrIterator $iterator)
 
 sub pango_attr_iterator_range (
   PangoAttrIterator $iterator,
-  gint $start,
-  gint $end
+  gint $start is rw,
+  gint $end   is rw
 )
   is native(pango)
   is export
