@@ -27,19 +27,20 @@ class PangoRectangle        is repr<CStruct> is export does GLib::Roles::Pointer
 }
 
 class PangoLogAttr          is repr<CStruct> is export does GLib::Roles::Pointers {
-  has guint $.is_line_break               is rw; # :1
-  has guint $.is_mandatory_break          is rw; # :1
-  has guint $.is_char_break               is rw; # :1
-  has guint $.is_white                    is rw; # :1
-  has guint $.is_cursor_position          is rw; # :1
-  has guint $.is_word_start               is rw; # :1
-  has guint $.is_word_end                 is rw; # :1
-  has guint $.is_sentence_boundary        is rw; # :1
-  has guint $.is_sentence_start           is rw; # :1
-  has guint $.is_sentence_end             is rw; # :1
-  has guint $.backspace_deletes_character is rw; # :1
-  has guint $.is_expandable_space         is rw; # :1
-  has guint $.is_word_boundary            is rw; # :1
+  #has guint $.is_line_break               is rw; # :1
+  #has guint $.is_mandatory_break          is rw; # :1
+  #has guint $.is_char_break               is rw; # :1
+  #has guint $.is_white                    is rw; # :1
+  #has guint $.is_cursor_position          is rw; # :1
+  #has guint $.is_word_start               is rw; # :1
+  #has guint $.is_word_end                 is rw; # :1
+  #has guint $.is_sentence_boundary        is rw; # :1
+  #has guint $.is_sentence_start           is rw; # :1
+  #has guint $.is_sentence_end             is rw; # :1
+  #has guint $.backspace_deletes_character is rw; # :1
+  #has guint $.is_expandable_space         is rw; # :1
+  #has guint $.is_word_boundary            is rw; # :1
+  has guint $.flags
 }
 
 class PangoAnalysis         is repr<CStruct> is export does GLib::Roles::Pointers {
@@ -80,7 +81,8 @@ class PangoGlyphInfo        is repr<CStruct> is export does GLib::Roles::Pointer
 class PangoGlyphString      is repr<CStruct> is export does GLib::Roles::Pointers {
   has gint           $.num_glyphs;
   has PangoGlyphInfo $.glyphs;
-  has gint           $.log_clusters;
+  has CArray[gint]   $.log_clusters;
+  has gint           $!space;
 }
 
 class PangoGlyphItem        is repr<CStruct> is export does GLib::Roles::Pointers {
