@@ -9,6 +9,8 @@ my @blacklist = <
   PangoLayoutRun
 >;
 
+plan 22;
+
 require ::($_ = "Pango::Raw::Structs");
 for ::($_ ~ "::EXPORT::DEFAULT").WHO
                                 .keys
