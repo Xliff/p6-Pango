@@ -26,17 +26,24 @@ sub get_rdjt_scribbles {
 # RDJT2
 #
 #   @a.pick;
-  my $data;
-  my $dom = Mojo::DOM.new(
-    $data = LWP::Simple.new.get( 'https://twitter.com/realDonaldTrump' )
-  );
+  # my $data;
+  # my $dom = Mojo::DOM.new(
+  #   $data = LWP::Simple.new.get( 'https://twitter.com/realDonaldTrump' )
+  # );
+  #
+  # my @texts;
+  # for @( $dom.find('p.TweetTextSize').to_array ) -> $e {
+  #   @texts.push: $e.all_text if $e.defined;
+  # }
+  #
+  # @texts.pick;
 
-  my @texts;
-  for @( $dom.find('p.TweetTextSize').to_array ) -> $e {
-    @texts.push: $e.all_text if $e.defined;
-  }
-
-  @texts.pick;
+  do qq:to/TEXT/;
+    Sorry to inform the Do Nothing Democrats, but I am getting VERY GOOD
+    internal Polling Numbers. Just like 2016, the \@nytimes Polls are Fake!
+    The \@FoxNews Polls are a JOKE! Do you think they will apologize to me &
+    their subscribers AGAIN when I WIN? People want LAW, ORDER & SAFETY!
+    TEXT
 }
 
 #constant FONT = 'Sans Bold 14';
@@ -48,7 +55,7 @@ sub draw_text($c, $rc) {
   my $layout = Pango::Cairo.create_layout($c.context);
   # $layout.width = 1050 * PANGO_SCALE;
   # $layout.wrap = True;
-  ($text = get_rdjt_scribbles) ~~ s:g/([\S+ \s*] ** 10)/$0\n/;
+  $text = get_rdjt_scribbles;
   $layout.text = $text;
   my $desc = Pango::FontDescription.new_from_string(FONT);
   $layout.font_description = $desc;
