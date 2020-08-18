@@ -1,7 +1,5 @@
 use v6.c;
 
-use CompUnit::Util :re-export;
-
 use GLib::Raw::Exports;
 use Pango::Raw::Exports;
 
@@ -19,5 +17,5 @@ need Pango::Raw::Structs;
 need Pango::Raw::Subs;
 
 BEGIN {
-  re-export($_) for |@glib-exports, |@pango-exports;
+  glib-re-export($_) for |@glib-exports, |@pango-exports;
 }

@@ -9,7 +9,7 @@ use GLib::Roles::Pointers;
 unit package Pango::Raw::Definitions;
 
 # Number of times I've had to force compile the whole project.
-my constant forced = 33;
+my constant forced = 43;
 
 constant cairo      is export = 'cairo',v2;
 constant pango      is export = 'pango-1.0',v0;
