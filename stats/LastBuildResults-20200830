@@ -1,0 +1,1644 @@
+Dependency Generation
+=====================
+real 2.93
+user 3.06
+sys 0.35
+ === Cairo ===
+Stage start      :   0.000
+
+    precomp ../rakudobrew/versions/moar-blead/install/share/perl6/site/sources/BD96BED3395EA05814AB94E16EF33AA5A6CF3173
+    Stage start      :   0.000
+    Stage parse      :  10.030
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.302
+    Stage mast       :   0.775
+    Stage mbc        :   0.376
+Stage parse      :  12.725
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.002
+Stage mast       :   0.005
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === GLib::GList ===
+Stage start      :   0.000
+Stage parse      :   1.304
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.024
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === GLib::Raw::Definitions ===
+Stage start      :   0.000
+Stage parse      :   1.158
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.002
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === GLib::Raw::Enums ===
+Stage start      :   0.000
+Stage parse      :   1.209
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.003
+Stage mast       :   0.006
+Stage mbc        :   0.002
+Stage moar       :   0.000
+ === GLib::Raw::Exports ===
+Stage start      :   0.000
+Stage parse      :   1.093
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === GLib::Raw::Object ===
+Stage start      :   0.000
+Stage parse      :   1.203
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === GLib::Raw::Struct_Subs ===
+Stage start      :   0.000
+Stage parse      :   1.174
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === GLib::Raw::Structs ===
+Stage start      :   0.000
+Stage parse      :   1.226
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.002
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === GLib::Raw::Subs ===
+Stage start      :   0.000
+Stage parse      :   1.253
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.002
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === GLib::Roles::ListData ===
+Stage start      :   0.000
+Stage parse      :   1.281
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === GLib::Roles::Object ===
+Stage start      :   0.000
+Stage parse      :   1.412
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.013
+Stage moar       :   0.000
+ === GLib::Roles::Pointers ===
+Stage start      :   0.000
+Stage parse      :   1.177
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === GLib::Roles::StaticClass ===
+Stage start      :   0.000
+Stage parse      :   1.305
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === Method::Also ===
+Stage start      :   0.000
+Stage parse      :   1.056
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === NativeCall ===
+Stage start      :   0.000
+Stage parse      :   1.123
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.000
+Stage mast       :   0.001
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Compat::FreeType ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Compat/FreeType.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.369
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.006
+    Stage mast       :   0.052
+    Stage mbc        :   0.007
+Adding alias in Pango::Compat::FreeType::FT_Bitmap for buffer-pointer...
+Stage parse      :   2.571
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Roles: ()
+ === Pango::Raw::Definitions ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Definitions.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.456
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.006
+    Stage mast       :   0.061
+    Stage mbc        :   0.004
+Stage parse      :   2.713
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === Pango::Raw::Enums ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Enums.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.699
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.007
+    Stage mast       :   0.142
+    Stage mbc        :   0.009
+Stage parse      :   3.023
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === Pango::Raw::Structs ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Structs.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.641
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.016
+    Stage mast       :   0.120
+    Stage mbc        :   0.005
+Adding alias in Pango::Raw::Structs::PangoAttributeRole for PangoAttribute...
+Stage parse      :   2.972
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Raw::Structs::PangoAttributeRole for attr...
+Adding alias in Pango::Raw::Structs::PangoAttributeRole for start-index...
+Adding alias in Pango::Raw::Structs::PangoAttributeRole for end-index...
+ === Pango::Raw::Subs ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Subs.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.284
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.015
+    Stage mast       :   0.044
+    Stage mbc        :   0.002
+Stage parse      :   2.526
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::Exports ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Exports.pm6
+    Stage start      :   0.000
+    Stage parse      :   0.112
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.001
+    Stage mast       :   0.003
+    Stage mbc        :   0.002
+Stage parse      :   1.270
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::Types ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Types.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.503
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.001
+    Stage mast       :   0.041
+    Stage mbc        :   0.002
+Stage parse      :   2.768
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.005
+Stage mast       :   0.042
+Stage mbc        :   0.005
+Stage moar       :   0.000
+ === Pango::Raw::XFT ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/XFT.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.819
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.024
+    Stage mast       :   0.097
+    Stage mbc        :   0.037
+Stage parse      :   4.255
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::XFT ===
+Stage start      :   0.000
+
+    precomp lib/Pango/XFT.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.590
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.017
+    Stage mast       :   0.037
+    Stage mbc        :   0.004
+Adding alias in Pango::XFT for get-font-map...
+Stage parse      :   2.910
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::XFT for set-default-substitute...
+Adding alias in Pango::XFT for shutdown-display...
+Adding alias in Pango::XFT for substitute-changed...
+Roles: ((StaticClass))
+R: GLib::Roles::StaticClass
+ === Pango::Raw::Attr ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Attr.pm6
+    Stage start      :   0.000
+    Stage parse      :   5.210
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.034
+    Stage mast       :   0.204
+    Stage mbc        :   0.109
+Stage parse      :   6.861
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === Pango::Raw::Cairo ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Cairo.pm6
+    Stage start      :   0.000
+    Stage parse      :   3.252
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.022
+    Stage mast       :   0.107
+    Stage mbc        :   0.055
+Stage parse      :   4.699
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === Pango::Raw::Context ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Context.pm6
+    Stage start      :   0.000
+    Stage parse      :   3.057
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.023
+    Stage mast       :   0.124
+    Stage mbc        :   0.045
+Stage parse      :   4.480
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::Coverage ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Coverage.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.917
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.009
+    Stage mast       :   0.073
+    Stage mbc        :   0.018
+Stage parse      :   3.237
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::DescriptionMetrics ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/DescriptionMetrics.pm6
+    Stage start      :   0.000
+    Stage parse      :   5.504
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.035
+    Stage mast       :   0.216
+    Stage mbc        :   0.113
+Stage parse      :   7.158
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === Pango::Raw::FCFont ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/FCFont.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.753
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.008
+    Stage mast       :   0.059
+    Stage mbc        :   0.014
+Stage parse      :   3.068
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::FT2FontMap ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/FT2FontMap.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.638
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.014
+    Stage mast       :   0.091
+    Stage mbc        :   0.034
+Stage parse      :   3.990
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::FcFontMap ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/FcFontMap.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.675
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.013
+    Stage mast       :   0.095
+    Stage mbc        :   0.036
+Stage parse      :   4.052
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::FontMap ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/FontMap.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.818
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.009
+    Stage mast       :   0.084
+    Stage mbc        :   0.016
+Stage parse      :   3.170
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::Fontset ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Fontset.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.746
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.008
+    Stage mast       :   0.090
+    Stage mbc        :   0.014
+Stage parse      :   3.109
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::GlyphItem ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/GlyphItem.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.211
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.011
+    Stage mast       :   0.079
+    Stage mbc        :   0.024
+Stage parse      :   3.543
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::GlyphString ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/GlyphString.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.335
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.021
+    Stage mast       :   0.080
+    Stage mbc        :   0.026
+Stage parse      :   3.723
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::Language ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Language.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.802
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.008
+    Stage mast       :   0.077
+    Stage mbc        :   0.016
+Stage parse      :   3.148
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::Layout ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Layout.pm6
+    Stage start      :   0.000
+    Stage parse      :   7.168
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.053
+    Stage mast       :   0.243
+    Stage mbc        :   0.161
+Stage parse      :   8.927
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
+Stage moar       :   0.000
+ === Pango::Raw::Matrix ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Matrix.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.174
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.016
+    Stage mast       :   0.073
+    Stage mbc        :   0.025
+Stage parse      :   3.543
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::Misc ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Misc.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.227
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.011
+    Stage mast       :   0.077
+    Stage mbc        :   0.024
+Stage parse      :   3.570
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::Renderer ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Renderer.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.721
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.023
+    Stage mast       :   0.117
+    Stage mbc        :   0.036
+Stage parse      :   4.147
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Raw::Tabs ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Raw/Tabs.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.978
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.010
+    Stage mast       :   0.096
+    Stage mbc        :   0.019
+Stage parse      :   3.328
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Renderer ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Renderer.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.298
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.018
+    Stage mast       :   0.056
+    Stage mbc        :   0.004
+Adding alias in Pango::Renderer for PangoRenderer...
+Stage parse      :   2.578
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Renderer for draw-error-underline...
+Adding alias in Pango::Renderer for draw-glyph...
+Adding alias in Pango::Renderer for draw-glyph-item...
+Adding alias in Pango::Renderer for draw-glyphs...
+Adding alias in Pango::Renderer for draw-layout...
+Adding alias in Pango::Renderer for draw-layout-line...
+Adding alias in Pango::Renderer for draw-rectangle...
+Adding alias in Pango::Renderer for draw-trapezoid...
+Adding alias in Pango::Renderer for get-alpha...
+Adding alias in Pango::Renderer for get-color...
+Adding alias in Pango::Renderer for get-layout...
+Adding alias in Pango::Renderer for get-layout-line...
+Adding alias in Pango::Renderer for get-type...
+Adding alias in Pango::Renderer for part-changed...
+Adding alias in Pango::Renderer for set-alpha...
+Adding alias in Pango::Renderer for set-color...
+Roles: ()
+ === Pango::Renderer::XFT ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Renderer/XFT.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.307
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.012
+    Stage mast       :   0.055
+    Stage mbc        :   0.004
+Adding alias in Pango::Renderer::XFT for layout-line...
+Stage parse      :   2.581
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Renderer::XFT for pango-xft-picture-render...
+Adding alias in Pango::Renderer::XFT for pango-xft-render...
+Adding alias in Pango::Renderer::XFT for pango-xft-renderer-get-type...
+Adding alias in Pango::Renderer::XFT for pango-xft-renderer-new...
+Adding alias in Pango::Renderer::XFT for pango-xft-renderer-set-default-color...
+Adding alias in Pango::Renderer::XFT for pango-xft-renderer-set-draw...
+Roles: ()
+ === Pango::Tabs ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Tabs.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.414
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.020
+    Stage mast       :   0.062
+    Stage mbc        :   0.004
+Adding alias in Pango::Tabs for TabArray...
+Stage parse      :   2.713
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Tabs for PangoTabArray...
+Adding alias in Pango::Tabs for get-positions-in-pixels...
+Adding alias in Pango::Tabs for get-size...
+Adding alias in Pango::Tabs for get-tab...
+Adding alias in Pango::Tabs for get-tabs...
+Adding alias in Pango::Tabs for get-type...
+Adding alias in Pango::Tabs for set-tab...
+Roles: ()
+ === Pango::Attr ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Attr.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.695
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.023
+    Stage mast       :   0.092
+    Stage mbc        :   0.005
+Adding alias in Pango::Attr for background-alpha-new...
+Stage parse      :   3.070
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Attr for background-new...
+Adding alias in Pango::Attr for fallback-new...
+Adding alias in Pango::Attr for family-new...
+Adding alias in Pango::Attr for font-desc-new...
+Adding alias in Pango::Attr for font-features-new...
+Adding alias in Pango::Attr for foreground-alpha-new...
+Adding alias in Pango::Attr for foreground-new...
+Adding alias in Pango::Attr for gravity-hint-new...
+Adding alias in Pango::Attr for gravity-new...
+Adding alias in Pango::Attr for language-new...
+Adding alias in Pango::Attr for letter-spacing-new...
+Adding alias in Pango::Attr for rise-new...
+Adding alias in Pango::Attr for scale-new...
+Adding alias in Pango::Attr for shape-new...
+Adding alias in Pango::Attr for shape-new-with-data...
+Adding alias in Pango::Attr for size-new...
+Adding alias in Pango::Attr for size-new-absolute...
+Adding alias in Pango::Attr for stretch-new...
+Adding alias in Pango::Attr for strikethrough-color-new...
+Adding alias in Pango::Attr for strikethrough-new...
+Adding alias in Pango::Attr for style-new...
+Adding alias in Pango::Attr for type-get-name...
+Adding alias in Pango::Attr for type-register...
+Adding alias in Pango::Attr for underline-color-new...
+Adding alias in Pango::Attr for underline-new...
+Adding alias in Pango::Attr for variant-new...
+Adding alias in Pango::Attr for weight-new...
+Roles: ((StaticClass))
+R: GLib::Roles::StaticClass
+ === Pango::AttrIter ===
+Stage start      :   0.000
+
+    precomp lib/Pango/AttrIter.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.693
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.014
+    Stage mast       :   0.063
+    Stage mbc        :   0.004
+Adding alias in Pango::AttrIter for PangoAttrIter...
+Stage parse      :   3.026
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::AttrIter for get-attrs...
+Adding alias in Pango::AttrIter for get-font...
+Roles: ()
+ === Pango::AttrList ===
+Stage start      :   0.000
+
+    precomp lib/Pango/AttrList.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.305
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.011
+    Stage mast       :   0.045
+    Stage mbc        :   0.006
+Adding alias in Pango::AttrList for AttrList...
+Stage parse      :   2.583
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::AttrList for PangoAttrList...
+Adding alias in Pango::AttrList for get-iterator...
+Adding alias in Pango::AttrList for get-type...
+Adding alias in Pango::AttrList for insert-before...
+Adding alias in Pango::AttrList for upref...
+Adding alias in Pango::AttrList for downref...
+Roles: ()
+ === Pango::Color ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Color.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.254
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.010
+    Stage mast       :   0.053
+    Stage mbc        :   0.004
+Adding alias in Pango::Color for PangoColor...
+Stage parse      :   2.516
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Color for red...
+Adding alias in Pango::Color for green...
+Adding alias in Pango::Color for blue...
+Adding alias in Pango::Color for to-string...
+Roles: ()
+ === Pango::Coverage ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Coverage.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.361
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.011
+    Stage mast       :   0.071
+    Stage mbc        :   0.004
+Adding alias in Pango::Coverage for from-bytes...
+Stage parse      :   2.658
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Coverage for to-bytes...
+Roles: ()
+ === Pango::FcFontKey ===
+Stage start      :   0.000
+
+    precomp lib/Pango/FcFontKey.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.220
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.012
+    Stage mast       :   0.041
+    Stage mbc        :   0.004
+Adding alias in Pango::FcFontKey for get-context-key...
+Stage parse      :   2.508
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::FcFontKey for get-matrix...
+Adding alias in Pango::FcFontKey for get-pattern...
+Adding alias in Pango::FcFontKey for get-variations...
+Roles: ()
+ === Pango::FcFontsetKey ===
+Stage start      :   0.000
+
+    precomp lib/Pango/FcFontsetKey.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.229
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.008
+    Stage mast       :   0.040
+    Stage mbc        :   0.003
+Adding alias in Pango::FcFontsetKey for get-absolute-size...
+Stage parse      :   2.484
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::FcFontsetKey for get-context-key...
+Adding alias in Pango::FcFontsetKey for get-description...
+Adding alias in Pango::FcFontsetKey for get-language...
+Adding alias in Pango::FcFontsetKey for get-matrix...
+Adding alias in Pango::FcFontsetKey for get-resolution...
+Roles: ()
+ === Pango::Font ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Font.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.267
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.009
+    Stage mast       :   0.045
+    Stage mbc        :   0.004
+Adding alias in Pango::Font for PangoFont...
+Stage parse      :   2.545
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Font for describe-with-absolute-size...
+Adding alias in Pango::Font for find-shaper...
+Adding alias in Pango::Font for get-coverage...
+Adding alias in Pango::Font for get-font-map...
+Adding alias in Pango::Font for get-glyph-extents...
+Adding alias in Pango::Font for get-metrics...
+Adding alias in Pango::Font for get-type...
+Roles: ()
+ === Pango::Font::FC ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Font/FC.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.253
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.009
+    Stage mast       :   0.064
+    Stage mbc        :   0.004
+Adding alias in Pango::Font::FC for get-glyph...
+Stage parse      :   2.561
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.001
+Stage moar       :   0.000
+Adding alias in Pango::Font::FC for get-type...
+Adding alias in Pango::Font::FC for get-unknown-glyph...
+Adding alias in Pango::Font::FC for has-char...
+Adding alias in Pango::Font::FC for kern-glyphs...
+Adding alias in Pango::Font::FC for lock-face...
+Adding alias in Pango::Font::FC for unlock-face...
+Roles: ()
+ === Pango::Font::XFT ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Font/XFT.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.245
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.007
+    Stage mast       :   0.038
+    Stage mbc        :   0.003
+Adding alias in Pango::Font::XFT for get-display...
+Stage parse      :   2.506
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Font::XFT for get-font...
+Adding alias in Pango::Font::XFT for get-type...
+Roles: ()
+ === Pango::FontDescription ===
+Stage start      :   0.000
+
+    precomp lib/Pango/FontDescription.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.573
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.028
+    Stage mast       :   0.089
+    Stage mbc        :   0.007
+Adding alias in Pango::FontDescription for PangoFontDescription...
+Stage parse      :   2.925
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::FontDescription for font-description...
+Adding alias in Pango::FontDescription for new-from-string...
+Adding alias in Pango::FontDescription for better-match...
+Adding alias in Pango::FontDescription for copy-static...
+Adding alias in Pango::FontDescription for get-set-fields...
+Adding alias in Pango::FontDescription for set_fields...
+Adding alias in Pango::FontDescription for set-fields...
+Adding alias in Pango::FontDescription for get-size-is-absolute...
+Adding alias in Pango::FontDescription for size_is_absolute...
+Adding alias in Pango::FontDescription for size-is-absolute...
+Adding alias in Pango::FontDescription for merge-static...
+Adding alias in Pango::FontDescription for multi-free...
+Adding alias in Pango::FontDescription for descriptions-free...
+Adding alias in Pango::FontDescription for set-absolute-size...
+Adding alias in Pango::FontDescription for set-family-static...
+Adding alias in Pango::FontDescription for set-variations-static...
+Adding alias in Pango::FontDescription for to-filename...
+Adding alias in Pango::FontDescription for to-string...
+Adding alias in Pango::FontDescription for Str...
+Adding alias in Pango::FontDescription for unset-fields...
+Roles: ()
+ === Pango::FontFace ===
+Stage start      :   0.000
+
+    precomp lib/Pango/FontFace.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.251
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.013
+    Stage mast       :   0.044
+    Stage mbc        :   0.004
+Adding alias in Pango::FontFace for PangoFontFace...
+Stage parse      :   2.551
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::FontFace for get-face-name...
+Adding alias in Pango::FontFace for is-synthesized...
+Adding alias in Pango::FontFace for list-sizes...
+Roles: ()
+ === Pango::FontFamily ===
+Stage start      :   0.000
+
+    precomp lib/Pango/FontFamily.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.338
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.011
+    Stage mast       :   0.055
+    Stage mbc        :   0.004
+Adding alias in Pango::FontFamily for PangoFontFamily...
+Stage parse      :   2.643
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::FontFamily for get-name...
+Adding alias in Pango::FontFamily for is-monospace...
+Adding alias in Pango::FontFamily for list-faces...
+Roles: ()
+ === Pango::FontMetrics ===
+Stage start      :   0.000
+
+    precomp lib/Pango/FontMetrics.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.266
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.014
+    Stage mast       :   0.046
+    Stage mbc        :   0.004
+Adding alias in Pango::FontMetrics for PangoFontMetrics...
+Stage parse      :   2.531
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::FontMetrics for get-approximate-char-width...
+Adding alias in Pango::FontMetrics for get-approximate-digit-width...
+Adding alias in Pango::FontMetrics for get-ascent...
+Adding alias in Pango::FontMetrics for get-descent...
+Adding alias in Pango::FontMetrics for get-strikethrough-position...
+Adding alias in Pango::FontMetrics for get-strikethrough-thickness...
+Adding alias in Pango::FontMetrics for get-underline-position...
+Adding alias in Pango::FontMetrics for get-underline-thickness...
+Roles: ()
+ === Pango::Fontset ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Fontset.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.361
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.009
+    Stage mast       :   0.059
+    Stage mbc        :   0.003
+Adding alias in Pango::Fontset for PangoFontset...
+Stage parse      :   2.639
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Fontset for get-font...
+Adding alias in Pango::Fontset for get-metrics...
+Roles: ()
+ === Pango::FontsetSimple ===
+Stage start      :   0.000
+
+    precomp lib/Pango/FontsetSimple.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.260
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.014
+    Stage mast       :   0.043
+    Stage mbc        :   0.004
+Adding alias in Pango::FontsetSimple for PangoFontsetSimple...
+Stage parse      :   2.536
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::FontsetSimple for get-type...
+Roles: ()
+ === Pango::GlyphItem ===
+Stage start      :   0.000
+
+    precomp lib/Pango/GlyphItem.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.227
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.010
+    Stage mast       :   0.051
+    Stage mbc        :   0.004
+Adding alias in Pango::GlyphItem for PangoGlyphItem...
+Stage parse      :   2.501
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::GlyphItem for apply-attrs...
+Adding alias in Pango::GlyphItem for get-logical-widths...
+Adding alias in Pango::GlyphItem for letter-space...
+Roles: ()
+ === Pango::GlyphItemIter ===
+Stage start      :   0.000
+
+    precomp lib/Pango/GlyphItemIter.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.240
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.010
+    Stage mast       :   0.046
+    Stage mbc        :   0.004
+Adding alias in Pango::GlyphItemIter for PangoGlyphItemIter...
+Stage parse      :   2.528
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.010
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::GlyphItemIter for get-type...
+Adding alias in Pango::GlyphItemIter for init-end...
+Adding alias in Pango::GlyphItemIter for init-start...
+Adding alias in Pango::GlyphItemIter for next-cluster...
+Adding alias in Pango::GlyphItemIter for prev-cluster...
+Roles: ()
+ === Pango::GlyphString ===
+Stage start      :   0.000
+
+    precomp lib/Pango/GlyphString.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.664
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.016
+    Stage mast       :   0.067
+    Stage mbc        :   0.004
+Adding alias in Pango::GlyphString for PangoGlyphString...
+Stage parse      :   3.018
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::GlyphString for reorder-items...
+Adding alias in Pango::GlyphString for extents-range...
+Adding alias in Pango::GlyphString for get-logical-widths...
+Adding alias in Pango::GlyphString for get-type...
+Adding alias in Pango::GlyphString for get-width...
+Adding alias in Pango::GlyphString for index-to-x...
+Adding alias in Pango::GlyphString for shape-full...
+Adding alias in Pango::GlyphString for set-size...
+Adding alias in Pango::GlyphString for x-to-index...
+Roles: ()
+ === Pango::Language ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Language.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.291
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.010
+    Stage mast       :   0.038
+    Stage mbc        :   0.006
+Adding alias in Pango::Language for PangoLanguage...
+Stage parse      :   2.549
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Language for from-string...
+Adding alias in Pango::Language for new_from_string...
+Adding alias in Pango::Language for new-from-string...
+Adding alias in Pango::Language for get-default...
+Adding alias in Pango::Language for get-sample-string...
+Adding alias in Pango::Language for get-scripts...
+Adding alias in Pango::Language for get-type...
+Adding alias in Pango::Language for includes-script...
+Adding alias in Pango::Language for to-string...
+Roles: ()
+ === Pango::LayoutIter ===
+Stage start      :   0.000
+
+    precomp lib/Pango/LayoutIter.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.391
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.013
+    Stage mast       :   0.066
+    Stage mbc        :   0.004
+Adding alias in Pango::LayoutIter for PangoLayoutIter...
+Stage parse      :   2.697
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::LayoutIter for at-last-line...
+Adding alias in Pango::LayoutIter for get-baseline...
+Adding alias in Pango::LayoutIter for get-char-extents...
+Adding alias in Pango::LayoutIter for get-cluster-extents...
+Adding alias in Pango::LayoutIter for get-index...
+Adding alias in Pango::LayoutIter for get-layout...
+Adding alias in Pango::LayoutIter for get-layout-extents...
+Adding alias in Pango::LayoutIter for get-line...
+Adding alias in Pango::LayoutIter for get-line-extents...
+Adding alias in Pango::LayoutIter for get-line-readonly...
+Adding alias in Pango::LayoutIter for get-line-yrange...
+Adding alias in Pango::LayoutIter for get-run...
+Adding alias in Pango::LayoutIter for get-run-extents...
+Adding alias in Pango::LayoutIter for get-run-readonly...
+Adding alias in Pango::LayoutIter for get-type...
+Adding alias in Pango::LayoutIter for next-char...
+Adding alias in Pango::LayoutIter for next-cluster...
+Adding alias in Pango::LayoutIter for next-line...
+Adding alias in Pango::LayoutIter for next-run...
+Roles: ()
+ === Pango::LayoutLine ===
+Stage start      :   0.000
+
+    precomp lib/Pango/LayoutLine.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.378
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.017
+    Stage mast       :   0.067
+    Stage mbc        :   0.004
+Adding alias in Pango::LayoutLine for PangoLayoutLine...
+Stage parse      :   2.677
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::LayoutLine for get-extents...
+Adding alias in Pango::LayoutLine for get-pixel-extents...
+Adding alias in Pango::LayoutLine for get-x-ranges...
+Adding alias in Pango::LayoutLine for index-to-x...
+Adding alias in Pango::LayoutLine for x-to-index...
+Roles: ()
+ === Pango::MarkupParser ===
+Stage start      :   0.000
+
+    precomp lib/Pango/MarkupParser.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.581
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.013
+    Stage mast       :   0.051
+    Stage mbc        :   0.004
+Stage parse      :   2.894
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+ === Pango::Matrix ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Matrix.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.306
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.013
+    Stage mast       :   0.055
+    Stage mbc        :   0.004
+Adding alias in Pango::Matrix for PangoMatrix...
+Stage parse      :   2.622
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Matrix for get-font-scale-factor...
+Adding alias in Pango::Matrix for get-font-scale-factors...
+Adding alias in Pango::Matrix for get-type...
+Adding alias in Pango::Matrix for transform-distance...
+Adding alias in Pango::Matrix for transform-pixel-rectangle...
+Adding alias in Pango::Matrix for transform-point...
+Adding alias in Pango::Matrix for transform-rectangle...
+Roles: ()
+ === Pango::Misc ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Misc.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.653
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.008
+    Stage mast       :   0.077
+    Stage mbc        :   0.004
+Adding alias in Pango::Misc for pango-is-zero-width...
+Stage parse      :   2.995
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Misc for pango-log2vis-get-embedding-levels...
+Adding alias in Pango::Misc for pango-parse-stretch...
+Adding alias in Pango::Misc for pango-parse-style...
+Adding alias in Pango::Misc for pango-parse-variant...
+Adding alias in Pango::Misc for pango-parse-weight...
+Adding alias in Pango::Misc for pango-quantize-line-geometry...
+Adding alias in Pango::Misc for pango-version...
+Roles: ()
+ === Pango::Context ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Context.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.977
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.016
+    Stage mast       :   0.108
+    Stage mbc        :   0.011
+Adding alias in Pango::Context for PangoContext...
+Stage parse      :   3.437
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Context for context...
+Adding alias in Pango::Context for base-dir...
+Adding alias in Pango::Context for base-gravity...
+Adding alias in Pango::Context for font-description...
+Adding alias in Pango::Context for font-map...
+Adding alias in Pango::Context for gravity-hint...
+Adding alias in Pango::Context for get-gravity...
+Adding alias in Pango::Context for get-metrics...
+Adding alias in Pango::Context for get-serial...
+Adding alias in Pango::Context for get-type...
+Adding alias in Pango::Context for list-families...
+Adding alias in Pango::Context for load-font...
+Adding alias in Pango::Context for load-fontset...
+Adding alias in Pango::Context for pango-itemize...
+Adding alias in Pango::Context for pango-itemize-with-base-dir...
+Roles: ((Object))
+R: GLib::Roles::Object
+ === Pango::FontMap ===
+Stage start      :   0.000
+
+    precomp lib/Pango/FontMap.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.488
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.009
+    Stage mast       :   0.108
+    Stage mbc        :   0.005
+Adding alias in Pango::FontMap for PangoFontMap...
+Stage parse      :   2.937
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::FontMap for fontmap...
+Adding alias in Pango::FontMap for create-context...
+Adding alias in Pango::FontMap for get-serial...
+Adding alias in Pango::FontMap for get-shape-engine-type...
+Adding alias in Pango::FontMap for get-type...
+Adding alias in Pango::FontMap for list-families...
+Adding alias in Pango::FontMap for load-font...
+Adding alias in Pango::FontMap for load-fontset...
+Roles: ()
+ === Pango::FontMap::FC ===
+Stage start      :   0.000
+
+    precomp lib/Pango/FontMap/FC.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.443
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.008
+    Stage mast       :   0.058
+    Stage mbc        :   0.003
+Adding alias in Pango::FontMap::FC for add-decoder-find-func...
+Stage parse      :   2.816
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::FontMap::FC for cache-clear...
+Adding alias in Pango::FontMap::FC for config-changed...
+Adding alias in Pango::FontMap::FC for find-decoder...
+Adding alias in Pango::FontMap::FC for get-type...
+Roles: ()
+ === Pango::FontMap::FT2 ===
+Stage start      :   0.000
+
+    precomp lib/Pango/FontMap/FT2.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.522
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.019
+    Stage mast       :   0.073
+    Stage mbc        :   0.004
+Adding alias in Pango::FontMap::FT2 for PangoFT2FontMap...
+Stage parse      :   2.993
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::FontMap::FT2 for get-type...
+Adding alias in Pango::FontMap::FT2 for !resolve-bitmap...
+Adding alias in Pango::FontMap::FT2 for render-layout...
+Adding alias in Pango::FontMap::FT2 for render-layout-line...
+Adding alias in Pango::FontMap::FT2 for render-layout-line-subpixel...
+Adding alias in Pango::FontMap::FT2 for render-layout-subpixel...
+Adding alias in Pango::FontMap::FT2 for render-transformed...
+Adding alias in Pango::FontMap::FT2 for set-default-substitute...
+Adding alias in Pango::FontMap::FT2 for set-resolution...
+Adding alias in Pango::FontMap::FT2 for substitute-changed...
+Roles: ()
+ === Pango::Layout ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Layout.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.879
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.042
+    Stage mast       :   0.138
+    Stage mbc        :   0.008
+Adding alias in Pango::Layout for PangoLayout...
+Stage parse      :   3.422
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.008
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Layout for layout...
+Adding alias in Pango::Layout for auto-dir...
+Adding alias in Pango::Layout for font-description...
+Adding alias in Pango::Layout for font_desc...
+Adding alias in Pango::Layout for font-desc...
+Adding alias in Pango::Layout for single-paragraph-mode...
+Adding alias in Pango::Layout for context-changed...
+Adding alias in Pango::Layout for get-character-count...
+Adding alias in Pango::Layout for get-context...
+Adding alias in Pango::Layout for get-cursor-pos...
+Adding alias in Pango::Layout for get-extents...
+Adding alias in Pango::Layout for extents...
+Adding alias in Pango::Layout for get-iter...
+Adding alias in Pango::Layout for get-line-count...
+Adding alias in Pango::Layout for get-line...
+Adding alias in Pango::Layout for get-line-readonly...
+Adding alias in Pango::Layout for get-lines...
+Adding alias in Pango::Layout for get-lines-readonly...
+Adding alias in Pango::Layout for get-log-attrs...
+Adding alias in Pango::Layout for get-log-attrs-readonly...
+Adding alias in Pango::Layout for get-pixel-extents...
+Adding alias in Pango::Layout for pixel_extents...
+Adding alias in Pango::Layout for pixel-extents...
+Adding alias in Pango::Layout for get-pixel-size...
+Adding alias in Pango::Layout for get-serial...
+Adding alias in Pango::Layout for get-size...
+Adding alias in Pango::Layout for get-text...
+Adding alias in Pango::Layout for get-unknown-glyphs-count...
+Adding alias in Pango::Layout for index-to-line-x...
+Adding alias in Pango::Layout for index-to-pos...
+Adding alias in Pango::Layout for is-ellipsized...
+Adding alias in Pango::Layout for is-wrapped...
+Adding alias in Pango::Layout for move-cursor-visually...
+Adding alias in Pango::Layout for set-markup...
+Adding alias in Pango::Layout for set-markup-with-accel...
+Adding alias in Pango::Layout for set-text...
+Adding alias in Pango::Layout for xy-to-index...
+Roles: ((Object))
+R: GLib::Roles::Object
+ === Pango::Cairo ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Cairo.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.636
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.026
+    Stage mast       :   0.090
+    Stage mbc        :   0.005
+Adding alias in Pango::Cairo for pango-context...
+Stage parse      :   3.094
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Cairo for pango_context...
+Adding alias in Pango::Cairo for PangoContext...
+Adding alias in Pango::Cairo for cairo-context...
+Adding alias in Pango::Cairo for new-with-fontmap...
+Adding alias in Pango::Cairo for context-font-options...
+Adding alias in Pango::Cairo for context-resolution...
+Adding alias in Pango::Cairo for context-get-shape-renderer...
+Adding alias in Pango::Cairo for context-set-shape-renderer...
+Adding alias in Pango::Cairo for create-pc-context...
+Adding alias in Pango::Cairo for create-layout...
+Adding alias in Pango::Cairo for error-underline-path...
+Adding alias in Pango::Cairo for font-get-scaled-font...
+Adding alias in Pango::Cairo for font-get-type...
+Adding alias in Pango::Cairo for glyph-string-path...
+Adding alias in Pango::Cairo for layout-line-path...
+Adding alias in Pango::Cairo for layout-path...
+Adding alias in Pango::Cairo for show-error-underline...
+Adding alias in Pango::Cairo for show-glyph-item...
+Adding alias in Pango::Cairo for show-glyph-string...
+Adding alias in Pango::Cairo for show-layout...
+Adding alias in Pango::Cairo for show-layout-line...
+Adding alias in Pango::Cairo for update-context...
+Adding alias in Pango::Cairo for update-layout...
+Roles: ()
+ === Pango::Cairo::FontMap ===
+Stage start      :   0.000
+
+    precomp lib/Pango/Cairo/FontMap.pm6
+    Stage start      :   0.000
+    Stage parse      :   1.362
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.009
+    Stage mast       :   0.062
+    Stage mbc        :   0.004
+Adding alias in Pango::Cairo::FontMap for new-for-font-type...
+Stage parse      :   2.788
+Stage syntaxcheck:   0.000
+Stage ast        :   0.000
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
+Stage moar       :   0.000
+Adding alias in Pango::Cairo::FontMap for create-context...
+Adding alias in Pango::Cairo::FontMap for get-font-type...
+Roles: ()
+
+real 241.86
+user 289.24
+sys 18.22
