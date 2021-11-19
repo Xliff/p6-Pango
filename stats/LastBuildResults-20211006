@@ -1,20 +1,20 @@
 Dependency Generation
 =====================
-real 0.56
-user 0.92
-sys 0.03
+real 3.74
+user 4.06
+sys 0.40
  === Cairo === (1/78)
 Stage start      :   0.000
-Stage parse      :   1.165
+Stage parse      :   1.977
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
-Stage mast       :   0.002
-Stage mbc        :   0.002
+Stage mast       :   0.003
+Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::GList === (2/78)
 Stage start      :   0.000
-Stage parse      :   1.416
+Stage parse      :   2.287
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.000
@@ -23,25 +23,25 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Raw::Definitions === (3/78)
 Stage start      :   0.000
-Stage parse      :   1.239
+Stage parse      :   2.029
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.001
-Stage mast       :   0.001
+Stage optimize   :   0.043
+Stage mast       :   0.002
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Raw::Enums === (4/78)
 Stage start      :   0.000
-Stage parse      :   1.256
+Stage parse      :   2.099
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.002
+Stage optimize   :   0.003
 Stage mast       :   0.006
 Stage mbc        :   0.002
 Stage moar       :   0.000
  === GLib::Raw::Exceptions === (5/78)
 Stage start      :   0.000
-Stage parse      :   1.081
+Stage parse      :   1.857
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -50,52 +50,52 @@ Stage mbc        :   0.000
 Stage moar       :   0.000
  === GLib::Raw::Exports === (6/78)
 Stage start      :   0.000
-Stage parse      :   1.121
+Stage parse      :   1.950
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.000
-Stage mast       :   0.001
+Stage mast       :   0.008
 Stage mbc        :   0.000
 Stage moar       :   0.000
  === GLib::Raw::Object === (7/78)
 Stage start      :   0.000
-Stage parse      :   1.245
+Stage parse      :   2.058
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.000
 Stage mast       :   0.001
-Stage mbc        :   0.002
+Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Raw::Struct_Subs === (8/78)
 Stage start      :   0.000
-Stage parse      :   1.208
+Stage parse      :   2.048
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
+Stage optimize   :   0.001
 Stage mast       :   0.001
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Raw::Structs === (9/78)
 Stage start      :   0.000
-Stage parse      :   1.356
+Stage parse      :   2.197
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.000
 Stage mast       :   0.002
-Stage mbc        :   0.011
+Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Raw::Subs === (10/78)
 Stage start      :   0.000
-Stage parse      :   1.359
+Stage parse      :   2.178
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.000
-Stage mast       :   0.001
+Stage mast       :   0.002
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Roles::ListData === (11/78)
 Stage start      :   0.000
-Stage parse      :   1.464
+Stage parse      :   2.276
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.000
@@ -104,16 +104,16 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Roles::Object === (12/78)
 Stage start      :   0.000
-Stage parse      :   1.530
+Stage parse      :   2.452
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.000
 Stage mast       :   0.001
-Stage mbc        :   0.011
+Stage mbc        :   0.003
 Stage moar       :   0.000
  === GLib::Roles::Pointers === (13/78)
 Stage start      :   0.000
-Stage parse      :   1.187
+Stage parse      :   1.982
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.000
@@ -122,7 +122,7 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === GLib::Roles::StaticClass === (14/78)
 Stage start      :   0.000
-Stage parse      :   1.441
+Stage parse      :   2.219
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.000
@@ -131,65 +131,74 @@ Stage mbc        :   0.001
 Stage moar       :   0.000
  === Method::Also === (15/78)
 Stage start      :   0.000
-Stage parse      :   1.078
+Stage parse      :   1.846
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
-Stage mast       :   0.002
+Stage mast       :   0.003
 Stage mbc        :   0.000
 Stage moar       :   0.000
  === NativeCall === (16/78)
 Stage start      :   0.000
-Stage parse      :   1.190
+Stage parse      :   1.917
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.000
+Stage mast       :   0.009
+Stage mbc        :   0.001
 Stage moar       :   0.000
  === Pango::Compat::FreeType === (17/78)
 Stage start      :   0.000
-Stage parse      :   1.210
+
+    precomp lib/Pango/Compat/FreeType.pm6
+    Stage start      :   0.000
+    Stage parse      :   2.157
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.006
+    Stage mast       :   0.031
+    Stage mbc        :   0.002
+Stage parse      :   4.157
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Raw::Definitions === (18/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/Definitions.pm6
     Stage start      :   0.000
-    Stage parse      :   1.506
+    Stage parse      :   2.346
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.004
-    Stage mast       :   0.014
-    Stage mbc        :   0.003
-Stage parse      :   2.684
+    Stage optimize   :   0.005
+    Stage mast       :   0.025
+    Stage mbc        :   0.005
+Stage parse      :   4.378
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
-Stage mast       :   0.004
-Stage mbc        :   0.000
+Stage mast       :   0.003
+Stage mbc        :   0.001
 Stage moar       :   0.000
  === Pango::Raw::Enums === (19/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/Enums.pm6
     Stage start      :   0.000
-    Stage parse      :   1.534
+    Stage parse      :   2.429
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.007
-    Stage mast       :   0.019
-    Stage mbc        :   0.005
-Stage parse      :   2.840
+    Stage optimize   :   0.006
+    Stage mast       :   0.028
+    Stage mbc        :   0.006
+Stage parse      :   4.440
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
-Stage mast       :   0.010
+Stage mast       :   0.004
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === Pango::Raw::Structs === (20/78)
@@ -197,17 +206,17 @@ Stage start      :   0.000
 
     precomp lib/Pango/Raw/Structs.pm6
     Stage start      :   0.000
-    Stage parse      :   1.811
+    Stage parse      :   2.708
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.013
-    Stage mast       :   0.040
-    Stage mbc        :   0.023
-Stage parse      :   3.302
+    Stage optimize   :   0.019
+    Stage mast       :   0.069
+    Stage mbc        :   0.010
+Stage parse      :   4.871
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.005
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === Pango::Raw::Subs === (21/78)
@@ -215,22 +224,31 @@ Stage start      :   0.000
 
     precomp lib/Pango/Raw/Subs.pm6
     Stage start      :   0.000
-    Stage parse      :   1.404
+    Stage parse      :   2.354
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.003
-    Stage mast       :   0.020
+    Stage optimize   :   0.005
+    Stage mast       :   0.019
     Stage mbc        :   0.002
-Stage parse      :   2.783
+Stage parse      :   4.441
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Raw::Exports === (22/78)
 Stage start      :   0.000
-Stage parse      :   1.088
+
+    precomp lib/Pango/Raw/Exports.pm6
+    Stage start      :   0.000
+    Stage parse      :   0.105
+    Stage syntaxcheck:   0.000
+    Stage ast        :   0.000
+    Stage optimize   :   0.001
+    Stage mast       :   0.003
+    Stage mbc        :   0.002
+Stage parse      :   2.082
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
@@ -242,71 +260,72 @@ Stage start      :   0.000
 
     precomp lib/Pango/Raw/Types.pm6
     Stage start      :   0.000
-    Stage parse      :   1.913
+    Stage parse      :   2.816
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
     Stage optimize   :   0.001
-    Stage mast       :   0.009
+    Stage mast       :   0.013
     Stage mbc        :   0.002
-Stage parse      :   3.352
+Stage parse      :   4.945
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.007
-Stage mast       :   0.008
-Stage mbc        :   0.003
+Stage optimize   :   0.005
+Stage mast       :   0.012
+Stage mbc        :   0.006
 Stage moar       :   0.000
  === Pango::Raw::XFT === (24/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/XFT.pm6
     Stage start      :   0.000
-    Stage parse      :   1.777
+    Stage parse      :   2.883
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.019
-    Stage mast       :   0.044
-    Stage mbc        :   0.031
-Stage parse      :   3.295
+    Stage optimize   :   0.024
+    Stage mast       :   0.081
+    Stage mbc        :   0.040
+Stage parse      :   5.193
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::XFT === (25/78)
 Stage start      :   0.000
 
     precomp lib/Pango/XFT.pm6
     Stage start      :   0.000
-    Stage parse      :   1.725
+    Stage parse      :   2.898
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.004
-    Stage mast       :   0.039
-    Stage mbc        :   0.003
-Stage parse      :   3.231
+    Stage optimize   :   0.011
+    Stage mast       :   0.019
+    Stage mbc        :   0.004
+R: GLib::Roles::StaticClass
+Stage parse      :   5.099
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Raw::Attr === (26/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/Attr.pm6
     Stage start      :   0.000
-    Stage parse      :   2.339
+    Stage parse      :   3.925
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.027
-    Stage mast       :   0.097
-    Stage mbc        :   0.037
-Stage parse      :   3.937
+    Stage optimize   :   0.039
+    Stage mast       :   0.101
+    Stage mbc        :   0.115
+Stage parse      :   6.345
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
-Stage mast       :   0.001
+Stage mast       :   0.004
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === Pango::Raw::Cairo === (27/78)
@@ -314,89 +333,89 @@ Stage start      :   0.000
 
     precomp lib/Pango/Raw/Cairo.pm6
     Stage start      :   0.000
-    Stage parse      :   2.029
+    Stage parse      :   3.101
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.019
-    Stage mast       :   0.048
-    Stage mbc        :   0.040
-Stage parse      :   3.596
+    Stage optimize   :   0.020
+    Stage mast       :   0.089
+    Stage mbc        :   0.058
+Stage parse      :   5.422
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.002
-Stage mbc        :   0.002
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Raw::Context === (28/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/Context.pm6
     Stage start      :   0.000
-    Stage parse      :   1.912
+    Stage parse      :   2.863
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.018
-    Stage mast       :   0.044
-    Stage mbc        :   0.033
-Stage parse      :   3.427
+    Stage optimize   :   0.023
+    Stage mast       :   0.092
+    Stage mbc        :   0.022
+Stage parse      :   5.154
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.002
-Stage mbc        :   0.002
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Raw::Coverage === (29/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/Coverage.pm6
     Stage start      :   0.000
-    Stage parse      :   1.569
+    Stage parse      :   2.536
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.008
-    Stage mast       :   0.021
+    Stage optimize   :   0.009
+    Stage mast       :   0.028
     Stage mbc        :   0.013
-Stage parse      :   3.043
+Stage parse      :   4.723
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Raw::DescriptionMetrics === (30/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/DescriptionMetrics.pm6
     Stage start      :   0.000
-    Stage parse      :   2.462
+    Stage parse      :   4.019
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.032
-    Stage mast       :   0.099
-    Stage mbc        :   0.077
-Stage parse      :   4.109
+    Stage optimize   :   0.043
+    Stage mast       :   0.130
+    Stage mbc        :   0.134
+Stage parse      :   6.598
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.002
-Stage mbc        :   0.002
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.001
 Stage moar       :   0.000
  === Pango::Raw::FCFont === (31/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/FCFont.pm6
     Stage start      :   0.000
-    Stage parse      :   1.439
+    Stage parse      :   2.558
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.006
-    Stage mast       :   0.020
-    Stage mbc        :   0.010
-Stage parse      :   2.904
+    Stage optimize   :   0.008
+    Stage mast       :   0.026
+    Stage mbc        :   0.016
+Stage parse      :   4.778
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.016
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === Pango::Raw::FT2FontMap === (32/78)
@@ -404,143 +423,143 @@ Stage start      :   0.000
 
     precomp lib/Pango/Raw/FT2FontMap.pm6
     Stage start      :   0.000
-    Stage parse      :   1.809
+    Stage parse      :   2.815
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.015
-    Stage mast       :   0.036
-    Stage mbc        :   0.025
-Stage parse      :   3.354
+    Stage optimize   :   0.016
+    Stage mast       :   0.048
+    Stage mbc        :   0.035
+Stage parse      :   5.032
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.002
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Raw::FcFontMap === (33/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/FcFontMap.pm6
     Stage start      :   0.000
-    Stage parse      :   1.807
+    Stage parse      :   2.749
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.011
-    Stage mast       :   0.034
-    Stage mbc        :   0.027
-Stage parse      :   3.299
+    Stage optimize   :   0.017
+    Stage mast       :   0.040
+    Stage mbc        :   0.037
+Stage parse      :   4.942
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Raw::FontMap === (34/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/FontMap.pm6
     Stage start      :   0.000
-    Stage parse      :   1.619
+    Stage parse      :   2.477
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.011
-    Stage mast       :   0.021
-    Stage mbc        :   0.013
-Stage parse      :   3.047
+    Stage optimize   :   0.014
+    Stage mast       :   0.030
+    Stage mbc        :   0.017
+Stage parse      :   4.639
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Raw::Fontset === (35/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/Fontset.pm6
     Stage start      :   0.000
-    Stage parse      :   1.506
+    Stage parse      :   2.465
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.006
-    Stage mast       :   0.058
-    Stage mbc        :   0.011
-Stage parse      :   2.996
+    Stage optimize   :   0.008
+    Stage mast       :   0.027
+    Stage mbc        :   0.008
+Stage parse      :   4.633
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Raw::GlyphItem === (36/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/GlyphItem.pm6
     Stage start      :   0.000
-    Stage parse      :   1.668
+    Stage parse      :   2.605
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.010
-    Stage mast       :   0.030
-    Stage mbc        :   0.018
-Stage parse      :   3.165
+    Stage optimize   :   0.011
+    Stage mast       :   0.057
+    Stage mbc        :   0.025
+Stage parse      :   4.810
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Raw::GlyphString === (37/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/GlyphString.pm6
     Stage start      :   0.000
-    Stage parse      :   1.683
+    Stage parse      :   2.666
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.014
-    Stage mast       :   0.041
-    Stage mbc        :   0.023
-Stage parse      :   3.186
+    Stage optimize   :   0.018
+    Stage mast       :   0.044
+    Stage mbc        :   0.030
+Stage parse      :   4.841
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Raw::Language === (38/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/Language.pm6
     Stage start      :   0.000
-    Stage parse      :   1.577
+    Stage parse      :   2.481
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.006
-    Stage mast       :   0.021
-    Stage mbc        :   0.012
-Stage parse      :   3.050
+    Stage optimize   :   0.008
+    Stage mast       :   0.027
+    Stage mbc        :   0.018
+Stage parse      :   4.648
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Raw::Layout === (39/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Raw/Layout.pm6
     Stage start      :   0.000
-    Stage parse      :   2.891
+    Stage parse      :   4.518
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.039
-    Stage mast       :   0.122
-    Stage mbc        :   0.112
-Stage parse      :   4.605
+    Stage optimize   :   0.054
+    Stage mast       :   0.168
+    Stage mbc        :   0.159
+Stage parse      :   7.120
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
 Stage optimize   :   0.001
-Stage mast       :   0.002
+Stage mast       :   0.003
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === Pango::Raw::Matrix === (40/78)
@@ -548,17 +567,17 @@ Stage start      :   0.000
 
     precomp lib/Pango/Raw/Matrix.pm6
     Stage start      :   0.000
-    Stage parse      :   1.682
+    Stage parse      :   2.546
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.010
-    Stage mast       :   0.029
-    Stage mbc        :   0.019
-Stage parse      :   3.148
+    Stage optimize   :   0.011
+    Stage mast       :   0.037
+    Stage mbc        :   0.025
+Stage parse      :   4.687
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
 Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Raw::Misc === (41/78)
@@ -566,17 +585,17 @@ Stage start      :   0.000
 
     precomp lib/Pango/Raw/Misc.pm6
     Stage start      :   0.000
-    Stage parse      :   1.658
+    Stage parse      :   2.596
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.013
-    Stage mast       :   0.026
-    Stage mbc        :   0.019
-Stage parse      :   3.094
+    Stage optimize   :   0.012
+    Stage mast       :   0.038
+    Stage mbc        :   0.016
+Stage parse      :   4.759
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === Pango::Raw::Renderer === (42/78)
@@ -584,17 +603,17 @@ Stage start      :   0.000
 
     precomp lib/Pango/Raw/Renderer.pm6
     Stage start      :   0.000
-    Stage parse      :   1.767
+    Stage parse      :   2.769
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.014
-    Stage mast       :   0.041
-    Stage mbc        :   0.036
-Stage parse      :   3.254
+    Stage optimize   :   0.022
+    Stage mast       :   0.052
+    Stage mbc        :   0.018
+Stage parse      :   4.936
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.002
+Stage optimize   :   0.001
+Stage mast       :   0.003
 Stage mbc        :   0.001
 Stage moar       :   0.000
  === Pango::Raw::Tabs === (43/78)
@@ -602,650 +621,653 @@ Stage start      :   0.000
 
     precomp lib/Pango/Raw/Tabs.pm6
     Stage start      :   0.000
-    Stage parse      :   1.543
+    Stage parse      :   2.483
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.011
-    Stage mast       :   0.023
-    Stage mbc        :   0.014
-Stage parse      :   3.010
+    Stage optimize   :   0.010
+    Stage mast       :   0.028
+    Stage mbc        :   0.020
+Stage parse      :   4.574
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.004
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Renderer === (44/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Renderer.pm6
     Stage start      :   0.000
-    Stage parse      :   1.353
+    Stage parse      :   2.206
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.017
-    Stage mast       :   0.032
-    Stage mbc        :   0.003
-Stage parse      :   2.839
+    Stage optimize   :   0.022
+    Stage mast       :   0.078
+    Stage mbc        :   0.004
+Stage parse      :   4.392
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.014
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Renderer::XFT === (45/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Renderer/XFT.pm6
     Stage start      :   0.000
-    Stage parse      :   1.414
+    Stage parse      :   2.347
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.016
-    Stage mast       :   0.029
-    Stage mbc        :   0.003
-Stage parse      :   2.893
+    Stage optimize   :   0.018
+    Stage mast       :   0.037
+    Stage mbc        :   0.004
+Stage parse      :   4.514
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Tabs === (46/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Tabs.pm6
     Stage start      :   0.000
-    Stage parse      :   1.459
+    Stage parse      :   2.378
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.014
-    Stage mast       :   0.082
-    Stage mbc        :   0.006
-Stage parse      :   3.015
+    Stage optimize   :   0.016
+    Stage mast       :   0.040
+    Stage mbc        :   0.007
+Stage parse      :   4.538
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Attr === (47/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Attr.pm6
     Stage start      :   0.000
-    Stage parse      :   1.859
+    Stage parse      :   3.045
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.018
-    Stage mast       :   0.045
-    Stage mbc        :   0.004
-Stage parse      :   3.382
+    Stage optimize   :   0.027
+    Stage mast       :   0.080
+    Stage mbc        :   0.006
+R: GLib::Roles::StaticClass
+Stage parse      :   5.274
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::AttrIter === (48/78)
 Stage start      :   0.000
 
     precomp lib/Pango/AttrIter.pm6
     Stage start      :   0.000
-    Stage parse      :   1.858
+    Stage parse      :   2.883
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.008
-    Stage mast       :   0.027
-    Stage mbc        :   0.004
-Stage parse      :   3.362
+    Stage optimize   :   0.009
+    Stage mast       :   0.062
+    Stage mbc        :   0.005
+Stage parse      :   5.065
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::AttrList === (49/78)
 Stage start      :   0.000
 
     precomp lib/Pango/AttrList.pm6
     Stage start      :   0.000
-    Stage parse      :   1.339
+    Stage parse      :   2.187
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.012
-    Stage mast       :   0.020
-    Stage mbc        :   0.004
-Stage parse      :   2.814
+    Stage optimize   :   0.017
+    Stage mast       :   0.023
+    Stage mbc        :   0.007
+Stage parse      :   4.350
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Color === (50/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Color.pm6
     Stage start      :   0.000
-    Stage parse      :   1.324
+    Stage parse      :   2.230
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.010
-    Stage mast       :   0.025
-    Stage mbc        :   0.003
-Stage parse      :   2.784
+    Stage optimize   :   0.011
+    Stage mast       :   0.051
+    Stage mbc        :   0.004
+Stage parse      :   4.371
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Coverage === (51/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Coverage.pm6
     Stage start      :   0.000
-    Stage parse      :   1.458
+    Stage parse      :   2.544
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.014
-    Stage mast       :   0.025
-    Stage mbc        :   0.003
-Stage parse      :   2.959
+    Stage optimize   :   0.015
+    Stage mast       :   0.057
+    Stage mbc        :   0.005
+Stage parse      :   4.866
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::FcFontKey === (52/78)
 Stage start      :   0.000
 
     precomp lib/Pango/FcFontKey.pm6
     Stage start      :   0.000
-    Stage parse      :   1.299
+    Stage parse      :   2.161
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.006
-    Stage mast       :   0.018
-    Stage mbc        :   0.002
-Stage parse      :   2.795
+    Stage optimize   :   0.009
+    Stage mast       :   0.029
+    Stage mbc        :   0.004
+Stage parse      :   4.359
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::FcFontsetKey === (53/78)
 Stage start      :   0.000
 
     precomp lib/Pango/FcFontsetKey.pm6
     Stage start      :   0.000
-    Stage parse      :   1.302
+    Stage parse      :   2.459
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.011
-    Stage mast       :   0.020
-    Stage mbc        :   0.002
-Stage parse      :   2.772
+    Stage optimize   :   0.014
+    Stage mast       :   0.032
+    Stage mbc        :   0.004
+Stage parse      :   4.720
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Font === (54/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Font.pm6
     Stage start      :   0.000
-    Stage parse      :   1.288
+    Stage parse      :   2.216
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.009
-    Stage mast       :   0.029
-    Stage mbc        :   0.003
-Stage parse      :   2.734
+    Stage optimize   :   0.010
+    Stage mast       :   0.028
+    Stage mbc        :   0.004
+Stage parse      :   4.420
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Font::FC === (55/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Font/FC.pm6
     Stage start      :   0.000
-    Stage parse      :   1.283
+    Stage parse      :   2.536
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.013
-    Stage mast       :   0.023
-    Stage mbc        :   0.003
-Stage parse      :   2.772
+    Stage optimize   :   0.011
+    Stage mast       :   0.032
+    Stage mbc        :   0.004
+Stage parse      :   4.867
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Font::XFT === (56/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Font/XFT.pm6
     Stage start      :   0.000
-    Stage parse      :   1.307
+    Stage parse      :   2.192
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.006
-    Stage mast       :   0.019
-    Stage mbc        :   0.003
-Stage parse      :   2.774
+    Stage optimize   :   0.007
+    Stage mast       :   0.029
+    Stage mbc        :   0.004
+Stage parse      :   4.385
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::FontDescription === (57/78)
 Stage start      :   0.000
 
     precomp lib/Pango/FontDescription.pm6
     Stage start      :   0.000
-    Stage parse      :   1.606
+    Stage parse      :   2.698
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.019
-    Stage mast       :   0.088
-    Stage mbc        :   0.008
-Stage parse      :   3.203
+    Stage optimize   :   0.025
+    Stage mast       :   0.087
+    Stage mbc        :   0.011
+Stage parse      :   4.952
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::FontFace === (58/78)
 Stage start      :   0.000
 
     precomp lib/Pango/FontFace.pm6
     Stage start      :   0.000
-    Stage parse      :   1.314
+    Stage parse      :   2.160
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.012
-    Stage mast       :   0.022
-    Stage mbc        :   0.003
-Stage parse      :   2.794
+    Stage optimize   :   0.015
+    Stage mast       :   0.026
+    Stage mbc        :   0.004
+Stage parse      :   4.321
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::FontFamily === (59/78)
 Stage start      :   0.000
 
     precomp lib/Pango/FontFamily.pm6
     Stage start      :   0.000
-    Stage parse      :   1.540
+    Stage parse      :   2.699
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.011
-    Stage mast       :   0.018
-    Stage mbc        :   0.006
-Stage parse      :   2.989
+    Stage optimize   :   0.028
+    Stage mast       :   0.021
+    Stage mbc        :   0.004
+Stage parse      :   4.834
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::FontMetrics === (60/78)
 Stage start      :   0.000
 
     precomp lib/Pango/FontMetrics.pm6
     Stage start      :   0.000
-    Stage parse      :   1.320
+    Stage parse      :   2.143
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.009
-    Stage mast       :   0.028
-    Stage mbc        :   0.003
-Stage parse      :   2.757
+    Stage optimize   :   0.011
+    Stage mast       :   0.030
+    Stage mbc        :   0.004
+Stage parse      :   4.259
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Fontset === (61/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Fontset.pm6
     Stage start      :   0.000
-    Stage parse      :   1.497
+    Stage parse      :   2.244
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
     Stage optimize   :   0.009
-    Stage mast       :   0.032
-    Stage mbc        :   0.003
-Stage parse      :   3.025
+    Stage mast       :   0.035
+    Stage mbc        :   0.004
+Stage parse      :   4.321
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::FontsetSimple === (62/78)
 Stage start      :   0.000
 
     precomp lib/Pango/FontsetSimple.pm6
     Stage start      :   0.000
-    Stage parse      :   1.329
+    Stage parse      :   2.100
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.015
-    Stage mast       :   0.021
-    Stage mbc        :   0.003
-Stage parse      :   2.764
+    Stage optimize   :   0.014
+    Stage mast       :   0.027
+    Stage mbc        :   0.004
+Stage parse      :   4.166
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::GlyphItem === (63/78)
 Stage start      :   0.000
 
     precomp lib/Pango/GlyphItem.pm6
     Stage start      :   0.000
-    Stage parse      :   1.284
+    Stage parse      :   2.077
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.007
-    Stage mast       :   0.025
+    Stage optimize   :   0.018
+    Stage mast       :   0.029
     Stage mbc        :   0.003
-Stage parse      :   2.745
+Stage parse      :   4.145
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::GlyphItemIter === (64/78)
 Stage start      :   0.000
 
     precomp lib/Pango/GlyphItemIter.pm6
     Stage start      :   0.000
-    Stage parse      :   1.289
+    Stage parse      :   2.098
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.009
-    Stage mast       :   0.023
-    Stage mbc        :   0.003
-Stage parse      :   2.759
+    Stage optimize   :   0.020
+    Stage mast       :   0.030
+    Stage mbc        :   0.004
+Stage parse      :   4.152
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::GlyphString === (65/78)
 Stage start      :   0.000
 
     precomp lib/Pango/GlyphString.pm6
     Stage start      :   0.000
-    Stage parse      :   1.812
+    Stage parse      :   2.651
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.010
-    Stage mast       :   0.082
-    Stage mbc        :   0.003
-Stage parse      :   3.345
+    Stage optimize   :   0.013
+    Stage mast       :   0.034
+    Stage mbc        :   0.005
+Stage parse      :   4.776
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Language === (66/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Language.pm6
     Stage start      :   0.000
-    Stage parse      :   1.339
+    Stage parse      :   2.136
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.010
-    Stage mast       :   0.031
-    Stage mbc        :   0.005
-Stage parse      :   2.793
+    Stage optimize   :   0.022
+    Stage mast       :   0.019
+    Stage mbc        :   0.006
+Stage parse      :   4.196
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::LayoutIter === (67/78)
 Stage start      :   0.000
 
     precomp lib/Pango/LayoutIter.pm6
     Stage start      :   0.000
-    Stage parse      :   1.505
+    Stage parse      :   2.322
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.012
-    Stage mast       :   0.038
-    Stage mbc        :   0.005
-Stage parse      :   3.014
+    Stage optimize   :   0.014
+    Stage mast       :   0.034
+    Stage mbc        :   0.004
+Stage parse      :   4.413
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::LayoutLine === (68/78)
 Stage start      :   0.000
 
     precomp lib/Pango/LayoutLine.pm6
     Stage start      :   0.000
-    Stage parse      :   1.490
+    Stage parse      :   2.297
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.013
-    Stage mast       :   0.034
-    Stage mbc        :   0.005
-Stage parse      :   3.002
+    Stage optimize   :   0.022
+    Stage mast       :   0.073
+    Stage mbc        :   0.004
+Stage parse      :   4.425
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::MarkupParser === (69/78)
 Stage start      :   0.000
 
     precomp lib/Pango/MarkupParser.pm6
     Stage start      :   0.000
-    Stage parse      :   1.802
+    Stage parse      :   2.588
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.009
-    Stage mast       :   0.016
-    Stage mbc        :   0.003
-Stage parse      :   3.288
+    Stage optimize   :   0.010
+    Stage mast       :   0.021
+    Stage mbc        :   0.004
+Stage parse      :   4.704
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Matrix === (70/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Matrix.pm6
     Stage start      :   0.000
-    Stage parse      :   1.288
+    Stage parse      :   2.262
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.016
-    Stage mast       :   0.027
-    Stage mbc        :   0.003
-Stage parse      :   2.775
+    Stage optimize   :   0.019
+    Stage mast       :   0.037
+    Stage mbc        :   0.004
+Stage parse      :   4.476
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Misc === (71/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Misc.pm6
     Stage start      :   0.000
-    Stage parse      :   1.714
+    Stage parse      :   2.748
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
     Stage optimize   :   0.007
-    Stage mast       :   0.021
-    Stage mbc        :   0.003
-Stage parse      :   3.224
+    Stage mast       :   0.022
+    Stage mbc        :   0.030
+Stage parse      :   4.906
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Context === (72/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Context.pm6
     Stage start      :   0.000
-    Stage parse      :   2.280
+    Stage parse      :   3.195
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.014
-    Stage mast       :   0.048
-    Stage mbc        :   0.006
-Stage parse      :   3.846
+    Stage optimize   :   0.021
+    Stage mast       :   0.055
+    Stage mbc        :   0.008
+R: GLib::Roles::Object
+Stage parse      :   5.390
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::FontMap === (73/78)
 Stage start      :   0.000
 
     precomp lib/Pango/FontMap.pm6
     Stage start      :   0.000
-    Stage parse      :   1.638
+    Stage parse      :   2.410
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.013
-    Stage mast       :   0.020
-    Stage mbc        :   0.003
-Stage parse      :   3.207
+    Stage optimize   :   0.010
+    Stage mast       :   0.029
+    Stage mbc        :   0.005
+Stage parse      :   4.540
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.007
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::FontMap::FC === (74/78)
 Stage start      :   0.000
 
     precomp lib/Pango/FontMap/FC.pm6
     Stage start      :   0.000
-    Stage parse      :   1.545
+    Stage parse      :   2.319
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.007
-    Stage mast       :   0.039
-    Stage mbc        :   0.002
-Stage parse      :   3.122
+    Stage optimize   :   0.008
+    Stage mast       :   0.026
+    Stage mbc        :   0.003
+Stage parse      :   4.452
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.002
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::FontMap::FT2 === (75/78)
 Stage start      :   0.000
 
     precomp lib/Pango/FontMap/FT2.pm6
     Stage start      :   0.000
-    Stage parse      :   1.736
+    Stage parse      :   2.453
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.016
-    Stage mast       :   0.038
-    Stage mbc        :   0.003
-Stage parse      :   3.297
+    Stage optimize   :   0.021
+    Stage mast       :   0.057
+    Stage mbc        :   0.004
+Stage parse      :   4.656
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.002
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Layout === (76/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Layout.pm6
     Stage start      :   0.000
-    Stage parse      :   1.971
+    Stage parse      :   2.861
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.041
-    Stage mast       :   0.070
+    Stage optimize   :   0.047
+    Stage mast       :   0.129
     Stage mbc        :   0.007
-Stage parse      :   3.627
+R: GLib::Roles::Object
+Stage parse      :   5.148
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Cairo === (77/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Cairo.pm6
     Stage start      :   0.000
-    Stage parse      :   1.816
+    Stage parse      :   2.641
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
-    Stage optimize   :   0.020
-    Stage mast       :   0.059
+    Stage optimize   :   0.027
+    Stage mast       :   0.080
     Stage mbc        :   0.006
-Stage parse      :   3.461
+Stage parse      :   4.862
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
  === Pango::Cairo::FontMap === (78/78)
 Stage start      :   0.000
 
     precomp lib/Pango/Cairo/FontMap.pm6
     Stage start      :   0.000
-    Stage parse      :   1.615
+    Stage parse      :   2.451
     Stage syntaxcheck:   0.000
     Stage ast        :   0.000
     Stage optimize   :   0.008
     Stage mast       :   0.026
-    Stage mbc        :   0.003
-Stage parse      :   3.195
+    Stage mbc        :   0.004
+Stage parse      :   4.590
 Stage syntaxcheck:   0.000
 Stage ast        :   0.000
-Stage optimize   :   0.000
-Stage mast       :   0.001
-Stage mbc        :   0.001
+Stage optimize   :   0.001
+Stage mast       :   0.003
+Stage mbc        :   0.000
 Stage moar       :   0.000
 
-real 218.85
-user 265.32
-sys 15.00
+real 341.32
+user 392.96
+sys 23.42
