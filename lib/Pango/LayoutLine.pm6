@@ -3,12 +3,11 @@ use v6.c;
 use Method::Also;
 use NativeCall;
 
-
 use Pango::Raw::Layout;
 use Pango::Raw::Types;
 
 class Pango::LayoutLine {
-  has PangoLayoutLine $!pll;
+  has PangoLayoutLine $!pll is implementor;
 
   submethod BUILD (:$line) {
     $!pll = $line;
@@ -27,7 +26,7 @@ class Pango::LayoutLine {
     $o.upref if $ref;
     $o;
   }
-  
+
   method get_extents (
     PangoRectangle() $ink_rect,
     PangoRectangle() $logical_rect
@@ -51,24 +50,20 @@ class Pango::LayoutLine {
     { * }
 
   multi method get_x_ranges(Int() $start_index, Int() $end_index) {
-    my @ranges;
-    my Int $n_ranges = 0;
-    samewith($start_index, $end_index, @ranges, $n_ranges);
-    @ranges;
+    samewith($start_index, $end_index, @, $);
   }
   multi method get_x_ranges (
     Int() $start_index,
     Int() $end_index,
-    @ranges,
-    Int $n_ranges is rw
+          @ranges,
+          $n_ranges     is rw
   ) {
-    my $ca = CArray[CArray[int32]].new;
-    my @i = ($start_index, $end_index, 0);
-    my int32 ($si, $ei, $nr) = self.RESOLVE-INT(@i);
+    my        $ca            = newCArray( CArray[int32] );
+    my int32 ($si, $ei, $nr) = ($start_index, $end_index, 0);
+
     pango_layout_line_get_x_ranges($!pll, $si, $ei, $ca, $nr);
-    @ranges.push($ca[0][$_]) for ^($nr * 2);
     $n_ranges = $nr;
-    Nil;
+    @ranges   = CArrayToArray($ca[0], $nr * 2);
   }
 
   proto method index_to_x (|)
@@ -80,9 +75,10 @@ class Pango::LayoutLine {
     samewith($index, $trailing, $xp);
     $xp;
   }
-  multi method index_to_x (Int() $index, Int() $trailing, Int $x_pos is rw) {
-    my gboolean $t = self.RESOLVE-BOOL($trailing);
-    my int32 ($i, $xp) = ( self.RESOLVE-INT($index), 0 );
+  multi method index_to_x (Int() $index, Int() $trailing, $x_pos is rw) {
+    my gboolean  $t        = $trailing.so.Int;
+    my int32    ($i,  $xp) = ($index, 0 );
+
     my $rc = pango_layout_line_index_to_x($!pll, $i, $t, $xp);
     $x_pos = $xp;
     $rc;
@@ -98,22 +94,22 @@ class Pango::LayoutLine {
 
   proto method x_to_index (|)
     is also<x-to-index>
-    { * }
+  { * }
 
   multi method x_to_index (Int() $x_pos) {
-    my Int ($i, $t) = (0, 0);
-    my $rc = samewith($x_pos, $i, $t);
-    ($i, $t, $rc);
+    samewith($x_pos, $, $, :all);
   }
   multi method x_to_index (
-    Int() $x_pos,
-    Int:D $index is rw,
-    Int:D $trailing is rw
+    Int()  $x_pos,
+           $index    is rw,
+           $trailing is rw,
+          :$all              = False
   ) {
-    my int32 $xp = self.RESOLVE-INT($x_pos);
-    my int32 ($i, $t) = (0, 0);
+    my int32 ($xp, $i, $t) = ($x_pos, 0, 0);
+
     my $rc = pango_layout_line_x_to_index($!pll, $xp, $i, $t);
     ($index, $trailing) = ($i, $t);
-    $rc;
+    return $rc unless $all;
+    $rc ?? ($index, $trailing) !! Nil;
   }
 }
