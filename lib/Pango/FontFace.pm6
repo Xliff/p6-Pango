@@ -6,7 +6,7 @@ use Pango::Raw::Types;
 use Pango::Raw::DescriptionMetrics;
 
 class Pango::FontFace {
-  has PangoFontFace $!pff;
+  has PangoFontFace $!pff is implementor;
 
   submethod BUILD (:$face) {
     $!pff = $face;

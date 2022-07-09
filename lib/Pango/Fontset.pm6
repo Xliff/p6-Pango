@@ -8,7 +8,7 @@ use Pango::Raw::Fontset;
 use Pango::Raw::Types;
 
 class Pango::Fontset {
-  has PangoFontset $!pfs;
+  has PangoFontset $!pfs is implementor;
 
   # Used only when dealing with abstract forms of descendants.
   submethod BUILD (:$set) {
@@ -47,7 +47,7 @@ D
 
   method get_font (Int() $wc) is also<get-font> {
     my gint $wwc = $wc;
-    
+
     pango_fontset_get_font($!pfs, $wwc);
   }
 

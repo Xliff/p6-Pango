@@ -6,7 +6,7 @@ use Pango::Raw::GlyphItem;
 use Pango::Raw::Types;
 
 class Pango::GlyphItemIter {
-  has PangoGlyphItemIter $!pgii;
+  has PangoGlyphItemIter $!pgii is implementor;
 
   submethod BUILD (:$iter) {
     $!pgii = $iter;
@@ -22,7 +22,7 @@ class Pango::GlyphItemIter {
 
   method copy {
     my $iter = pango_glyph_item_iter_copy($!pgii);
-    
+
     $iter ?? Pango::GlyphItemIter.new($iter) !! Nil;
   }
 

@@ -7,7 +7,7 @@ use Pango::Raw::Types;
 use Pango::Raw::DescriptionMetrics;
 
 class Pango::FontMetrics {
-  has PangoFontMetrics $!pfm;
+  has PangoFontMetrics $!pfm is implementor;
 
   submethod BUILD (:$metrics) {
     $!pfm = $metrics;

@@ -8,7 +8,7 @@ use Pango::Raw::Types;
 use Pango::Raw::FontMap;
 
 class Pango::FontMap {
-  has PangoFontMap $!fm;
+  has PangoFontMap $!fm is implementor;
 
   method Pango::Raw::Definitions::PangoFontMap
     is also<

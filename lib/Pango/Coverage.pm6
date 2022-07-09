@@ -8,7 +8,7 @@ use Pango::Raw::Coverage;
 use Pango::Raw::Types;
 
 class Pango::Coverage {
-  has PangoCoverage $!pc;
+  has PangoCoverage $!pc is implementor;
 
   submethod BUILD (:$coverage) {
     $!pc = $coverage;

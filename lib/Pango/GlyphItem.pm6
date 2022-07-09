@@ -8,7 +8,7 @@ use Pango::Raw::Types;
 # FINISH REFINING
 
 class Pango::GlyphItem {
-  has PangoGlyphItem $!pgi;
+  has PangoGlyphItem $!pgi is implementor;
 
   submethod BUILD(:$item) {
     $!pgi = $item;

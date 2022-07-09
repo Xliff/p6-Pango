@@ -8,7 +8,7 @@ use Pango::Raw::Types;
 use Pango::Raw::DescriptionMetrics;
 
 class Pango::Font {
-  has PangoFont $!pf;
+  has PangoFont $!pf is implementor;
 
   submethod BUILD (:$font) {
     $!pf = $font;

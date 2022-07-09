@@ -7,7 +7,7 @@ use Pango::Raw::Tabs;
 use Pango::Raw::Types;
 
 class Pango::Tabs {
-  has PangoTabArray $!pta;
+  has PangoTabArray $!pta is implementor;
 
   submethod BUILD (:$tabs) {
     $!pta = $tabs;

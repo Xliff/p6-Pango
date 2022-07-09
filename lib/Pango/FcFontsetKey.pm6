@@ -7,7 +7,7 @@ use Pango::Raw::FcFontMap;
 use Pango::Raw::Types;
 
 class Pango::FcFontsetKey {
-  has PangoFcFontsetKey $!fcfsk;
+  has PangoFcFontsetKey $!fcfsk is implementor;
 
   method get_absolute_size is also<get-absolute-size> {
     pango_fc_fontset_key_get_absolute_size($!fcfsk);

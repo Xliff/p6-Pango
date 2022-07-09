@@ -6,7 +6,7 @@ use Pango::Raw::Types;
 use Pango::Raw::Matrix;
 
 class Pango::Matrix {
-  has PangoMatrix $!pm;
+  has PangoMatrix $!pm is implementor;
 
   submethod BUILD (:$matrix) {
     $!pm = $matrix;

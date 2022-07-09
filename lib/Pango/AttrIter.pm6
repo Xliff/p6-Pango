@@ -10,7 +10,7 @@ use GLib::GList;
 use GLib::Roles::ListData;
 
 class Pango::AttrIter {
-  has PangoAttrIterator $!pai;
+  has PangoAttrIterator $!pai is implementor;
 
   submethod BUILD (:$iter) {
     $!pai = $iter;

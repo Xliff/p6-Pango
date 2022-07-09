@@ -9,7 +9,7 @@ use Pango::Raw::Types;
 use Pango::Fontset;
 
 class Pango::FontsetSimple is Pango::Fontset {
-  has PangoFontsetSimple $!pfss;
+  has PangoFontsetSimple $!pfss is implementor;
 
   submethod BUILD (:$simple) {
     $!pfss = $simple;

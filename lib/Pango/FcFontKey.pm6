@@ -7,7 +7,7 @@ use Pango::Raw::FcFontMap;
 use Pango::Raw::Types;
 
 class Pango::FcFontKey {
-  has PangoFcFontKey $!fcfk;
+  has PangoFcFontKey $!fcfk is implementor;
 
   method get_context_key is also<get-context-key> {
     pango_fc_font_key_get_context_key($!fcfk);

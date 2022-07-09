@@ -9,7 +9,7 @@ use Pango::Raw::DescriptionMetrics;
 use Pango::FontFace;
 
 class Pango::FontFamily {
-  has PangoFontFamily $!pff;
+  has PangoFontFamily $!pff is implementor;
 
   submethod BUILD (:$face) {
     $!pff = $face;

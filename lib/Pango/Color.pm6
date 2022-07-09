@@ -6,7 +6,7 @@ use Pango::Raw::Attr;
 use Pango::Raw::Types;
 
 class Pango::Color {
-  has PangoColor $!pc;
+  has PangoColor $!pc is implementor;
 
   submethod BUILD (:$color) {
     $!pc = $color;

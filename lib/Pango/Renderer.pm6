@@ -6,7 +6,7 @@ use Pango::Raw::Types;
 use Pango::Raw::Renderer;
 
 class Pango::Renderer {
-  has PangoRenderer $!pr;
+  has PangoRenderer $!pr is implementor;
 
   method Pango::Raw::Definitions::PangoRenderer
     is also<PangoRenderer>

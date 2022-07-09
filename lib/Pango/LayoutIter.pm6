@@ -7,7 +7,7 @@ use Pango::Raw::Types;
 use Pango::Raw::Layout;
 
 class Pango::LayoutIter {
-  has PangoLayoutIter $!pli;
+  has PangoLayoutIter $!pli is implementor;
 
   method Pango::Raw::Definitions::PangoLayoutIter
     is also<PangoLayoutIter>

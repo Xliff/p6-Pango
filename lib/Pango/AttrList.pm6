@@ -5,8 +5,12 @@ use Method::Also;
 use Pango::Raw::Attr;
 use Pango::Raw::Types;
 
+use GLib::Roles::Implementor;
+
 class Pango::AttrList {
-  has PangoAttrList $!pal;
+  also does GLib::Roles::Implementor;
+  
+  has PangoAttrList $!pal is implementor;
 
   submethod BUILD (:$list) {
     $!pal = $list;
@@ -75,7 +79,7 @@ class Pango::AttrList {
 
   method splice (PangoAttrList() $other, Int() $pos, Int() $len) {
     my gint ($p, $l) = ($pos, $len);
-    
+
     pango_attr_list_splice($!pal, $other, $pos, $len);
   }
 

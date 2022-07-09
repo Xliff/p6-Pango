@@ -6,7 +6,7 @@ use Pango::Raw::Language;
 use Pango::Raw::Types;
 
 class Pango::Language {
-  has PangoLanguage $!pl;
+  has PangoLanguage $!pl is implementor;
 
   submethod BUILD (:$language) {
     $!pl = $language;

@@ -10,7 +10,7 @@ use Pango::Raw::GlyphString;
 use GLib::Roles::ListData;
 
 class Pango::GlyphString {
-  has PangoGlyphString $!pgs;
+  has PangoGlyphString $!pgs is implementor;
 
   submethod BUILD (:$glyphstring) {
     $!pgs = $glyphstring;
