@@ -7,7 +7,11 @@ use Pango::Context;
 use Pango::Raw::Types;
 use Pango::Raw::FontMap;
 
+use GLib::Roles::Implementor;
+
 class Pango::FontMap {
+  also does GLib::Roles::Implementor;
+
   has PangoFontMap $!fm is implementor;
 
   method Pango::Raw::Definitions::PangoFontMap
@@ -54,19 +58,20 @@ class Pango::FontMap {
   { * }
 
   multi method list_families (:$raw = False) {
-    my ($fl, $nf) = (CArray[CArray[PangoFontFamily]], 0);
-    $fl[0] = CArray[PangoFontFamily];
+    my $fl = newCArray( CArray[PangoFontFamily] );
+    my $nf = 0;
+
     samewith($fl, $nf, :$raw);
   }
   multi method list_families (
     CArray[CArray[PangoFontFamily]] $families,
-    $n_families is rw,
-    :$raw = False
+                                    $n_families is rw,
+                                    :$raw              = False
   ) {
     my int32 $nf = 0;
-    my $rc = pango_font_map_list_families($!fm, $families, $nf);
-    $n_families = $nf;
+    my       $rc = pango_font_map_list_families($!fm, $families, $nf);
 
+    $n_families = $nf;
     my @a = CArrayToArray($rc[0], $n_families);
     return @a if $raw;
 
@@ -74,7 +79,7 @@ class Pango::FontMap {
   }
 
   method load_font (
-    PangoContext() $context,
+    PangoContext()         $context,
     PangoFontDescription() $desc
   )
     is also<load-font>
@@ -83,9 +88,9 @@ class Pango::FontMap {
   }
 
   method load_fontset (
-    PangoContext() $context,
+    PangoContext()         $context,
     PangoFontDescription() $desc,
-    PangoLanguage() $language
+    PangoLanguage()        $language
   )
     is also<load-fontset>
   {
