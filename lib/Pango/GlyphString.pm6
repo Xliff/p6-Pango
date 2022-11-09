@@ -9,7 +9,11 @@ use Pango::Raw::GlyphString;
 
 use GLib::Roles::ListData;
 
+use GLib::Roles::Implementor;
+
 class Pango::GlyphString {
+  also does GLib::Roles::Implementor;
+
   has PangoGlyphString $!pgs is implementor;
 
   submethod BUILD (:$glyphstring) {
@@ -33,8 +37,9 @@ class Pango::GlyphString {
   # class or package for these.
   method reorder_items (
     Pango::GlyphString:U:
-    GList() $items,
-    :$glist = False
+    
+    GList()  $items,
+            :$glist = False
   )
     is also<reorder-items>
   {

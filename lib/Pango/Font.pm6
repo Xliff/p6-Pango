@@ -7,7 +7,11 @@ use Pango::Raw::Types;
 # Grab raw calls. Yes, the name is confusing. Sorry about that.
 use Pango::Raw::DescriptionMetrics;
 
+use GLib::Roles::Implementor;
+
 class Pango::Font {
+  also does GLib::Roles::Implementor;
+
   has PangoFont $!pf is implementor;
 
   submethod BUILD (:$font) {
