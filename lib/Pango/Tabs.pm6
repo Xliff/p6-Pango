@@ -6,7 +6,11 @@ use NativeCall;
 use Pango::Raw::Tabs;
 use Pango::Raw::Types;
 
+use GLib::Roles::Implementor;
+
 class Pango::Tabs {
+  also does GLib::Roles::Implementor;
+
   has PangoTabArray $!pta is implementor;
 
   submethod BUILD (:$tabs) {
