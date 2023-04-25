@@ -170,3 +170,25 @@ constant PangoTabAlign is export := guint32;
 our enum PangoTabAlignEnum is export <
   PANGO_TAB_LEFT
 >;
+
+constant PangoOverline is export := guint32;
+our enum PangoOverlineEnum is export <
+  PANGO_OVERLINE_NONE
+  PANGO_OVERLINE_SINGLE
+>;
+
+constant PangoShowFlags is export := guint32;
+our enum PangoShowFlagsEnum is export (
+  PANGO_SHOW_NONE        => 0,
+  PANGO_SHOW_SPACES      => 1,
+  PANGO_SHOW_LINE_BREAKS => 1 +< 1,
+  PANGO_SHOW_IGNORABLES  => 1 +< 2
+);
+
+constant PangoTextTransform is export := guint32;
+our enum PangoTextTransformEnum is export <
+  PANGO_TEXT_TRANSFORM_NONE
+  PANGO_TEXT_TRANSFORM_LOWERCASE
+  PANGO_TEXT_TRANSFORM_UPPERCASE
+  PANGO_TEXT_TRANSFORM_CAPITALIZE
+>;
