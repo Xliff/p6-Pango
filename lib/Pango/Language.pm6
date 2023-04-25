@@ -5,7 +5,11 @@ use Method::Also;
 use Pango::Raw::Language;
 use Pango::Raw::Types;
 
+use GLib::Roles::Implementor;
+
 class Pango::Language {
+  also does GLib::Roles::Implementor;
+
   has PangoLanguage $!pl is implementor;
 
   submethod BUILD (:$language) {
