@@ -3,16 +3,52 @@ use v6.c;
 use Method::Also;
 use NativeCall;
 
-use Pango::Context;
 use Pango::Raw::Types;
 use Pango::Raw::FontMap;
 
-use GLib::Roles::Implementor;
+use Pango::Context;
+
+use GLib::Roles::Object;
+use GIO::Roles::ListModel;
+
+our subset PangoFontMapAncestry is export of Mu
+  where PangoFontMap | GListModel | GObject;
 
 class Pango::FontMap {
-  also does GLib::Roles::Implementor;
+  also does GLib::Roles::Object;
+  also does GIO::Roles::ListModel;
 
   has PangoFontMap $!fm is implementor;
+
+  submethod BUILD ( :$pango-fontmap ) {
+    self.setPangoFontMap($pango-fontmap) if $pango-fontmap;
+  }
+
+  method setPangoFontMap (PangoFontMapAncestry $_)
+    is also<setFontMap>
+  {
+    my $to-parent;
+
+    $!fm = do {
+      when PangoFontMap {
+        $to-parent = cast(GObject, $_);
+        $_;
+      }
+
+      when GListModel {
+        $to-parent = cast(GObject, $_);
+        $!lm       = $_;
+        cast(PangoFontMap, $_);
+      }
+
+      default {
+        $to-parent = $_;
+        cast(PangoFontMap, $_);
+      }
+    }
+    self!setObject($to-parent);
+    self.roleInit-GListModel;
+  }
 
   method Pango::Raw::Definitions::PangoFontMap
     is also<
@@ -21,8 +57,12 @@ class Pango::FontMap {
     >
   { $!fm }
 
-  method setFontMap (PangoFontMap $fontmap) {
-    $!fm = $fontmap;
+  multi method new (PangoFontMapAncestry $pango-fontmap, :$ref = True) {
+    return Nil unless $pango-fontmap;
+
+    my $o = self.bless( :$pango-fontmap );
+    $o.ref if $ref;
+    $o;
   }
 
   method changed {
