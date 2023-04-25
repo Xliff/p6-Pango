@@ -29,7 +29,7 @@ class Pango::FontDescription {
     $description ?? self.bless( :$description ) !! Nil;
   }
 
-  method new_from_string(Str $str) is also<new-from-string> {
+  method new_from_string (Str() $str) is also<new-from-string> {
     my $description =  pango_font_description_from_string($str);
 
     $description ?? self.bless( :$description ) !! Nil;
@@ -283,6 +283,12 @@ D
     my PangoFontMask $t = $to_unset;
 
     pango_font_description_unset_fields($!pfd, $t);
+  }
+
+  method get_type {
+    state ($n, $t);
+
+    unstable_get_type( self.^name, &pango_font_description_get_type, $n, $t );
   }
 
 }
