@@ -3,18 +3,20 @@ use v6.c;
 use NativeCall;
 
 use Cairo;
+use GLib::Raw::Distro;
 use GLib::Raw::Definitions;
 use GLib::Roles::Pointers;
+use Pango::Raw::Distro;
 
 unit package Pango::Raw::Definitions;
 
 # Number of times I've had to force compile the whole project.
-my constant forced = 52;
+my constant forced = 224;
 
 constant cairo      is export = 'cairo',v2;
-constant pango      is export = 'pango-1.0',v0;
-constant pangocairo is export = 'pangocairo-1.0',v0;
-constant pangoft2   is export = 'pangoft2-1.0',v0;
+constant pango      is export = version-by-distro('pango');
+constant pangocairo is export = version-by-distro('pangocairo');
+constant pangoft2   is export = version-by-distro('pangoft2');
 
 constant Display             is export := Pointer;
 constant FT_Face             is export := Pointer;
