@@ -9,7 +9,8 @@ use Pango::Layout;
 use Pango::FontDescription;
 
 use LWP::Simple;
-use Mojo::DOM:from<Perl5>;
+#use Mojo::DOM:from<Perl5>;
+use DOM::Tiny;
 
 sub get_rdjt_scribbles {
 #   my @a;
@@ -26,24 +27,30 @@ sub get_rdjt_scribbles {
 # RDJT2
 #
 #   @a.pick;
-  # my $data;
-  # my $dom = Mojo::DOM.new(
-  #   $data = LWP::Simple.new.get( 'https://twitter.com/realDonaldTrump' )
-  # );
-  #
-  # my @texts;
-  # for @( $dom.find('p.TweetTextSize').to_array ) -> $e {
-  #   @texts.push: $e.all_text if $e.defined;
-  # }
-  #
-  # @texts.pick;
+   my $data;
+   my $dom = DOM::Tiny.parse(
+     $data = LWP::Simple.new.get(
+  #   	'https://twitter.com/realDonaldTrump'
+     	'https://truthsocial.com/@realDonaldTrump'
+     )
+   );
 
-  do qq:to/TEXT/;
-    Sorry to inform the Do Nothing Democrats, but I am getting VERY GOOD
-    internal Polling Numbers. Just like 2016, the \@nytimes Polls are Fake!
-    The \@FoxNews Polls are a JOKE! Do you think they will apologize to me &
-    their subscribers AGAIN when I WIN? People want LAW, ORDER & SAFETY!
-    TEXT
+   $data.say;
+
+   my @texts;
+   for $dom.find('.status__content')[] -> $e {
+     $e.say;
+     @texts.push: $e.text if $e.defined;
+   }
+
+   @texts.pick;
+
+   #do qq:to/TEXT/;
+   # Sorry to inform the Do Nothing Democrats, but I am getting VERY GOOD
+   # internal Polling Numbers. Just like 2016, the \@nytimes Polls are Fake!
+   # The \@FoxNews Polls are a JOKE! Do you think they will apologize to me &
+   # their subscribers AGAIN when I WIN? People want LAW, ORDER & SAFETY!
+   # TEXT
 }
 
 #constant FONT = 'Sans Bold 14';
@@ -72,6 +79,9 @@ sub draw_text($c, $rc) {
 }
 
 sub MAIN ($filename = 'donald_tweet.png') {
+  get_rdjt_scribbles.say;
+  exit;
+
   my $rc = RandomColor.new(format => 'rgbarray').list[0];
   my $surface = Cairo::Image.create(
     FORMAT_ARGB32, 1050, 300

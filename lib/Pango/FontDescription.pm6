@@ -10,7 +10,7 @@ class Pango::FontDescription {
   has PangoFontDescription $!pfd is implementor;
 
   submethod BUILD (:$description) {
-    $!pfd = $description;
+    $!pfd = $description if $description;
   }
 
   method Pango::Raw::Definitions::PangoFontDescription
@@ -23,10 +23,15 @@ class Pango::FontDescription {
   multi method new (PangoFontDescription $description) {
     $description ?? self.bless( :$description ) !! Nil;
   }
-  multi method new {
+  multi method new (*%a) {
     my $description = pango_font_description_new();
 
-    $description ?? self.bless( :$description ) !! Nil;
+    my $o = $description ?? self.bless( :$description ) !! Nil;
+
+    for %a.pairs {
+      $o."{ .key }"() = .value if $o.^can( .key ) ;
+    }
+    $o;
   }
 
   method new_from_string (Str() $str) is also<new-from-string> {

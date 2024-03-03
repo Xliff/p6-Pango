@@ -2,6 +2,7 @@ use v6.c;
 
 use NativeCall;
 
+use GLib::Raw::Traits;
 use Pango::Raw::Attr;
 use Pango::Raw::Types;
 
@@ -9,7 +10,7 @@ use GLib::Roles::StaticClass;
 
 class Pango::MarkupParser {
   also does GLib::Roles::StaticClass;
-  
+
   # has PangoMarkupParser $!pmp;
 
   # Object method requires more GLib integration than is necessary since
@@ -37,15 +38,21 @@ class Pango::MarkupParser {
   #   $rc;
   # }
 
-  method parse (
-    Pango::MarkupParser:U:
-    Str() $markup_text;
-    Int() $length,
-    Int() $accel_marker,
+  proto method parse (|)
+    is static
+  { * }
+
+  multi method parse (Str() $text) {
+    samewith($text, -1, False, newCArray(PangoAttrList), $, $);
+  }
+  multi method parse (
+    Str()                          $markup_text;
+    Int()                          $length,
+    Int()                          $accel_marker,
     CArray[Pointer[PangoAttrList]] $attr_list,
-    Str $text is rw,
-    Int() $accel_char is rw,
-    CArray[Pointer[GError]] $error = gerror
+                                   $text           is rw,
+                                   $accel_char     is rw,
+    CArray[Pointer[GError]]        $error                 = gerror
   ) {
     my gint $l = $length;
     my guint ($am, $ac) = ($accel_marker, $accel_char);
