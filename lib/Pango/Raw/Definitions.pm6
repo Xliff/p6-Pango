@@ -11,7 +11,7 @@ use Pango::Raw::Distro;
 unit package Pango::Raw::Definitions;
 
 # Number of times I've had to force compile the whole project.
-my constant forced = 224;
+my constant forced = 253;
 
 constant cairo      is export = 'cairo',v2;
 constant pango      is export = version-by-distro('pango');
