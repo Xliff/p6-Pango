@@ -6,6 +6,7 @@ use Pango::Raw::Exports;
 
 unit package Pango::Raw::Types;
 
+need GLib::Raw::Debug;
 need GLib::Raw::Definitions;
 need GLib::Raw::Enums;
 need GLib::Raw::Exceptions;
