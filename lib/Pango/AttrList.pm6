@@ -9,7 +9,7 @@ use GLib::Roles::Implementor;
 
 class Pango::AttrList {
   also does GLib::Roles::Implementor;
-  
+
   has PangoAttrList $!pal is implementor;
 
   submethod BUILD (:$list) {
@@ -29,7 +29,7 @@ class Pango::AttrList {
   }
   multi method new {
     my $list = pango_attr_list_new();
-    self.bless(:$list);
+    $list ?? self.bless(:$list) !! Nil;
   }
 
   method change (PangoAttributes() $attr) {
